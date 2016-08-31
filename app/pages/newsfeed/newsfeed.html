@@ -9,7 +9,7 @@
 
 <ion-content>
     <ion-list>
-        <ion-item *ngFor="let event of apiData" (click)="viewEvent(event)">
+        <ion-item *ngFor="let event of events" (click)="viewEvent(event)">
             {{event.title}}
         </ion-item>
     </ion-list>

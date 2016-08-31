@@ -9,20 +9,17 @@ import { WebAPI } from '../../providers/WebAPI';
 })
 export class Newsfeed {
     events: ClubEvent[];
-    apiData: any;
   constructor(private navCtrl: NavController, public webAPI: WebAPI) {
-      this.events = this.webAPI.getEvents();
       this.webAPI = webAPI;
-      this.getAPIData();
+      this.getEvents();
   }
   viewEvent(event:ClubEvent):void{
       this.navCtrl.push(EventPage, {event:event});
   }
-  getAPIData(){
-    this.webAPI.getAPIData()
+  getEvents(){
+    this.webAPI.getEvents()
     .then(data => {
-      console.log(data);
-      this.apiData = data;
+      this.events = data;
     });
   }
   
