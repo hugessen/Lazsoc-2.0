@@ -514,4 +514,235 @@ export class WebAPI {
     }		
     ];
   }
+  getEventsLocally(){
+    return [  {
+        "id": 0,
+        "title": "BU111 Workshop",
+        "timePublished": "11/24/15 4:00 PM",
+        "startDate": "08/22/16 4:00 PM",
+        "endDate": "08/23/16 5:00 PM",
+        "subheader": "Everything you need to know for the final",
+        "location": "BA301, Bricker Academic",
+        "imgSrc": "",
+        "thumbnail": "resources/SOS.png",
+        "clubRef": 17,
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675/",
+        "sponsors": [
+        {
+            "title": "Bank of Montreal",
+            "imgSrc": "sponsors/BMO/BMO.jpg"
+        },
+        {
+            "title": "Procter and Gamble",
+            "imgSrc": "sponsors/ProcterGamble.png"
+        }
+        ],
+        "tags": [
+        "Business",
+        "First-year",
+        "Exam Review"
+        ],
+        "desc": "Business can be a real hassle for first year students. That's why we've compiled a group of the smartest business students around to show you the ropes. After you've seen this presentation, you'll be ready for anything they throw at you. Come join if you want to learn everything there is to know about accrued liabilities, financial investments, the Diamond-E model and other useless drivel you'll never use again! Disclaimer: We have not seen the exam, and cannot offer insider hints! "
+    },
+    {
+        "id": 1,
+        "title": "EC140 Mock Midterm",
+        "timePublished": "11/25/15 4:00 PM",
+        "startDate": "08/11/16 3:45 PM",
+        "endDate": "08/11/16 9:00 PM",
+        "subheader": "Get prepared for the EC140 midterm",
+        "location": "P2001, Peters Building",
+        "imgSrc": "",
+        "thumbnail": "thumbnails/LEC.png",
+        "clubRef": 8,
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675/",
+        "sponsors": [
+        {
+            "title": "Bank of Montreal",
+            "imgSrc": "sponsors/BMO/BMO.jpg"
+        },
+        {
+            "title": "Procter and Gamble",
+            "imgSrc": "sponsors/ProcterGamble.png"
+        }
+        ],
+        "tags": [
+        "Economics",
+        "Exam Review"
+        ],
+        "desc": "This midterm is incredibly important! We promise that we'll provide you with a difficult midterm that replicates anything and everything that could be found on the March EC120 Midterm! The admission cost is $5 for non members, and members get in free. We promise your economics marks will never be higher, so come on out and get your econ on!"
+    },
+    {
+        "id": 2,
+        "title": "Sports Management Workshop",
+        "timePublished": "11/26/15 4:00 PM",
+        "startDate": "08/30/16 11:00 AM",
+        "endDate": "08/30/16 3:00 PM",
+        "subheader": "Learn from industry pros",
+        "location": "BA202, Bricker Academic",
+        "imgSrc": "",
+        "thumbnail": "thumbnails/SML.png",
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675/",
+        "clubRef": 10,
+        "sponsors": [
+        {
+            "title": "Bank of Montreal",
+            "imgSrc": "sponsors/BMO/BMO.jpg"
+        },
+        {
+            "title": "Procter and Gamble",
+            "imgSrc": "sponsors/ProcterGamble.png"
+        },
+        {
+            "title": "Ernst and Young",
+            "imgSrc": "sponsors/ernstandyoung/ErnstYoung.png"
+        }
+        ],
+        "tags": [
+        "Sports",
+        "Management"
+        ],
+        "desc": "Suspendisse potenti. Ut dolor eros, convallis sollicitudin ipsum at, sodales interdum elit. Maecenas non nibh et velit tincidunt ultrices. Proin neque augue, facilisis nec rhoncus et, facilisis a ligula. Integer ut lacus ac sapien dictum eleifend. Donec iaculis ipsum arcu, nec bibendum tellus dignissim vel. Sed lacinia, nunc eu vehicula laoreet, nisl libero ornare enim, consectetur auctor sapien odio posuere felis. Integer at porttitor sem. Maecenas efficitur et odio ut sodales. Proin nibh enim, molestie ac laoreet at, congue nec nibh. Maecenas non orci in mauris malesuada blandit quis quis eros. Donec pharetra, nulla id tincidunt ultrices, tortor nisl rutrum arcu, vitae suscipit eros augue et nibh. Cras et eros fermentum, tristique quam non, eleifend elit."
+    },
+    {
+        "id": 3,
+        "title": "Tech Analysis Workshop",
+        "timePublished": "11/27/15 4:00 PM",
+        "startDate": "08/24/16 3:45 PM",
+        "endDate": "08/24/16 9:00 PM",
+        "subheader": "Listen to our guest speaker!",
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675/",
+        "location": "P2006, Peters Building",
+        "imgSrc": "",
+        "sponsors": [
+        {
+            "title": "Bank of Montreal",
+            "imgSrc": "sponsors/BMO/BMO.jpg"
+        },
+        {
+            "title": "Procter and Gamble",
+            "imgSrc": "sponsors/ernstandyoung/ErnstYoung.png"
+        }
+        ],
+        "thumbnail": "thumbnails/TML.png",
+        "clubRef": 19,
+        "tags": [
+        "Information Technology"
+        ],
+        "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra erat nibh, et tempor tellus lobortis luctus. Fusce velit nisl, dapibus eget efficitur at, volutpat a odio. Curabitur et accumsan orci. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla vel egestas nunc, ac condimentum arcu. Praesent ex justo, gravida at purus at, sodales viverra turpis. Fusce id eros maximus dolor viverra condimentum. Aliquam magna nisi, porta vel magna ac, hendrerit posuere eros. Phasellus posuere bibendum erat, eget sollicitudin metus egestas aliquam."
+    },
+    {
+        "id": 4,
+        "title": "Marketing Conference",
+        "timePublished": "11/28/15 4:00 PM",
+        "startDate": "08/20/16 3:45 PM",
+        "endDate": "08/20/16 9:00 PM",
+        "subheader": "Showcasing the top marketers",
+        "location": "P2006, Peters Building",
+        "imgSrc": "",
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675",
+        "sponsors": [
+        
+        ],
+        "thumbnail": "thumbnails/TAP.png",
+        "clubRef": 5,
+        "tags": [
+        "Marketing",
+        "Advertising"
+        ],
+        "desc": "Aenean porttitor felis eros, vel facilisis erat commodo eu. Donec orci diam, tincidunt id tempor at, hendrerit ac urna. Quisque ut tincidunt nibh, pellentesque ullamcorper mauris. Suspendisse consectetur diam non ligula dignissim ultricies. Donec elementum massa enim, vitae congue elit rhoncus et. Sed malesuada enim eu dolor bibendum, eget lobortis tellus bibendum. Mauris gravida aliquet consequat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi tincidunt dolor a molestie pharetra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Curabitur non scelerisque tortor. Maecenas sem metus, iaculis sit amet enim sed, eleifend gravida turpis. Duis blandit blandit odio eu blandit. Nullam feugiat elit id eros suscipit volutpat. Aliquam lorem mi, semper id est tincidunt, dignissim iaculis mauris. Morbi scelerisque ornare orci, sed aliquam neque tempus et."
+    },
+    {
+        "id": 5,
+        "title": "Networking Conference",
+        "timePublished": "11/29/15 4:00 PM",
+        "startDate": "07/06/16 3:45 PM",
+        "endDate": "07/06/16 9:00 PM",
+        "subheader": "Learn to integrate yourselves as a team!",
+        "location": "P2006, Peters Building",
+        "imgSrc": "",
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675",
+        "sponsors": [
+        
+        ],
+        "thumbnail": "thumbnails/Link.png",
+        "clubRef": 18,
+        "tags": [
+        "Networking",
+        "Marketing"
+        ],
+        "desc": "In vel lectus dui. Sed blandit lectus vel elit pellentesque condimentum vitae ut eros. Proin convallis lectus eu diam auctor cursus. Integer ac hendrerit nibh, sit amet convallis odio. Vivamus sapien libero, rutrum eget volutpat sit amet, aliquet ac erat. Vivamus euismod placerat nulla in condimentum. Aliquam vitae molestie nibh. Integer tempus, velit at pulvinar bibendum, metus eros luctus nisi, ut rhoncus ligula ante sit amet velit. Cras auctor finibus porta. Nam interdum tempor consectetur. Quisque sed purus non nunc tincidunt condimentum. Donec sollicitudin, mauris eget condimentum placerat, dui justo sodales quam, facilisis vehicula nisi erat sed arcu. Integer in velit malesuada, luctus elit et, iaculis enim. Phasellus ut ornare est. Fusce gravida lacinia metus sed consequat. Morbi rutrum lectus eros, eget facilisis nisi laoreet quis."
+    },
+    {
+        "id": 6,
+        "title": "Startup Talk at Communitech",
+        "timePublished": "11/29/15 4:00 PM",
+        "startDate": "08/26/16 3:45 PM",
+        "endDate": "08/26/16 9:00 PM",
+        "subheader": "Learn from a true entrepreneurial veteran!",
+        "location": "P2006, Peters Building",
+        "imgSrc": "",
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675",
+        "sponsors": [
+        
+        ],
+        "thumbnail": "thumbnails/SL.png",
+        "clubRef": 9,
+        "tags": [
+        "Networking",
+        "Marketing"
+        ],
+        "desc": "Sed interdum laoreet risus, et dignissim velit faucibus vitae. Sed a felis vel nisi lacinia gravida sed vel nulla. Suspendisse non sollicitudin nisl. Praesent eu eros mollis, tristique lorem at, laoreet risus. Sed vitae molestie arcu, non vestibulum mauris. Nullam et purus vitae magna dapibus tempor. Vestibulum in sapien eget eros tincidunt rutrum vel sed felis. Aenean ac tellus non neque varius varius nec quis quam. Curabitur quis ipsum tempus, iaculis libero et, auctor dolor. Quisque dolor massa, aliquam sit amet aliquam id, pellentesque rutrum nulla. Nulla mollis convallis augue at blandit. Donec malesuada risus eget dictum auctor. Ut ac nisl et nibh sagittis varius eget volutpat lorem. Suspendisse et aliquam nunc. Nulla facilisis placerat feugiat."
+    },
+    {
+        "id": 7,
+        "title": "Pitch Competition",
+        "timePublished": "11/29/15 4:00 PM",
+        "startDate": "09/06/16 3:45 PM",
+        "endDate": "09/06/16 9:00 PM",
+        "subheader": "Learn to give a killer pitch!",
+        "location": "P2006, Peters Building",
+        "imgSrc": "",
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675",
+        "sponsors": [
+        
+        ],
+        "thumbnail": "thumbnails/GoldenSpeakers.png",
+        "clubRef": 2,
+        "tags": [
+        "Networking",
+        "Marketing"
+        ],
+        "desc": "Nulla suscipit vitae lorem id blandit. Pellentesque vitae lacus eget lorem aliquet dapibus. Nam at ullamcorper lorem. Ut rhoncus purus non congue hendrerit. Sed pretium tellus nec ligula elementum, eu venenatis nisl porta. Praesent dapibus aliquet mauris, in dapibus enim imperdiet ac. Sed lacinia consectetur orci consectetur scelerisque. Donec egestas gravida aliquam. Sed feugiat nec ante et malesuada. Cras aliquam dictum leo vitae vulputate. Vestibulum eget viverra odio. Ut facilisis, urna a feugiat accumsan, velit arcu bibendum ante, et ultrices ligula nisl pellentesque metus. Praesent consequat, nisi ac facilisis elementum, velit ante vestibulum sapien, id euismod odio erat id nibh."
+    },
+    {
+        "id": 8,
+        "title": "Networking workshop",
+        "timePublished": "08/20/16 4:00 PM",
+        "startDate": "09/20/16 4:00 PM",
+        "endDate": "09/20/16 5:00 PM",
+        "subheader": "Everything you need to know for networking",
+        "location": "BA301, Bricker Academic",
+        "imgSrc": "",
+        "thumbnail": "thumbnails/SOS.png",
+        "clubRef": 17,
+        "facebookEvent": "https://www.facebook.com/events/1443513392633675/",
+        "sponsors": [
+        {
+            "title": "Bank of Montreal",
+            "imgSrc": "sponsors/BMO/BMO.jpg"
+        },
+        {
+            "title": "Procter and Gamble",
+            "imgSrc": "sponsors/ProcterGamble.png"
+        }
+        ],
+        "tags": [
+        "Business",
+        "First-year"
+        ],
+        "desc": "Nulla suscipit vitae lorem id blandit. Pellentesque vitae lacus eget lorem aliquet dapibus. Nam at ullamcorper lorem. Ut rhoncus purus non congue hendrerit. Sed pretium tellus nec ligula elementum, eu venenatis nisl porta. Praesent dapibus aliquet mauris, in dapibus enim imperdiet ac. Sed lacinia consectetur orci consectetur scelerisque. Donec egestas gravida aliquam. Sed feugiat nec ante et malesuada. Cras aliquam dictum leo vitae vulputate. Vestibulum eget viverra odio. Ut facilisis, urna a feugiat accumsan, velit arcu bibendum ante, et ultrices ligula nisl pellentesque metus. Praesent consequat, nisi ac facilisis elementum, velit ante vestibulum sapien, id euismod odio erat id nibh."
+    }
+    ];
+  }
 }
