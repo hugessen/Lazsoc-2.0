@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>Newsfeed</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-   <!-- <ion-list>
-        <ion-item *ngFor="let event of events" (click)="viewEvent(event)">{{event.title}}</ion-item>
-    </ion-list>-->
     <ion-list>
-        <ion-item *ngFor="let event of events" (click)="viewEvent(event)">
+        <ion-item *ngFor="let event of apiData" (click)="viewEvent(event)">
             {{event.title}}
         </ion-item>
     </ion-list>

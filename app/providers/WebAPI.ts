@@ -20,7 +20,7 @@ export class WebAPI {
       this.http.get('https://lazsoc.ca/app_info.php')
         .map(res => res.json())
         .subscribe(data => {
-          this.data = data.results;
+          this.data = data;
           resolve(this.data);
         });
     });
