@@ -6,8 +6,12 @@
     <ion-title>Club Selector</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
     <ion-list>
-        <ion-item *ngFor="let club of clubs">{{club.name}}</ion-item>
+        <ion-item *ngFor="let club of clubs" (click)="viewClub(club)">
+            <h2><b>{{club.name}}</b></h2>
+            {{club.desc}}
+        </ion-item>
     </ion-list>
 </ion-content>

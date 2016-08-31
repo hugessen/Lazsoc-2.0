@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import { ClubEvent } from '../../models/club-event';
+import { Club } from '../../models/club';
 
 @Component({
-  templateUrl: 'build/pages/eventpage/event-page.html'
+  templateUrl: 'build/pages/clubpage/clubpage.html'
 })
-export class EventPage {
-    event: ClubEvent;
+export class ClubPage {
+    club: Club;
     message: string;
   constructor(private navCtrl: NavController, private navParams: NavParams) {
-    this.event = this.navParams.get('event');
+    this.club = this.navParams.get('club');
     this.message = "this works";
   }
 }
