@@ -5,8 +5,10 @@ import {TabsPage} from './pages/tabs/tabs';
 import {WebAPI} from './providers/WebAPI';
 import {EventPage} from './pages/eventpage/event-page';
 
+import {LoginPage} from './pages/login/login';
 import {Newsfeed} from './pages/newsfeed/newsfeed';
 import {ClubSelector} from './pages/clubselector/clubselector';
+import {DiscountPage} from './pages/discount/discount';
 
 
 @Component({
@@ -20,9 +22,11 @@ export class MyApp {
   constructor(public platform: Platform) {
     this.pages = [
         { title: "Newsfeed", component: Newsfeed},
-        { title: "Club Selector", component: ClubSelector}
+        { title: "Club Selector", component: ClubSelector},
+        { title: "Login", component: LoginPage},
+        { title: "Discount", component: DiscountPage}
     ]
-    this.rootPage = Newsfeed;
+    this.rootPage = DiscountPage;
   }
   initializeApp(){
       this.platform.ready().then(() => {

@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar laz-purple>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Discount Program</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div>
+        <img src="img/banners/DiscountCard.png" class="lazsoc_banner"/>
+    </div>
+    <ion-list>
+        
+        <ion-item><div class="word-wrap">
+            The Lazaridis Students' Society is proud to introduce and present the LazSoc Discount Program presented in partnership with Quick Sandwiches. All students with the official Discount Program sticker attached to the back of their Laurier OneCard are eligible to receive discounts from the partners listed below. For more information please contact the LazSoc VP of Corporate Relations at vpcorporate@lazsoc.ca or <a onclick="window.open('https://lazsoc.ca/contact-us/', '_system');" style="color: #0000EE; text-decoration: underline;">click here</a>.
+        </div></ion-item>
+        
+        <ion-item-divider style="color:black"><b>
+            Our Sponsors:
+        </b></ion-item-divider>
+        <ion-item *ngFor="let sponsor of allSponsors">
+            <img src="{{sponsor.logo}}"/>
+            <div class="word-wrap">{{sponsor.discount}}</div>
+        </ion-item>
+       <!-- This is how I would like to output the sponsors. Until I can figure out why I have these errors, though, I'll have to settle for a list -->
+       <!-- <div *ngFor="let sponsor of allSponsors">
+            
+            Output all the logos first in a row, that way if the discount description is long and needs to be 
+            put onto multiple lines the logos are all still lined up
+            
+            <ion-row>
+                <ion-col *ngFor="sponsor in rows">
+                    <img src="{{sponsor.logo}}"/>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col *ngFor="sponsor in rows">
+                    {{sponsor.discount}}
+                </ion-col>
+            </ion-row>
+            
+        </div>-->
+    </ion-list>
+</ion-content>

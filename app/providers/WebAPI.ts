@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ClubEvent } from '../models/club-event';
 import { Club } from '../models/club';
+import {DiscountSponsor} from '../models/discount-sponsor';
 import 'rxjs/add/operator/map';
  
 @Injectable()
@@ -31,6 +32,80 @@ export class WebAPI {
           resolve(this.data);
         });
     });
+  }
+  getDiscountSponsors():DiscountSponsor[]{
+      return [
+		{
+			name: "Quick Sandwiches",
+			logo: "thumbnails/discount_program/Quick_Sandwiches_Logo.png",
+			discount: "-10% Storewide"
+		},
+		{
+			name: "Shoeless Joes",
+			logo: "thumbnails/discount_program/Shoeless_Joes_Logo.png",
+			discount: "-25% Food with the Purchase of a Drink"
+		},
+		{
+			name: "Caliburger",
+			logo: "thumbnails/discount_program/Caliburger_Logo.png",
+			discount: "-10% Storewide"
+		},
+		{
+			name: "Holy Guacamole",
+			logo: "thumbnails/discount_program/Holy_Guacamole_Logo.png",
+			discount: "Free Upgrade to a Large Burrito"
+		},			
+		{
+			name: "Noon Moment",
+			logo: "thumbnails/discount_program/Noon_Moment_Logo.png",
+			discount: "-10% Storewide"
+		},
+		{
+			name: "Sweet Dreams Teashop",
+			logo: "thumbnails/discount_program/Sweet_Dreams_Logo.png",
+			discount: "-10% Storewide"
+		},		
+		{
+			name: "Menchies",
+			logo: "thumbnails/discount_program/Menchies_Logo.png",
+			discount: "-10% Storewide"
+		},
+		{
+			name: "Wordsworth Books",
+			logo: "thumbnails/discount_program/Words_Worth_Books_Logo.png",
+			discount: "-10% Storewide"
+		},
+		{
+			name: "Staples",
+			logo: "thumbnails/discount_program/Staples_Logo.png",
+			discount: "-20% Copy and Print Services"
+		},
+		{
+			name: "Harmony by Earthwinds",
+			logo: "thumbnails/discount_program/Harmony_Logo.png",
+			discount: "-10% off Regular Priced Items In-Store"
+		},
+		{
+			name: "KW Pilates",
+			logo: "thumbnails/discount_program/KW_Pilates_Logo.png",
+			discount: "-10% Discount off Regular Priced Classes"
+		},
+		{
+			name: "The Truth Beauty Company",
+			logo: "thumbnails/discount_program/TTBC_Logo.png",
+			discount: "-10% Discount at Waterloo and Guelph Locations"
+		},
+		{
+			name: "Capri Salon",
+			logo: "thumbnails/discount_program/Capri_Salon_Logo.png",
+			discount: "-10% Off Products and Salon Services Tuesday through Thursday with select Stylists"
+		}
+		/*{
+			name: "Huether Hotel",
+			logo: "thumbnails/discount_program/Huether_Hotel_Logo.png",
+			discount: "TBD"
+		},*/
+		];
   }
   getClubData(){
     return [
@@ -518,6 +593,9 @@ export class WebAPI {
     return [  
         {   id:0,
             title:"O-Day",
+            startTime:"September 11, 9:00 AM",
+            endTime: "4:30 PM",
+            location: "Bingeman's Conference Centre",
             tagline:"Come out and learn what it means to be a business student!",
             club:this.getClubData()[22],
             banner:"img/Event Banners/O-Day.jpg",
@@ -525,6 +603,9 @@ export class WebAPI {
         {
             id:1,
             title:"5 Days for the Homeless!",
+            startTime: "March 11, 2017, 9:00 AM",
+            endTime: "March 16, 2017, 4:30 PM",
+            location:"Fred Nichols Building",
             tagline:"Come out and support us as we sleep outside for a week!",
             club:this.getClubData()[21],
             banner:"img/Event Banners/5DaysBanner.jpg",

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar laz-purple>
     <button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -8,19 +8,10 @@
 </ion-header>
 
 <ion-content>
-    <!--<ion-list>
-        <ion-item *ngFor="let event of events" (click)="viewEvent(event)">
-            <flexbox>
-                <img src="{{event.club.logo}}" class="imgbox">
-                <b>{{event.title}}</b>
-                {{event.desc}}
-            </flexbox>
-        </ion-item>
-    </ion-list>-->
     <div *ngFor="let event of events" (click)="viewEvent(event)">
         <ion-card style="border-style:solid black">
-            <img src="{{event.banner}}"/>
-            <ion-card-content>
+            <img src="{{event.banner}}" ng-show="event.banner"/>
+            <ion-card-content style="padding:1.5%">
                 <ion-card-title>
                     {{event.title}}
                 </ion-card-title>

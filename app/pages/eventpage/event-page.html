@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar laz-purple>
     <ion-title>{{event.title}}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -10,11 +10,11 @@
         <ion-list>
             <ion-item>
                 <ion-icon name="md-time"></ion-icon>
-                Wednesday, September 7th
+                {{event.startTime}} - {{event.endTime}}
             </ion-item>
             <ion-item>
                 <ion-icon name="md-pin"></ion-icon>
-                Bricker Academic
+                {{event.location}}
             </ion-item>
         </ion-list>
     </ion-card>
