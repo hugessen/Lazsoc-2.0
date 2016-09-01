@@ -7,6 +7,7 @@ import { Club } from '../../models/club';
 })
 export class ClubPage {
     club: Club;
+    //Current club being viewed is passed through NavParams
   constructor(private navCtrl: NavController, private navParams: NavParams) {
     this.club = this.navParams.get('club');
   }

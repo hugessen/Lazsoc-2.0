@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { ClubEvent } from '../models/club-event';
-import { Club } from '../models/club';
+import { Club } from '../models/club'; //Club object. All objects stored in the 'models' folder
 import {DiscountSponsor} from '../models/discount-sponsor';
 import 'rxjs/add/operator/map';
  
@@ -33,6 +33,8 @@ export class WebAPI {
         });
     });
   }
+  //Until we have an API for all these, I have them manually inputted.
+  //The beauty of a service is that anything calling it doesn't care how the data is retrieved. We just change the method bodies to an HTTP request when we have API data.
   getDiscountSponsors():DiscountSponsor[]{
       return [
 		{

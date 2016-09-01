@@ -20,6 +20,8 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform) {
+    //Array of JSON page objects. Sidemenu iterates through these and navigates to their component when clicked
+    //Any new page to be added to the sidemenu, just import its component at the top and add it to this list. Everything else is handled
     this.pages = [
         { title: "Newsfeed", component: Newsfeed},
         { title: "Club Selector", component: ClubSelector},
@@ -39,4 +41,5 @@ export class MyApp {
 }
 
 
-ionicBootstrap(MyApp,[WebAPI]);
+ionicBootstrap(MyApp,[WebAPI]); //We bootstrap WebAPI so that there is a singular instance of it available to all Components. 
+// The alternative is to define a localized instance for each Component. Either is fine, it's just dependent on how you want to use it.

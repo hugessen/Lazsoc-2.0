@@ -9,6 +9,7 @@ import { ClubPage } from '../clubpage/clubpage';
 })
 export class ClubSelector {
   clubs: Club[];
+  
   constructor(private navCtrl: NavController, private webAPI: WebAPI) {
       this.webAPI = webAPI;
       this.getClubs();
@@ -17,6 +18,7 @@ export class ClubSelector {
   viewClub(club:Club):void{
       this.navCtrl.push(ClubPage, {club:club});
   }
+  
   getClubs(){
       this.clubs = this.webAPI.getClubs();
   }

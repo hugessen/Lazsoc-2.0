@@ -22,6 +22,7 @@ export class Newsfeed {
       this.events = data;
     });
   }
+  //I wanted a different array of events, so I defined them locally
   getEventsLocally(){
       this.events = this.webAPI.getEventsLocally();
   }
