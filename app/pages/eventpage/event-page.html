@@ -5,9 +5,22 @@
 </ion-header>
 
 <ion-content>
-    <img src="{{event.club.banner}}">
-    <div class="list">
-        <div class="item item-divider">{{event.title}}</div>
-    </div>
-    {{event.desc}}
+    <img src="{{event.banner}}">
+    <ion-card>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="md-time"></ion-icon>
+                Wednesday, September 7th
+            </ion-item>
+            <ion-item>
+                <ion-icon name="md-pin"></ion-icon>
+                Bricker Academic
+            </ion-item>
+        </ion-list>
+    </ion-card>
+    <ion-card>
+        <ion-card-header><b>{{event.title}}</b></ion-card-header>
+        <ion-card-content>{{event.desc}}</ion-card-content>
+    </ion-card>
+    
 </ion-content>

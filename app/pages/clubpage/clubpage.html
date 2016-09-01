@@ -6,13 +6,10 @@
 
 <ion-content>
     <img src="{{club.banner}}">
-    <button class="button button-bar button-full">Subscribe!</button>
-    <div class="card">
-        <div class="item item-text-wrap">
-            {{club.desc}}
-        </div>
-    </div>
-    <div class="item item-divider divider-component">Upcoming Events</div>
-    This is in the process of being implemented :)
-    <div class="item item-divider divider-component">Connect with {{club.name}}</div>
+    <button block>Subscribe!</button>
+    <ion-card>
+        <ion-card-header><b>{{club.name}}</b></ion-card-header>
+        <ion-card-content>{{club.desc}}</ion-card-content>
+    </ion-card>
+    
 </ion-content>
