@@ -10,8 +10,11 @@
 <ion-content>
     <ion-list>
         <ion-item *ngFor="let event of events" (click)="viewEvent(event)">
-            <img src="{{event.club.logo}}" class="imgbox">
-            {{event.title}}
+            <flexbox>
+                <img src="{{event.club.logo}}" class="imgbox">
+                <b>{{event.title}}</b>
+                {{event.desc}}
+            </flexbox>
         </ion-item>
     </ion-list>
 </ion-content>

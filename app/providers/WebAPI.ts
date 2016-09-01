@@ -40,8 +40,8 @@ export class WebAPI {
         shortname: "LMA",
         slug: "lma",
         desc: "The Laurier Marketing Association is a student organization dedicated to undergraduates interested in marketing. We’ve teamed up with the best resources Wilfrid Laurier has to offer: world-renowned faculty, successful alumni, industry leaders, and recruiters from the world’s top companies. You may want to know if marketing is right for you, or you may already be on your way into the real marketing world. Either way, we’ll help you get your head start. Ultimately, our mission is to help our members attain the level of marketing experience they desire by providing comprehensive resources that span the academic, professional, and social faces of marketing.",
-        logo: "img/./resources/LMA.png",
-        banner:"banners/LMABanner.png",
+        logo: "img/LMA.png",
+        banner: "img/banners/LMABanner.png",
         email: "president@lauriermarketing.com",
         website: "http://lauriermarketing.com",
         tags: [
@@ -64,7 +64,7 @@ export class WebAPI {
         slug: "lcc",
         desc: "Since 2009, the Laurier Consulting Club has continued to grow both in membership numbers as well as in quality – here’s how:We operate with the intentions of improving the knowledge and technical skills of the students of SBE at Wilfrid Laurier University. Through our two portfolios – engagement and the Laurier Consulting Program (LCP) we aim to provide unique and tangible opportunities that can help students grow on a professional level making them able to compete in the consulting landscape. Through ‘Engagement’, we offer workshops, networking events, info sessions and a large-scale case competition to allow for learning about the industry, learning techniques that can be used to get hired, and finally, case practice – an industry essential. The ‘Laurier Consulting Program’ is unique to LCC and seamlessly complements our engagement portfolio by allowing students to deploy what they have learned at our events in real consulting engagements setup and managed by our executive team.",
         logo: "img/LCC.png",
-        banner:"banners/LCCBanner.png",
+        banner: "img/banners/LCCBanner.png",
         website: "http://www.laurierconsulting.ca",
         tags: [
         "Consulting",
@@ -85,7 +85,7 @@ export class WebAPI {
         desc: "The Golden Speakers Club was created to change the way students think about and perform when Public Speaking. The Golden Speakers Club’s flagship event is the Public Speaking Competition in which students can put their public speaking abilities to the test in front of a panel of judges.",
         logo: "img/GoldenSpeakers.png",
         website: "http://www.goldenspeakersclub.com",
-        banner:"banners/GSBanner.png",
+        banner: "img/banners/GSBanner.png",
         tags: [
             "Public Speaking",
             "First Year",
@@ -107,7 +107,7 @@ export class WebAPI {
         desc: "Enactus is a non-profit global organization dedicated to inspiring students to improve the world through entrepreneurial action. There are over 1700 university programs running Enactus in 36 countries, with over 70,500 participating students and building 550 partnerships with corporate organizations and individuals. We provide a platform for teams of outstanding university and college students to create community development projects that put people’s own ingenuity and talents at the centre of improving their livelihoods. Guided by educators and supported by business leaders, our students take the kind of entrepreneurial approach that empowers people to be a part of their own success. Our work transforms both the lives of the people we serve, and in turn, the lives of our students as they develop into more effective, values-driven leaders.An annual series of Regional and National Competitions provides a forum for teams to showcase the impact of their outreach efforts and to be evaluated by executives serving as judges. National champion teams advance to the prestigious Enactus World Cup to experience excellence in competition, collaboration, and celebration.",
         logo: "img/Enactus.png",
         website: "http://enactuslaurier.ca",
-        banner:"banners/EnactusBanner.png",
+        banner: "img/banners/EnactusBanner.png",
         tags: [
             "Entrepreneurship",
             "Social Change"
@@ -126,7 +126,7 @@ export class WebAPI {
         slug: "deca",
         desc: "DECA Laurier is a student-run organization that provides students with the essential skills needed to survive and excel in the corporate world. These skills are enhanced in the field of marketing, entrepreneurship, finance and business management through the use of business simulations and case studies. Each year, competitions are held regionally, provincially and internationally to further challenge and engage our members beyond what they think they are capable of, pushing them to exceed expectations and limits. DECA Laurier strives to create a bridge between the knowledge acquired at school and the practical skills needed at the work place. It is an experience that provides a platform for students to learn, compete and succeed in today’s vastly changing environment.",
         logo: "img/Deca.png",
-        banner:"banners/DECABanner.png",
+        banner: "img/banners/DECABanner.png",
         tags: [
             "Public Speaking",
             "Case Competitions",
@@ -148,7 +148,7 @@ export class WebAPI {
         desc: "The Advertising Project is dedicated to providing eye-catching, dynamic advertising for local enterprises and not-for-profits through digital and print media to help businesses soar above the competition. All advertising is created and designed by students looking to gain experience in the industry as graphic designers, copywriters, and account executives.",
         logo: "img/TAP.png",
         website: "http://www.theadvertisingproject.com",
-        banner:"banners/TAPBanner.png",
+        banner: "img/banners/TAPBanner.png",
         tags: [
         "Advertising",
         "Marketing",
@@ -166,7 +166,7 @@ export class WebAPI {
         desc: "AIESEC is the world’s largest student run organization present in over 128 countries and 2800 universities. AIESEC is focused on leadership development through the facilitation of international exchange. We provide students opportunities to develop themselves personally and professionally through our various programs such as campus involvement and exchange. AIESEC has the ability to send Laurier students on exchange to different countries for various internships and provide an incredible international experience.",
         logo: "img/Aiesec.png",
         website: "http://aiesec.ca",
-        banner:"banners/AIESECBanner.png",
+        banner: "img/banners/AIESECBanner.png",
         tags: [
             "International"
         ],
@@ -186,7 +186,7 @@ export class WebAPI {
         desc: "The Atrium Media Group is a dynamic and innovative media organization that provides rewarding opportunities for students to showcase their creativity and talent through various initiatives including; the trademark Atrium Magazine that is published thrice a year, the new multi-functional blog featuring articles and editorials not found in our magazine, and the rapidly growing Atrium Photography/Videography Team. AMG has been a part of SBE’s history for over 20 years, during which it has aimed to represent the students of SBE by bringing light to the current issues, concerns, and interests of our community.",
         logo: "img/AMG.png",
         website: "http://sbeatrium.com",
-        banner:"banners/AMGBanner.png",
+        banner: "img/banners/AMGBanner.png",
         tags: [
         "Marketing",
         "Media",
@@ -208,7 +208,7 @@ export class WebAPI {
         desc: "The Laurier Economics Club (LEC) is Laurier’s only economics-focused club on campus. Our goal is to provide resources to students who are interested in the field of economics. Through our speaker engagements, mock midterm sessions, and our annual conference, we expose our members to a diverse range of economic knowledge and experience. We strive to enhance each member’s academic journey while providing them with tools to help them realize their full potential and value in a degree/minor in economics.",
         logo: "img/LEC.png",
         website: "http://lauriereconomics.club",
-        banner:"banners/LECBanner.png",
+        banner: "img/banners/LECBanner.png",
         tags: [
         "Economics",
         "Mock Midterm",
@@ -229,7 +229,7 @@ export class WebAPI {
         desc: "Startups and Waterloo are two words that fit perfectly together. Startup Laurier (formerly know as the Laurier Innovation and Technology Club) brings that entrepreneurial culture to campus. Our events, programs, and initiatives are meant to empower Laurier students to explore and pursue their entrepreneurial ambitions. Whether it be starting your own business, working for a startup, growing a skill, or wanting to learn more about Kitchener-Waterloo’s entrepreneurship community, we provide students with the resources and connections to make it happen.",
         logo: "img/SL.png",
         website: "http://www.startuplaurier.com",
-        banner:"banners/StartupBanner.png",
+        banner: "img/banners/StartupBanner.png",
         tags: [
         "Entrepreneurship",
         "Startups",
@@ -252,7 +252,7 @@ export class WebAPI {
         desc: "Sports Management Laurier (SML) provides students the chance to connect with prominent professionals in the sports management industry. SML makes it possible for individuals to pursue their dream career within the Brand, Agency, and Broadcast sectors of the industry. SMLs flagship events include a speaker series and various social events with industry professionals. SML has a proud partnership with TSN.",
         logo: "img/SML.png",
         website: "http://www.smlaurier.com",
-        banner:"banners/SMLBanner.png",
+        banner: "img/banners/SMLBanner.png",
         tags: [
         "Marketing",
         "Sports Management",
@@ -273,7 +273,7 @@ export class WebAPI {
         desc: "Laurier Investment & Finance Association’s (LIFA) mission is to develop, educate and inspire students into exploring the different roles within the finance industry. Our commitment to the Laurier community is to offer valuable opportunities, including unique and instructive events for students to interact, network and learn from today’s industry leaders.",
         logo: "img/LIFA.png",
         website: "http://www.lifawlu.ca",
-        banner:"banners/LIFABanner.png",
+        banner: "img/banners/LIFABanner.png",
         tags: [
         "Finance",
         "Networking",
@@ -295,7 +295,7 @@ export class WebAPI {
         desc: "The key to success in ANY business career is simple: increase your sales skills. No matter what your role is, selling is part of your job. Sales is not about manipulating or pressuring your client, it is about effectively communicating the benefits and logic behind a decision. Most importantly, it is about selling YOURSELF. The Laurier Sales Association prides itself in being one of Canada’s first and only clubs focused entirely on sales. We work with our sponsors to provide a hands-on- approach through workshops, sales competitions and networking events. Join us today to learn more about careers in sales and enhance the skill set to excel in any profession.",
         logo: "img/LSA.png",
         website: "http://www.lauriersales.com",
-        banner:"banners/LSABanner.png",
+        banner: "img/banners/LSABanner.png",
         tags: [
         "Sales",
         "Public Speaking",
@@ -315,7 +315,7 @@ export class WebAPI {
         slug: "jdcc",
         desc: "JDC Central is a team-based, academic case study competition that will attract more than 500 of the brightest students in Eastern Canada to participate in the most prestigious event of its kind. JDC competitors participate in rigorous academic case simulations, a debate competition, athletic, social, and spirit events throughout a fast-paced and competitive weekend. JDC Laurier’s pride, dedication, and wealth of superior talent has resulted in seven straight championships in seven years of competition.",
         logo: "img/JDCC.png",
-        banner:"banners/JDCCBanner.png",
+        banner: "img/banners/JDCCBanner.png",
         tags: [
         "Public Speaking",
         "Case Competitions"
@@ -335,7 +335,7 @@ export class WebAPI {
         desc: "XLerate is a club run exclusively for first year Laurier Business and Economics students to help ease the transition from high school to university. We aim to help each student maintain a balance of academic success, community involvement and social development; all needed to help you survive and thrive in your first year at Laurier!",
         logo: "img/XL.png",
         website: "http://www.xleratewlu.ca",
-        banner:"banners/XLBanner.png",
+        banner: "img/banners/XLBanner.png",
         tags: [
         "1st Year",
         "Exam Review",
@@ -356,7 +356,7 @@ export class WebAPI {
         desc: "The WLU Debating Society is Laurier’s Waterloo campus debate club. We hold meetings weekly and attend tournaments regularly. To join, all you have to do is participate by coming out to our meetings! You do not need any previous debating experience, and are welcomed to attend any time throughout the year. At our meetings, an experienced member of the club will give a brief debating lesson, and you will be able to participate in practice rounds.",
         logo: "img/Debate.png",
         website: "http://www.wludebating.com",
-        banner:"banners/DebateBanner.png",
+        banner: "img/banners/DebateBanner.png",
         tags: [
         "Public Speaking",
         "Debate"
@@ -374,7 +374,7 @@ export class WebAPI {
         desc: "Women In Leadership Laurier (WILL) is an innovative business club at Wilfrid Laurier University. Our mission focuses on promoting equal opportunity and continuous learning. WILL strives to provide leadership skills, resources, information and support needed to succeed in today’s professional environment. By embracing knowledge from experienced speakers, the Waterloo community and our peers, we encourage growth without any boundaries.",
         logo: "img/WILL.png",
         website: "http://www.willaurier.org",
-        banner:"banners/WILLBanner.png",
+        banner: "img/banners/WILLBanner.png",
         tags: [
         "Women in Business",
         "Networking",
@@ -395,7 +395,7 @@ export class WebAPI {
         desc: "Students Offering Support is a national network of student volunteers who offer comprehensive Exam-AID review sessions right before midterms and finals to raise money for sustainable education projects in Latin America. Students who attend the session donate $20 to review the course content with a senior student who has taken the course before. After the session, students are ready to ace the exam! The money raised funds our outreach trips, which take groups of students to countries such as Costa Rica, Peru, and Nicaragua to contribute to the construction projects that SOS is funding.",
         logo: "img/SOS.png",
         website: "http://laurier.soscampus.com/index.php?lm_slug=lm_index",
-        banner:"banners/SOSBanner.png",
+        banner: "img/banners/SOSBanner.png",
         tags: [
         "International",
         "Exam Review",
@@ -418,7 +418,7 @@ export class WebAPI {
         desc: "The Link’s mission is dedicated to connecting past, present and future students within Wilfrid Laurier University’s School of Business and Economics, the community and internationally by promoting leadership and networking opportunities in a professional manner. The Link strives to create an environment where students can grow on an academic, professional and personal level. Since its establishment in April 2002, The Link has provided Wilfrid Laurier Business & Economics students the chance to connect and network with future students, past students, and university faculty. Our first event was The Leadership in Business Conference, which allowed university students to teach high school students business skills in a friendly yet competitive environment. Today, The Link has grown into a diverse and unique business organization, which carries forth the values of leadership, networking and development. The Link executive team consists of creative, energetic and innovative individuals who strive to be a positive influence in their school, community, and international business world.",
         logo: "img/Link.png",
         website: "http://thelinkonline.org/update/",
-        banner:"banners/LinkBanner.png",
+        banner: "img/banners/LinkBanner.png",
         tags: [
         "Networking",
         "International",
@@ -440,7 +440,7 @@ export class WebAPI {
         desc: "Technology Management Laurier (TML) connects students to the growing global technology sector. Technology Management Laurier strives to provide each member with the opportunity to succeed in the technology sector, or enhance their business-tech abilities. From insights into the industry from technical and corporate perspectives, to partnered events with local tech incubators like the Communitech Hub, we empower innovation. As Laurier’s only tech-business club, TML has grown rapidly since its inception by issuing improved member services in the form of a Speaker Series with large-scale technology companies, tech-incubator tours, networking opportunities and the Consumer Electronic Demo. Additionally, TML has assisted local businesses and startups through its Consultech (Consulting Division), and continues to provide technological implementation services (Social Media, Web Development, and much more). Most recently, Tech-Management Laurier has also partnered with the Laurier Startup Fund course to further develop the Consultech division.",
         logo: "img/TML.png",
         website: "http://www.lauriertech.com",
-        banner:"banners/TMLBanner.png",
+        banner: "img/banners/TMLBanner.png",
         tags: [
         "Technology",
         "Networking",
@@ -459,7 +459,7 @@ export class WebAPI {
         desc: "We’re in a unique position – we have the ears of the recruitment departments of top domestic and international accounting firms, and the attention of Laurier business students holding the largest member base of any WLU club. Let us use it to help each individual set and achieve career goals. We’re here to organize events, provide resources, and create connections that result in success and achievement for both sides of the table. Above all, our end goal is to educate Laurier students on the various accounting career paths that are available to them.",
         logo: "img/LAA.png",
         website:"http://laurieraccounting.com",
-        banner:"banners/LAABanner.png",
+        banner: "img/banners/LAABanner.png",
         tags: [
         "Accounting",
         "Finance",

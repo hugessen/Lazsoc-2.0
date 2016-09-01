@@ -8,10 +8,11 @@
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-item *ngFor="let club of clubs" (click)="viewClub(club)">
-            <h2><b>{{club.name}}</b></h2>
-            {{club.desc}}
-        </ion-item>
-    </ion-list>
+    <flexbox>
+        <div class="selectionbox" *ngFor="let club of clubs">
+            <div (click)="viewClub(club)">
+                <img src="{{club.logo}}" class="unchecked-clubs-page">
+            </div>
+        </div>
+    </flexbox>
 </ion-content>

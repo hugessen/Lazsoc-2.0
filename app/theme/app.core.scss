@@ -8,7 +8,47 @@
 // App Shared Sass variables belong in app.variables.scss.
 
 @import "../pages/about/about";
-@import "../pages/newsfeed/newsfeed";
-@import "../pages/contact/contact";
 
+@import "../pages/contact/contact";
+@import "../pages/clubselector/clubselector";
 @import "../pages/home/home";
+
+flexbox{
+	flex-wrap:wrap;
+	display:flex;
+	flex-direction:row;
+}
+.imgbox{
+    border-radius:10px;
+	width:15%;
+    height:100%;
+}
+.selectionbox{
+	position:relative;
+	width:33.3%;
+	padding:2px 4px;
+}
+.unchecked-clubs-page {
+	border-radius:10px;
+	background-color:white;
+	border:1px solid rgba(0,0,0,0.2);
+}
+.checked-clubs-page {
+	border-radius:10px;
+	background-color:white;
+	border:2px solid #F2A900;
+}
+infobox{
+	position:absolute;
+	transform: translateY(20%) translateX(25%);
+	width:20%;
+	height:20%;
+}
+infobox img{	
+	width:75%;
+}
+.divider-component {
+    background-color:#e6e6e6;
+    border-style:solid;
+    border-color: black;
+}
