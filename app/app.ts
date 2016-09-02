@@ -28,7 +28,7 @@ export class MyApp {
         { title: "Login", component: LoginPage},
         { title: "Discount", component: DiscountPage}
     ]
-    this.rootPage = DiscountPage;
+    this.rootPage = Newsfeed;
   }
   initializeApp(){
       this.platform.ready().then(() => {
