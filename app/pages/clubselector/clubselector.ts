@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ToastController } from 'ionic-angular';
 import { WebAPI } from '../../providers/WebAPI';
 import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
@@ -9,17 +9,35 @@ import { ClubPage } from '../clubpage/clubpage';
 })
 export class ClubSelector {
   clubs: Club[];
+  interests: any[];
+  view:string;
   
-  constructor(private navCtrl: NavController, private webAPI: WebAPI) {
+  constructor(private navCtrl: NavController, private webAPI: WebAPI, public toastCtrl:ToastController) {
       this.webAPI = webAPI;
-      this.getClubs();
+      this.clubs = this.getClubs();
+      this.interests = this.getInterests();
+      this.view = "clubs";
+  }
+  
+  
+  //Toast is just an inobtrusive message box at the bottom of the screen. I'd rather this than a popup when the user hits save
+  showToast(message:string){
+      let toast = this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      position:'bottom'
+    });
+    toast.present();
   }
   
   viewClub(club:Club):void{
       this.navCtrl.push(ClubPage, {club:club});
   }
   
-  getClubs(){
-      this.clubs = this.webAPI.getClubs();
+  getClubs():Club[]{
+      return this.webAPI.getClubs();
+  }
+  getInterests(){
+      return this.webAPI.getInterests();
   }
 }

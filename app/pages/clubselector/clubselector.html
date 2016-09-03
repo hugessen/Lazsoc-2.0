@@ -1,18 +1,37 @@
 <ion-header>
   <ion-navbar laz-purple>
-    <button menuToggle>
+   <!-- <button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Club Selector</ion-title>
+    </button>-->
+    <ion-title>Set Preferences</ion-title>
+    <ion-buttons end>
+        <button (click)="showToast('Preferences saved!')" side="right"><ion-icon name="md-checkmark"></ion-icon>Save</button>
+    </ion-buttons>
   </ion-navbar>
+  <ion-segment light [(ngModel)]="view" class="newsfeed-segment">
+        <ion-segment-button value="clubs" class="newsfeed-segment-button">
+           Clubs
+        </ion-segment-button>
+        <ion-segment-button value="interests" class="newsfeed-segment-button">
+            Interests
+        </ion-segment-button>
+    </ion-segment>
 </ion-header>
 
 <ion-content>
-    <flexbox>
-        <div class="selectionbox" *ngFor="let club of clubs">
-            <div (click)="viewClub(club)">
-                <img src="{{club.logo}}" class="unchecked-clubs-page">
+    <div [ngSwitch]="view">
+        <flexbox ion-list *ngSwitchCase="'clubs'">
+            <div class="selectionbox" *ngFor="let club of clubs">
+                <div (click)="viewClub(club)">
+                    <img src="{{club.logo}}" class="unchecked-clubs-page">
+                </div>
             </div>
-        </div>
-    </flexbox>
+        </flexbox>
+        <ion-list *ngSwitchCase="'interests'">
+            <ion-item *ngFor="let interest of interests">
+                <ion-label>{{interest.name}}</ion-label>
+                <ion-toggle laz-purple></ion-toggle>
+            </ion-item>
+        </ion-list>
+    </div>
 </ion-content>

@@ -109,6 +109,50 @@ export class WebAPI {
 		},*/
 		];
   }
+  getInterests(){
+      return [
+		{
+			id:0,
+			name:"Accounting"
+		},
+		{
+			id:1,
+			name:"Economics"
+		},
+		{
+			id:2,
+			name:"Finance"
+		},
+		{
+			id:3,
+			name:"Management"
+		},
+		{
+			id:4,
+			name:"Exam Review"
+		},
+		{
+			id:5,
+			name:"Information Technology"
+		},
+		{
+			id:6,
+			name:"Networking"
+		},
+		{
+			id:7,
+			name:"First-year"
+		},
+		{
+			id:8,
+			name:"International Business"
+		},
+		{
+			id:9,
+			name:"Advertising"
+		}
+        ];
+  }
   getClubData(){
     return [
     {

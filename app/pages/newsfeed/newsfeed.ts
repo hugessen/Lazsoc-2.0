@@ -9,9 +9,11 @@ import { WebAPI } from '../../providers/WebAPI';
 })
 export class Newsfeed {
     events: ClubEvent[];
+    view:string;
   constructor(private navCtrl: NavController, public webAPI: WebAPI) {
       this.webAPI = webAPI;
       this.getEventsLocally();
+      this.view = "all";
   }
   viewEvent(event:ClubEvent):void{
       this.navCtrl.push(EventPage, {event:event});

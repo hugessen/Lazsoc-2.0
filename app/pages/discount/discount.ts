@@ -11,10 +11,10 @@ export class DiscountPage {
     sponsorsRows:DiscountSponsor[][];
   constructor(private navCtrl: NavController, public webAPI:WebAPI) {
       this.allSponsors = this.webAPI.getDiscountSponsors();
-      this.sponsorsRows = this.sponsorsToRows(this.allSponsors,2); //Unfortunately the compiler has a problem with this method
+      this.sponsorsRows = this.sponsorsToRows(this.allSponsors,2);
   }
   
-  //The compiler treats result as undefined, and thus doesn't like when I push(). Need to fix
+  //Credit to Zeeshan for creating this method. Outputs a 2D array of DiscountSponsors[size], so we can output them in columns
   sponsorsToRows(sponsors:DiscountSponsor[], size:number){
       var result:Array<DiscountSponsor[]>;
       result = [];
