@@ -10,13 +10,24 @@ export class PersonalInfo {
     firstname:string = '';
     lastname:string = '';
     email:string = '';
+    studyYear:number = 0;
+    program:string = '';
+    hasInfo: boolean = false;
   constructor(private navCtrl: NavController, private navParams: NavParams, private modalCtrl: ModalController) {
-      
+      this.navCtrl = navCtrl;
   }
   
   openLogin(){
-      //The {firstname:..} is used to pass variables to the Modal via NavParams
-    let modal = this.modalCtrl.create(LoginPage, {firstname:this.firstname, lastname:this.lastname, email:this.email});
-    modal.present();
+    let modal = this.modalCtrl.create(LoginPage, {firstname:this.firstname, lastname:this.lastname, email:this.email});// everything in the {} are my params to be passed to the Modal
+    modal.onDidDismiss(data => { //Retrieving the params passed down from the Modal's dismiss() method
+        this.firstname = data.firstname;
+        this.lastname = data.lastname;
+        this.email = data.email;
+        this.studyYear = data.studyYear;
+        this.program = data.program;
+        this.hasInfo = true; //So I know whether we have the user's info
+    })
+    modal.present(); // Loading the Modal
   }
+  
 }

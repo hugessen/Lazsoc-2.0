@@ -24,15 +24,21 @@
             <ion-input type="text" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
+            <ion-label>Year of study</ion-label>
+            <ion-select [(ngModel)]="studyYear">
+                <ion-option *ngFor="let year of [1,2,3,4,5]">{{year}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Program</ion-label>
+            <ion-select [(ngModel)]="program">
+                <ion-option *ngFor="let program of programOptions">{{program}}</ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
             <ion-label>Wanna hear from us?</ion-label>
             <ion-toggle laz-purple checked="false"></ion-toggle>
         </ion-item>   
         <button block (click)="submit()">Submit!</button>
     </ion-list>
-    
-    
-    <b>Two-Way binding is awesome!</b><br/>
-    First Name: {{firstname}} <br/>
-    Last Name: {{lastname}} <br/>
-    MyLaurier Email: {{email}} <br/>
 </ion-content>

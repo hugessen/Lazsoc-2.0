@@ -9,6 +9,10 @@ export class LoginPage {
     firstname:string;
     lastname:string;
     email:string;
+    studyYear: number;
+    program: string;
+    programOptions: string[] = ['BBA','BBA/Financial Math', 'BBA/Computer Science (UW)', 'BBA/Computer Science (WLU)', 'BBA/Math (UW)', 'Communications'];
+    
   constructor(private navParams:NavParams, private viewCtrl: ViewController, private toastCtrl:ToastController) {
       //Data being passed upwards from PersonalInfo via NavParams
       this.firstname = navParams.get('firstname');
@@ -18,7 +22,7 @@ export class LoginPage {
   
   
   submit(){
-    if (this.firstname ==='' || this.lastname ==='' || this.email ==='') {
+    if (this.firstname ==='' || this.lastname ==='' || this.email ==='' || this.studyYear == 0 || this.program === '') { //Check if any fields are empty. Do ints have an equivalent to ''?
         this.showToast('Please enter all information');
     }
     else if (!this.isValidEmail(this.email)) {
@@ -29,7 +33,9 @@ export class LoginPage {
             {
                 firstname: this.firstname,
                 lastname: this.lastname,
-                email: this.email
+                email: this.email,
+                studyYear: this.studyYear,
+                program: this.program
             }
         );
   }
