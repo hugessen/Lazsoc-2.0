@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {NavParams, ViewController, ToastController} from 'ionic-angular';
-import {PersonalInfo} from '../personalinfo/personal-info';
 
 @Component({
   templateUrl: 'build/pages/login/login.html'
@@ -11,6 +10,7 @@ export class LoginPage {
     lastname:string;
     email:string;
   constructor(private navParams:NavParams, private viewCtrl: ViewController, private toastCtrl:ToastController) {
+      //Data being passed upwards from PersonalInfo via NavParams
       this.firstname = navParams.get('firstname');
       this.lastname = navParams.get('lastname');
       this.email = navParams.get('email');
@@ -24,7 +24,14 @@ export class LoginPage {
     else if (!this.isValidEmail(this.email)) {
         this.showToast('Invalid MyLaurier Email');
     }
-    else this.dismiss();
+    else //Input validated. Now we pass the data back down to PersonalInfo via NavParams
+        this.viewCtrl.dismiss(     
+            {
+                firstname: this.firstname,
+                lastname: this.lastname,
+                email: this.email
+            }
+        );
   }
   
   isValidEmail(email:string):boolean{
@@ -36,12 +43,7 @@ export class LoginPage {
       return /^\d+$/.test(str); //Somehow this checks if a value is numeric. Unfortunately isNaN() doesn't like strings in TypeScript
   }
   
-  
-  private dismiss(){
-      this.viewCtrl.dismiss();
-  }
-  
-    //Toast is just an inobtrusive message box at the bottom of the screen. I'd rather this than a popup when the user hits save
+  //Toast is just an inobtrusive message box at the bottom of the screen
   showToast(message:string){
       let toast = this.toastCtrl.create({
       message: message,

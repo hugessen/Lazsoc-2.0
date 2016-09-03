@@ -1,12 +1,9 @@
 <ion-header>
   <ion-navbar laz-purple>
-   <!-- <button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>-->
     <ion-title>Newsfeed</ion-title> 
   </ion-navbar>
-      <ion-segment light [(ngModel)]="view" class="newsfeed-segment">
-        <ion-segment-button value="all" class="newsfeed-segment-button">
+      <ion-segment light [(ngModel)]="view" class="newsfeed-segment"> <!-- view is a variable that determines what view to show -->
+        <ion-segment-button value="all" class="newsfeed-segment-button"> <!-- value="all" binds "all" to the view variable -->
            All
         </ion-segment-button>
         <ion-segment-button value="myevents" class="newsfeed-segment-button">
@@ -17,36 +14,37 @@
 
 
 <ion-content>
-    <div [ngSwitch]="view">
-        <div *ngSwitchCase="'all'">
+    <div [ngSwitch]="view"> <!-- view is a reference to a variable in newsfeed.ts -->
+        <div *ngSwitchCase="'all'"> <!-- Switch statement, like ngShow -->
             <div *ngFor="let event of events" (click)="viewEvent(event)">
-            <ion-card style="border-style:solid black">
-                <img src="{{event.banner}}" ng-show="event.banner"/>
-                <ion-card-content style="padding:1.5%">
-                    <ion-card-title>
-                        {{event.title}}
-                    </ion-card-title>
-                    <p>{{event.tagline}}</p>
-                </ion-card-content>
-                
-                <ion-row>
-                    <ion-col>
-                        <button primary clear small>
-                            <ion-icon name="md-calendar"></ion-icon>
-                            <div>Add to Calendar</div>
-                        </button>
-                    </ion-col>
-                    <ion-col>
-                        <button primary clear small>
-                            <ion-icon name="logo-facebook"></ion-icon>
-                            <div>Facebook page</div>
-                        </button>
-                    </ion-col>
-                </ion-row>
-            </ion-card>
+                <!--Styling the newsfeed items -->
+                <ion-card style="border-style:solid black">
+                    <img src="{{event.banner}}" ng-show="event.banner"/>
+                    <ion-card-content style="padding:1.5%">
+                        <ion-card-title>
+                            {{event.title}}
+                        </ion-card-title>
+                        <p>{{event.tagline}}</p>
+                    </ion-card-content>
+                    
+                    <ion-row>
+                        <ion-col>
+                            <button primary clear small>
+                                <ion-icon name="md-calendar"></ion-icon>
+                                <div>Add to Calendar</div>
+                            </button>
+                        </ion-col>
+                        <ion-col>
+                            <button primary clear small>
+                                <ion-icon name="logo-facebook"></ion-icon>
+                                <div>Facebook page</div>
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </div>
         </div>
-        </div>
-        <div *ngSwitchCase="'myevents'">
+        <div *ngSwitchCase="'myevents'"> <!-- The other top tab -->
             <ion-item-divider>Not yet implemented :(</ion-item-divider>
         </div>
     </div>

@@ -19,7 +19,8 @@ export class WebAPI {
   getClubs(){
       return this.clubData;
   }
- 
+  
+  //Not currently being called, but this is what it will look like when we have APIs for everything
   getEvents() {
     if (this.data) {
       return Promise.resolve(this.data);
@@ -33,8 +34,9 @@ export class WebAPI {
         });
     });
   }
-  //Until we have an API for all these, I have them manually inputted.
-  //The beauty of a service is that anything calling it doesn't care how the data is retrieved. We just change the method bodies to an HTTP request when we have API data.
+  //Until we have an API for all these, I have them manually return JSON arrays.
+  //When we have an API, I will just change these to return a Promise.
+  //Every Component we supply data to is nearly set up to handle Promises anyway, so it'll be an easy transition
   getDiscountSponsors():DiscountSponsor[]{
       return [
 		{

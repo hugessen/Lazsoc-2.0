@@ -15,6 +15,7 @@ export class PersonalInfo {
   }
   
   openLogin(){
+      //The {firstname:..} is used to pass variables to the Modal via NavParams
     let modal = this.modalCtrl.create(LoginPage, {firstname:this.firstname, lastname:this.lastname, email:this.email});
     modal.present();
   }

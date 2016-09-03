@@ -9,7 +9,7 @@ export class EventPage {
     event: ClubEvent;
     message: string;
   constructor(private navCtrl: NavController, private navParams: NavParams) {
-    this.event = this.navParams.get('event');
+    this.event = this.navParams.get('event'); //Event object being passed via NavParams
     this.message = "this works";
   }
 }
