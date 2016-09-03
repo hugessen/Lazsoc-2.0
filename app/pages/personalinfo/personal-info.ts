@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ModalController} from 'ionic-angular';
 import {LoginPage} from '../login/login';
 
 @Component({
@@ -7,11 +7,15 @@ import {LoginPage} from '../login/login';
 })
 
 export class PersonalInfo {
-    firstname:string;
-    lastname:string;
-    email:string;
-  constructor(private navCtrl: NavController, private navParams: NavParams) {
+    firstname:string = '';
+    lastname:string = '';
+    email:string = '';
+  constructor(private navCtrl: NavController, private navParams: NavParams, private modalCtrl: ModalController) {
       
   }
   
+  openLogin(){
+    let modal = this.modalCtrl.create(LoginPage, {firstname:this.firstname, lastname:this.lastname, email:this.email});
+    modal.present();
+  }
 }

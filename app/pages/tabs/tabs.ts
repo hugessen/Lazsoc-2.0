@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {Newsfeed} from '../newsfeed/newsfeed';
 import {ClubSelector} from '../clubselector/clubSelector';
-import {LoginPage} from '../login/login';
+//import {LoginPage} from '../login/login';
+import {PersonalInfo} from '../personalinfo/personal-info';
 import {DiscountPage} from '../discount/discount';
 
 @Component({
@@ -19,7 +20,7 @@ export class TabsPage {
     // should be each tab's root Page
     this.newsfeed = Newsfeed;
     this.clubs = ClubSelector;
-    this.login = LoginPage;
+    this.login = PersonalInfo;
     this.discount = DiscountPage;
   }
 }

@@ -13,20 +13,26 @@
     <ion-list>
          <ion-item>
             <ion-label floating>First Name</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="firstname"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Last Name</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="lastname"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>MyLaurier Email</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" [(ngModel)]="email"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Wanna hear from us?</ion-label>
             <ion-toggle laz-purple checked="false"></ion-toggle>
         </ion-item>   
-        <button block>Submit!</button>
+        <button block (click)="submit()">Submit!</button>
     </ion-list>
+    
+    
+    <b>Two-Way binding is awesome!</b>
+    First Name: {{firstname}} <br/>
+    Last Name: {{lastname}} <br/>
+    MyLaurier Email: {{email}} <br/>
 </ion-content>
