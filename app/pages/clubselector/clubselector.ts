@@ -33,7 +33,9 @@ export class ClubSelector {
   viewClub(club:Club):void{
       this.navCtrl.push(ClubPage, {club:club});
   }
-  
+  doToggle(club:Club):void{
+      //club.selected = !club.selected;
+  }
   getClubs():Club[]{
       return this.webAPI.getClubs();
   }

@@ -76,3 +76,12 @@ infobox img{
 .lazsoc-tab{
     padding:0px;
 }
+infobox{
+	position:absolute;
+	transform: translateY(20%) translateX(25%);
+	width:20%;
+	height:20%;
+}
+infobox img{	
+	width:75%;
+}

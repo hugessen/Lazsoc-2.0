@@ -23,8 +23,9 @@
     <div [ngSwitch]="view"> 
         <flexbox ion-list *ngSwitchCase="'clubs'">
             <div class="selectionbox" *ngFor="let club of clubs">
-                <div (click)="viewClub(club)">
-                    <img src="{{club.logo}}" class="unchecked-clubs-page">
+                <infobox (click)="viewClub(club)"><img src="img/info-icon.png"></infobox>
+                <div>
+                    <img src="{{club.logo}}" [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">
                 </div>
             </div>
         </flexbox>

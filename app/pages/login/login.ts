@@ -18,11 +18,13 @@ export class LoginPage {
       this.firstname = navParams.get('firstname');
       this.lastname = navParams.get('lastname');
       this.email = navParams.get('email');
+      this.studyYear = navParams.get('studyYear');
+      this.program = navParams.get('program');
   }
   
   
   submit(){
-    if (this.firstname ==='' || this.lastname ==='' || this.email ==='' || this.studyYear == 0 || this.program === '') { //Check if any fields are empty. Do ints have an equivalent to ''?
+    if (this.firstname ==='' || this.lastname ==='' || this.email ==='' || this.studyYear == 0 || this.program === '') { //Check if any fields are empty
         this.showToast('Please enter all information');
     }
     else if (!this.isValidEmail(this.email)) {
