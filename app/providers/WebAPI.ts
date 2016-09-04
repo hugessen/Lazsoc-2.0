@@ -171,13 +171,14 @@ export class WebAPI {
         "Marketing",
         "Networking",
         "Case Competitions"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/lauriermarketing/",
             linkedin:"https://www.linkedin.com/company/2911388?trk=tyah&trkInfo=tarId%3A1409684615987%2Ctas%3Alaurier%20marketing%20association%2Cidx%3A1-1-1",
             twitter:"https://twitter.com/wlumarketing",
             youtube:"https://www.youtube.com/user/LaurierMarketing",
-            intsagram:"https://www.instagram.com/wlumarketing/",
+            instagram:"https://www.instagram.com/wlumarketing/",
         }
     },
     {
@@ -192,7 +193,8 @@ export class WebAPI {
         tags: [
         "Consulting",
         "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"http://www.facebook.com/LaurierConsultingClub",
             linkedin:"https://www.linkedin.com/company/laurier-consulting-club",
@@ -213,7 +215,8 @@ export class WebAPI {
             "Public Speaking",
             "First Year",
             "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/goldenspeakersclub",
             linkedin:"https://www.linkedin.com/company/golden-speakers-club",
@@ -234,7 +237,8 @@ export class WebAPI {
         tags: [
             "Entrepreneurship",
             "Social Change"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/enactuswlu",
             linkedin:"https://www.linkedin.com/company/enactus-laurier",
@@ -254,7 +258,8 @@ export class WebAPI {
             "Public Speaking",
             "Case Competitions",
             "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/decalaurier",
             linkedin:"https://www.linkedin.com/company/deca-u-laurier",
@@ -276,7 +281,8 @@ export class WebAPI {
         "Advertising",
         "Marketing",
         "Case Competitions"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/theadvertisingproject"
         }
@@ -292,7 +298,8 @@ export class WebAPI {
         banner: "img/banners/AIESECBanner.png",
         tags: [
             "International"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/AIESECLaurier/",
             linkedin:"https://www.linkedin.com/company/aiesec-laurier",
@@ -314,7 +321,8 @@ export class WebAPI {
         "Marketing",
         "Media",
         "Journalism",
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/sbeatrium",
             linkedin:"https://www.linkedin.com/company/929812?trk=prof-exp-company-name",
@@ -336,7 +344,8 @@ export class WebAPI {
         "Economics",
         "Mock Midterm",
         "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/LaurierEconClub/",
             linkedin:"https://www.linkedin.com/company/laurier-economics-club",
@@ -358,7 +367,8 @@ export class WebAPI {
         "Startups",
         "Technology",
         "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/startuplaurier/",
             linkedin:"https://www.linkedin.com/company/startup-laurier",
@@ -380,7 +390,8 @@ export class WebAPI {
         "Marketing",
         "Sports Management",
         "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/smlaurier/",
             linkedin:"https://www.linkedin.com/company/sports-management-laurier",
@@ -403,7 +414,8 @@ export class WebAPI {
         "Capital Markets",
         "Investing",
         "Economics"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/LIFApage/",
             linkedin:"https://www.linkedin.com/in/laurier-investment-and-finance-association-5a415556",
@@ -423,7 +435,8 @@ export class WebAPI {
         "Sales",
         "Public Speaking",
         "Marketing"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/LaurierSales/",
             linkedin:"https://www.linkedin.com/company/laurier-sales-association",
@@ -442,7 +455,8 @@ export class WebAPI {
         tags: [
         "Public Speaking",
         "Case Competitions"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/JDCCLaurier/",
             linkedin:"https://www.linkedin.com/company/laurier-sales-association",
@@ -465,7 +479,8 @@ export class WebAPI {
         "Case Competitions",
         "Public Speaking",
         "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/XLerateWLU/",
             linkedin:"https://www.linkedin.com/company/xlerate-laurier"
@@ -483,7 +498,8 @@ export class WebAPI {
         tags: [
         "Public Speaking",
         "Debate"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/WLUdebating/",
             twitter:"https://twitter.com/wludebating"
@@ -502,7 +518,8 @@ export class WebAPI {
         "Women in Business",
         "Networking",
         "Leadership"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/WomeninLeadershipLaurier/",
             twitter:"https://twitter.com/WILLaurier",
@@ -524,7 +541,8 @@ export class WebAPI {
         "Exam Review",
         "Tutoring",
         "Social Enterprise"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/lauriersos",
             twitter:"https://twitter.com/LaurierSOS",
@@ -546,7 +564,8 @@ export class WebAPI {
         "Networking",
         "International",
         "Leadership"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/TheLinkWLU/",
             twitter:"https://twitter.com/thelinkwlu",
@@ -567,7 +586,8 @@ export class WebAPI {
         tags: [
         "Technology",
         "Networking",
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/EBusinessLaurier/",
             twitter:"https://twitter.com/LaurierTech_",
@@ -587,7 +607,8 @@ export class WebAPI {
         "Accounting",
         "Finance",
         "Networking"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/LaurierAccounting/",
             twitter:"https://twitter.com/WLUaccounting",
@@ -606,7 +627,8 @@ export class WebAPI {
         banner: "img/banners/5DaysBanner.png",
         tags: [
         "Social Change"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/5DaysLaurier",
             twitter:"https://twitter.com/5DAYSLAURIER",
@@ -625,7 +647,8 @@ export class WebAPI {
         banner: "img/banners/LazSocBanner.png",
         tags: [
             "Leadership"
-        ],
+        ], 
+        selected:false,
         social: {
             facebook:"https://www.facebook.com/LazSoc",
             twitter:"https://twitter.com/LazSoc",
