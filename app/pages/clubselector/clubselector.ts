@@ -1,19 +1,23 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, ToastController } from 'ionic-angular';
+//Providers
 import { WebAPI } from '../../providers/WebAPI';
+import { LocalData } from '../../providers/LocalData';
 import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
+import { Interest } from '../../models/interest';
 
 @Component({
   templateUrl: 'build/pages/clubselector/clubselector.html'
 })
 export class ClubSelector {
   clubs: Club[];
-  interests: any[];
+  interests: Interest[];
   view:string;
   
-  constructor(private navCtrl: NavController, private webAPI: WebAPI, public toastCtrl:ToastController) {
+  constructor(private navCtrl: NavController, private webAPI: WebAPI, private localData:LocalData, public toastCtrl:ToastController) {
       this.webAPI = webAPI;
+      this.localData = localData;
       this.clubs = this.getClubs();
       this.interests = this.getInterests();
       this.view = "clubs";
@@ -33,13 +37,16 @@ export class ClubSelector {
   viewClub(club:Club):void{
       this.navCtrl.push(ClubPage, {club:club});
   }
-  doToggle(club:Club):void{
-      club.selected = !club.selected;
-  }
   getClubs():Club[]{
       return this.webAPI.getClubs();
   }
-  getInterests(){
-      return this.webAPI.getInterests();
+  getInterests():Interest[]{
+      return this.localData.getInterests();
+  }
+  savePrefs(){
+      this.localData.setInterests(this.interests);
+      //this.localData.setClubs(this.clubs); Will be implemented
+      //this.localData.writeToStorage(); Not doing this yet
+      this.showToast('Preferences saved!');
   }
 }

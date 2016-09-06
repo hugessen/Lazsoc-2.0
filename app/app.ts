@@ -1,10 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, ionicBootstrap, Nav, NavController} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {TabsPage} from './pages/tabs/tabs';
-import {WebAPI} from './providers/WebAPI';
-import {EventPage} from './pages/eventpage/event-page';
 
+//Providers
+import {WebAPI} from './providers/WebAPI';
+import {LocalData} from './providers/LocalData';
+
+//Page Views
+import {TabsPage} from './pages/tabs/tabs';
+import {EventPage} from './pages/eventpage/event-page';
 import {LoginPage} from './pages/login/login';
 import {Newsfeed} from './pages/newsfeed/newsfeed';
 import {ClubSelector} from './pages/clubselector/clubselector';
@@ -51,5 +55,5 @@ export class MyApp {
 }
 
 //Important
-ionicBootstrap(MyApp,[WebAPI]);  
+ionicBootstrap(MyApp,[WebAPI, LocalData]);  
 

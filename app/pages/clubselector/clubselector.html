@@ -5,7 +5,7 @@
     </button>-->
     <ion-title>Set Preferences</ion-title>
     <ion-buttons end>
-        <button (click)="showToast('Preferences saved!')" side="right"><ion-icon name="md-checkmark"></ion-icon>Save</button>
+        <button (click)="savePrefs()" side="right"><ion-icon name="md-checkmark"></ion-icon>Save</button>
     </ion-buttons>
   </ion-navbar>
   <ion-segment light [(ngModel)]="view" class="newsfeed-segment">
@@ -24,15 +24,15 @@
         <flexbox ion-list *ngSwitchCase="'clubs'">
             <div class="selectionbox" *ngFor="let club of clubs">
                 <infobox (click)="viewClub(club)"><img src="img/info-icon.png"></infobox>
-                <div (click)="doToggle(club)">
-                    <img src="{{club.logo}}" [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">
+                <div>
+                    <img src="{{club.logo}}" class="unchecked-clubs-page"> <!-- [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">-->
                 </div>
             </div>
         </flexbox>
         <ion-list *ngSwitchCase="'interests'">
             <ion-item *ngFor="let interest of interests">
                 <ion-label>{{interest.name}}</ion-label>
-                <ion-toggle laz-purple></ion-toggle>
+                <ion-toggle laz-purple [(ngModel)]="interest.selected"></ion-toggle>
             </ion-item>
         </ion-list>
     </div>

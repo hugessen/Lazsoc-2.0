@@ -14,38 +14,32 @@
 
 
 <ion-content>
-    <div [ngSwitch]="view"> <!-- view is a reference to a variable in newsfeed.ts -->
-        <div *ngSwitchCase="'all'"> <!-- Switch statement, like ngShow -->
-            <div *ngFor="let event of events" (click)="viewEvent(event)">
-                <!--Styling the newsfeed items -->
-                <ion-card style="border-style:solid black">
-                    <img src="{{event.banner}}" ng-show="event.banner"/>
-                    <ion-card-content style="padding:1.5%">
-                        <ion-card-title>
-                            {{event.title}}
-                        </ion-card-title>
-                        <p>{{event.tagline}}</p>
-                    </ion-card-content>
-                    
-                    <ion-row>
-                        <ion-col>
-                            <button primary clear small>
-                                <ion-icon name="md-calendar"></ion-icon>
-                                <div>Add to Calendar</div>
-                            </button>
-                        </ion-col>
-                        <ion-col>
-                            <button primary clear small>
-                                <ion-icon name="logo-facebook"></ion-icon>
-                                <div>Facebook page</div>
-                            </button>
-                        </ion-col>
-                    </ion-row>
-                </ion-card>
-            </div>
-        </div>
-        <div *ngSwitchCase="'myevents'"> <!-- The other top tab -->
-            <ion-item-divider>Not yet implemented :(</ion-item-divider>
+        <div *ngFor="let event of events" (click)="viewEvent(event)">
+            <!--Styling the newsfeed items -->
+            <ion-card style="border-style:solid black">
+                <img src="{{event.banner}}" ng-show="event.banner"/>
+                <ion-card-content style="padding:1.5%">
+                    <ion-card-title>
+                        {{event.title}}
+                    </ion-card-title>
+                    <p>{{event.tagline}}</p>
+                </ion-card-content>
+                
+                <ion-row>
+                    <ion-col>
+                        <button primary clear small>
+                            <ion-icon name="md-calendar"></ion-icon>
+                            <div>Add to Calendar</div>
+                        </button>
+                    </ion-col>
+                    <ion-col>
+                        <button primary clear small>
+                            <ion-icon name="logo-facebook"></ion-icon>
+                            <div>Facebook page</div>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
         </div>
     </div>
 </ion-content>

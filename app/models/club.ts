@@ -8,7 +8,6 @@ export class Club{
     banner: string;
     //email: string;
     //website: string;
-    selected:boolean;
     tags: string[];
     social: any;
 }
