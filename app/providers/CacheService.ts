@@ -66,7 +66,7 @@ export class CacheService {
         } else {
 
           // not in the cache (key doesn't exist)
-          this.load(name)
+          this.load(location)
             .then(res => this.setItem(name, res, ttl).then(() => resolve(res)))
             .catch(err => reject(err));
         }

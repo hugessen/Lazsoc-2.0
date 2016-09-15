@@ -1,6 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Platform, ionicBootstrap, Nav, NavController} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
+import 'rxjs/add/operator/map'
 
 //Providers
 import {WebAPI} from './providers/WebAPI';
