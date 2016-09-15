@@ -1,6 +1,7 @@
 import {Storage, SqlStorage, Events} from 'ionic-angular';
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
+import 'rxjs/add/operator/map';
 
 
 const CACHE_TTL = 60 * 60; // 1 hour

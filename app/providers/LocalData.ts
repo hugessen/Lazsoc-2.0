@@ -20,7 +20,6 @@ export class LocalData {
         cacheService.getItem('clubs','http://app.lazsoc.ca/app_clubs.php')
         .then(res => this.clubs = res)
         .catch(err => console.log('oops', err));
-        console.log(this.clubs);
     }
     
     getClubs():any{

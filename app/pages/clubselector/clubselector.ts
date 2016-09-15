@@ -42,7 +42,6 @@ export class ClubSelector {
     .then(data => {
         this.clubs = data;
         for (let club of this.clubs) club.selected = false;
-        console.log(this.clubs);
     });
   }
   getInterests(){
@@ -50,7 +49,6 @@ export class ClubSelector {
     .then(data => {
         this.interests = data;
         for (let interest of this.interests) interest.selected = false;
-        console.log(this.interests);
     });
   }
   savePrefs(){
