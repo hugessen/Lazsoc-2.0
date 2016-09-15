@@ -5,6 +5,7 @@ import {StatusBar} from 'ionic-native';
 //Providers
 import {WebAPI} from './providers/WebAPI';
 import {LocalData} from './providers/LocalData';
+import { CacheService } from './providers/CacheService';
 
 //Page Views
 import {TabsPage} from './pages/tabs/tabs';
@@ -55,5 +56,5 @@ export class MyApp {
 }
 
 //Important
-ionicBootstrap(MyApp,[WebAPI, LocalData]);  
+ionicBootstrap(MyApp,[WebAPI, LocalData, CacheService]);  
 

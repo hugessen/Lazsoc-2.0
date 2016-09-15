@@ -12,11 +12,20 @@ export class WebAPI {
  
   constructor(private http: Http) {
     this.data = null;
-    this.clubData = this.getClubData();
   }
  
   getClubs(){
-      return this.clubData;
+    if (this.data) {
+        return Promise.resolve(this.data);
+        }
+        return new Promise(resolve => {
+        this.http.get('http://app.lazsoc.ca/app_clubs.php')
+            .map(res => res.json())
+            .subscribe(data => {
+            this.data = data;
+            resolve(this.data);
+            });
+        });
   }
   
   //Not currently being called, but this is what it will look like when we have APIs for everything
@@ -25,7 +34,7 @@ export class WebAPI {
       return Promise.resolve(this.data);
     }
     return new Promise(resolve => {
-      this.http.get('https://lazsoc.ca/app_info.php')
+      this.http.get('http://app.lazsoc.ca/app_events.php')
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
@@ -36,123 +45,31 @@ export class WebAPI {
   //Until we have an API for all these, I have them manually return JSON arrays.
   //When we have an API, I will just change these to return a Promise.
   //Every Component we supply data to is nearly set up to handle Promises anyway, so it'll be an easy transition
-  getDiscountSponsors():DiscountSponsor[]{
-      return [
-		{
-			name: "Quick Sandwiches",
-			logo: "img/discount_program/Quick_Sandwiches_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Shoeless Joes",
-			logo: "img/discount_program/Shoeless_Joes_Logo.png",
-			discount: "-25% Food with the Purchase of a Drink"
-		},
-		{
-			name: "Caliburger",
-			logo: "img/discount_program/Caliburger_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Holy Guacamole",
-			logo: "img/discount_program/Holy_Guacamole_Logo.png",
-			discount: "Free Upgrade to a Large Burrito"
-		},			
-		{
-			name: "Noon Moment",
-			logo: "img/discount_program/Noon_Moment_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Sweet Dreams Teashop",
-			logo: "img/discount_program/Sweet_Dreams_Logo.png",
-			discount: "-10% Storewide"
-		},		
-		{
-			name: "Menchies",
-			logo: "img/discount_program/Menchies_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Wordsworth Books",
-			logo: "img/discount_program/Words_Worth_Books_Logo.png",
-			discount: "-10% Storewide"
-		},
-		{
-			name: "Staples",
-			logo: "img/discount_program/Staples_Logo.png",
-			discount: "-20% Copy and Print Services"
-		},
-		{
-			name: "Harmony by Earthwinds",
-			logo: "img/discount_program/Harmony_Logo.png",
-			discount: "-10% off Regular Priced Items In-Store"
-		},
-		{
-			name: "KW Pilates",
-			logo: "img/discount_program/KW_Pilates_Logo.png",
-			discount: "-10% Discount off Regular Priced Classes"
-		},
-		{
-			name: "The Truth Beauty Company",
-			logo: "img/discount_program/TTBC_Logo.png",
-			discount: "-10% Discount at Waterloo and Guelph Locations"
-		},
-		{
-			name: "Capri Salon",
-			logo: "img/discount_program/Capri_Salon_Logo.png",
-			discount: "-10% Off Products and Salon Services Tuesday through Thursday with select Stylists"
-		}
-		/*{
-			name: "Huether Hotel",
-			logo: "img/discount_program/Huether_Hotel_Logo.png",
-			discount: "TBD"
-		},*/
-		];
+  getDiscountSponsors(){
+    if (this.data) {
+      return Promise.resolve(this.data);
+    }
+    return new Promise(resolve => {
+      this.http.get('http://app.lazsoc.ca/app_discount.php')
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        });
+    });
   }
   getInterests(){
-      return [
-		{
-			id:0,
-			name:"Accounting"
-		},
-		{
-			id:1,
-			name:"Economics"
-		},
-		{
-			id:2,
-			name:"Finance"
-		},
-		{
-			id:3,
-			name:"Management"
-		},
-		{
-			id:4,
-			name:"Exam Review"
-		},
-		{
-			id:5,
-			name:"Information Technology"
-		},
-		{
-			id:6,
-			name:"Networking"
-		},
-		{
-			id:7,
-			name:"First-year"
-		},
-		{
-			id:8,
-			name:"International Business"
-		},
-		{
-			id:9,
-			name:"Advertising"
-		}
-        ];
+    if (this.data) {
+      return Promise.resolve(this.data);
+    }
+    return new Promise(resolve => {
+      this.http.get('http://app.lazsoc.ca/app_interests.php')
+        .map(res => res.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(this.data);
+        });
+    });
   }
   getClubData(){
     return [

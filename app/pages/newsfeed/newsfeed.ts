@@ -13,6 +13,7 @@ export class Newsfeed {
   constructor(private navCtrl: NavController, public webAPI: WebAPI) {
       this.webAPI = webAPI; //Declare an anonymous, localized instance of WebAPI for use within this Component
       this.getEventsLocally();
+      console.log(this.events);
       this.view = "all"; //Set to the All Events view initially
   }
   

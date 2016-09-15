@@ -11,15 +11,15 @@ import { Interest } from '../../models/interest';
   templateUrl: 'build/pages/clubselector/clubselector.html'
 })
 export class ClubSelector {
-  clubs: Club[];
+  clubs:any[];
   interests: Interest[];
   view:string;
   
   constructor(private navCtrl: NavController, private webAPI: WebAPI, private localData:LocalData, public toastCtrl:ToastController) {
       this.webAPI = webAPI;
       this.localData = localData;
-      this.clubs = this.getClubs();
-      this.interests = this.getInterests();
+      this.getClubs();
+      this.getInterests();
       this.view = "clubs";
   }
   
@@ -37,16 +37,27 @@ export class ClubSelector {
   viewClub(club:Club):void{
       this.navCtrl.push(ClubPage, {club:club});
   }
-  getClubs():Club[]{
-      return this.webAPI.getClubs();
+  getClubs(){
+    this.webAPI.getClubs()
+    .then(data => {
+        this.clubs = data;
+        for (let club of this.clubs) club.selected = false;
+        console.log(this.clubs);
+    });
   }
-  getInterests():Interest[]{
-      return this.localData.getInterests();
+  getInterests(){
+    this.webAPI.getInterests()
+    .then(data => {
+        this.interests = data;
+        for (let interest of this.interests) interest.selected = false;
+        console.log(this.interests);
+    });
   }
   savePrefs(){
-      this.localData.setInterests(this.interests);
+      //this.localData.setInterests(this.interests);
       //this.localData.setClubs(this.clubs); Will be implemented
       //this.localData.writeToStorage(); Not doing this yet
       this.showToast('Preferences saved!');
   }
 }
+

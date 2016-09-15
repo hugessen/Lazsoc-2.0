@@ -10,8 +10,15 @@ export class DiscountPage {
     allSponsors:DiscountSponsor[];
     sponsorsRows:DiscountSponsor[][];
   constructor(private navCtrl: NavController, public webAPI:WebAPI) {
-      this.allSponsors = this.webAPI.getDiscountSponsors();
-      this.sponsorsRows = this.sponsorsToRows(this.allSponsors,2);
+      this.getSponsors();
+  }
+  
+  getSponsors(){
+    this.webAPI.getDiscountSponsors()
+    .then(data => {
+        this.allSponsors = data;
+        this.sponsorsRows = this.sponsorsToRows(this.allSponsors,2);
+    });
   }
   
   //Credit to Zeeshan for creating this method. Outputs a 2D array of DiscountSponsors[size], so we can output them in columns
