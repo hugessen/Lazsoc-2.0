@@ -9,8 +9,6 @@ import { Club } from '../models/club'; //Club object. All objects stored in the 
 import { Interest } from '../models/interest';
 import {DiscountSponsor} from '../models/discount-sponsor';
 
-import 'rxjs/add/operator/map';
-
 @Injectable()
 export class LocalData {
     private clubs: any;
