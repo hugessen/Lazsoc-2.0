@@ -48,25 +48,27 @@ export class CacheService {
     return new Promise((resolve, reject) => {
 
       this.storage.get(name).then(cachedResult => {
-
+          console.log('logging cached result: ' + cachedResult);
         if (typeof cachedResult !== 'undefined') {
-
+            
           // something's in the cache
           let data = JSON.parse(cachedResult);
-
+          
           if (this.itemExpired(data)) {
             // cache IS expired
+            console.log('expired cache');
             this.load(location)
               .then(res => this.setItem(name, res, ttl).then(() => resolve(data.data)))
               .catch(err => reject(err));
           } else {
             // cache is NOT expired
+            console.log('data resolved');
             resolve(data.data);
           }
 
         } else {
-
           // not in the cache (key doesn't exist)
+          console.log('pulling from api');
           this.load(location)
             .then(res => this.setItem(name, res, ttl).then(() => resolve(res)))
             .catch(err => reject(err));
@@ -87,6 +89,7 @@ export class CacheService {
   public setItem(name: string, data: any, ttl?: number): Promise<{}> {
     let expiration = (typeof ttl !== 'undefined' && ttl) ? this.currentTimestamp() + ttl : this.currentTimestamp() + CACHE_TTL;
     let value = JSON.stringify({ data: data, expires: expiration});
+    console.log(name + ' being set in storage');
     return this.storage.set(name, value);
   }
 
@@ -125,7 +128,7 @@ export class CacheService {
    * @param {string} path - Endpoint to grab
    */
   private load(path: string): Promise<{}> {
-    return this.http.get(API_URL + path).map(res => res.json().data).toPromise();
+    return this.http.get('http://app.lazsoc.ca/app_clubs.php').map(res => res.json().data).toPromise();
   }
 
 }

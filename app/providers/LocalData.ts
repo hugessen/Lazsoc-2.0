@@ -16,8 +16,11 @@ export class LocalData {
     
     constructor(private webAPI:WebAPI, private cacheService: CacheService){
         cacheService.getItem('clubs','http://app.lazsoc.ca/app_clubs.php')
-        .then(res => this.clubs = res)
+        .then(res => {
+            this.clubs = res;
+            console.log('value returned from API: ' + res)})
         .catch(err => console.log('oops', err));
+
     }
     
     getClubs():any{
