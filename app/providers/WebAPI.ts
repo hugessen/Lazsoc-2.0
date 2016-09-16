@@ -17,15 +17,15 @@ export class WebAPI {
   getClubs(){
     if (this.data) {
         return Promise.resolve(this.data);
-        }
-        return new Promise(resolve => {
-        this.http.get('http://app.lazsoc.ca/app_clubs.php')
-            .map(res => res.json())
-            .subscribe(data => {
-            this.data = data;
-            resolve(this.data);
-            });
+    }
+    return new Promise(resolve => {
+    this.http.get('http://app.lazsoc.ca/app_clubs.php')
+        .map(res => res.json())
+        .subscribe(data => {
+        this.data = data;
+        resolve(this.data);
         });
+    });
   }
   
   //Not currently being called, but this is what it will look like when we have APIs for everything

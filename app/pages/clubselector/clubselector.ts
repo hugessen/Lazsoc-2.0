@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, ToastController } from 'ionic-angular';
 //Providers
-import { WebAPI } from '../../providers/WebAPI';
 import { LocalData } from '../../providers/LocalData';
 import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
@@ -15,8 +14,7 @@ export class ClubSelector {
   interests: Interest[];
   view:string;
   
-  constructor(private navCtrl: NavController, private webAPI: WebAPI, private localData:LocalData, public toastCtrl:ToastController) {
-      this.webAPI = webAPI;
+  constructor(private navCtrl: NavController, private localData:LocalData, public toastCtrl:ToastController) {
       this.localData = localData;
       this.getClubs();
       this.getInterests();

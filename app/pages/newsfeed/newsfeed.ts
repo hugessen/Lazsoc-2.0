@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
-import { WebAPI } from '../../providers/WebAPI';
+import { LocalData } from '../../providers/LocalData';
 
 @Component({
   templateUrl: 'build/pages/newsfeed/newsfeed.html',
@@ -10,8 +10,8 @@ import { WebAPI } from '../../providers/WebAPI';
 export class Newsfeed {
     events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
     view:string; //Used to toggle between All and Custom Newsfeed
-  constructor(private navCtrl: NavController, public webAPI: WebAPI) {
-      this.webAPI = webAPI; //Declare an anonymous, localized instance of WebAPI for use within this Component
+  constructor(private navCtrl: NavController, public localData: LocalData) {
+      this.localData = localData; //Declare an anonymous, localized instance of WebAPI for use within this Component
       this.getEventsLocally();
       console.log(this.events);
       this.view = "all"; //Set to the All Events view initially
@@ -27,13 +27,13 @@ export class Newsfeed {
   //How all Components will handle API calls from WebAPI. 
   //Right now WebAPI only returns JSON arrays, not Promises, but this is what all retrieval methods will eventually look like
   getEvents(){
-    this.webAPI.getEvents()
+    this.localData.getEvents()
     .then(data => {
       this.events = data;
     });
   }
   //I wanted a different array of events, so I defined them locally for the time being
   getEventsLocally(){
-      this.events = this.webAPI.getEventsLocally();
+      this.events = this.localData.getEventsLocally();
   }
 }

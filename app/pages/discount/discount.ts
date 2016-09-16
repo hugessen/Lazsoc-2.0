@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {WebAPI} from '../../providers/WebAPI';
+import {LocalData} from '../../providers/LocalData';
 import {DiscountSponsor} from '../../models/discount-sponsor';
 
 @Component({
@@ -9,12 +9,12 @@ import {DiscountSponsor} from '../../models/discount-sponsor';
 export class DiscountPage {
     allSponsors:DiscountSponsor[];
     sponsorsRows:DiscountSponsor[][];
-  constructor(private navCtrl: NavController, public webAPI:WebAPI) {
+  constructor(private navCtrl: NavController, public localData:LocalData) {
       this.getSponsors();
   }
   
   getSponsors(){
-    this.webAPI.getDiscountSponsors()
+    this.localData.getDiscountSponsors()
     .then(data => {
         this.allSponsors = data;
         this.sponsorsRows = this.sponsorsToRows(this.allSponsors,2);
