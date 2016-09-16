@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 
 
 const CACHE_TTL = 60 * 60; // 1 hour
-const API_URL = '';
+const API_URL = 'http://app.lazsoc.ca/';
 
 @Injectable()
 export class CacheService {
@@ -43,12 +43,12 @@ export class CacheService {
     // if ttl is < 0, delete cached item and retrieve a fresh one
     if (ttl < 0) {
       this.storage.remove(name);
+      console.log('removed ' + name + ' from storage');
     }
 
     return new Promise((resolve, reject) => {
 
       this.storage.get(name).then(cachedResult => {
-          console.log('logging cached result: ' + cachedResult);
         if (typeof cachedResult !== 'undefined') {
             
           // something's in the cache
@@ -128,7 +128,8 @@ export class CacheService {
    * @param {string} path - Endpoint to grab
    */
   private load(path: string): Promise<{}> {
-    return this.http.get('http://app.lazsoc.ca/app_clubs.php').map(res => res.json().data).toPromise();
+      console.log(API_URL + path);
+    return this.http.get(API_URL + path).map(res => res.json()).toPromise();
   }
 
 }

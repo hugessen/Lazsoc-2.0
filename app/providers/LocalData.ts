@@ -13,18 +13,29 @@ import {DiscountSponsor} from '../models/discount-sponsor';
 export class LocalData {
     private clubs: any;
     private interests: any[];
+    private cache: CacheService;
     
     constructor(private webAPI:WebAPI, private cacheService: CacheService){
-        cacheService.getItem('clubs','http://app.lazsoc.ca/app_clubs.php')
-        .then(res => {
-            this.clubs = res;
-            console.log('value returned from API: ' + res)})
-        .catch(err => console.log('oops', err));
-
+        this.cache = cacheService;
     }
     
-    getClubs():any{
-        return this.clubs;
+    getClubs():Promise<any>{
+        return new Promise((resolve,reject) => {
+            this.cache.getItem('clubs','app_clubs.php')
+            .then(res => {
+                this.clubs = res;
+                resolve(res);
+            }).catch(err => reject(err));
+        })
+    }
+    getInterests():Promise<any>{
+        return new Promise((resolve,reject) => {
+            this.cache.getItem('interests','app_interests.php')
+            .then(res => {
+                this.clubs = res;
+                resolve(res);
+            }).catch(err => reject(err));
+        })
     }
     
 }

@@ -38,14 +38,13 @@ export class ClubSelector {
       this.navCtrl.push(ClubPage, {club:club});
   }
   getClubs(){
-    this.webAPI.getClubs()
-    .then(data => {
-        this.clubs = data;
-        for (let club of this.clubs) club.selected = false;
-    });
+      this.localData.getClubs()
+      .then(data => {
+          this.clubs = data;
+      })
   }
   getInterests(){
-    this.webAPI.getInterests()
+    this.localData.getInterests()
     .then(data => {
         this.interests = data;
         for (let interest of this.interests) interest.selected = false;
