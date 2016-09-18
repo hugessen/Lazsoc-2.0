@@ -34,10 +34,6 @@ export class Newsfeed {
         Observable.fromPromise(this.localData.getClubs()),
         Observable.fromPromise(this.localData.getInterests())
     ]).subscribe(data => {   
-        //Newsfeed may ultimately not need this.clubs or this.interests, because getCustomFeed handles it
-        this.clubs = data[1];
-        this.interests = data[2];
-        
         //Applies the visible property to events based on Clubs and Interests
         this.events = this.getCustomFeed(this.localData.getEventsLocally(),data[1],data[2]);
         console.log(this.events);
