@@ -5,24 +5,35 @@ import { LocalData } from '../../providers/LocalData';
 import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
 import { Interest } from '../../models/interest';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   templateUrl: 'build/pages/clubselector/clubselector.html'
 })
 export class ClubSelector {
-  clubs:any[];
+  clubs:Club[];
   interests: Interest[];
   view:string;
   
   constructor(private navCtrl: NavController, private localData:LocalData, public toastCtrl:ToastController) {
       this.localData = localData;
-      this.getClubs();
-      this.getInterests();
+      this.init();
       this.view = "clubs";
   }
   
+  //Concurrently pulls Clubs and Interests and assigns them
+  init(){
+      Observable.forkJoin([
+        Observable.fromPromise(this.localData.getClubs()),
+        Observable.fromPromise(this.localData.getInterests())
+      ])
+      .subscribe(data => {
+          this.clubs = data[0];
+          this.interests = data[1];
+      })
+  }
   
-  //Toast is just an inobtrusive message box at the bottom of the screen. I'd rather this than a popup when the user hits save
+  //Toast is just an inobtrusive message box at the bottom of the screen
   showToast(message:string){
       let toast = this.toastCtrl.create({
       message: message,
@@ -32,26 +43,23 @@ export class ClubSelector {
     toast.present();
   }
   
+  //Toggle the selected property of a club
+  toggle(club:Club):void{
+      club.selected = !club.selected;
+  }
+  
+  //Pushes a club page on the stack
   viewClub(club:Club):void{
       this.navCtrl.push(ClubPage, {club:club});
   }
-  getClubs(){
-      this.localData.getClubs()
-      .then(data => {
-          this.clubs = data;
-      })
-  }
-  getInterests(){
-    this.localData.getInterests()
-    .then(data => {
-        this.interests = data;
-        for (let interest of this.interests) interest.selected = false;
-    });
-  }
+  
+  //Cache your prefs
   savePrefs(){
-      //this.localData.setInterests(this.interests);
-      //this.localData.setClubs(this.clubs); Will be implemented
-      //this.localData.writeToStorage(); Not doing this yet
+      Promise.all([
+          this.localData.saveData('clubs', this.clubs),
+          this.localData.saveData('interests', this.interests)
+      ]).then(value => console.log("Preferences saved"));
+      
       this.showToast('Preferences saved!');
   }
 }

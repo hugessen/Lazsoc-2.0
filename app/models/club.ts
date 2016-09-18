@@ -10,4 +10,5 @@ export class Club{
     //website: string;
     tags: string[];
     social: any;
+    selected: boolean;
 }

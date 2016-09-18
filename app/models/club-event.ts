@@ -7,7 +7,9 @@ export class ClubEvent{
     endTime:string;
     location:string;
     tagline:string;
-    club:Club;
+    club:number;
     banner:string;
+    tags:string[];
     desc: string;
+    visible: boolean;
 }

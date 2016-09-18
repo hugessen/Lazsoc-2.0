@@ -3,6 +3,7 @@
 Yeah baby!! Total code refactor using Ionic 2 and AngularJS 2. Coding in Angular 2 is so freaking awesome!
 
 #To Do:
+- [ ] "Loading" overlay for when we're fetching data from the API
 - [ ] Change the club selection page to actually select clubs, not just display clubpages
 - [ ] Find a way to save preference selection for clubs and interests
 - [ ] Once preferences work, implement Custom Newsfeed

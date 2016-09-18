@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WebAPI {
   data:any;
-  clubData: Club[];
+  clubData: any[];
  
   constructor(private http: Http) {
     this.data = null;
@@ -544,7 +544,6 @@ export class WebAPI {
         tags: [
         "Social Change"
         ], 
-        
         social: {
             facebook:"https://www.facebook.com/5DaysLaurier",
             twitter:"https://twitter.com/5DAYSLAURIER",
@@ -564,7 +563,6 @@ export class WebAPI {
         tags: [
             "Leadership"
         ], 
-        
         social: {
             facebook:"https://www.facebook.com/LazSoc",
             twitter:"https://twitter.com/LazSoc",

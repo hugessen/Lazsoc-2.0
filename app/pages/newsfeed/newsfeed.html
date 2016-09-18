@@ -14,10 +14,9 @@
 
 
 <ion-content>
-    <div >
         <div *ngFor="let event of events" (click)="viewEvent(event)">
             <!--Styling the newsfeed items -->
-            <ion-card style="border-style:solid black">
+            <ion-card style="border-style:solid black" [hidden]="view=='myevents' && !event.visible">
                 <img src="{{event.banner}}" ng-show="event.banner"/>
                 <ion-card-content style="padding:1.5%">
                     <ion-card-title>
@@ -42,5 +41,4 @@
                 </ion-row>
             </ion-card>
         </div>
-    </div>
 </ion-content>

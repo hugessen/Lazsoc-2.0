@@ -25,7 +25,7 @@
             <div class="selectionbox" *ngFor="let club of clubs">
                 <infobox (click)="viewClub(club)"><img src="img/info-icon.png"></infobox>
                 <div>
-                    <img src="{{club.logo}}" class="unchecked-clubs-page"> <!-- [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">-->
+                    <img src="{{club.logo}}" class="unchecked-clubs-page" (click)="toggle(club)" [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">
                 </div>
             </div>
         </flexbox>
