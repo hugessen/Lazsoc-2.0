@@ -14,7 +14,6 @@ export class Newsfeed {
     events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
     clubs: Club[];
     interests: Interest[];
-    customEvents: ClubEvent[];
     view:string; //Used to toggle between All and Custom Newsfeed
     
   constructor(private navCtrl: NavController, public localData: LocalData) {
@@ -39,7 +38,7 @@ export class Newsfeed {
         this.clubs = data[1];
         this.interests = data[2];
         
-        //Creates a custom feed given a list of events, clubs and interests
+        //Applies the visible property to events based on Clubs and Interests
         this.events = this.getCustomFeed(this.localData.getEventsLocally(),data[1],data[2]);
         console.log(this.events);
     })

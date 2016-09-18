@@ -55,6 +55,7 @@ export class ClubSelector {
   
   //Cache your prefs
   savePrefs(){
+      //Another way to concurrently resolve promises
       Promise.all([
           this.localData.saveData('clubs', this.clubs),
           this.localData.saveData('interests', this.interests)
