@@ -12,8 +12,6 @@ import { Observable } from 'rxjs/Rx';
 })
 export class Newsfeed {
     events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
-    clubs: Club[];
-    interests: Interest[];
     view:string; //Used to toggle between All and Custom Newsfeed
     
   constructor(private navCtrl: NavController, public localData: LocalData) {
@@ -23,9 +21,16 @@ export class Newsfeed {
   }
   
   viewEvent(event:ClubEvent):void{
-      // {event:event} passes data to the EventPage Component via NavParams
-      // This is retrieved on the other end with: this.navParams.get('event');
       this.navCtrl.push(EventPage, {event:event});
+  }
+  
+  doRefresh(refresher){
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 2000);
   }
   
   init(){

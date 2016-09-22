@@ -4,9 +4,10 @@ Yeah baby!! Total code refactor using Ionic 2 and AngularJS 2. Coding in Angular
 
 #To Do:
 - [ ] "Loading" overlay for when we're fetching data from the API
+- [ ] Implement hashing for Interests getCustomFeed()
 - [x] Change the club selection page to actually select clubs, not just display clubpages
 - [x] Find a way to save preference selection for clubs and interests
-- [ ] Once preferences work, implement Custom Newsfeed
+- [x] Once preferences work, implement Custom Newsfeed
 - [ ] Calendar integration
 - [ ] Facebook pages
 - [ ] ConnectivityMonitor to see if user is online
