@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
+import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
 import { Club } from '../../models/club';
 import { Interest } from '../../models/interest';
@@ -20,19 +21,6 @@ export class Newsfeed {
       this.view = "all"; //Set to the All Events view initially
   }
   
-  viewEvent(event:ClubEvent):void{
-      this.navCtrl.push(EventPage, {event:event});
-  }
-  
-  doRefresh(refresher){
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      refresher.complete();
-    }, 2000);
-  }
-  
   init(){
     Observable.forkJoin([ //Used to concurrently resolve multiple promises
         Observable.fromPromise(this.localData.getEvents()),
@@ -43,6 +31,27 @@ export class Newsfeed {
         this.events = this.getCustomFeed(this.localData.getEventsLocally(),data[1],data[2]);
         console.log(this.events);
     })
+  }
+  
+  addToCalendar(event:ClubEvent){
+      Calendar.createEventInteractively(event.title, event.location, event.tagline, new Date(event.startTime), new Date(event.endTime))
+      .then(
+          (msg) => console.log(msg),
+          (err) => console.log(err)
+      );
+  }
+  
+  viewEvent(event:ClubEvent):void{
+      this.navCtrl.push(EventPage, {event:event});
+  }
+  
+  doRefresh(refresher){
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log(Network.connection);
+      refresher.complete();
+    }, 2000);
   }
   
   //Only does clubs for now

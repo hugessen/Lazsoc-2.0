@@ -79,8 +79,8 @@ export class LocalData {
     return [  
         {   id:0,
             title:"O-Day",
-            startTime:"September 11, 9:00 AM",
-            endTime: "4:30 PM",
+            startTime:"9/11/2016 9:00:00 AM",
+            endTime: "9/11/2016 4:30:00 PM",
             location: "Bingeman's Conference Centre",
             tagline:"Come out and learn what it means to be a business student!",
             club:22,
@@ -92,8 +92,8 @@ export class LocalData {
         {
             id:1,
             title:"5 Days for the Homeless!",
-            startTime: "March 11, 2017, 9:00 AM",
-            endTime: "March 16, 2017, 4:30 PM",
+            startTime: "3/11/2017 9:00:00 AM",
+            endTime: "3/11/2017 4:30:00 PM",
             location:"Fred Nichols Building",
             tagline:"Come out and support us as we sleep outside for a week!",
             club:21,   
