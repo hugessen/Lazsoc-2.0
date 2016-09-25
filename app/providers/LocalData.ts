@@ -75,6 +75,7 @@ export class LocalData {
         })
     }
     
+    
     getEventsLocally(){
     return [  
         {   id:0,
