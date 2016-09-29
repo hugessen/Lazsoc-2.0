@@ -7,12 +7,16 @@ Yeah baby!! Total code refactor using Ionic 2 and AngularJS 2. Coding in Angular
 - [x] Find a way to save preference selection for clubs and interests
 - [x] Once preferences work, implement Custom Newsfeed
 - [x] Calendar integration
+- [ ] Event Pages need to look nicer
+- [ ] Club Pages need to look nicer
 - [ ] "Loading" overlay for when we're fetching data from the API
 - [ ] Implement Interests for getCustomFeed()
 - [ ] Facebook pages
 - [ ] ConnectivityMonitor to see if user is online
 - [ ] Implement Personal Information page.
-- [ ] App icon and splash screen
+- [x] App icon and splash screen
 - [ ] Sort events by time
 - [ ] Deal with recurring events
 - [ ] Implement new API
+- [ ] Analytics
+- [ ] Deploy

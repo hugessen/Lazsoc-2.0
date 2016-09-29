@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, AlertController} from 'ionic-angular';
 import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
 import { Club } from '../../models/club';
@@ -8,6 +8,14 @@ import { EventPage } from '../eventpage/event-page';
 import { LocalData } from '../../providers/LocalData';
 import { Observable } from 'rxjs/Rx';
 
+let disconnectSubscription = Network.onDisconnect().subscribe(() => {
+  this.showAlert('Disconnected!','network was disconnected :-(');
+});
+
+let connectSubscription = Network.onConnect().subscribe(() => {
+  this.showAlert('network connected!','');
+});
+
 @Component({
   templateUrl: 'build/pages/newsfeed/newsfeed.html',
 })
@@ -15,22 +23,20 @@ export class Newsfeed {
     events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
     view:string; //Used to toggle between All and Custom Newsfeed
     
-  constructor(private navCtrl: NavController, public localData: LocalData) {
+  constructor(private navCtrl: NavController, public localData: LocalData, private alertCtrl: AlertController) {
       this.localData = localData;
-      this.init();
+      this.localData.getCustomFeed()
+      .then(data => this.events = data);
       this.view = "all"; //Set to the All Events view initially
   }
   
-  init(){
-    Observable.forkJoin([ //Used to concurrently resolve multiple promises
-        Observable.fromPromise(this.localData.getEvents()),
-        Observable.fromPromise(this.localData.getClubs()),
-        Observable.fromPromise(this.localData.getInterests())
-    ]).subscribe(data => {   
-        //Applies the visible property to events based on Clubs and Interests
-        this.events = this.getCustomFeed(this.localData.getEventsLocally(),data[1],data[2]);
-        console.log(this.events);
-    })
+  showAlert(title:string,message:string) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
   }
   
   addToCalendar(event:ClubEvent){
@@ -46,25 +52,11 @@ export class Newsfeed {
   }
   
   doRefresh(refresher){
-    console.log('Begin async operation', refresher);
-
-    setTimeout(() => {
-      console.log(Network.connection);
-      refresher.complete();
-    }, 2000);
-  }
-  
-  //Only does clubs for now
-  //Would like to implement hashing for faster retrieval of interests
-  getCustomFeed(events:any[], clubs:Club[], interests:Interest[]):ClubEvent[]{
-      var result:Array<ClubEvent> = [];
-      for (let event of events){
-        event.visible = false; //initially
-        if (clubs[event.club].selected)
-            event.visible = true; //Set to true if club selected
-        result.push(event); //Add to the list
-      }
-      return result;
+      this.localData.getCustomFeed()
+      .then(data => {
+          this.events = data;
+          refresher.complete();
+      });
   }
   
 }

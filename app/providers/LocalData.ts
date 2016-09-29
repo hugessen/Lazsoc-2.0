@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Storage, LocalStorage } from 'ionic-angular';
 import { WebAPI } from '../providers/WebAPI';
 import { CacheService } from '../providers/CacheService';
+import { Observable } from 'rxjs/Rx';
 
 //Custom classes
 import { ClubEvent } from '../models/club-event';
@@ -40,16 +41,42 @@ export class LocalData {
     
     getEvents():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('events','app_events.php')
+            this.cache.getItem('events','app_events.php',12*60*60) //Cache for 12 hours
             .then(res => {
                 this.events = res;
                 resolve(res);
             }).catch(err => reject(err));
         })
     }
+    
+    getCustomFeed():Promise<any>{
+        return new Promise((resolve,reject) => {
+            Observable.forkJoin([ //Used to concurrently resolve multiple promises
+                Observable.fromPromise(this.getEvents()),
+                Observable.fromPromise(this.getClubs()),
+                Observable.fromPromise(this.getInterests())
+            ]).subscribe(data => {   
+                //Applies the visible property to events based on Clubs and Interests
+                var val = this.doCustomFeed(this.getEventsLocally(),data[1],data[2]);
+                resolve(val);
+            })
+        })
+    }
+    
+    doCustomFeed(events:any[], clubs:Club[], interests:Interest[]):ClubEvent[]{
+        var result:Array<ClubEvent> = [];
+        for (let event of events){
+            event.visible = false; //initially
+            if (clubs[event.club].selected)
+                event.visible = true; //Set to true if club selected
+            result.push(event); //Add to the list
+        }
+        return result;
+    }
+    
     getClubs():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('clubs','app_clubs.php')
+            this.cache.getItem('clubs','app_clubs.php') 
             .then(res => {
                 this.clubs = res;
                 resolve(this.clubs);
