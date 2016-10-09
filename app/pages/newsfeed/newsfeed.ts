@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+ import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
 import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
@@ -26,8 +26,10 @@ export class Newsfeed {
   constructor(private navCtrl: NavController, public localData: LocalData, private alertCtrl: AlertController) {
       this.localData = localData;
       this.localData.getCustomFeed()
-      .then(data => this.events = data);
-      this.view = "all"; //Set to the All Events view initially
+      .then(data => {this.events = data;
+            console.log(this.events);
+        });
+      this.view = "custom"; //Set to the All Events view initially
   }
   
   showAlert(title:string,message:string) {
@@ -52,11 +54,16 @@ export class Newsfeed {
   }
   
   doRefresh(refresher){
-      this.localData.getCustomFeed()
-      .then(data => {
-          this.events = data;
-          refresher.complete();
-      });
+      if (Network.connection.toString() != 'none'){
+        this.localData.getCustomFeed()
+        .then(data => {
+            this.events = data;
+            refresher.complete();
+        });
+     }
+    else {
+        this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")
+    }
   }
   
 }

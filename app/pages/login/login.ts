@@ -1,45 +1,31 @@
 import {Component} from '@angular/core';
 import {NavParams, ViewController, ToastController} from 'ionic-angular';
+import { LocalData } from '../../providers/LocalData';
+import { UserData } from '../../models/userdata';
 
 @Component({
   templateUrl: 'build/pages/login/login.html'
 })
 
 export class LoginPage {
-    firstname:string;
-    lastname:string;
-    email:string;
-    studyYear: number;
-    program: string;
+    userData:UserData;
     programOptions: string[] = ['BBA','BBA/Financial Math', 'BBA/Computer Science (UW)', 'BBA/Computer Science (WLU)', 'BBA/Math (UW)', 'Communications'];
     
-  constructor(private navParams:NavParams, private viewCtrl: ViewController, private toastCtrl:ToastController) {
-      //Data being passed upwards from PersonalInfo via NavParams
-      this.firstname = navParams.get('firstname');
-      this.lastname = navParams.get('lastname');
-      this.email = navParams.get('email');
-      this.studyYear = navParams.get('studyYear');
-      this.program = navParams.get('program');
+  constructor(private navParams:NavParams, private viewCtrl: ViewController, private toastCtrl:ToastController, private localData:LocalData) {
+    this.userData = {firstname:"",lastname:"",email:"",studyYear:0, program:""};
   }
   
   
   submit(){
-    if (this.firstname ==='' || this.lastname ==='' || this.email ==='' || this.studyYear == 0 || this.program === '') { //Check if any fields are empty
+    if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
         this.showToast('Please enter all information');
     }
-    else if (!this.isValidEmail(this.email)) {
+    else if (!this.isValidEmail(this.userData.email)) {
         this.showToast('Invalid MyLaurier Email');
     }
-    else //Input validated. Now we pass the data back down to PersonalInfo via NavParams
-        this.viewCtrl.dismiss(     
-            {
-                firstname: this.firstname,
-                lastname: this.lastname,
-                email: this.email,
-                studyYear: this.studyYear,
-                program: this.program
-            }
-        );
+    else //Input validated. Now we pass the data back down to userData via NavParams
+        this.localData.saveData('userdata',this.userData);
+        this.viewCtrl.dismiss(this.userData);
   }
   
   isValidEmail(email:string):boolean{

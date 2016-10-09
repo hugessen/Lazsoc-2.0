@@ -13,25 +13,25 @@
     <ion-list>
          <ion-item>
             <ion-label floating>First Name</ion-label>
-            <ion-input type="text" [(ngModel)]="firstname"></ion-input>
+            <ion-input type="text" [(ngModel)]="userData.firstname"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>Last Name</ion-label>
-            <ion-input type="text" [(ngModel)]="lastname"></ion-input>
+            <ion-input type="text" [(ngModel)]="userData.lastname"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label floating>MyLaurier Email</ion-label>
-            <ion-input type="text" [(ngModel)]="email"></ion-input>
+            <ion-input type="text" [(ngModel)]="userData.email"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label>Year of study</ion-label>
-            <ion-select [(ngModel)]="studyYear">
+            <ion-select [(ngModel)]="userData.studyYear">
                 <ion-option *ngFor="let year of [1,2,3,4,5]">{{year}}</ion-option>
             </ion-select>
         </ion-item>
         <ion-item>
             <ion-label>Program</ion-label>
-            <ion-select [(ngModel)]="program">
+            <ion-select [(ngModel)]="userData.program">
                 <ion-option *ngFor="let program of programOptions">{{program}}</ion-option>
             </ion-select>
         </ion-item>

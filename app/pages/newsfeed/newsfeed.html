@@ -1,13 +1,16 @@
 <ion-header>
   <ion-navbar laz-purple>
-    <ion-title>Newsfeed</ion-title> 
+    <ion-title><center>Newsfeed</center></ion-title> 
   </ion-navbar>
       <ion-segment light [(ngModel)]="view" class="newsfeed-segment"> <!-- view is a variable that determines what view to show -->
+        <ion-segment-button value="custom" class="newsfeed-segment-button">
+            My Newsfeed
+        </ion-segment-button>
         <ion-segment-button value="all" class="newsfeed-segment-button"> <!-- value="all" binds "all" to the view variable -->
            All
         </ion-segment-button>
-        <ion-segment-button value="myevents" class="newsfeed-segment-button">
-            My Events
+        <ion-segment-button value="saved" class="newsfeed-segment-button">
+            Saved Events
         </ion-segment-button>
     </ion-segment>
 </ion-header>
@@ -23,9 +26,10 @@
     
     <div *ngFor="let event of events">
         <!--Styling the newsfeed items -->
-        <ion-card style="border-style:solid black" *ngIf="view=='all' || event.visible" (click)="viewEvent(event)">
-            <img src="{{event.banner}}" ng-show="event.banner"/>
-            <ion-card-content style="padding:1.5%">
+        
+        <ion-card style="border-style:solid black"  *ngIf="view=='all' || (view=='custom' && event.visible) || (view=='saved')">
+            <img src="{{event.banner}}" ng-show="event.banner"  (click)="viewEvent(event)"/>
+            <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
                 <ion-card-title>
                     {{event.title}}
                 </ion-card-title>   
@@ -33,6 +37,11 @@
             </ion-card-content>
             
             <ion-row>
+                <ion-col>
+                    <button primary clear small>
+                        <div>Save Event</div>
+                    </button>
+                </ion-col>
                 <ion-col>
                     <button primary clear small (click)="addToCalendar(event)">
                         <ion-icon name="md-calendar"></ion-icon>

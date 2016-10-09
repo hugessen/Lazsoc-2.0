@@ -9,7 +9,6 @@ Yeah baby!! Total code refactor using Ionic 2 and AngularJS 2. Coding in Angular
 - [x] Calendar integration
 - [ ] Event Pages need to look nicer
 - [ ] Club Pages need to look nicer
-- [ ] "Loading" overlay for when we're fetching data from the API
 - [ ] Implement Interests for getCustomFeed()
 - [ ] Facebook pages
 - [ ] ConnectivityMonitor to see if user is online
@@ -20,3 +19,5 @@ Yeah baby!! Total code refactor using Ionic 2 and AngularJS 2. Coding in Angular
 - [ ] Implement new API
 - [ ] Analytics
 - [ ] Deploy
+- [ ] Launch Protocol
+- [ ] Push Notifications

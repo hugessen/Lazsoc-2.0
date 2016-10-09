@@ -11,6 +11,38 @@
         <ion-card-header><b>{{club.name}}</b></ion-card-header>
         <ion-card-content>{{club.desc}}</ion-card-content>
     </ion-card>
-    {{club.social.facebook}}
+    <ion-list-header><center>Upcoming events:</center></ion-list-header>
+    <div *ngFor="let event of events">
+        <!--Styling the newsfeed items -->
+        <ion-card style="border-style:solid black"  *ngIf="event.club == club.id"  (click)="viewEvent(event)">
+            <img src="{{event.banner}}" ng-show="event.banner"/>
+            <ion-card-content style="padding:1.5%">
+                <ion-card-title>
+                    {{event.title}}
+                </ion-card-title>   
+                <p>{{event.tagline}}</p>
+            </ion-card-content>
+            
+            <ion-row>
+                <ion-col>
+                    <button primary clear small>
+                        <div>Save Event</div>
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button primary clear small (click)="addToCalendar(event)">
+                        <ion-icon name="md-calendar"></ion-icon>
+                        <div>Add to Calendar</div>
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button primary clear small>
+                        <ion-icon name="logo-facebook"></ion-icon>
+                        <div>Facebook page</div>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
     
 </ion-content>
