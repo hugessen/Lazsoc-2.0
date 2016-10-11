@@ -1,4 +1,0 @@
-http://app.lazsoc.ca/app_clubs.php
-http://app.lazsoc.ca/app_discount.php
-http://app.lazsoc.ca/app_interests.php
-http://app.lazsoc.ca/app_events.php

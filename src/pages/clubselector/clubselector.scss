@@ -1,0 +1,36 @@
+clubselector{
+    flexbox{
+        flex-wrap:wrap;
+        display:flex;
+        flex-direction:row;
+    }
+    .imgbox{
+        border-radius:10px;
+        width:15%;
+        height:100%;
+    }
+    .selectionbox{
+        position:relative;
+        width:33.3%;
+        padding:2px 4px;
+    }
+    .unchecked-clubs-page {
+        border-radius:10px;
+        background-color:white;
+        border:1px solid rgba(0,0,0,0.2);
+    }
+    .checked-clubs-page {
+        border-radius:10px;
+        background-color:white;
+        border:2px solid #F2A900;
+    }
+    infobox{
+        position:absolute;
+        transform: translateY(20%) translateX(25%);
+        width:20%;
+        height:20%;
+    }
+    infobox img{	
+        width:75%;
+    }
+}

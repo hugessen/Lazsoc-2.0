@@ -1,0 +1,92 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+// http://ionicframework.com/docs/v2/theming/
+.flexbox{
+	flex-wrap:wrap;
+	display:flex;
+	flex-direction:row;
+}
+.imgbox{
+    border-radius:10px;
+	width:15%;
+    height:100%;
+}
+.selectionbox{
+	position:relative;
+	width:33.3%;
+	padding:2px 4px;
+}
+.unchecked-clubs-page {
+	border-radius:10px;
+	background-color:white;
+	border:1px solid rgba(0,0,0,0.2);
+}
+.checked-clubs-page {
+	border-radius:10px;
+	background-color:white;
+	border:2px solid #F2A900;
+}
+.infobox{
+	position:absolute;
+	transform: translateY(20%) translateX(25%);
+	width:20%;
+	height:20%;
+}
+.infobox img{	
+	width:75%;
+}
+.divider-component {
+    background-color:#e6e6e6;
+    border-style:solid;
+    border-color: black;
+}
+.lazsoc_banner {
+	width:100%; 
+	padding:0px; 
+	display: block;
+}
+.word-wrap {
+    word-wrap: break-word !important; 
+	white-space: initial !important;
+}
+
+.newsfeed-segment{
+    height:3rem; 
+    background-color:rgba(66,44,137,1);
+}
+.newsfeed-segment-button{
+    height:3rem;
+    line-height:2.5rem;
+}
+.lazsoc_tabs{
+    padding:0px;
+}
+.lazsoc-tab{
+    padding:0px;
+}
+.saved-event {
+    //border:2px solid rgba(93, 252, 141,1);
+    box-shadow: 0 2px 2px 0 rgba(93, 252, 141,1), 0 3px 1px -2px rgba(93, 252, 141,1), 0 1px 5px 0 rgba(93, 252, 141,1);
+}
+
+.button-fab{
+    position:fixed;
+}
+.bottom-right{
+    right: 30px;
+    bottom: 80px;
+}

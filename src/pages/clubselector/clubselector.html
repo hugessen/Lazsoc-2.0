@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="laz-purple">
+    <ion-title>Set Preferences</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="savePrefs()" side="right">Save</button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-segment color="light" [(ngModel)]="view" class="newsfeed-segment">
+        <ion-segment-button value="clubs" class="newsfeed-segment-button">
+           Clubs
+        </ion-segment-button>
+        <ion-segment-button value="interests" class="newsfeed-segment-button">
+            Interests
+        </ion-segment-button>
+    </ion-segment>
+</ion-header>
+
+<!-- See newsfeed.html comments for insight on how ngSwitch works -->
+<ion-content>
+    <div [ngSwitch]="view"> 
+        <div class="flexbox" ion-list *ngSwitchCase="'clubs'">
+            <div class="selectionbox" *ngFor="let club of clubs">
+                <div class="infobox" (click)="viewClub(club)"><img src="img/info-icon.png"></div>
+                <div>
+                    <img src="{{club.logo}}" class="unchecked-clubs-page" (click)="toggle(club)" [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="'interests'">
+            <ion-list-header>What are you interested in?</ion-list-header>
+            <ion-card>
+                <ion-list>
+                    <ion-item *ngFor="let interest of interests">
+                        <ion-label>{{interest.name}}</ion-label>
+                        <ion-toggle laz-purple [(ngModel)]="interest.selected"></ion-toggle>
+                    </ion-item>
+                </ion-list>
+            </ion-card>
+        </div>
+    </div>
+</ion-content>
