@@ -13,6 +13,7 @@
     "run:before": "build"
   },
   "dependencies": {
+    "@ionic/cloud-angular": "^0.5.2",
     "@ionic/storage": "1.1.2",
     "ionic-angular": "^2.0.0-rc.0",
     "ionic-native": "^2.0.3",
