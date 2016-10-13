@@ -1,5 +1,5 @@
 {
-  "name": "ionic-hello-world",
+  "name": "lazsoc-2.0",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "private": true,
@@ -33,5 +33,15 @@
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [],
+  "version": "1.3.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hugessen/Lazsoc-2.0.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hugessen/Lazsoc-2.0/issues"
+  }
 }
