@@ -107,7 +107,7 @@ export class CacheService {
    * @returns {boolean}
    */
   public itemExpired(item: {data: any, expires: number}): boolean {
-    return (typeof item !== 'undefined' && typeof item.expires !== 'undefined') ?
+    return (typeof item !== 'undefined' && item !== null && typeof item.expires !== 'undefined') ?
       this.currentTimestamp() > item.expires : true;
   }
 
