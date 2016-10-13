@@ -2,6 +2,14 @@
 
 Yeah baby!! Total code refactor using Ionic 2 and AngularJS 2. Coding in Angular 2 is so freaking awesome!
 
+If you get 
+
+    Error: spawn EACCES
+
+run:
+
+    ionic hooks add
+
 #To Do:
 
 #Completed
