@@ -82,7 +82,6 @@ var _View_TabsPage0 = (function (_super) {
         this._text_1 = this.renderer.createText(null, '\n  ', null);
         this._el_2 = this.renderer.createElement(null, 'ion-tab', null);
         this.renderer.setElementAttribute(this._el_2, 'class', 'lazsoc_tab');
-        this.renderer.setElementAttribute(this._el_2, 'laz-purple', '');
         this.renderer.setElementAttribute(this._el_2, 'role', 'tabpanel');
         this.renderer.setElementAttribute(this._el_2, 'tabIcon', 'home');
         this.renderer.setElementAttribute(this._el_2, 'tabTitle', 'Newsfeed');

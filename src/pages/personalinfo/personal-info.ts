@@ -29,20 +29,18 @@ export class PersonalInfo {
   }
   
   openLogin(){
-
-      this.hasInfo = !this.hasInfo;
-    // let modal = this.modalCtrl.create(LoginPage);// everything in the {} are my params to be passed to the Modal
-    // modal.onDidDismiss(data => { //Retrieving the params passed down from the Modal's dismiss() method
-    //     this.userData = {
-    //         firstname:data.firstname,
-    //         lastname:data.lastname,
-    //         email:data.email,
-    //         studyYear:data.studyYear,
-    //         program:data.program
-    //     };
-    //     this.hasInfo = true; //So I know whether we have the user's info
-    // })
-    // modal.present(); // Loading the Modal
+    let modal = this.modalCtrl.create(LoginPage);// everything in the {} are my params to be passed to the Modal
+    modal.onDidDismiss(data => { //Retrieving the params passed down from the Modal's dismiss() method
+        this.userData = {
+            firstname:data.firstname,
+            lastname:data.lastname,
+            email:data.email,
+            studyYear:data.studyYear,
+            program:data.program
+        };
+        this.hasInfo = true; //So I know whether we have the user's info
+    })
+    modal.present(); // Loading the Modal
   }
   
 }

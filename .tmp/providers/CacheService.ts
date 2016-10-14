@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 
-const CACHE_TTL = 60000000; // ~2 years. This is so preferences don't expire
+const CACHE_TTL = 60*60;
 const API_URL = 'http://app.lazsoc.ca/';
 
 @Injectable()
@@ -107,7 +107,7 @@ export class CacheService {
    * @returns {boolean}
    */
   public itemExpired(item: {data: any, expires: number}): boolean {
-    return (typeof item !== 'undefined' && typeof item.expires !== 'undefined') ?
+    return (typeof item !== 'undefined' && item !== null && typeof item.expires !== 'undefined') ?
       this.currentTimestamp() > item.expires : true;
   }
 

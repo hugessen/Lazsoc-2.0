@@ -1,12 +1,13 @@
 <ion-header>
   <ion-navbar color="laz-purple">
-    <ion-title>Personal Information</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <img src="img/lazsoc.png" style="width: 40%; margin-left: auto; margin-right: auto; display: block;">
-    <div *ngIf="hasInfo">
+    <div [hidden]="hasInfo">
+        <ion-item-divider>Looks like we don't have your info yet. Press below to fix that :)</ion-item-divider>
+    </div>
+    <div [hidden]="!hasInfo">
         <ion-list>
             <ion-item>
                 <ion-icon item-left name="contact"></ion-icon>{{userData.firstname}} {{userData.lastname}}
@@ -17,35 +18,6 @@
             <ion-item>
                 <ion-icon item-left name="md-school"></ion-icon>{{userData.program}}, year {{userData.studyYear}}
             </ion-item>
-        </ion-list>
-    </div>
-    <div *ngIf="!hasInfo">
-        <ion-list>
-            <ion-item>
-                <ion-label floating>Name</ion-label>
-                <ion-input type="text" [(ngModel)]="userData.firstname"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label floating>Email</ion-label>
-                <ion-input type="text" [(ngModel)]="userData.email"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>Year of study</ion-label>
-                <ion-select [(ngModel)]="userData.studyYear">
-                    <ion-option *ngFor="let year of [1,2,3,4,5]">{{year}}</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item>
-                <ion-label>Program</ion-label>
-                <ion-select [(ngModel)]="userData.program">
-                    <ion-option *ngFor="let program of programOptions">{{program}}</ion-option>
-                </ion-select>
-            </ion-item>
-            <ion-item>
-                <ion-label>Wanna hear from us?</ion-label>
-                <ion-toggle color="laz-purple" checked="false"></ion-toggle>
-            </ion-item>   
-            <button ion-button block (click)="submit()">Submit!</button>
         </ion-list>
     </div>
     <button ion-button block (click)="openLogin()">Edit Personal Information</button>

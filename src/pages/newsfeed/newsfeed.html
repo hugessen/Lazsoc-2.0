@@ -1,12 +1,11 @@
 <ion-header>
-  <ion-navbar color="laz-purple">
-    <ion-title><b>Lazaridis Students' Society</b></ion-title> 
+  <ion-navbar color="laz-purple"> 
   </ion-navbar>
-      <ion-segment color="light" [(ngModel)]="view" class="newsfeed-segment"> <!-- view is a variable that determines what view to show -->
-        <ion-segment-button value="custom" class="newsfeed-segment-button">
+      <ion-segment [(ngModel)]="view" color="laz-gold" style="background-color:rgba(66,44,137,1)"> <!-- view is a variable that determines what view to show -->
+        <ion-segment-button value="custom">
             My Newsfeed
         </ion-segment-button>
-        <ion-segment-button value="all" class="newsfeed-segment-button"> <!-- value="all" binds "all" to the view variable -->
+        <ion-segment-button value="all"> <!-- value="all" binds "all" to the view variable -->
            All
         </ion-segment-button>
     </ion-segment>

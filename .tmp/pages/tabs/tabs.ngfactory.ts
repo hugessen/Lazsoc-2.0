@@ -118,7 +118,6 @@ class _View_TabsPage0 extends import1.AppView<import3.TabsPage> {
     this._text_1 = this.renderer.createText((null as any),'\n  ',(null as any));
     this._el_2 = this.renderer.createElement((null as any),'ion-tab',(null as any));
     this.renderer.setElementAttribute(this._el_2,'class','lazsoc_tab');
-    this.renderer.setElementAttribute(this._el_2,'laz-purple','');
     this.renderer.setElementAttribute(this._el_2,'role','tabpanel');
     this.renderer.setElementAttribute(this._el_2,'tabIcon','home');
     this.renderer.setElementAttribute(this._el_2,'tabTitle','Newsfeed');
