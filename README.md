@@ -16,9 +16,9 @@ run:
 
 ##To Do:
 
-- [ ] Implement Interests in custom feed
+- [x] Implement Interests in custom feed
 - [ ] ConnectivityMonitor to see if user is online
-- [ ] Fix Personal Information page
+- [x] Fix Personal Information page
 - [ ] List dividers to distinguish days in newsfeed
 - [ ] RRule for recurring events
 - [ ] Implement new API

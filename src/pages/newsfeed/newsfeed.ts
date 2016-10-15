@@ -34,7 +34,7 @@ export class Newsfeed {
         console.log(this.clubs);   
       });
   }
-  
+
   showAlert(title:string,message:string) {
     let alert = this.alertCtrl.create({
       title: title,

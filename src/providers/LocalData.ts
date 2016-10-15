@@ -80,10 +80,21 @@ export class LocalData {
             var eventStart = Date.parse(event.startDate);
             event.visible = false; //initially
             event.timeframe = "";
+            event.basedOn = "";
 
             //Filtering by prefs
             if (clubs[event.clubRef].selected)
                 event.visible = true; //Set to true if club selected
+            else{
+                for(let tag of event.tags){
+                    for (let interest of interests){
+                        if (tag == interest.name && interest.selected){
+                            event.visible = true;
+                            event.basedOn = tag;
+                        }
+                    }
+                }
+            }
 
             //Checking timeframe
             if (eventStart < currentTime) 

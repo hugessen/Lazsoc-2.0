@@ -11,4 +11,5 @@ export class ClubEvent{
     desc: string;
     visible: boolean;
     timeframe:string;
+    basedOn:string;
 }
