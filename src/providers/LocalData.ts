@@ -62,7 +62,7 @@ export class LocalData {
                 Observable.fromPromise(this.getInterests())
             ]).subscribe(data => {   
                 //Applies the visible property to events based on Clubs and Interests
-                var val = this.doCustomFeed(this.getEventsLocally(),data[1],data[2]);
+                var val = this.doCustomFeed(data[0],data[1],data[2]);
                 resolve(val);
             })
         })
@@ -72,17 +72,17 @@ export class LocalData {
         var result:Array<ClubEvent> = [];
         //Sorting by time
         events.sort(function(a,b){
-            return Date.parse(a.startTime) - Date.parse(b.startTime)
+            return Date.parse(a.startDate) - Date.parse(b.startDate)
         })
         //Applying visible property based on prefs
         for (let event of events){
             var currentTime = new Date().getTime();
-            var eventStart = Date.parse(event.startTime);
+            var eventStart = Date.parse(event.startDate);
             event.visible = false; //initially
             event.timeframe = "";
 
             //Filtering by prefs
-            if (clubs[event.club].selected)
+            if (clubs[event.clubRef].selected)
                 event.visible = true; //Set to true if club selected
 
             //Checking timeframe
@@ -132,10 +132,10 @@ export class LocalData {
         {
             id:0,
             title:"5 Days for the Homeless!",
-            startTime: "3/11/2017 9:00 AM",
-            endTime: "3/11/2017 4:30 PM",
+            startDate: "3/11/2017 9:00 AM",
+            endDate: "3/11/2017 4:30 PM",
             location:"Fred Nichols Building",
-            tagline:"Come out and support us as we sleep outside for a week!",
+            subheader:"Come out and support us as we sleep outside for a week!",
             club:21,   
             banner:"assets/img/Event Banners/5DaysBanner.jpg",
             tags: [
@@ -146,10 +146,10 @@ export class LocalData {
         },
         {   id:1,
             title:"O-Day",
-            startTime:"9/11/2016 9:00 AM",
-            endTime: "9/11/2016 4:30 PM",
+            startDate:"9/11/2016 9:00 AM",
+            endDate: "9/11/2016 4:30 PM",
             location: "Bingeman's Conference Centre",
-            tagline:"Come out and learn what it means to be a business student!",
+            subheader:"Come out and learn what it means to be a business student!",
             club:22,
             banner:"assets/img/Event Banners/O-Day.jpg",
             tags: [

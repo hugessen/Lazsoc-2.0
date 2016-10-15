@@ -5,11 +5,11 @@ import { LocalData } from '../../providers/LocalData';
 import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
 import { Interest } from '../../models/interest';
+import { PersonalInfo } from '../personalinfo/personalinfo';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  selector: 'flexbox',
-  templateUrl: '../clubselector/clubselector.html'
+  templateUrl: 'clubselector.html'
 })
 export class ClubSelector {
   clubs:Club[];

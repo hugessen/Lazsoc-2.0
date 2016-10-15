@@ -10,7 +10,11 @@ run:
 
     ionic hooks add
 
-#To Do:
+##Notes
+* Clubs need to only supply a banner if it is unique
+* Modals and modal navigation for launch protocol?
+
+##To Do:
 
 - [ ] Implement Interests in custom feed
 - [ ] ConnectivityMonitor to see if user is online
@@ -21,12 +25,12 @@ run:
 - [ ] Gold leaf logo for header bar
 - [ ] Permanent caching
 - [ ] Notify when exported event has changed
-- [ ] This Week, Next Week, Upcoming filters
-- [ ] Popover to edit filters
+- [x] This Week, Next Week, Upcoming filters
+- [x] Popover to edit filters
 - [ ] Override CSS to optimize look-and-feel
+- [ ] Launch Protocol
 
-#Cloud
+###Cloud
 - [ ] Deploy
 - [ ] Push Notifications
 - [ ] Analytics
-- [ ] Launch Protocol

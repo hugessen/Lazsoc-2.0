@@ -3,6 +3,7 @@ import {NavController, AlertController, PopoverController,ViewController} from '
 import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
+import { Club } from '../../models/club';
 import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
 
@@ -19,13 +20,18 @@ let connectSubscription = Network.onConnect().subscribe(() => {
 })
 export class Newsfeed {
     events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
+    clubs: Club[];
     timeframe:string = "this week";
     feedType:string = "all";
-    message:string = "All events this week";
+    message:string = "All Events This Week";
   constructor(public navCtrl: NavController, public localData: LocalData, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
     this.localData.getCustomFeed()
     .then(data => {this.events = data;
           console.log(this.events);
+      });
+      this.localData.getClubs()
+      .then(data => {this.clubs = data;
+        console.log(this.clubs);   
       });
   }
   
@@ -39,7 +45,7 @@ export class Newsfeed {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe});
+    let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe},{enableBackdropDismiss:false});
     popover.present({
       ev: myEvent
     });
@@ -49,20 +55,20 @@ export class Newsfeed {
       this.timeframe = data.timeframe;
 
       if(this.feedType == "all"){
-        if(this.timeframe == "past") this.message = "All past events";
-        else if (this.timeframe == "this week") this.message = "All events this week";
-        else if (this.timeframe == "upcoming") this.message = "All upcoming events";
+        if(this.timeframe == "past") this.message = "All Past Events";
+        else if (this.timeframe == "this week") this.message = "All Events This Week";
+        else if (this.timeframe == "upcoming") this.message = "All Upcoming Events";
       }
       else if (this.feedType == "custom"){
-        if(this.timeframe == "past") this.message = "Custom Feed of past events";
-        else if (this.timeframe == "this week") this.message = "Custom Feed of events this week";
-        else if (this.timeframe == "upcoming") this.message = "Custom Feed of upcoming events"
+        if(this.timeframe == "past") this.message = "Custom Feed of Past Events";
+        else if (this.timeframe == "this week") this.message = "Custom Feed of Events this Week";
+        else if (this.timeframe == "upcoming") this.message = "Custom Feed of Upcoming Events"
       }
     });
   }
   
   addToCalendar(event:ClubEvent){
-      Calendar.createEventInteractively(event.title, event.location, event.tagline, new Date(event.startTime), new Date(event.endTime))
+      Calendar.createEventInteractively(event.title, event.location, event.subheader, new Date(event.startDate), new Date(event.endDate))
       .then(
           (msg) => console.log(msg),
           (err) => console.log(err)

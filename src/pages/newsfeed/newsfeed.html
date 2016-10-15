@@ -3,7 +3,7 @@
     
   </ion-navbar>
   <ion-toolbar style="border-top:2px solid #F2A900; text-align:center" color="laz-purple">
-      <b style="font-size:15px; color:#FFF">{{message}}</b>
+      <b style="font-size:17px; color:#FFF">{{message}}</b>
       <ion-buttons end>
         <button ion-button (click)="presentPopover($event)">
             <ion-icon name="ios-settings"></ion-icon>
@@ -24,13 +24,13 @@
     <div *ngFor="let event of events">
         <!--Styling the newsfeed items -->
         <ion-card style="border-style:solid black"  *ngIf="timeframe == event.timeframe && (feedType=='all' || (feedType=='custom' && event.visible))">
-            <img src="{{event.banner}}" ng-show="event.banner"  (click)="viewEvent(event)"/>
+            <img [src]="clubs[event.clubRef].banner" (click)="viewEvent(event)"/>
             <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
                 <ion-card-title >
                     {{event.title}}
                 </ion-card-title>   
-                <p>{{event.startTime}} | {{event.location}}</p>
-                <p>{{event.tagline}}</p>
+                <p>{{event.startDate}} | {{event.location}}</p>
+                <p>{{event.subheader}}</p>
             </ion-card-content>
             
             <ion-row>
