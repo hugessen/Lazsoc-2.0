@@ -10,4 +10,5 @@ export class ClubEvent{
     tags:string[];
     desc: string;
     visible: boolean;
+    timeframe:string;
 }

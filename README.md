@@ -12,22 +12,18 @@ run:
 
 #To Do:
 
-#Completed
-- [x] Change the club selection page to actually select clubs, not just display clubpages
-- [x] Find a way to save preference selection for clubs and interests
-- [x] Once preferences work, implement Custom Newsfeed
-- [x] Calendar integration
-- [x] Club Pages need to look nicer
-- [x] App icon and splash screen
-- [x] Sort events by time
-
-#Functionality
-- [ ] Implement Interests for getCustomFeed()
+- [ ] Implement Interests in custom feed
 - [ ] ConnectivityMonitor to see if user is online
-- [ ] Implement Personal Information page.
+- [ ] Fix Personal Information page
 - [ ] List dividers to distinguish days in newsfeed
-- [ ] Deal with recurring events
+- [ ] RRule for recurring events
 - [ ] Implement new API
+- [ ] Gold leaf logo for header bar
+- [ ] Permanent caching
+- [ ] Notify when exported event has changed
+- [ ] This Week, Next Week, Upcoming filters
+- [ ] Popover to edit filters
+- [ ] Override CSS to optimize look-and-feel
 
 #Cloud
 - [ ] Deploy

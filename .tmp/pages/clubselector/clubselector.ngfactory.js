@@ -149,7 +149,7 @@ var _View_ClubSelector0 = (function (_super) {
         this._text_13 = this.renderer.createText(this._el_0, '\n  ', null);
         this._el_14 = this.renderer.createElement(this._el_0, 'ion-segment', null);
         this.renderer.setElementAttribute(this._el_14, 'class', 'newsfeed-segment');
-        this.renderer.setElementAttribute(this._el_14, 'color', 'light');
+        this.renderer.setElementAttribute(this._el_14, 'color', 'laz-gold');
         this._NgModel_14_3 = new import19.NgModel(null, null, null, null);
         this._NgControl_14_4 = this._NgModel_14_3;
         this._NgControlStatus_14_5 = new import20.NgControlStatus(this._NgControl_14_4);
@@ -157,7 +157,7 @@ var _View_ClubSelector0 = (function (_super) {
         this._query_SegmentButton_14_0 = new import17.QueryList();
         this._text_15 = this.renderer.createText(this._el_14, '\n        ', null);
         this._el_16 = this.renderer.createElement(this._el_14, 'ion-segment-button', null);
-        this.renderer.setElementAttribute(this._el_16, 'class', 'newsfeed-segment-button segment-button');
+        this.renderer.setElementAttribute(this._el_16, 'class', 'segment-button');
         this.renderer.setElementAttribute(this._el_16, 'role', 'button');
         this.renderer.setElementAttribute(this._el_16, 'tappable', '');
         this.renderer.setElementAttribute(this._el_16, 'value', 'clubs');
@@ -169,7 +169,7 @@ var _View_ClubSelector0 = (function (_super) {
         compView_16.create(this._SegmentButton_16_4, [[].concat([this._text_17])], null);
         this._text_18 = this.renderer.createText(this._el_14, '\n        ', null);
         this._el_19 = this.renderer.createElement(this._el_14, 'ion-segment-button', null);
-        this.renderer.setElementAttribute(this._el_19, 'class', 'newsfeed-segment-button segment-button');
+        this.renderer.setElementAttribute(this._el_19, 'class', 'segment-button');
         this.renderer.setElementAttribute(this._el_19, 'role', 'button');
         this.renderer.setElementAttribute(this._el_19, 'tappable', '');
         this.renderer.setElementAttribute(this._el_19, 'value', 'interests');
@@ -351,7 +351,7 @@ var _View_ClubSelector0 = (function (_super) {
         if ((changes !== null)) {
             this._NgModel_14_3.ngOnChanges(changes);
         }
-        var currVal_12 = 'light';
+        var currVal_12 = 'laz-gold';
         if (import4.checkBinding(throwOnChange, this._expr_12, currVal_12)) {
             this._Segment_14_6.color = currVal_12;
             this._expr_12 = currVal_12;
@@ -567,7 +567,7 @@ var _View_ClubSelector2 = (function (_super) {
         this._el_2 = this.renderer.createElement(this._el_0, 'div', null);
         this.renderer.setElementAttribute(this._el_2, 'class', 'infobox');
         this._el_3 = this.renderer.createElement(this._el_2, 'img', null);
-        this.renderer.setElementAttribute(this._el_3, 'src', 'img/info-icon.png');
+        this.renderer.setElementAttribute(this._el_3, 'src', 'assets/img/info-icon.png');
         this._text_4 = this.renderer.createText(this._el_0, '\n                ', null);
         this._el_5 = this.renderer.createElement(this._el_0, 'div', null);
         this._text_6 = this.renderer.createText(this._el_5, '\n                    ', null);

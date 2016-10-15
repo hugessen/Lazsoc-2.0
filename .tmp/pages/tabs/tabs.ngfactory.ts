@@ -141,7 +141,7 @@ class _View_TabsPage0 extends import1.AppView<import3.TabsPage> {
     this._el_6 = this.renderer.createElement((null as any),'ion-tab',(null as any));
     this.renderer.setElementAttribute(this._el_6,'class','lazsoc_tab');
     this.renderer.setElementAttribute(this._el_6,'role','tabpanel');
-    this.renderer.setElementAttribute(this._el_6,'tabIcon','md-person');
+    this.renderer.setElementAttribute(this._el_6,'tabIcon','ios-person');
     this.renderer.setElementAttribute(this._el_6,'tabTitle','Personal Info');
     this._appEl_6 = new import2.AppElement(6,0,this,this._el_6);
     var compView_6:any = import20.viewFactory_Tab0(this.viewUtils,this.injector(6),this._appEl_6);
@@ -152,7 +152,7 @@ class _View_TabsPage0 extends import1.AppView<import3.TabsPage> {
     this._el_8 = this.renderer.createElement((null as any),'ion-tab',(null as any));
     this.renderer.setElementAttribute(this._el_8,'class','lazsoc-tab');
     this.renderer.setElementAttribute(this._el_8,'role','tabpanel');
-    this.renderer.setElementAttribute(this._el_8,'tabIcon','md-cash');
+    this.renderer.setElementAttribute(this._el_8,'tabIcon','ios-cash');
     this.renderer.setElementAttribute(this._el_8,'tabTitle','Discount Card');
     this._appEl_8 = new import2.AppElement(8,0,this,this._el_8);
     var compView_8:any = import20.viewFactory_Tab0(this.viewUtils,this.injector(8),this._appEl_8);
@@ -266,7 +266,7 @@ class _View_TabsPage0 extends import1.AppView<import3.TabsPage> {
       this._Tab_6_4.tabTitle = currVal_12;
       this._expr_12 = currVal_12;
     }
-    const currVal_13:any = 'md-person';
+    const currVal_13:any = 'ios-person';
     if (import4.checkBinding(throwOnChange,this._expr_13,currVal_13)) {
       this._Tab_6_4.tabIcon = currVal_13;
       this._expr_13 = currVal_13;
@@ -282,7 +282,7 @@ class _View_TabsPage0 extends import1.AppView<import3.TabsPage> {
       this._Tab_8_4.tabTitle = currVal_17;
       this._expr_17 = currVal_17;
     }
-    const currVal_18:any = 'md-cash';
+    const currVal_18:any = 'ios-cash';
     if (import4.checkBinding(throwOnChange,this._expr_18,currVal_18)) {
       this._Tab_8_4.tabIcon = currVal_18;
       this._expr_18 = currVal_18;

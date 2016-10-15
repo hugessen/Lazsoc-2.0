@@ -5,7 +5,7 @@
         <button ion-button (click)="savePrefs()" side="right">Save</button>
     </ion-buttons>
   </ion-navbar>
-  <ion-segment color="light" [(ngModel)]="view" color="laz-gold" class="newsfeed-segment">
+  <ion-segment style="background-color:rgba(66,44,137,1)"[(ngModel)]="view" color="laz-gold">
         <ion-segment-button value="clubs">
            Clubs
         </ion-segment-button>
@@ -20,7 +20,7 @@
     <div [ngSwitch]="view"> 
         <div class="flexbox" ion-list *ngSwitchCase="'clubs'">
             <div class="selectionbox" *ngFor="let club of clubs">
-                <div class="infobox" (click)="viewClub(club)"><img src="img/info-icon.png"></div>
+                <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>
                 <div>
                     <img src="{{club.logo}}" class="unchecked-clubs-page" (click)="toggle(club)" [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">
                 </div>

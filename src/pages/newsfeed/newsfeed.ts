@@ -1,8 +1,9 @@
  import {Component} from '@angular/core';
-import {NavController, AlertController} from 'ionic-angular';
+import {NavController, AlertController, PopoverController,ViewController} from 'ionic-angular';
 import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
+import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
 
 let disconnectSubscription = Network.onDisconnect().subscribe(() => {
@@ -14,18 +15,18 @@ let connectSubscription = Network.onConnect().subscribe(() => {
 });
 
 @Component({
-  templateUrl: '../newsfeed/newsfeed.html',
+  templateUrl: 'newsfeed.html',
 })
 export class Newsfeed {
     events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
-    view:string; //Used to toggle between All and Custom Newsfeed
-    
-  constructor(public navCtrl: NavController, public localData: LocalData, public alertCtrl: AlertController) {
-      this.localData.getCustomFeed()
-      .then(data => {this.events = data;
-            console.log(this.events);
-        });
-      this.view = "custom"; //Set to the All Events view initially
+    timeframe:string = "this week";
+    feedType:string = "all";
+    message:string = "All events this week";
+  constructor(public navCtrl: NavController, public localData: LocalData, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
+    this.localData.getCustomFeed()
+    .then(data => {this.events = data;
+          console.log(this.events);
+      });
   }
   
   showAlert(title:string,message:string) {
@@ -35,6 +36,29 @@ export class Newsfeed {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe});
+    popover.present({
+      ev: myEvent
+    });
+
+    popover.onDidDismiss(data => {
+      this.feedType = data.feedType;
+      this.timeframe = data.timeframe;
+
+      if(this.feedType == "all"){
+        if(this.timeframe == "past") this.message = "All past events";
+        else if (this.timeframe == "this week") this.message = "All events this week";
+        else if (this.timeframe == "upcoming") this.message = "All upcoming events";
+      }
+      else if (this.feedType == "custom"){
+        if(this.timeframe == "past") this.message = "Custom Feed of past events";
+        else if (this.timeframe == "this week") this.message = "Custom Feed of events this week";
+        else if (this.timeframe == "upcoming") this.message = "Custom Feed of upcoming events"
+      }
+    });
   }
   
   addToCalendar(event:ClubEvent){

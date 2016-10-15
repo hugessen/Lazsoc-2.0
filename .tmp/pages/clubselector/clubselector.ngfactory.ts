@@ -223,7 +223,7 @@ class _View_ClubSelector0 extends import1.AppView<import3.ClubSelector> {
     this._text_13 = this.renderer.createText(this._el_0,'\n  ',(null as any));
     this._el_14 = this.renderer.createElement(this._el_0,'ion-segment',(null as any));
     this.renderer.setElementAttribute(this._el_14,'class','newsfeed-segment');
-    this.renderer.setElementAttribute(this._el_14,'color','light');
+    this.renderer.setElementAttribute(this._el_14,'color','laz-gold');
     this._NgModel_14_3 = new import19.NgModel((null as any),(null as any),(null as any),(null as any));
     this._NgControl_14_4 = this._NgModel_14_3;
     this._NgControlStatus_14_5 = new import20.NgControlStatus(this._NgControl_14_4);
@@ -231,7 +231,7 @@ class _View_ClubSelector0 extends import1.AppView<import3.ClubSelector> {
     this._query_SegmentButton_14_0 = new import17.QueryList<any>();
     this._text_15 = this.renderer.createText(this._el_14,'\n        ',(null as any));
     this._el_16 = this.renderer.createElement(this._el_14,'ion-segment-button',(null as any));
-    this.renderer.setElementAttribute(this._el_16,'class','newsfeed-segment-button segment-button');
+    this.renderer.setElementAttribute(this._el_16,'class','segment-button');
     this.renderer.setElementAttribute(this._el_16,'role','button');
     this.renderer.setElementAttribute(this._el_16,'tappable','');
     this.renderer.setElementAttribute(this._el_16,'value','clubs');
@@ -243,7 +243,7 @@ class _View_ClubSelector0 extends import1.AppView<import3.ClubSelector> {
     compView_16.create(this._SegmentButton_16_4,[[].concat([this._text_17])],(null as any));
     this._text_18 = this.renderer.createText(this._el_14,'\n        ',(null as any));
     this._el_19 = this.renderer.createElement(this._el_14,'ion-segment-button',(null as any));
-    this.renderer.setElementAttribute(this._el_19,'class','newsfeed-segment-button segment-button');
+    this.renderer.setElementAttribute(this._el_19,'class','segment-button');
     this.renderer.setElementAttribute(this._el_19,'role','button');
     this.renderer.setElementAttribute(this._el_19,'tappable','');
     this.renderer.setElementAttribute(this._el_19,'value','interests');
@@ -391,7 +391,7 @@ class _View_ClubSelector0 extends import1.AppView<import3.ClubSelector> {
       this._expr_5 = currVal_5;
     }
     if ((changes !== (null as any))) { this._NgModel_14_3.ngOnChanges(changes); }
-    const currVal_12:any = 'light';
+    const currVal_12:any = 'laz-gold';
     if (import4.checkBinding(throwOnChange,this._expr_12,currVal_12)) {
       this._Segment_14_6.color = currVal_12;
       this._expr_12 = currVal_12;
@@ -604,7 +604,7 @@ class _View_ClubSelector2 extends import1.AppView<any> {
     this._el_2 = this.renderer.createElement(this._el_0,'div',(null as any));
     this.renderer.setElementAttribute(this._el_2,'class','infobox');
     this._el_3 = this.renderer.createElement(this._el_2,'img',(null as any));
-    this.renderer.setElementAttribute(this._el_3,'src','img/info-icon.png');
+    this.renderer.setElementAttribute(this._el_3,'src','assets/img/info-icon.png');
     this._text_4 = this.renderer.createText(this._el_0,'\n                ',(null as any));
     this._el_5 = this.renderer.createElement(this._el_0,'div',(null as any));
     this._text_6 = this.renderer.createText(this._el_5,'\n                    ',(null as any));

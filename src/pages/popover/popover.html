@@ -1,0 +1,14 @@
+<ion-list>
+    <ion-list-header>Filter by preferences:</ion-list-header>
+    <ion-segment [(ngModel)]="feedType">
+        <ion-segment-button value="custom">Custom</ion-segment-button>
+        <ion-segment-button value="all">All</ion-segment-button>
+    </ion-segment>
+    <ion-list-header>Choose timeframe</ion-list-header>
+    <ion-segment [(ngModel)]="timeframe">
+        <ion-segment-button value="past">Past</ion-segment-button>
+        <ion-segment-button value="this week">This Week</ion-segment-button>
+        <ion-segment-button value="upcoming">Upcoming</ion-segment-button>
+    </ion-segment>
+    <button ion-button block (click)="close()">Dismiss</button>
+</ion-list>

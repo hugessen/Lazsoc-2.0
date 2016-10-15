@@ -76,9 +76,23 @@ export class LocalData {
         })
         //Applying visible property based on prefs
         for (let event of events){
+            var currentTime = new Date().getTime();
+            var eventStart = Date.parse(event.startTime);
             event.visible = false; //initially
+            event.timeframe = "";
+
+            //Filtering by prefs
             if (clubs[event.club].selected)
                 event.visible = true; //Set to true if club selected
+
+            //Checking timeframe
+            if (eventStart < currentTime) 
+                event.timeframe = "past";
+            else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7) 
+                event.timeframe = "this week";
+            else 
+                event.timeframe = "upcoming";
+
             result.push(event); //Add to the list
         }
         return result;
