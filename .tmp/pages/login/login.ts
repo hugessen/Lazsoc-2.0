@@ -20,12 +20,10 @@ export class LoginPage {
     if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
         this.showToast('Please enter all information');
     }
-    else if (!this.isValidEmail(this.userData.email)) {
-        this.showToast('Invalid MyLaurier Email');
-    }
-    else //Input validated. Now we pass the data back down to userData via NavParams
+    else{ //Input validated. Now we pass the data back down to userData via NavParams
         this.localData.saveData('userdata',this.userData);
         this.viewCtrl.dismiss(this.userData);
+    }
   }
   
   isValidEmail(email:string):boolean{

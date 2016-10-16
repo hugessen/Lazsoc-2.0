@@ -3,6 +3,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Newsfeed } from '../pages/newsfeed/newsfeed';
+import { PopoverPage } from '../pages/popover/popover';
 import { EventPage } from '../pages/eventpage/event-page';
 import { ClubSelector } from '../pages/clubselector/clubselector';
 import { ClubPage } from '../pages/clubpage/clubpage';
@@ -19,6 +20,7 @@ import {Storage} from '@ionic/Storage';
     MyApp,
     TabsPage,
     Newsfeed,
+    PopoverPage,
     EventPage,
     ClubSelector,
     ClubPage,
@@ -34,6 +36,7 @@ import {Storage} from '@ionic/Storage';
     MyApp,
     TabsPage,
     Newsfeed,
+    PopoverPage,
     EventPage,
     ClubSelector,
     ClubPage,

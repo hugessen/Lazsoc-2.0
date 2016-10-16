@@ -102,40 +102,29 @@ var _View_TabsPage0 = (function (_super) {
         this._appEl_4.initComponent(this._Tab_4_4, [], compView_4);
         compView_4.create(this._Tab_4_4, [], null);
         this._text_5 = this.renderer.createText(null, '\n  ', null);
-        this._el_6 = this.renderer.createElement(null, 'ion-tab', null);
-        this.renderer.setElementAttribute(this._el_6, 'class', 'lazsoc_tab');
-        this.renderer.setElementAttribute(this._el_6, 'role', 'tabpanel');
-        this.renderer.setElementAttribute(this._el_6, 'tabIcon', 'ios-person');
-        this.renderer.setElementAttribute(this._el_6, 'tabTitle', 'Personal Info');
-        this._appEl_6 = new import2.AppElement(6, 0, this, this._el_6);
-        var compView_6 = import20.viewFactory_Tab0(this.viewUtils, this.injector(6), this._appEl_6);
-        this._Tab_6_4 = new import11.Tab(this._Tabs_0_4, this.parentInjector.get(import15.App), this.parentInjector.get(import16.Config), this.parentInjector.get(import21.Keyboard), new import17.ElementRef(this._el_6), this.parentInjector.get(import22.NgZone), this.renderer, this.parentInjector.get(import23.ComponentFactoryResolver), compView_6.ref, this.parentInjector.get(import24.GestureController), this.parentInjector.get(import25.TransitionController), this.parentInjector.get(import19.DeepLinker, null));
-        this._appEl_6.initComponent(this._Tab_6_4, [], compView_6);
-        compView_6.create(this._Tab_6_4, [], null);
-        this._text_7 = this.renderer.createText(null, '\n  ', null);
-        this._el_8 = this.renderer.createElement(null, 'ion-tab', null);
-        this.renderer.setElementAttribute(this._el_8, 'class', 'lazsoc-tab');
-        this.renderer.setElementAttribute(this._el_8, 'role', 'tabpanel');
-        this.renderer.setElementAttribute(this._el_8, 'tabIcon', 'ios-cash');
-        this.renderer.setElementAttribute(this._el_8, 'tabTitle', 'Discount Card');
-        this._appEl_8 = new import2.AppElement(8, 0, this, this._el_8);
-        var compView_8 = import20.viewFactory_Tab0(this.viewUtils, this.injector(8), this._appEl_8);
-        this._Tab_8_4 = new import11.Tab(this._Tabs_0_4, this.parentInjector.get(import15.App), this.parentInjector.get(import16.Config), this.parentInjector.get(import21.Keyboard), new import17.ElementRef(this._el_8), this.parentInjector.get(import22.NgZone), this.renderer, this.parentInjector.get(import23.ComponentFactoryResolver), compView_8.ref, this.parentInjector.get(import24.GestureController), this.parentInjector.get(import25.TransitionController), this.parentInjector.get(import19.DeepLinker, null));
-        this._appEl_8.initComponent(this._Tab_8_4, [], compView_8);
-        compView_8.create(this._Tab_8_4, [], null);
-        this._text_9 = this.renderer.createText(null, '\n', null);
+        this._text_6 = this.renderer.createText(null, '\n  ', null);
+        this._el_7 = this.renderer.createElement(null, 'ion-tab', null);
+        this.renderer.setElementAttribute(this._el_7, 'class', 'lazsoc-tab');
+        this.renderer.setElementAttribute(this._el_7, 'role', 'tabpanel');
+        this.renderer.setElementAttribute(this._el_7, 'tabIcon', 'ios-cash');
+        this.renderer.setElementAttribute(this._el_7, 'tabTitle', 'Discount Program');
+        this._appEl_7 = new import2.AppElement(7, 0, this, this._el_7);
+        var compView_7 = import20.viewFactory_Tab0(this.viewUtils, this.injector(7), this._appEl_7);
+        this._Tab_7_4 = new import11.Tab(this._Tabs_0_4, this.parentInjector.get(import15.App), this.parentInjector.get(import16.Config), this.parentInjector.get(import21.Keyboard), new import17.ElementRef(this._el_7), this.parentInjector.get(import22.NgZone), this.renderer, this.parentInjector.get(import23.ComponentFactoryResolver), compView_7.ref, this.parentInjector.get(import24.GestureController), this.parentInjector.get(import25.TransitionController), this.parentInjector.get(import19.DeepLinker, null));
+        this._appEl_7.initComponent(this._Tab_7_4, [], compView_7);
+        compView_7.create(this._Tab_7_4, [], null);
+        this._text_8 = this.renderer.createText(null, '\n', null);
         compView_0.create(this._Tabs_0_4, [[].concat([
                 this._text_1,
                 this._el_2,
                 this._text_3,
                 this._el_4,
                 this._text_5,
-                this._el_6,
-                this._text_7,
-                this._el_8,
-                this._text_9
+                this._text_6,
+                this._el_7,
+                this._text_8
             ])], null);
-        this._text_10 = this.renderer.createText(parentRenderNode, '\n', null);
+        this._text_9 = this.renderer.createText(parentRenderNode, '\n', null);
         this._expr_0 = import7.UNINITIALIZED;
         this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
@@ -152,11 +141,6 @@ var _View_TabsPage0 = (function (_super) {
         this._expr_13 = import7.UNINITIALIZED;
         this._expr_14 = import7.UNINITIALIZED;
         this._expr_15 = import7.UNINITIALIZED;
-        this._expr_16 = import7.UNINITIALIZED;
-        this._expr_17 = import7.UNINITIALIZED;
-        this._expr_18 = import7.UNINITIALIZED;
-        this._expr_19 = import7.UNINITIALIZED;
-        this._expr_20 = import7.UNINITIALIZED;
         this.init([], [
             this._el_0,
             this._text_1,
@@ -164,11 +148,10 @@ var _View_TabsPage0 = (function (_super) {
             this._text_3,
             this._el_4,
             this._text_5,
-            this._el_6,
-            this._text_7,
-            this._el_8,
-            this._text_9,
-            this._text_10
+            this._text_6,
+            this._el_7,
+            this._text_8,
+            this._text_9
         ], [], []);
         return null;
     };
@@ -179,13 +162,10 @@ var _View_TabsPage0 = (function (_super) {
         if (((token === import11.Tab) && (4 === requestNodeIndex))) {
             return this._Tab_4_4;
         }
-        if (((token === import11.Tab) && (6 === requestNodeIndex))) {
-            return this._Tab_6_4;
+        if (((token === import11.Tab) && (7 === requestNodeIndex))) {
+            return this._Tab_7_4;
         }
-        if (((token === import11.Tab) && (8 === requestNodeIndex))) {
-            return this._Tab_8_4;
-        }
-        if (((token === import10.Tabs) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
+        if (((token === import10.Tabs) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 8)))) {
             return this._Tabs_0_4;
         }
         return notFoundResult;
@@ -232,41 +212,23 @@ var _View_TabsPage0 = (function (_super) {
         if (((this.numberOfChecks === 0) && !throwOnChange)) {
             this._Tab_4_4.ngOnInit();
         }
-        var currVal_11 = this.context.login;
+        var currVal_11 = this.context.discount;
         if (import4.checkBinding(throwOnChange, this._expr_11, currVal_11)) {
-            this._Tab_6_4.root = currVal_11;
+            this._Tab_7_4.root = currVal_11;
             this._expr_11 = currVal_11;
         }
-        var currVal_12 = 'Personal Info';
+        var currVal_12 = 'Discount Program';
         if (import4.checkBinding(throwOnChange, this._expr_12, currVal_12)) {
-            this._Tab_6_4.tabTitle = currVal_12;
+            this._Tab_7_4.tabTitle = currVal_12;
             this._expr_12 = currVal_12;
         }
-        var currVal_13 = 'ios-person';
+        var currVal_13 = 'ios-cash';
         if (import4.checkBinding(throwOnChange, this._expr_13, currVal_13)) {
-            this._Tab_6_4.tabIcon = currVal_13;
+            this._Tab_7_4.tabIcon = currVal_13;
             this._expr_13 = currVal_13;
         }
         if (((this.numberOfChecks === 0) && !throwOnChange)) {
-            this._Tab_6_4.ngOnInit();
-        }
-        var currVal_16 = this.context.discount;
-        if (import4.checkBinding(throwOnChange, this._expr_16, currVal_16)) {
-            this._Tab_8_4.root = currVal_16;
-            this._expr_16 = currVal_16;
-        }
-        var currVal_17 = 'Discount Card';
-        if (import4.checkBinding(throwOnChange, this._expr_17, currVal_17)) {
-            this._Tab_8_4.tabTitle = currVal_17;
-            this._expr_17 = currVal_17;
-        }
-        var currVal_18 = 'ios-cash';
-        if (import4.checkBinding(throwOnChange, this._expr_18, currVal_18)) {
-            this._Tab_8_4.tabIcon = currVal_18;
-            this._expr_18 = currVal_18;
-        }
-        if (((this.numberOfChecks === 0) && !throwOnChange)) {
-            this._Tab_8_4.ngOnInit();
+            this._Tab_7_4.ngOnInit();
         }
         this.detectContentChildrenChanges(throwOnChange);
         var currVal_4 = this._Tab_2_4._tabId;
@@ -289,25 +251,15 @@ var _View_TabsPage0 = (function (_super) {
             this.renderer.setElementAttribute(this._el_4, 'aria-labelledby', ((currVal_10 == null) ? null : currVal_10.toString()));
             this._expr_10 = currVal_10;
         }
-        var currVal_14 = this._Tab_6_4._tabId;
+        var currVal_14 = this._Tab_7_4._tabId;
         if (import4.checkBinding(throwOnChange, this._expr_14, currVal_14)) {
-            this.renderer.setElementAttribute(this._el_6, 'id', ((currVal_14 == null) ? null : currVal_14.toString()));
+            this.renderer.setElementAttribute(this._el_7, 'id', ((currVal_14 == null) ? null : currVal_14.toString()));
             this._expr_14 = currVal_14;
         }
-        var currVal_15 = this._Tab_6_4._btnId;
+        var currVal_15 = this._Tab_7_4._btnId;
         if (import4.checkBinding(throwOnChange, this._expr_15, currVal_15)) {
-            this.renderer.setElementAttribute(this._el_6, 'aria-labelledby', ((currVal_15 == null) ? null : currVal_15.toString()));
+            this.renderer.setElementAttribute(this._el_7, 'aria-labelledby', ((currVal_15 == null) ? null : currVal_15.toString()));
             this._expr_15 = currVal_15;
-        }
-        var currVal_19 = this._Tab_8_4._tabId;
-        if (import4.checkBinding(throwOnChange, this._expr_19, currVal_19)) {
-            this.renderer.setElementAttribute(this._el_8, 'id', ((currVal_19 == null) ? null : currVal_19.toString()));
-            this._expr_19 = currVal_19;
-        }
-        var currVal_20 = this._Tab_8_4._btnId;
-        if (import4.checkBinding(throwOnChange, this._expr_20, currVal_20)) {
-            this.renderer.setElementAttribute(this._el_8, 'aria-labelledby', ((currVal_20 == null) ? null : currVal_20.toString()));
-            this._expr_20 = currVal_20;
         }
         this.detectViewChildrenChanges(throwOnChange);
         if (!throwOnChange) {

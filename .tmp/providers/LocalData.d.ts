@@ -22,10 +22,10 @@ export declare class LocalData {
     getEventsLocally(): {
         id: number;
         title: string;
-        startTime: string;
-        endTime: string;
+        startDate: string;
+        endDate: string;
         location: string;
-        tagline: string;
+        subheader: string;
         club: number;
         banner: string;
         tags: string[];

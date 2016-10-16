@@ -41,7 +41,8 @@ export var PersonalInfo = (function () {
     };
     PersonalInfo.decorators = [
         { type: Component, args: [{
-                    templateUrl: '../personalinfo/personal-info.html'
+                    selector: 'personal-info',
+                    templateUrl: 'personal-info.html'
                 },] },
     ];
     /** @nocollapse */

@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 
-const CACHE_TTL = 60*60;
+const CACHE_TTL = 10000000;
 const API_URL = 'http://app.lazsoc.ca/';
 
 @Injectable()

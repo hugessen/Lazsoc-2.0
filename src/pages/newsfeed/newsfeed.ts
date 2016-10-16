@@ -76,7 +76,7 @@ export class Newsfeed {
   }
   
   viewEvent(event:ClubEvent):void{
-      this.navCtrl.push(EventPage, {event:event});
+      this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.clubRef]});
   }
   
   doRefresh(refresher){

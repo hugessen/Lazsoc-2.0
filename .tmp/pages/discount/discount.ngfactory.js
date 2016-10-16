@@ -89,6 +89,7 @@ var _View_DiscountPage0 = (function (_super) {
         this._el_2 = this.renderer.createElement(this._el_0, 'ion-navbar', null);
         this.renderer.setElementAttribute(this._el_2, 'class', 'toolbar');
         this.renderer.setElementAttribute(this._el_2, 'color', 'laz-purple');
+        this.renderer.setElementAttribute(this._el_2, 'style', 'border-bottom:2px solid #F2A900');
         this._appEl_2 = new import2.AppElement(2, 0, this, this._el_2);
         var compView_2 = import23.viewFactory_Navbar0(this.viewUtils, this.injector(2), this._appEl_2);
         this._Navbar_2_4 = new import13.Navbar(this.parentInjector.get(import24.App), this.parentInjector.get(import22.ViewController, null), this.parentInjector.get(import8.NavController, null), this.parentInjector.get(import20.Config), new import21.ElementRef(this._el_2), this.renderer);
@@ -124,7 +125,7 @@ var _View_DiscountPage0 = (function (_super) {
         this._text_12 = this.renderer.createText(this._el_11, '\n        ', null);
         this._el_13 = this.renderer.createElement(this._el_11, 'img', null);
         this.renderer.setElementAttribute(this._el_13, 'class', 'lazsoc_banner');
-        this.renderer.setElementAttribute(this._el_13, 'src', 'img/banners/DiscountCard.png');
+        this.renderer.setElementAttribute(this._el_13, 'src', 'assets/img/banners/DiscountCard.png');
         this._text_14 = this.renderer.createText(this._el_11, '\n    ', null);
         this._text_15 = this.renderer.createText(null, '\n    ', null);
         this._el_16 = this.renderer.createElement(null, 'ion-list', null);

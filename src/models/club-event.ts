@@ -5,7 +5,7 @@ export class ClubEvent{
     endDate:string;
     location:string;
     subheader:string;
-    club:number;
+    clubRef:number;
     banner:string;
     tags:string[];
     desc: string;

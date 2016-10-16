@@ -517,7 +517,7 @@ class _View_EventPage0 extends import1.AppView<import3.EventPage> {
       this.renderer.setElementClass(this._el_9,'statusbar-padding',currVal_4);
       this._expr_4 = currVal_4;
     }
-    const currVal_5:any = import4.interpolate(1,'',this.context.event.banner,'');
+    const currVal_5:any = import4.interpolate(1,'',this.context.club.banner,'');
     if (import4.checkBinding(throwOnChange,this._expr_5,currVal_5)) {
       this.renderer.setElementProperty(this._el_11,'src',this.viewUtils.sanitizer.sanitize(import36.SecurityContext.URL,currVal_5));
       this._expr_5 = currVal_5;
@@ -527,7 +527,7 @@ class _View_EventPage0 extends import1.AppView<import3.EventPage> {
       this.renderer.setElementClass(this._el_19,'hide',currVal_7);
       this._expr_7 = currVal_7;
     }
-    const currVal_8:any = import4.interpolate(2,'\n                ',this.context.event.startTime,' - ',this.context.event.endTime,'\n            ');
+    const currVal_8:any = import4.interpolate(2,'\n                ',this.context.event.startDate,' - ',this.context.event.endDate,'\n            ');
     if (import4.checkBinding(throwOnChange,this._expr_8,currVal_8)) {
       this.renderer.setText(this._text_20,currVal_8);
       this._expr_8 = currVal_8;

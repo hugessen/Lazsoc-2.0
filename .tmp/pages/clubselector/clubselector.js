@@ -52,8 +52,7 @@ export var ClubSelector = (function () {
     };
     ClubSelector.decorators = [
         { type: Component, args: [{
-                    selector: 'flexbox',
-                    templateUrl: '../clubselector/clubselector.html'
+                    templateUrl: 'clubselector.html'
                 },] },
     ];
     /** @nocollapse */

@@ -50,7 +50,7 @@ export var LocalData = (function () {
                 Observable.fromPromise(_this.getInterests())
             ]).subscribe(function (data) {
                 //Applies the visible property to events based on Clubs and Interests
-                var val = _this.doCustomFeed(_this.getEventsLocally(), data[1], data[2]);
+                var val = _this.doCustomFeed(data[0], data[1], data[2]);
                 resolve(val);
             });
         });
@@ -59,14 +59,38 @@ export var LocalData = (function () {
         var result = [];
         //Sorting by time
         events.sort(function (a, b) {
-            return Date.parse(a.startTime) - Date.parse(b.startTime);
+            return Date.parse(a.startDate) - Date.parse(b.startDate);
         });
         //Applying visible property based on prefs
         for (var _i = 0, events_1 = events; _i < events_1.length; _i++) {
             var event_1 = events_1[_i];
+            var currentTime = new Date().getTime();
+            var eventStart = Date.parse(event_1.startDate);
             event_1.visible = false; //initially
-            if (clubs[event_1.club].selected)
+            event_1.timeframe = "";
+            event_1.basedOn = "";
+            //Filtering by prefs
+            if (clubs[event_1.clubRef].selected)
                 event_1.visible = true; //Set to true if club selected
+            else {
+                for (var _a = 0, _b = event_1.tags; _a < _b.length; _a++) {
+                    var tag = _b[_a];
+                    for (var _c = 0, interests_1 = interests; _c < interests_1.length; _c++) {
+                        var interest = interests_1[_c];
+                        if (tag == interest.name && interest.selected) {
+                            event_1.visible = true;
+                            event_1.basedOn = tag;
+                        }
+                    }
+                }
+            }
+            //Checking timeframe
+            if (eventStart < currentTime)
+                event_1.timeframe = "past";
+            else if (eventStart >= currentTime && eventStart <= currentTime + 60 * 60 * 24 * 7)
+                event_1.timeframe = "this week";
+            else
+                event_1.timeframe = "upcoming";
             result.push(event_1); //Add to the list
         }
         return result;
@@ -106,10 +130,10 @@ export var LocalData = (function () {
             {
                 id: 0,
                 title: "5 Days for the Homeless!",
-                startTime: "3/11/2017 9:00 AM",
-                endTime: "3/11/2017 4:30 PM",
+                startDate: "3/11/2017 9:00 AM",
+                endDate: "3/11/2017 4:30 PM",
                 location: "Fred Nichols Building",
-                tagline: "Come out and support us as we sleep outside for a week!",
+                subheader: "Come out and support us as we sleep outside for a week!",
                 club: 21,
                 banner: "assets/img/Event Banners/5DaysBanner.jpg",
                 tags: [
@@ -119,10 +143,10 @@ export var LocalData = (function () {
             },
             { id: 1,
                 title: "O-Day",
-                startTime: "9/11/2016 9:00 AM",
-                endTime: "9/11/2016 4:30 PM",
+                startDate: "9/11/2016 9:00 AM",
+                endDate: "9/11/2016 4:30 PM",
                 location: "Bingeman's Conference Centre",
-                tagline: "Come out and learn what it means to be a business student!",
+                subheader: "Come out and learn what it means to be a business student!",
                 club: 22,
                 banner: "assets/img/Event Banners/O-Day.jpg",
                 tags: [

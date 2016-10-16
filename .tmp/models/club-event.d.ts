@@ -1,13 +1,15 @@
 export declare class ClubEvent {
     id: number;
     title: string;
-    startTime: string;
-    endTime: string;
+    startDate: string;
+    endDate: string;
     location: string;
-    tagline: string;
-    club: number;
+    subheader: string;
+    clubRef: number;
     banner: string;
     tags: string[];
     desc: string;
     visible: boolean;
+    timeframe: string;
+    basedOn: string;
 }

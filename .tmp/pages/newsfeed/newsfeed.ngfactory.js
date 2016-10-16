@@ -17,40 +17,38 @@ import * as import7 from '@angular/core/src/change_detection/change_detection';
 import * as import8 from 'ionic-angular/navigation/nav-controller';
 import * as import9 from '../../providers/LocalData';
 import * as import10 from 'ionic-angular/components/alert/alert';
-import * as import11 from '@angular/core/src/metadata/view';
-import * as import12 from '@angular/core/src/linker/component_factory';
-import * as import13 from 'ionic-angular/components/toolbar/toolbar';
-import * as import14 from 'ionic-angular/components/navbar/navbar';
-import * as import15 from '@angular/forms/src/directives/ng_model';
-import * as import16 from '@angular/forms/src/directives/ng_control_status';
-import * as import17 from 'ionic-angular/components/segment/segment';
-import * as import18 from '@angular/core/src/linker/query_list';
-import * as import19 from 'ionic-angular/components/content/content';
-import * as import20 from 'ionic-angular/components/refresher/refresher';
-import * as import21 from 'ionic-angular/components/refresher/refresher-content';
-import * as import22 from '@angular/common/src/directives/ng_for';
-import * as import23 from 'ionic-angular/config/config';
-import * as import24 from '@angular/core/src/linker/element_ref';
-import * as import25 from 'ionic-angular/navigation/view-controller';
-import * as import26 from '../../node_modules/ionic-angular/components/navbar/navbar.ngfactory';
-import * as import27 from 'ionic-angular/components/app/app';
-import * as import28 from '../../node_modules/ionic-angular/components/segment/segment.ngfactory';
-import * as import29 from '../../node_modules/ionic-angular/components/content/content.ngfactory';
-import * as import30 from 'ionic-angular/util/keyboard';
-import * as import31 from '@angular/core/src/zone/ng_zone';
-import * as import32 from 'ionic-angular/components/tabs/tabs';
-import * as import33 from 'ionic-angular/gestures/gesture-controller';
-import * as import34 from '../../node_modules/ionic-angular/components/refresher/refresher-content.ngfactory';
-import * as import35 from '@angular/core/src/linker/template_ref';
-import * as import36 from '@angular/core/src/change_detection/differs/iterable_differs';
-import * as import37 from '@angular/forms/src/directives/ng_control';
-import * as import38 from '@angular/core/src/security';
-import * as import39 from '@angular/common/src/directives/ng_if';
-import * as import40 from 'ionic-angular/components/card/card';
-import * as import41 from 'ionic-angular/components/grid/grid';
-import * as import42 from 'ionic-angular/components/button/button';
-import * as import43 from 'ionic-angular/components/icon/icon';
-import * as import44 from '../../node_modules/ionic-angular/components/button/button.ngfactory';
+import * as import11 from 'ionic-angular/components/popover/popover';
+import * as import12 from '@angular/core/src/metadata/view';
+import * as import13 from '@angular/core/src/linker/component_factory';
+import * as import14 from 'ionic-angular/components/toolbar/toolbar';
+import * as import15 from 'ionic-angular/components/navbar/navbar';
+import * as import16 from 'ionic-angular/components/toolbar/toolbar-item';
+import * as import17 from '@angular/core/src/linker/query_list';
+import * as import18 from 'ionic-angular/components/button/button';
+import * as import19 from 'ionic-angular/components/icon/icon';
+import * as import20 from 'ionic-angular/components/content/content';
+import * as import21 from 'ionic-angular/components/refresher/refresher';
+import * as import22 from 'ionic-angular/components/refresher/refresher-content';
+import * as import23 from '@angular/common/src/directives/ng_for';
+import * as import24 from 'ionic-angular/config/config';
+import * as import25 from '@angular/core/src/linker/element_ref';
+import * as import26 from 'ionic-angular/navigation/view-controller';
+import * as import27 from '../../node_modules/ionic-angular/components/navbar/navbar.ngfactory';
+import * as import28 from 'ionic-angular/components/app/app';
+import * as import29 from '../../node_modules/ionic-angular/components/toolbar/toolbar.ngfactory';
+import * as import30 from '../../node_modules/ionic-angular/components/button/button.ngfactory';
+import * as import31 from '../../node_modules/ionic-angular/components/content/content.ngfactory';
+import * as import32 from 'ionic-angular/util/keyboard';
+import * as import33 from '@angular/core/src/zone/ng_zone';
+import * as import34 from 'ionic-angular/components/tabs/tabs';
+import * as import35 from 'ionic-angular/gestures/gesture-controller';
+import * as import36 from '../../node_modules/ionic-angular/components/refresher/refresher-content.ngfactory';
+import * as import37 from '@angular/core/src/linker/template_ref';
+import * as import38 from '@angular/core/src/change_detection/differs/iterable_differs';
+import * as import39 from '@angular/core/src/security';
+import * as import40 from '@angular/common/src/directives/ng_if';
+import * as import41 from 'ionic-angular/components/card/card';
+import * as import42 from 'ionic-angular/components/grid/grid';
 var renderType_Newsfeed_Host = null;
 var _View_Newsfeed_Host0 = (function (_super) {
     __extends(_View_Newsfeed_Host0, _super);
@@ -61,7 +59,7 @@ var _View_Newsfeed_Host0 = (function (_super) {
         this._el_0 = this.selectOrCreateHostElement('ng-component', rootSelector, null);
         this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
         var compView_0 = viewFactory_Newsfeed0(this.viewUtils, this.injector(0), this._appEl_0);
-        this._Newsfeed_0_4 = new import3.Newsfeed(this.parentInjector.get(import8.NavController), this.parentInjector.get(import9.LocalData), this.parentInjector.get(import10.AlertController));
+        this._Newsfeed_0_4 = new import3.Newsfeed(this.parentInjector.get(import8.NavController), this.parentInjector.get(import9.LocalData), this.parentInjector.get(import10.AlertController), this.parentInjector.get(import11.PopoverController));
         this._appEl_0.initComponent(this._Newsfeed_0_4, [], compView_0);
         compView_0.create(this._Newsfeed_0_4, this.projectableNodes, null);
         this.init([].concat([this._el_0]), [this._el_0], [], []);
@@ -77,11 +75,11 @@ var _View_Newsfeed_Host0 = (function (_super) {
 }(import1.AppView));
 function viewFactory_Newsfeed_Host0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_Newsfeed_Host === null)) {
-        (renderType_Newsfeed_Host = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, [], {}));
+        (renderType_Newsfeed_Host = viewUtils.createRenderComponentType('', 0, import12.ViewEncapsulation.None, [], {}));
     }
     return new _View_Newsfeed_Host0(viewUtils, parentInjector, declarationEl);
 }
-export var NewsfeedNgFactory = new import12.ComponentFactory('ng-component', viewFactory_Newsfeed_Host0, import3.Newsfeed);
+export var NewsfeedNgFactory = new import13.ComponentFactory('ng-component', viewFactory_Newsfeed_Host0, import3.Newsfeed);
 var styles_Newsfeed = [];
 var renderType_Newsfeed = null;
 var _View_Newsfeed0 = (function (_super) {
@@ -92,127 +90,128 @@ var _View_Newsfeed0 = (function (_super) {
     _View_Newsfeed0.prototype.createInternal = function (rootSelector) {
         var parentRenderNode = this.renderer.createViewRoot(this.declarationAppElement.nativeElement);
         this._el_0 = this.renderer.createElement(parentRenderNode, 'ion-header', null);
-        this._Header_0_3 = new import13.Header(this.parentInjector.get(import23.Config), new import24.ElementRef(this._el_0), this.renderer, this.parentInjector.get(import25.ViewController, null));
+        this._Header_0_3 = new import14.Header(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_0), this.renderer, this.parentInjector.get(import26.ViewController, null));
         this._text_1 = this.renderer.createText(this._el_0, '\n  ', null);
         this._el_2 = this.renderer.createElement(this._el_0, 'ion-navbar', null);
         this.renderer.setElementAttribute(this._el_2, 'class', 'toolbar');
         this.renderer.setElementAttribute(this._el_2, 'color', 'laz-purple');
         this._appEl_2 = new import2.AppElement(2, 0, this, this._el_2);
-        var compView_2 = import26.viewFactory_Navbar0(this.viewUtils, this.injector(2), this._appEl_2);
-        this._Navbar_2_4 = new import14.Navbar(this.parentInjector.get(import27.App), this.parentInjector.get(import25.ViewController, null), this.parentInjector.get(import8.NavController, null), this.parentInjector.get(import23.Config), new import24.ElementRef(this._el_2), this.renderer);
+        var compView_2 = import27.viewFactory_Navbar0(this.viewUtils, this.injector(2), this._appEl_2);
+        this._Navbar_2_4 = new import15.Navbar(this.parentInjector.get(import28.App), this.parentInjector.get(import26.ViewController, null), this.parentInjector.get(import8.NavController, null), this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_2), this.renderer);
         this._appEl_2.initComponent(this._Navbar_2_4, [], compView_2);
-        this._text_3 = this.renderer.createText(null, ' \n  ', null);
+        this._text_3 = this.renderer.createText(null, ' \n    \n  ', null);
         compView_2.create(this._Navbar_2_4, [
             [],
             [],
             [],
             [].concat([this._text_3])
         ], null);
-        this._text_4 = this.renderer.createText(this._el_0, '\n      ', null);
-        this._el_5 = this.renderer.createElement(this._el_0, 'ion-segment', null);
-        this.renderer.setElementAttribute(this._el_5, 'color', 'laz-gold');
-        this.renderer.setElementAttribute(this._el_5, 'style', 'background-color:rgba(66,44,137,1)');
-        this._NgModel_5_3 = new import15.NgModel(null, null, null, null);
-        this._NgControl_5_4 = this._NgModel_5_3;
-        this._NgControlStatus_5_5 = new import16.NgControlStatus(this._NgControl_5_4);
-        this._Segment_5_6 = new import17.Segment(this.parentInjector.get(import23.Config), new import24.ElementRef(this._el_5), this.renderer, this._NgControl_5_4);
-        this._query_SegmentButton_5_0 = new import18.QueryList();
-        this._text_6 = this.renderer.createText(this._el_5, ' ', null);
-        this._text_7 = this.renderer.createText(this._el_5, '\n        ', null);
-        this._el_8 = this.renderer.createElement(this._el_5, 'ion-segment-button', null);
-        this.renderer.setElementAttribute(this._el_8, 'class', 'segment-button');
-        this.renderer.setElementAttribute(this._el_8, 'role', 'button');
-        this.renderer.setElementAttribute(this._el_8, 'tappable', '');
-        this.renderer.setElementAttribute(this._el_8, 'value', 'custom');
-        this._appEl_8 = new import2.AppElement(8, 5, this, this._el_8);
-        var compView_8 = import28.viewFactory_SegmentButton0(this.viewUtils, this.injector(8), this._appEl_8);
-        this._SegmentButton_8_4 = new import17.SegmentButton(this.renderer, new import24.ElementRef(this._el_8));
-        this._appEl_8.initComponent(this._SegmentButton_8_4, [], compView_8);
-        this._text_9 = this.renderer.createText(null, '\n            My Newsfeed\n        ', null);
-        compView_8.create(this._SegmentButton_8_4, [[].concat([this._text_9])], null);
-        this._text_10 = this.renderer.createText(this._el_5, '\n        ', null);
-        this._el_11 = this.renderer.createElement(this._el_5, 'ion-segment-button', null);
-        this.renderer.setElementAttribute(this._el_11, 'class', 'segment-button');
-        this.renderer.setElementAttribute(this._el_11, 'role', 'button');
-        this.renderer.setElementAttribute(this._el_11, 'tappable', '');
-        this.renderer.setElementAttribute(this._el_11, 'value', 'all');
-        this._appEl_11 = new import2.AppElement(11, 5, this, this._el_11);
-        var compView_11 = import28.viewFactory_SegmentButton0(this.viewUtils, this.injector(11), this._appEl_11);
-        this._SegmentButton_11_4 = new import17.SegmentButton(this.renderer, new import24.ElementRef(this._el_11));
-        this._appEl_11.initComponent(this._SegmentButton_11_4, [], compView_11);
-        this._text_12 = this.renderer.createText(null, ' ', null);
-        this._text_13 = this.renderer.createText(null, '\n           All\n        ', null);
-        compView_11.create(this._SegmentButton_11_4, [[].concat([
-                this._text_12,
-                this._text_13
+        this._text_4 = this.renderer.createText(this._el_0, '\n  ', null);
+        this._el_5 = this.renderer.createElement(this._el_0, 'ion-toolbar', null);
+        this.renderer.setElementAttribute(this._el_5, 'class', 'newsfeed-toolbar toolbar');
+        this.renderer.setElementAttribute(this._el_5, 'color', 'laz-purple');
+        this._appEl_5 = new import2.AppElement(5, 0, this, this._el_5);
+        var compView_5 = import29.viewFactory_Toolbar0(this.viewUtils, this.injector(5), this._appEl_5);
+        this._Toolbar_5_4 = new import14.Toolbar(this.parentInjector.get(import26.ViewController, null), this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_5), this.renderer);
+        this._appEl_5.initComponent(this._Toolbar_5_4, [], compView_5);
+        this._text_6 = this.renderer.createText(null, '\n      ', null);
+        this._el_7 = this.renderer.createElement(null, 'b', null);
+        this.renderer.setElementAttribute(this._el_7, 'style', 'font-size:17px; color:#FFF');
+        this._text_8 = this.renderer.createText(this._el_7, '', null);
+        this._text_9 = this.renderer.createText(null, '\n      ', null);
+        this._el_10 = this.renderer.createElement(null, 'ion-buttons', null);
+        this.renderer.setElementAttribute(this._el_10, 'end', '');
+        this._ToolbarItem_10_3 = new import16.ToolbarItem(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_10), this.renderer, this._Toolbar_5_4, this.parentInjector.get(import15.Navbar, null));
+        this._query_Button_10_0 = new import17.QueryList();
+        this._text_11 = this.renderer.createText(this._el_10, '\n        ', null);
+        this._el_12 = this.renderer.createElement(this._el_10, 'button', null);
+        this.renderer.setElementAttribute(this._el_12, 'ion-button', '');
+        this._appEl_12 = new import2.AppElement(12, 10, this, this._el_12);
+        var compView_12 = import30.viewFactory_Button0(this.viewUtils, this.injector(12), this._appEl_12);
+        this._Button_12_4 = new import18.Button(null, '', this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_12), this.renderer);
+        this._appEl_12.initComponent(this._Button_12_4, [], compView_12);
+        this._text_13 = this.renderer.createText(null, '\n            ', null);
+        this._el_14 = this.renderer.createElement(null, 'ion-icon', null);
+        this.renderer.setElementAttribute(this._el_14, 'name', 'ios-settings');
+        this.renderer.setElementAttribute(this._el_14, 'role', 'img');
+        this._Icon_14_3 = new import19.Icon(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_14), this.renderer);
+        this._text_15 = this.renderer.createText(null, '\n        ', null);
+        compView_12.create(this._Button_12_4, [[].concat([
+                this._text_13,
+                this._el_14,
+                this._text_15
             ])], null);
-        this._text_14 = this.renderer.createText(this._el_5, '\n    ', null);
-        this._text_15 = this.renderer.createText(this._el_0, '\n', null);
-        this._text_16 = this.renderer.createText(parentRenderNode, '\n\n\n', null);
-        this._el_17 = this.renderer.createElement(parentRenderNode, 'ion-content', null);
-        this._appEl_17 = new import2.AppElement(17, null, this, this._el_17);
-        var compView_17 = import29.viewFactory_Content0(this.viewUtils, this.injector(17), this._appEl_17);
-        this._Content_17_4 = new import19.Content(this.parentInjector.get(import23.Config), new import24.ElementRef(this._el_17), this.renderer, this.parentInjector.get(import27.App), this.parentInjector.get(import30.Keyboard), this.parentInjector.get(import31.NgZone), this.parentInjector.get(import25.ViewController, null), this.parentInjector.get(import32.Tabs, null));
-        this._appEl_17.initComponent(this._Content_17_4, [], compView_17);
-        this._text_18 = this.renderer.createText(null, '\n    ', null);
-        this._text_19 = this.renderer.createText(null, '\n    ', null);
-        this._el_20 = this.renderer.createElement(null, 'ion-refresher', null);
-        this._Refresher_20_3 = new import20.Refresher(this._Content_17_4, this.parentInjector.get(import31.NgZone), this.parentInjector.get(import33.GestureController));
-        this._el_21 = this.renderer.createElement(this._el_20, 'ion-refresher-content', null);
-        this.renderer.setElementAttribute(this._el_21, 'pullingIcon', 'arrow-dropdown');
-        this.renderer.setElementAttribute(this._el_21, 'pullingText', 'Pull to refresh');
-        this.renderer.setElementAttribute(this._el_21, 'refreshingText', 'Refreshing...');
-        this._appEl_21 = new import2.AppElement(21, 20, this, this._el_21);
-        var compView_21 = import34.viewFactory_RefresherContent0(this.viewUtils, this.injector(21), this._appEl_21);
-        this._RefresherContent_21_4 = new import21.RefresherContent(this._Refresher_20_3, this.parentInjector.get(import23.Config));
-        this._appEl_21.initComponent(this._RefresherContent_21_4, [], compView_21);
+        this._text_16 = this.renderer.createText(this._el_10, '\n      ', null);
+        this._text_17 = this.renderer.createText(null, '\n    ', null);
+        compView_5.create(this._Toolbar_5_4, [
+            [],
+            [],
+            [].concat([this._el_10]),
+            [].concat([
+                this._text_6,
+                this._el_7,
+                this._text_9,
+                this._text_17
+            ])
+        ], null);
+        this._text_18 = this.renderer.createText(this._el_0, '\n', null);
+        this._text_19 = this.renderer.createText(parentRenderNode, '\n\n\n', null);
+        this._el_20 = this.renderer.createElement(parentRenderNode, 'ion-content', null);
+        this._appEl_20 = new import2.AppElement(20, null, this, this._el_20);
+        var compView_20 = import31.viewFactory_Content0(this.viewUtils, this.injector(20), this._appEl_20);
+        this._Content_20_4 = new import20.Content(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_20), this.renderer, this.parentInjector.get(import28.App), this.parentInjector.get(import32.Keyboard), this.parentInjector.get(import33.NgZone), this.parentInjector.get(import26.ViewController, null), this.parentInjector.get(import34.Tabs, null));
+        this._appEl_20.initComponent(this._Content_20_4, [], compView_20);
+        this._text_21 = this.renderer.createText(null, ' \n    ', null);
         this._text_22 = this.renderer.createText(null, '\n    ', null);
-        compView_21.create(this._RefresherContent_21_4, [], null);
-        this._text_23 = this.renderer.createText(null, '\n    \n    ', null);
-        this._anchor_24 = this.renderer.createTemplateAnchor(null, null);
-        this._appEl_24 = new import2.AppElement(24, 17, this, this._anchor_24);
-        this._TemplateRef_24_5 = new import35.TemplateRef_(this._appEl_24, viewFactory_Newsfeed1);
-        this._NgFor_24_6 = new import22.NgFor(this._appEl_24.vcRef, this._TemplateRef_24_5, this.parentInjector.get(import36.IterableDiffers), this.ref);
-        this._text_25 = this.renderer.createText(null, '\n', null);
-        compView_17.create(this._Content_17_4, [
+        this._el_23 = this.renderer.createElement(null, 'ion-refresher', null);
+        this._Refresher_23_3 = new import21.Refresher(this._Content_20_4, this.parentInjector.get(import33.NgZone), this.parentInjector.get(import35.GestureController));
+        this._el_24 = this.renderer.createElement(this._el_23, 'ion-refresher-content', null);
+        this.renderer.setElementAttribute(this._el_24, 'pullingIcon', 'arrow-dropdown');
+        this.renderer.setElementAttribute(this._el_24, 'pullingText', 'Pull to refresh');
+        this.renderer.setElementAttribute(this._el_24, 'refreshingText', 'Refreshing...');
+        this._appEl_24 = new import2.AppElement(24, 23, this, this._el_24);
+        var compView_24 = import36.viewFactory_RefresherContent0(this.viewUtils, this.injector(24), this._appEl_24);
+        this._RefresherContent_24_4 = new import22.RefresherContent(this._Refresher_23_3, this.parentInjector.get(import24.Config));
+        this._appEl_24.initComponent(this._RefresherContent_24_4, [], compView_24);
+        this._text_25 = this.renderer.createText(null, '\n    ', null);
+        compView_24.create(this._RefresherContent_24_4, [], null);
+        this._text_26 = this.renderer.createText(null, '\n    \n    ', null);
+        this._anchor_27 = this.renderer.createTemplateAnchor(null, null);
+        this._appEl_27 = new import2.AppElement(27, 20, this, this._anchor_27);
+        this._TemplateRef_27_5 = new import37.TemplateRef_(this._appEl_27, viewFactory_Newsfeed1);
+        this._NgFor_27_6 = new import23.NgFor(this._appEl_27.vcRef, this._TemplateRef_27_5, this.parentInjector.get(import38.IterableDiffers), this.ref);
+        this._text_28 = this.renderer.createText(null, '\n', null);
+        compView_20.create(this._Content_20_4, [
             [],
             [].concat([
-                this._text_18,
-                this._text_19,
-                this._text_23,
-                this._appEl_24,
-                this._text_25
+                this._text_21,
+                this._text_22,
+                this._text_26,
+                this._appEl_27,
+                this._text_28
             ]),
-            [].concat([this._el_20])
+            [].concat([this._el_23])
         ], null);
-        this._text_26 = this.renderer.createText(parentRenderNode, '\n', null);
+        this._text_29 = this.renderer.createText(parentRenderNode, '\n', null);
         this._expr_0 = import7.UNINITIALIZED;
         this._expr_1 = import7.UNINITIALIZED;
         this._expr_2 = import7.UNINITIALIZED;
-        var disposable_0 = this.renderer.listen(this._el_5, 'ngModelChange', this.eventHandler(this._handle_ngModelChange_5_0.bind(this)));
+        this._expr_3 = import7.UNINITIALIZED;
         this._expr_4 = import7.UNINITIALIZED;
-        var subscription_0 = this._NgModel_5_3.update.subscribe(this.eventHandler(this._handle_ngModelChange_5_0.bind(this)));
         this._expr_5 = import7.UNINITIALIZED;
-        this._expr_6 = import7.UNINITIALIZED;
+        var disposable_0 = this.renderer.listen(this._el_12, 'click', this.eventHandler(this._handle_click_12_0.bind(this)));
         this._expr_7 = import7.UNINITIALIZED;
         this._expr_8 = import7.UNINITIALIZED;
         this._expr_9 = import7.UNINITIALIZED;
-        this._expr_10 = import7.UNINITIALIZED;
+        var disposable_1 = this.renderer.listen(this._el_23, 'ionRefresh', this.eventHandler(this._handle_ionRefresh_23_0.bind(this)));
         this._expr_11 = import7.UNINITIALIZED;
-        var disposable_1 = this.renderer.listen(this._el_8, 'click', this.eventHandler(this._handle_click_8_0.bind(this)));
+        this._expr_12 = import7.UNINITIALIZED;
+        var subscription_0 = this._Refresher_23_3.ionRefresh.subscribe(this.eventHandler(this._handle_ionRefresh_23_0.bind(this)));
         this._expr_13 = import7.UNINITIALIZED;
-        var disposable_2 = this.renderer.listen(this._el_11, 'click', this.eventHandler(this._handle_click_11_0.bind(this)));
+        this._expr_14 = import7.UNINITIALIZED;
         this._expr_15 = import7.UNINITIALIZED;
         this._expr_16 = import7.UNINITIALIZED;
-        var disposable_3 = this.renderer.listen(this._el_20, 'ionRefresh', this.eventHandler(this._handle_ionRefresh_20_0.bind(this)));
-        this._expr_18 = import7.UNINITIALIZED;
-        this._expr_19 = import7.UNINITIALIZED;
-        var subscription_1 = this._Refresher_20_3.ionRefresh.subscribe(this.eventHandler(this._handle_ionRefresh_20_0.bind(this)));
-        this._expr_20 = import7.UNINITIALIZED;
-        this._expr_21 = import7.UNINITIALIZED;
-        this._expr_22 = import7.UNINITIALIZED;
-        this._expr_23 = import7.UNINITIALIZED;
-        this._expr_24 = import7.UNINITIALIZED;
+        this._expr_17 = import7.UNINITIALIZED;
         this.init([], [
             this._el_0,
             this._text_1,
@@ -221,169 +220,143 @@ var _View_Newsfeed0 = (function (_super) {
             this._text_4,
             this._el_5,
             this._text_6,
-            this._text_7,
-            this._el_8,
+            this._el_7,
+            this._text_8,
             this._text_9,
-            this._text_10,
-            this._el_11,
-            this._text_12,
+            this._el_10,
+            this._text_11,
+            this._el_12,
             this._text_13,
-            this._text_14,
+            this._el_14,
             this._text_15,
             this._text_16,
-            this._el_17,
+            this._text_17,
             this._text_18,
             this._text_19,
             this._el_20,
-            this._el_21,
+            this._text_21,
             this._text_22,
-            this._text_23,
-            this._anchor_24,
+            this._el_23,
+            this._el_24,
             this._text_25,
-            this._text_26
+            this._text_26,
+            this._anchor_27,
+            this._text_28,
+            this._text_29
         ], [
             disposable_0,
-            disposable_1,
-            disposable_2,
-            disposable_3
-        ], [
-            subscription_0,
-            subscription_1
-        ]);
+            disposable_1
+        ], [subscription_0]);
         return null;
     };
     _View_Newsfeed0.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import14.Navbar) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 3)))) {
+        if (((token === import15.Navbar) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 3)))) {
             return this._Navbar_2_4;
         }
-        if (((token === import17.SegmentButton) && ((8 <= requestNodeIndex) && (requestNodeIndex <= 9)))) {
-            return this._SegmentButton_8_4;
+        if (((token === import19.Icon) && (14 === requestNodeIndex))) {
+            return this._Icon_14_3;
         }
-        if (((token === import17.SegmentButton) && ((11 <= requestNodeIndex) && (requestNodeIndex <= 13)))) {
-            return this._SegmentButton_11_4;
+        if (((token === import18.Button) && ((12 <= requestNodeIndex) && (requestNodeIndex <= 15)))) {
+            return this._Button_12_4;
         }
-        if (((token === import15.NgModel) && ((5 <= requestNodeIndex) && (requestNodeIndex <= 14)))) {
-            return this._NgModel_5_3;
+        if (((token === import16.ToolbarItem) && ((10 <= requestNodeIndex) && (requestNodeIndex <= 16)))) {
+            return this._ToolbarItem_10_3;
         }
-        if (((token === import37.NgControl) && ((5 <= requestNodeIndex) && (requestNodeIndex <= 14)))) {
-            return this._NgControl_5_4;
+        if (((token === import14.Toolbar) && ((5 <= requestNodeIndex) && (requestNodeIndex <= 17)))) {
+            return this._Toolbar_5_4;
         }
-        if (((token === import16.NgControlStatus) && ((5 <= requestNodeIndex) && (requestNodeIndex <= 14)))) {
-            return this._NgControlStatus_5_5;
-        }
-        if (((token === import17.Segment) && ((5 <= requestNodeIndex) && (requestNodeIndex <= 14)))) {
-            return this._Segment_5_6;
-        }
-        if (((token === import13.Header) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 15)))) {
+        if (((token === import14.Header) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 18)))) {
             return this._Header_0_3;
         }
-        if (((token === import21.RefresherContent) && ((21 <= requestNodeIndex) && (requestNodeIndex <= 22)))) {
-            return this._RefresherContent_21_4;
+        if (((token === import22.RefresherContent) && ((24 <= requestNodeIndex) && (requestNodeIndex <= 25)))) {
+            return this._RefresherContent_24_4;
         }
-        if (((token === import20.Refresher) && ((20 <= requestNodeIndex) && (requestNodeIndex <= 22)))) {
-            return this._Refresher_20_3;
+        if (((token === import21.Refresher) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 25)))) {
+            return this._Refresher_23_3;
         }
-        if (((token === import35.TemplateRef) && (24 === requestNodeIndex))) {
-            return this._TemplateRef_24_5;
+        if (((token === import37.TemplateRef) && (27 === requestNodeIndex))) {
+            return this._TemplateRef_27_5;
         }
-        if (((token === import22.NgFor) && (24 === requestNodeIndex))) {
-            return this._NgFor_24_6;
+        if (((token === import23.NgFor) && (27 === requestNodeIndex))) {
+            return this._NgFor_27_6;
         }
-        if (((token === import19.Content) && ((17 <= requestNodeIndex) && (requestNodeIndex <= 25)))) {
-            return this._Content_17_4;
+        if (((token === import20.Content) && ((20 <= requestNodeIndex) && (requestNodeIndex <= 28)))) {
+            return this._Content_20_4;
         }
         return notFoundResult;
     };
     _View_Newsfeed0.prototype.detectChangesInternal = function (throwOnChange) {
+        var changed = true;
         var changes = null;
         var currVal_0 = 'laz-purple';
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
             this._Navbar_2_4.color = currVal_0;
             this._expr_0 = currVal_0;
         }
-        changes = null;
-        var currVal_4 = this.context.view;
-        if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
-            this._NgModel_5_3.model = currVal_4;
-            if ((changes === null)) {
-                (changes = {});
-            }
-            changes['model'] = new import7.SimpleChange(this._expr_4, currVal_4);
-            this._expr_4 = currVal_4;
+        changed = false;
+        var currVal_3 = 'laz-purple';
+        if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
+            this._Toolbar_5_4.color = currVal_3;
+            changed = true;
+            this._expr_3 = currVal_3;
         }
-        if ((changes !== null)) {
-            this._NgModel_5_3.ngOnChanges(changes);
+        if (changed) {
+            this._appEl_5.componentView.markAsCheckOnce();
         }
-        var currVal_11 = 'laz-gold';
-        if (import4.checkBinding(throwOnChange, this._expr_11, currVal_11)) {
-            this._Segment_5_6.color = currVal_11;
-            this._expr_11 = currVal_11;
-        }
-        var currVal_13 = 'custom';
-        if (import4.checkBinding(throwOnChange, this._expr_13, currVal_13)) {
-            this._SegmentButton_8_4.value = currVal_13;
-            this._expr_13 = currVal_13;
+        var currVal_7 = 'ios-settings';
+        if (import4.checkBinding(throwOnChange, this._expr_7, currVal_7)) {
+            this._Icon_14_3.name = currVal_7;
+            this._expr_7 = currVal_7;
         }
         if (((this.numberOfChecks === 0) && !throwOnChange)) {
-            this._SegmentButton_8_4.ngOnInit();
+            this._Content_20_4.ngOnInit();
         }
-        var currVal_15 = 'all';
+        if (((this.numberOfChecks === 0) && !throwOnChange)) {
+            this._Refresher_23_3.ngOnInit();
+        }
+        var currVal_13 = 'arrow-dropdown';
+        if (import4.checkBinding(throwOnChange, this._expr_13, currVal_13)) {
+            this._RefresherContent_24_4.pullingIcon = currVal_13;
+            this._expr_13 = currVal_13;
+        }
+        var currVal_14 = 'Pull to refresh';
+        if (import4.checkBinding(throwOnChange, this._expr_14, currVal_14)) {
+            this._RefresherContent_24_4.pullingText = currVal_14;
+            this._expr_14 = currVal_14;
+        }
+        var currVal_15 = 'Refreshing...';
         if (import4.checkBinding(throwOnChange, this._expr_15, currVal_15)) {
-            this._SegmentButton_11_4.value = currVal_15;
+            this._RefresherContent_24_4.refreshingText = currVal_15;
             this._expr_15 = currVal_15;
         }
         if (((this.numberOfChecks === 0) && !throwOnChange)) {
-            this._SegmentButton_11_4.ngOnInit();
-        }
-        if (((this.numberOfChecks === 0) && !throwOnChange)) {
-            this._Content_17_4.ngOnInit();
-        }
-        if (((this.numberOfChecks === 0) && !throwOnChange)) {
-            this._Refresher_20_3.ngOnInit();
-        }
-        var currVal_20 = 'arrow-dropdown';
-        if (import4.checkBinding(throwOnChange, this._expr_20, currVal_20)) {
-            this._RefresherContent_21_4.pullingIcon = currVal_20;
-            this._expr_20 = currVal_20;
-        }
-        var currVal_21 = 'Pull to refresh';
-        if (import4.checkBinding(throwOnChange, this._expr_21, currVal_21)) {
-            this._RefresherContent_21_4.pullingText = currVal_21;
-            this._expr_21 = currVal_21;
-        }
-        var currVal_22 = 'Refreshing...';
-        if (import4.checkBinding(throwOnChange, this._expr_22, currVal_22)) {
-            this._RefresherContent_21_4.refreshingText = currVal_22;
-            this._expr_22 = currVal_22;
-        }
-        if (((this.numberOfChecks === 0) && !throwOnChange)) {
-            this._RefresherContent_21_4.ngOnInit();
+            this._RefresherContent_24_4.ngOnInit();
         }
         changes = null;
-        var currVal_24 = this.context.events;
-        if (import4.checkBinding(throwOnChange, this._expr_24, currVal_24)) {
-            this._NgFor_24_6.ngForOf = currVal_24;
+        var currVal_17 = this.context.events;
+        if (import4.checkBinding(throwOnChange, this._expr_17, currVal_17)) {
+            this._NgFor_27_6.ngForOf = currVal_17;
             if ((changes === null)) {
                 (changes = {});
             }
-            changes['ngForOf'] = new import7.SimpleChange(this._expr_24, currVal_24);
-            this._expr_24 = currVal_24;
+            changes['ngForOf'] = new import7.SimpleChange(this._expr_17, currVal_17);
+            this._expr_17 = currVal_17;
         }
         if ((changes !== null)) {
-            this._NgFor_24_6.ngOnChanges(changes);
+            this._NgFor_27_6.ngOnChanges(changes);
         }
         if (!throwOnChange) {
-            this._NgFor_24_6.ngDoCheck();
+            this._NgFor_27_6.ngDoCheck();
         }
         this.detectContentChildrenChanges(throwOnChange);
         if (!throwOnChange) {
-            if (this._query_SegmentButton_5_0.dirty) {
-                this._query_SegmentButton_5_0.reset([
-                    this._SegmentButton_8_4,
-                    this._SegmentButton_11_4
-                ]);
-                this._Segment_5_6._buttons = this._query_SegmentButton_5_0;
-                this._query_SegmentButton_5_0.notifyOnChanges();
+            if (this._query_Button_10_0.dirty) {
+                this._query_Button_10_0.reset([this._Button_12_4]);
+                this._ToolbarItem_10_3._buttons = this._query_Button_10_0;
+                this._query_Button_10_0.notifyOnChanges();
+            }
+            if ((this.numberOfChecks === 0)) {
+                this._Button_12_4.ngAfterContentInit();
             }
         }
         var currVal_1 = this._Navbar_2_4._hidden;
@@ -396,87 +369,59 @@ var _View_Newsfeed0 = (function (_super) {
             this.renderer.setElementClass(this._el_2, 'statusbar-padding', currVal_2);
             this._expr_2 = currVal_2;
         }
-        var currVal_5 = this._NgControlStatus_5_5.ngClassUntouched;
+        var currVal_4 = this._Toolbar_5_4._sbPadding;
+        if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
+            this.renderer.setElementClass(this._el_5, 'statusbar-padding', currVal_4);
+            this._expr_4 = currVal_4;
+        }
+        var currVal_5 = import4.interpolate(1, '', this.context.message, '');
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
-            this.renderer.setElementClass(this._el_5, 'ng-untouched', currVal_5);
+            this.renderer.setText(this._text_8, currVal_5);
             this._expr_5 = currVal_5;
         }
-        var currVal_6 = this._NgControlStatus_5_5.ngClassTouched;
-        if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
-            this.renderer.setElementClass(this._el_5, 'ng-touched', currVal_6);
-            this._expr_6 = currVal_6;
-        }
-        var currVal_7 = this._NgControlStatus_5_5.ngClassPristine;
-        if (import4.checkBinding(throwOnChange, this._expr_7, currVal_7)) {
-            this.renderer.setElementClass(this._el_5, 'ng-pristine', currVal_7);
-            this._expr_7 = currVal_7;
-        }
-        var currVal_8 = this._NgControlStatus_5_5.ngClassDirty;
+        var currVal_8 = this._Icon_14_3._hidden;
         if (import4.checkBinding(throwOnChange, this._expr_8, currVal_8)) {
-            this.renderer.setElementClass(this._el_5, 'ng-dirty', currVal_8);
+            this.renderer.setElementClass(this._el_14, 'hide', currVal_8);
             this._expr_8 = currVal_8;
         }
-        var currVal_9 = this._NgControlStatus_5_5.ngClassValid;
+        var currVal_9 = this._Content_20_4._sbPadding;
         if (import4.checkBinding(throwOnChange, this._expr_9, currVal_9)) {
-            this.renderer.setElementClass(this._el_5, 'ng-valid', currVal_9);
+            this.renderer.setElementClass(this._el_20, 'statusbar-padding', currVal_9);
             this._expr_9 = currVal_9;
         }
-        var currVal_10 = this._NgControlStatus_5_5.ngClassInvalid;
-        if (import4.checkBinding(throwOnChange, this._expr_10, currVal_10)) {
-            this.renderer.setElementClass(this._el_5, 'ng-invalid', currVal_10);
-            this._expr_10 = currVal_10;
+        var currVal_11 = (this._Refresher_23_3.state !== 'inactive');
+        if (import4.checkBinding(throwOnChange, this._expr_11, currVal_11)) {
+            this.renderer.setElementClass(this._el_23, 'refresher-active', currVal_11);
+            this._expr_11 = currVal_11;
         }
-        var currVal_16 = this._Content_17_4._sbPadding;
+        var currVal_12 = this._Refresher_23_3._top;
+        if (import4.checkBinding(throwOnChange, this._expr_12, currVal_12)) {
+            this.renderer.setElementStyle(this._el_23, 'top', ((this.viewUtils.sanitizer.sanitize(import39.SecurityContext.STYLE, currVal_12) == null) ? null : this.viewUtils.sanitizer.sanitize(import39.SecurityContext.STYLE, currVal_12).toString()));
+            this._expr_12 = currVal_12;
+        }
+        var currVal_16 = this._RefresherContent_24_4.r.state;
         if (import4.checkBinding(throwOnChange, this._expr_16, currVal_16)) {
-            this.renderer.setElementClass(this._el_17, 'statusbar-padding', currVal_16);
+            this.renderer.setElementAttribute(this._el_24, 'state', ((currVal_16 == null) ? null : currVal_16.toString()));
             this._expr_16 = currVal_16;
-        }
-        var currVal_18 = (this._Refresher_20_3.state !== 'inactive');
-        if (import4.checkBinding(throwOnChange, this._expr_18, currVal_18)) {
-            this.renderer.setElementClass(this._el_20, 'refresher-active', currVal_18);
-            this._expr_18 = currVal_18;
-        }
-        var currVal_19 = this._Refresher_20_3._top;
-        if (import4.checkBinding(throwOnChange, this._expr_19, currVal_19)) {
-            this.renderer.setElementStyle(this._el_20, 'top', ((this.viewUtils.sanitizer.sanitize(import38.SecurityContext.STYLE, currVal_19) == null) ? null : this.viewUtils.sanitizer.sanitize(import38.SecurityContext.STYLE, currVal_19).toString()));
-            this._expr_19 = currVal_19;
-        }
-        var currVal_23 = this._RefresherContent_21_4.r.state;
-        if (import4.checkBinding(throwOnChange, this._expr_23, currVal_23)) {
-            this.renderer.setElementAttribute(this._el_21, 'state', ((currVal_23 == null) ? null : currVal_23.toString()));
-            this._expr_23 = currVal_23;
         }
         this.detectViewChildrenChanges(throwOnChange);
         if (!throwOnChange) {
             if ((this.numberOfChecks === 0)) {
                 this._Navbar_2_4.ngAfterViewInit();
             }
-            if ((this.numberOfChecks === 0)) {
-                this._Segment_5_6.ngAfterViewInit();
-            }
         }
     };
     _View_Newsfeed0.prototype.destroyInternal = function () {
-        this._NgModel_5_3.ngOnDestroy();
-        this._Refresher_20_3.ngOnDestroy();
-        this._Content_17_4.ngOnDestroy();
+        this._Icon_14_3.ngOnDestroy();
+        this._Refresher_23_3.ngOnDestroy();
+        this._Content_20_4.ngOnDestroy();
     };
-    _View_Newsfeed0.prototype._handle_ngModelChange_5_0 = function ($event) {
+    _View_Newsfeed0.prototype._handle_click_12_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = ((this.context.view = $event) !== false);
+        var pd_0 = (this.context.presentPopover($event) !== false);
         return (true && pd_0);
     };
-    _View_Newsfeed0.prototype._handle_click_8_0 = function ($event) {
-        this._appEl_8.componentView.markPathToRootAsCheckOnce();
-        var pd_0 = (this._SegmentButton_8_4.onClick() !== false);
-        return (true && pd_0);
-    };
-    _View_Newsfeed0.prototype._handle_click_11_0 = function ($event) {
-        this._appEl_11.componentView.markPathToRootAsCheckOnce();
-        var pd_0 = (this._SegmentButton_11_4.onClick() !== false);
-        return (true && pd_0);
-    };
-    _View_Newsfeed0.prototype._handle_ionRefresh_20_0 = function ($event) {
+    _View_Newsfeed0.prototype._handle_ionRefresh_23_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
         var pd_0 = (this.context.doRefresh($event) !== false);
         return (true && pd_0);
@@ -485,7 +430,7 @@ var _View_Newsfeed0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_Newsfeed0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_Newsfeed === null)) {
-        (renderType_Newsfeed = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, styles_Newsfeed, {}));
+        (renderType_Newsfeed = viewUtils.createRenderComponentType('', 0, import12.ViewEncapsulation.None, styles_Newsfeed, {}));
     }
     return new _View_Newsfeed0(viewUtils, parentInjector, declarationEl);
 }
@@ -500,8 +445,8 @@ var _View_Newsfeed1 = (function (_super) {
         this._text_2 = this.renderer.createText(this._el_0, '\n        ', null);
         this._anchor_3 = this.renderer.createTemplateAnchor(this._el_0, null);
         this._appEl_3 = new import2.AppElement(3, 0, this, this._anchor_3);
-        this._TemplateRef_3_5 = new import35.TemplateRef_(this._appEl_3, viewFactory_Newsfeed2);
-        this._NgIf_3_6 = new import39.NgIf(this._appEl_3.vcRef, this._TemplateRef_3_5);
+        this._TemplateRef_3_5 = new import37.TemplateRef_(this._appEl_3, viewFactory_Newsfeed2);
+        this._NgIf_3_6 = new import40.NgIf(this._appEl_3.vcRef, this._TemplateRef_3_5);
         this._text_4 = this.renderer.createText(this._el_0, '\n    ', null);
         this._expr_0 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
@@ -514,16 +459,16 @@ var _View_Newsfeed1 = (function (_super) {
         return null;
     };
     _View_Newsfeed1.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import35.TemplateRef) && (3 === requestNodeIndex))) {
+        if (((token === import37.TemplateRef) && (3 === requestNodeIndex))) {
             return this._TemplateRef_3_5;
         }
-        if (((token === import39.NgIf) && (3 === requestNodeIndex))) {
+        if (((token === import40.NgIf) && (3 === requestNodeIndex))) {
             return this._NgIf_3_6;
         }
         return notFoundResult;
     };
     _View_Newsfeed1.prototype.detectChangesInternal = function (throwOnChange) {
-        var currVal_0 = (((this.parent.context.view == 'all') || ((this.parent.context.view == 'custom') && this.context.$implicit.visible)) || (this.parent.context.view == 'saved'));
+        var currVal_0 = ((this.parent.context.timeframe == this.context.$implicit.timeframe) && ((this.parent.context.feedType == 'all') || ((this.parent.context.feedType == 'custom') && this.context.$implicit.visible)));
         if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
             this._NgIf_3_6.ngIf = currVal_0;
             this._expr_0 = currVal_0;
@@ -544,98 +489,106 @@ var _View_Newsfeed2 = (function (_super) {
     _View_Newsfeed2.prototype.createInternal = function (rootSelector) {
         this._el_0 = this.renderer.createElement(null, 'ion-card', null);
         this.renderer.setElementAttribute(this._el_0, 'style', 'border-style:solid black');
-        this._Card_0_3 = new import40.Card(this.parent.parent.parentInjector.get(import23.Config), new import24.ElementRef(this._el_0), this.renderer);
+        this._Card_0_3 = new import41.Card(this.parent.parent.parentInjector.get(import24.Config), new import25.ElementRef(this._el_0), this.renderer);
         this._text_1 = this.renderer.createText(this._el_0, '\n            ', null);
         this._el_2 = this.renderer.createElement(this._el_0, 'img', null);
-        this.renderer.setElementAttribute(this._el_2, 'ng-show', 'event.banner');
         this._text_3 = this.renderer.createText(this._el_0, '\n            ', null);
         this._el_4 = this.renderer.createElement(this._el_0, 'ion-card-content', null);
         this.renderer.setElementAttribute(this._el_4, 'style', 'padding:1.5%');
-        this._CardContent_4_3 = new import40.CardContent();
+        this._CardContent_4_3 = new import41.CardContent();
         this._text_5 = this.renderer.createText(this._el_4, '\n                ', null);
         this._el_6 = this.renderer.createElement(this._el_4, 'ion-card-title', null);
-        this._CardTitle_6_3 = new import40.CardTitle();
-        this._text_7 = this.renderer.createText(this._el_6, '', null);
-        this._text_8 = this.renderer.createText(this._el_4, '   \n                ', null);
-        this._el_9 = this.renderer.createElement(this._el_4, 'p', null);
-        this._text_10 = this.renderer.createText(this._el_9, '', null);
-        this._text_11 = this.renderer.createText(this._el_4, '\n                ', null);
+        this.renderer.setElementAttribute(this._el_6, 'style', 'font-size:18px');
+        this._CardTitle_6_3 = new import41.CardTitle();
+        this._text_7 = this.renderer.createText(this._el_6, '\n                    ', null);
+        this._el_8 = this.renderer.createElement(this._el_6, 'b', null);
+        this._text_9 = this.renderer.createText(this._el_8, '', null);
+        this._text_10 = this.renderer.createText(this._el_6, '\n                ', null);
+        this._text_11 = this.renderer.createText(this._el_4, '   \n                ', null);
         this._el_12 = this.renderer.createElement(this._el_4, 'p', null);
         this._text_13 = this.renderer.createText(this._el_12, '', null);
-        this._text_14 = this.renderer.createText(this._el_4, '\n            ', null);
-        this._text_15 = this.renderer.createText(this._el_0, '\n            \n            ', null);
-        this._el_16 = this.renderer.createElement(this._el_0, 'ion-row', null);
-        this._Row_16_3 = new import41.Row();
-        this._text_17 = this.renderer.createText(this._el_16, '\n                ', null);
-        this._el_18 = this.renderer.createElement(this._el_16, 'ion-col', null);
-        this._Col_18_3 = new import41.Col();
-        this._text_19 = this.renderer.createText(this._el_18, '\n                    ', null);
-        this._el_20 = this.renderer.createElement(this._el_18, 'button', null);
-        this.renderer.setElementAttribute(this._el_20, 'clear', '');
-        this.renderer.setElementAttribute(this._el_20, 'ion-button', '');
-        this.renderer.setElementAttribute(this._el_20, 'primary', '');
-        this.renderer.setElementAttribute(this._el_20, 'small', '');
-        this._appEl_20 = new import2.AppElement(20, 18, this, this._el_20);
-        var compView_20 = import44.viewFactory_Button0(this.viewUtils, this.injector(20), this._appEl_20);
-        this._Button_20_4 = new import42.Button(null, '', this.parent.parent.parentInjector.get(import23.Config), new import24.ElementRef(this._el_20), this.renderer);
-        this._appEl_20.initComponent(this._Button_20_4, [], compView_20);
-        this._text_21 = this.renderer.createText(null, '\n                        ', null);
-        this._el_22 = this.renderer.createElement(null, 'ion-icon', null);
-        this.renderer.setElementAttribute(this._el_22, 'name', 'md-calendar');
-        this.renderer.setElementAttribute(this._el_22, 'role', 'img');
-        this._Icon_22_3 = new import43.Icon(this.parent.parent.parentInjector.get(import23.Config), new import24.ElementRef(this._el_22), this.renderer);
-        this._text_23 = this.renderer.createText(null, '\n                        ', null);
-        this._el_24 = this.renderer.createElement(null, 'div', null);
-        this._text_25 = this.renderer.createText(this._el_24, 'Add to Calendar', null);
-        this._text_26 = this.renderer.createText(null, '\n                    ', null);
-        compView_20.create(this._Button_20_4, [[].concat([
-                this._text_21,
-                this._el_22,
-                this._text_23,
-                this._el_24,
-                this._text_26
+        this._text_14 = this.renderer.createText(this._el_4, '\n                ', null);
+        this._el_15 = this.renderer.createElement(this._el_4, 'p', null);
+        this._text_16 = this.renderer.createText(this._el_15, '', null);
+        this._text_17 = this.renderer.createText(this._el_4, '\n                ', null);
+        this._anchor_18 = this.renderer.createTemplateAnchor(this._el_4, null);
+        this._appEl_18 = new import2.AppElement(18, 4, this, this._anchor_18);
+        this._TemplateRef_18_5 = new import37.TemplateRef_(this._appEl_18, viewFactory_Newsfeed3);
+        this._NgIf_18_6 = new import40.NgIf(this._appEl_18.vcRef, this._TemplateRef_18_5);
+        this._text_19 = this.renderer.createText(this._el_4, '\n            ', null);
+        this._text_20 = this.renderer.createText(this._el_0, '\n            \n            ', null);
+        this._el_21 = this.renderer.createElement(this._el_0, 'ion-row', null);
+        this._Row_21_3 = new import42.Row();
+        this._text_22 = this.renderer.createText(this._el_21, '\n                ', null);
+        this._el_23 = this.renderer.createElement(this._el_21, 'ion-col', null);
+        this._Col_23_3 = new import42.Col();
+        this._text_24 = this.renderer.createText(this._el_23, '\n                    ', null);
+        this._el_25 = this.renderer.createElement(this._el_23, 'button', null);
+        this.renderer.setElementAttribute(this._el_25, 'clear', '');
+        this.renderer.setElementAttribute(this._el_25, 'ion-button', '');
+        this.renderer.setElementAttribute(this._el_25, 'primary', '');
+        this.renderer.setElementAttribute(this._el_25, 'small', '');
+        this._appEl_25 = new import2.AppElement(25, 23, this, this._el_25);
+        var compView_25 = import30.viewFactory_Button0(this.viewUtils, this.injector(25), this._appEl_25);
+        this._Button_25_4 = new import18.Button(null, '', this.parent.parent.parentInjector.get(import24.Config), new import25.ElementRef(this._el_25), this.renderer);
+        this._appEl_25.initComponent(this._Button_25_4, [], compView_25);
+        this._text_26 = this.renderer.createText(null, '\n                        ', null);
+        this._el_27 = this.renderer.createElement(null, 'ion-icon', null);
+        this.renderer.setElementAttribute(this._el_27, 'name', 'md-calendar');
+        this.renderer.setElementAttribute(this._el_27, 'role', 'img');
+        this._Icon_27_3 = new import19.Icon(this.parent.parent.parentInjector.get(import24.Config), new import25.ElementRef(this._el_27), this.renderer);
+        this._text_28 = this.renderer.createText(null, '\n                        ', null);
+        this._el_29 = this.renderer.createElement(null, 'div', null);
+        this._text_30 = this.renderer.createText(this._el_29, 'Add to Calendar', null);
+        this._text_31 = this.renderer.createText(null, '\n                    ', null);
+        compView_25.create(this._Button_25_4, [[].concat([
+                this._text_26,
+                this._el_27,
+                this._text_28,
+                this._el_29,
+                this._text_31
             ])], null);
-        this._text_27 = this.renderer.createText(this._el_18, '\n                ', null);
-        this._text_28 = this.renderer.createText(this._el_16, '\n                ', null);
-        this._el_29 = this.renderer.createElement(this._el_16, 'ion-col', null);
-        this._Col_29_3 = new import41.Col();
-        this._text_30 = this.renderer.createText(this._el_29, '\n                    ', null);
-        this._el_31 = this.renderer.createElement(this._el_29, 'button', null);
-        this.renderer.setElementAttribute(this._el_31, 'clear', '');
-        this.renderer.setElementAttribute(this._el_31, 'ion-button', '');
-        this.renderer.setElementAttribute(this._el_31, 'primary', '');
-        this.renderer.setElementAttribute(this._el_31, 'small', '');
-        this._appEl_31 = new import2.AppElement(31, 29, this, this._el_31);
-        var compView_31 = import44.viewFactory_Button0(this.viewUtils, this.injector(31), this._appEl_31);
-        this._Button_31_4 = new import42.Button(null, '', this.parent.parent.parentInjector.get(import23.Config), new import24.ElementRef(this._el_31), this.renderer);
-        this._appEl_31.initComponent(this._Button_31_4, [], compView_31);
-        this._text_32 = this.renderer.createText(null, '\n                        ', null);
-        this._el_33 = this.renderer.createElement(null, 'ion-icon', null);
-        this.renderer.setElementAttribute(this._el_33, 'name', 'logo-facebook');
-        this.renderer.setElementAttribute(this._el_33, 'role', 'img');
-        this._Icon_33_3 = new import43.Icon(this.parent.parent.parentInjector.get(import23.Config), new import24.ElementRef(this._el_33), this.renderer);
-        this._text_34 = this.renderer.createText(null, '\n                        ', null);
-        this._el_35 = this.renderer.createElement(null, 'div', null);
-        this._text_36 = this.renderer.createText(this._el_35, 'Facebook page', null);
-        this._text_37 = this.renderer.createText(null, '\n                    ', null);
-        compView_31.create(this._Button_31_4, [[].concat([
-                this._text_32,
-                this._el_33,
-                this._text_34,
-                this._el_35,
-                this._text_37
+        this._text_32 = this.renderer.createText(this._el_23, '\n                ', null);
+        this._text_33 = this.renderer.createText(this._el_21, '\n                ', null);
+        this._el_34 = this.renderer.createElement(this._el_21, 'ion-col', null);
+        this._Col_34_3 = new import42.Col();
+        this._text_35 = this.renderer.createText(this._el_34, '\n                    ', null);
+        this._el_36 = this.renderer.createElement(this._el_34, 'button', null);
+        this.renderer.setElementAttribute(this._el_36, 'clear', '');
+        this.renderer.setElementAttribute(this._el_36, 'ion-button', '');
+        this.renderer.setElementAttribute(this._el_36, 'primary', '');
+        this.renderer.setElementAttribute(this._el_36, 'small', '');
+        this._appEl_36 = new import2.AppElement(36, 34, this, this._el_36);
+        var compView_36 = import30.viewFactory_Button0(this.viewUtils, this.injector(36), this._appEl_36);
+        this._Button_36_4 = new import18.Button(null, '', this.parent.parent.parentInjector.get(import24.Config), new import25.ElementRef(this._el_36), this.renderer);
+        this._appEl_36.initComponent(this._Button_36_4, [], compView_36);
+        this._text_37 = this.renderer.createText(null, '\n                        ', null);
+        this._el_38 = this.renderer.createElement(null, 'ion-icon', null);
+        this.renderer.setElementAttribute(this._el_38, 'name', 'logo-facebook');
+        this.renderer.setElementAttribute(this._el_38, 'role', 'img');
+        this._Icon_38_3 = new import19.Icon(this.parent.parent.parentInjector.get(import24.Config), new import25.ElementRef(this._el_38), this.renderer);
+        this._text_39 = this.renderer.createText(null, '\n                        ', null);
+        this._el_40 = this.renderer.createElement(null, 'div', null);
+        this._text_41 = this.renderer.createText(this._el_40, 'Facebook page', null);
+        this._text_42 = this.renderer.createText(null, '\n                    ', null);
+        compView_36.create(this._Button_36_4, [[].concat([
+                this._text_37,
+                this._el_38,
+                this._text_39,
+                this._el_40,
+                this._text_42
             ])], null);
-        this._text_38 = this.renderer.createText(this._el_29, '\n                ', null);
-        this._text_39 = this.renderer.createText(this._el_16, '\n            ', null);
-        this._text_40 = this.renderer.createText(this._el_0, '\n        ', null);
+        this._text_43 = this.renderer.createText(this._el_34, '\n                ', null);
+        this._text_44 = this.renderer.createText(this._el_21, '\n            ', null);
+        this._text_45 = this.renderer.createText(this._el_0, '\n        ', null);
         this._expr_1 = import7.UNINITIALIZED;
         var disposable_0 = this.renderer.listen(this._el_2, 'click', this.eventHandler(this._handle_click_2_0.bind(this)));
         var disposable_1 = this.renderer.listen(this._el_4, 'click', this.eventHandler(this._handle_click_4_0.bind(this)));
         this._expr_3 = import7.UNINITIALIZED;
         this._expr_4 = import7.UNINITIALIZED;
         this._expr_5 = import7.UNINITIALIZED;
-        var disposable_2 = this.renderer.listen(this._el_20, 'click', this.eventHandler(this._handle_click_20_0.bind(this)));
-        this._expr_7 = import7.UNINITIALIZED;
+        this._expr_6 = import7.UNINITIALIZED;
+        var disposable_2 = this.renderer.listen(this._el_25, 'click', this.eventHandler(this._handle_click_25_0.bind(this)));
         this._expr_8 = import7.UNINITIALIZED;
         this._expr_9 = import7.UNINITIALIZED;
         this._expr_10 = import7.UNINITIALIZED;
@@ -643,6 +596,7 @@ var _View_Newsfeed2 = (function (_super) {
         this._expr_12 = import7.UNINITIALIZED;
         this._expr_13 = import7.UNINITIALIZED;
         this._expr_14 = import7.UNINITIALIZED;
+        this._expr_15 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1,
@@ -652,39 +606,44 @@ var _View_Newsfeed2 = (function (_super) {
             this._text_5,
             this._el_6,
             this._text_7,
-            this._text_8,
-            this._el_9,
+            this._el_8,
+            this._text_9,
             this._text_10,
             this._text_11,
             this._el_12,
             this._text_13,
             this._text_14,
-            this._text_15,
-            this._el_16,
+            this._el_15,
+            this._text_16,
             this._text_17,
-            this._el_18,
+            this._anchor_18,
             this._text_19,
-            this._el_20,
-            this._text_21,
-            this._el_22,
-            this._text_23,
-            this._el_24,
-            this._text_25,
+            this._text_20,
+            this._el_21,
+            this._text_22,
+            this._el_23,
+            this._text_24,
+            this._el_25,
             this._text_26,
-            this._text_27,
+            this._el_27,
             this._text_28,
             this._el_29,
             this._text_30,
-            this._el_31,
+            this._text_31,
             this._text_32,
-            this._el_33,
-            this._text_34,
-            this._el_35,
-            this._text_36,
+            this._text_33,
+            this._el_34,
+            this._text_35,
+            this._el_36,
             this._text_37,
-            this._text_38,
+            this._el_38,
             this._text_39,
-            this._text_40
+            this._el_40,
+            this._text_41,
+            this._text_42,
+            this._text_43,
+            this._text_44,
+            this._text_45
         ], [
             disposable_0,
             disposable_1,
@@ -693,126 +652,137 @@ var _View_Newsfeed2 = (function (_super) {
         return null;
     };
     _View_Newsfeed2.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import40.CardTitle) && ((6 <= requestNodeIndex) && (requestNodeIndex <= 7)))) {
+        if (((token === import41.CardTitle) && ((6 <= requestNodeIndex) && (requestNodeIndex <= 10)))) {
             return this._CardTitle_6_3;
         }
-        if (((token === import40.CardContent) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 14)))) {
+        if (((token === import37.TemplateRef) && (18 === requestNodeIndex))) {
+            return this._TemplateRef_18_5;
+        }
+        if (((token === import40.NgIf) && (18 === requestNodeIndex))) {
+            return this._NgIf_18_6;
+        }
+        if (((token === import41.CardContent) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 19)))) {
             return this._CardContent_4_3;
         }
-        if (((token === import43.Icon) && (22 === requestNodeIndex))) {
-            return this._Icon_22_3;
+        if (((token === import19.Icon) && (27 === requestNodeIndex))) {
+            return this._Icon_27_3;
         }
-        if (((token === import42.Button) && ((20 <= requestNodeIndex) && (requestNodeIndex <= 26)))) {
-            return this._Button_20_4;
+        if (((token === import18.Button) && ((25 <= requestNodeIndex) && (requestNodeIndex <= 31)))) {
+            return this._Button_25_4;
         }
-        if (((token === import41.Col) && ((18 <= requestNodeIndex) && (requestNodeIndex <= 27)))) {
-            return this._Col_18_3;
+        if (((token === import42.Col) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 32)))) {
+            return this._Col_23_3;
         }
-        if (((token === import43.Icon) && (33 === requestNodeIndex))) {
-            return this._Icon_33_3;
+        if (((token === import19.Icon) && (38 === requestNodeIndex))) {
+            return this._Icon_38_3;
         }
-        if (((token === import42.Button) && ((31 <= requestNodeIndex) && (requestNodeIndex <= 37)))) {
-            return this._Button_31_4;
+        if (((token === import18.Button) && ((36 <= requestNodeIndex) && (requestNodeIndex <= 42)))) {
+            return this._Button_36_4;
         }
-        if (((token === import41.Col) && ((29 <= requestNodeIndex) && (requestNodeIndex <= 38)))) {
-            return this._Col_29_3;
+        if (((token === import42.Col) && ((34 <= requestNodeIndex) && (requestNodeIndex <= 43)))) {
+            return this._Col_34_3;
         }
-        if (((token === import41.Row) && ((16 <= requestNodeIndex) && (requestNodeIndex <= 39)))) {
-            return this._Row_16_3;
+        if (((token === import42.Row) && ((21 <= requestNodeIndex) && (requestNodeIndex <= 44)))) {
+            return this._Row_21_3;
         }
-        if (((token === import40.Card) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 40)))) {
+        if (((token === import41.Card) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 45)))) {
             return this._Card_0_3;
         }
         return notFoundResult;
     };
     _View_Newsfeed2.prototype.detectChangesInternal = function (throwOnChange) {
         var changed = true;
-        changed = false;
-        var currVal_7 = '';
-        if (import4.checkBinding(throwOnChange, this._expr_7, currVal_7)) {
-            this._Button_20_4.small = currVal_7;
-            changed = true;
-            this._expr_7 = currVal_7;
+        var currVal_6 = ((this.parent.context.$implicit.basedOn != '') && (this.parent.parent.context.feedType == 'custom'));
+        if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
+            this._NgIf_18_6.ngIf = currVal_6;
+            this._expr_6 = currVal_6;
         }
+        changed = false;
         var currVal_8 = '';
         if (import4.checkBinding(throwOnChange, this._expr_8, currVal_8)) {
-            this._Button_20_4.clear = currVal_8;
+            this._Button_25_4.small = currVal_8;
             changed = true;
             this._expr_8 = currVal_8;
         }
-        if (changed) {
-            this._appEl_20.componentView.markAsCheckOnce();
-        }
-        var currVal_9 = 'md-calendar';
+        var currVal_9 = '';
         if (import4.checkBinding(throwOnChange, this._expr_9, currVal_9)) {
-            this._Icon_22_3.name = currVal_9;
+            this._Button_25_4.clear = currVal_9;
+            changed = true;
             this._expr_9 = currVal_9;
         }
-        changed = false;
-        var currVal_11 = '';
-        if (import4.checkBinding(throwOnChange, this._expr_11, currVal_11)) {
-            this._Button_31_4.small = currVal_11;
-            changed = true;
-            this._expr_11 = currVal_11;
+        if (changed) {
+            this._appEl_25.componentView.markAsCheckOnce();
         }
+        var currVal_10 = 'md-calendar';
+        if (import4.checkBinding(throwOnChange, this._expr_10, currVal_10)) {
+            this._Icon_27_3.name = currVal_10;
+            this._expr_10 = currVal_10;
+        }
+        changed = false;
         var currVal_12 = '';
         if (import4.checkBinding(throwOnChange, this._expr_12, currVal_12)) {
-            this._Button_31_4.clear = currVal_12;
+            this._Button_36_4.small = currVal_12;
             changed = true;
             this._expr_12 = currVal_12;
         }
-        if (changed) {
-            this._appEl_31.componentView.markAsCheckOnce();
-        }
-        var currVal_13 = 'logo-facebook';
+        var currVal_13 = '';
         if (import4.checkBinding(throwOnChange, this._expr_13, currVal_13)) {
-            this._Icon_33_3.name = currVal_13;
+            this._Button_36_4.clear = currVal_13;
+            changed = true;
             this._expr_13 = currVal_13;
+        }
+        if (changed) {
+            this._appEl_36.componentView.markAsCheckOnce();
+        }
+        var currVal_14 = 'logo-facebook';
+        if (import4.checkBinding(throwOnChange, this._expr_14, currVal_14)) {
+            this._Icon_38_3.name = currVal_14;
+            this._expr_14 = currVal_14;
         }
         this.detectContentChildrenChanges(throwOnChange);
         if (!throwOnChange) {
             if ((this.numberOfChecks === 0)) {
-                this._Button_20_4.ngAfterContentInit();
+                this._Button_25_4.ngAfterContentInit();
             }
             if ((this.numberOfChecks === 0)) {
-                this._Button_31_4.ngAfterContentInit();
+                this._Button_36_4.ngAfterContentInit();
             }
         }
-        var currVal_1 = import4.interpolate(1, '', this.parent.context.$implicit.banner, '');
+        var currVal_1 = this.parent.parent.context.clubs[this.parent.context.$implicit.clubRef].banner;
         if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
-            this.renderer.setElementProperty(this._el_2, 'src', this.viewUtils.sanitizer.sanitize(import38.SecurityContext.URL, currVal_1));
+            this.renderer.setElementProperty(this._el_2, 'src', this.viewUtils.sanitizer.sanitize(import39.SecurityContext.URL, currVal_1));
             this._expr_1 = currVal_1;
         }
-        var currVal_3 = import4.interpolate(1, '\n                    ', this.parent.context.$implicit.title, '\n                ');
+        var currVal_3 = import4.interpolate(1, '', this.parent.context.$implicit.title, '');
         if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
-            this.renderer.setText(this._text_7, currVal_3);
+            this.renderer.setText(this._text_9, currVal_3);
             this._expr_3 = currVal_3;
         }
-        var currVal_4 = import4.interpolate(2, '', this.parent.context.$implicit.startTime, ' | ', this.parent.context.$implicit.location, '');
+        var currVal_4 = import4.interpolate(2, '', this.parent.context.$implicit.startDate, ' | ', this.parent.context.$implicit.location, '');
         if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
-            this.renderer.setText(this._text_10, currVal_4);
+            this.renderer.setText(this._text_13, currVal_4);
             this._expr_4 = currVal_4;
         }
-        var currVal_5 = import4.interpolate(1, '', this.parent.context.$implicit.tagline, '');
+        var currVal_5 = import4.interpolate(1, '', this.parent.context.$implicit.subheader, '');
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
-            this.renderer.setText(this._text_13, currVal_5);
+            this.renderer.setText(this._text_16, currVal_5);
             this._expr_5 = currVal_5;
         }
-        var currVal_10 = this._Icon_22_3._hidden;
-        if (import4.checkBinding(throwOnChange, this._expr_10, currVal_10)) {
-            this.renderer.setElementClass(this._el_22, 'hide', currVal_10);
-            this._expr_10 = currVal_10;
+        var currVal_11 = this._Icon_27_3._hidden;
+        if (import4.checkBinding(throwOnChange, this._expr_11, currVal_11)) {
+            this.renderer.setElementClass(this._el_27, 'hide', currVal_11);
+            this._expr_11 = currVal_11;
         }
-        var currVal_14 = this._Icon_33_3._hidden;
-        if (import4.checkBinding(throwOnChange, this._expr_14, currVal_14)) {
-            this.renderer.setElementClass(this._el_33, 'hide', currVal_14);
-            this._expr_14 = currVal_14;
+        var currVal_15 = this._Icon_38_3._hidden;
+        if (import4.checkBinding(throwOnChange, this._expr_15, currVal_15)) {
+            this.renderer.setElementClass(this._el_38, 'hide', currVal_15);
+            this._expr_15 = currVal_15;
         }
         this.detectViewChildrenChanges(throwOnChange);
     };
     _View_Newsfeed2.prototype.destroyInternal = function () {
-        this._Icon_22_3.ngOnDestroy();
-        this._Icon_33_3.ngOnDestroy();
+        this._Icon_27_3.ngOnDestroy();
+        this._Icon_38_3.ngOnDestroy();
     };
     _View_Newsfeed2.prototype._handle_click_2_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
@@ -824,7 +794,7 @@ var _View_Newsfeed2 = (function (_super) {
         var pd_0 = (this.parent.parent.context.viewEvent(this.parent.context.$implicit) !== false);
         return (true && pd_0);
     };
-    _View_Newsfeed2.prototype._handle_click_20_0 = function ($event) {
+    _View_Newsfeed2.prototype._handle_click_25_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
         var pd_0 = (this.parent.parent.context.addToCalendar(this.parent.context.$implicit) !== false);
         return (true && pd_0);
@@ -833,4 +803,37 @@ var _View_Newsfeed2 = (function (_super) {
 }(import1.AppView));
 function viewFactory_Newsfeed2(viewUtils, parentInjector, declarationEl) {
     return new _View_Newsfeed2(viewUtils, parentInjector, declarationEl);
+}
+var _View_Newsfeed3 = (function (_super) {
+    __extends(_View_Newsfeed3, _super);
+    function _View_Newsfeed3(viewUtils, parentInjector, declarationEl) {
+        _super.call(this, _View_Newsfeed3, renderType_Newsfeed, import6.ViewType.EMBEDDED, viewUtils, parentInjector, declarationEl, import7.ChangeDetectorStatus.CheckAlways);
+    }
+    _View_Newsfeed3.prototype.createInternal = function (rootSelector) {
+        this._el_0 = this.renderer.createElement(null, 'p', null);
+        this._text_1 = this.renderer.createText(this._el_0, 'Based on your interest in ', null);
+        this._el_2 = this.renderer.createElement(this._el_0, 'b', null);
+        this._text_3 = this.renderer.createText(this._el_2, '', null);
+        this._expr_0 = import7.UNINITIALIZED;
+        this.init([].concat([this._el_0]), [
+            this._el_0,
+            this._text_1,
+            this._el_2,
+            this._text_3
+        ], [], []);
+        return null;
+    };
+    _View_Newsfeed3.prototype.detectChangesInternal = function (throwOnChange) {
+        this.detectContentChildrenChanges(throwOnChange);
+        var currVal_0 = import4.interpolate(1, '', this.parent.parent.context.$implicit.basedOn, '');
+        if (import4.checkBinding(throwOnChange, this._expr_0, currVal_0)) {
+            this.renderer.setText(this._text_3, currVal_0);
+            this._expr_0 = currVal_0;
+        }
+        this.detectViewChildrenChanges(throwOnChange);
+    };
+    return _View_Newsfeed3;
+}(import1.AppView));
+function viewFactory_Newsfeed3(viewUtils, parentInjector, declarationEl) {
+    return new _View_Newsfeed3(viewUtils, parentInjector, declarationEl);
 }

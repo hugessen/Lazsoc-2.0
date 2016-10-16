@@ -5,7 +5,8 @@ import {UserData} from '../../models/UserData';
 import {LocalData} from '../../providers/LocalData';
 
 @Component({
-  templateUrl: '../personalinfo/personal-info.html'
+  selector:'personal-info',
+  templateUrl: 'personal-info.html'
 })
 
 export class PersonalInfo {

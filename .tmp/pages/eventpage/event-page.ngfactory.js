@@ -464,7 +464,7 @@ var _View_EventPage0 = (function (_super) {
             this.renderer.setElementClass(this._el_9, 'statusbar-padding', currVal_4);
             this._expr_4 = currVal_4;
         }
-        var currVal_5 = import4.interpolate(1, '', this.context.event.banner, '');
+        var currVal_5 = import4.interpolate(1, '', this.context.club.banner, '');
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
             this.renderer.setElementProperty(this._el_11, 'src', this.viewUtils.sanitizer.sanitize(import36.SecurityContext.URL, currVal_5));
             this._expr_5 = currVal_5;
@@ -474,7 +474,7 @@ var _View_EventPage0 = (function (_super) {
             this.renderer.setElementClass(this._el_19, 'hide', currVal_7);
             this._expr_7 = currVal_7;
         }
-        var currVal_8 = import4.interpolate(2, '\n                ', this.context.event.startTime, ' - ', this.context.event.endTime, '\n            ');
+        var currVal_8 = import4.interpolate(2, '\n                ', this.context.event.startDate, ' - ', this.context.event.endDate, '\n            ');
         if (import4.checkBinding(throwOnChange, this._expr_8, currVal_8)) {
             this.renderer.setText(this._text_20, currVal_8);
             this._expr_8 = currVal_8;

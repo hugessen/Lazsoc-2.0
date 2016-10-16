@@ -62,7 +62,7 @@ export class LocalData {
                 Observable.fromPromise(this.getInterests())
             ]).subscribe(data => {   
                 //Applies the visible property to events based on Clubs and Interests
-                var val = this.doCustomFeed(this.getEventsLocally(),data[1],data[2]);
+                var val = this.doCustomFeed(data[0],data[1],data[2]);
                 resolve(val);
             })
         })
@@ -72,13 +72,38 @@ export class LocalData {
         var result:Array<ClubEvent> = [];
         //Sorting by time
         events.sort(function(a,b){
-            return Date.parse(a.startTime) - Date.parse(b.startTime)
+            return Date.parse(a.startDate) - Date.parse(b.startDate)
         })
         //Applying visible property based on prefs
         for (let event of events){
+            var currentTime = new Date().getTime();
+            var eventStart = Date.parse(event.startDate);
             event.visible = false; //initially
-            if (clubs[event.club].selected)
+            event.timeframe = "";
+            event.basedOn = "";
+
+            //Filtering by prefs
+            if (clubs[event.clubRef].selected)
                 event.visible = true; //Set to true if club selected
+            else{
+                for(let tag of event.tags){
+                    for (let interest of interests){
+                        if (tag == interest.name && interest.selected){
+                            event.visible = true;
+                            event.basedOn = tag;
+                        }
+                    }
+                }
+            }
+
+            //Checking timeframe
+            if (eventStart < currentTime) 
+                event.timeframe = "past";
+            else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7) 
+                event.timeframe = "this week";
+            else 
+                event.timeframe = "upcoming";
+
             result.push(event); //Add to the list
         }
         return result;
@@ -118,10 +143,10 @@ export class LocalData {
         {
             id:0,
             title:"5 Days for the Homeless!",
-            startTime: "3/11/2017 9:00 AM",
-            endTime: "3/11/2017 4:30 PM",
+            startDate: "3/11/2017 9:00 AM",
+            endDate: "3/11/2017 4:30 PM",
             location:"Fred Nichols Building",
-            tagline:"Come out and support us as we sleep outside for a week!",
+            subheader:"Come out and support us as we sleep outside for a week!",
             club:21,   
             banner:"assets/img/Event Banners/5DaysBanner.jpg",
             tags: [
@@ -132,10 +157,10 @@ export class LocalData {
         },
         {   id:1,
             title:"O-Day",
-            startTime:"9/11/2016 9:00 AM",
-            endTime: "9/11/2016 4:30 PM",
+            startDate:"9/11/2016 9:00 AM",
+            endDate: "9/11/2016 4:30 PM",
             location: "Bingeman's Conference Centre",
-            tagline:"Come out and learn what it means to be a business student!",
+            subheader:"Come out and learn what it means to be a business student!",
             club:22,
             banner:"assets/img/Event Banners/O-Day.jpg",
             tags: [

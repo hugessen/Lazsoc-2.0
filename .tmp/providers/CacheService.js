@@ -3,7 +3,7 @@ import { Storage } from '@ionic/Storage';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-var CACHE_TTL = 60 * 60;
+var CACHE_TTL = 10000000;
 var API_URL = 'http://app.lazsoc.ca/';
 export var CacheService = (function () {
     function CacheService(events, http, storage) {

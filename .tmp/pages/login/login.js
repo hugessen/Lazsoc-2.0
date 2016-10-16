@@ -14,12 +14,10 @@ export var LoginPage = (function () {
         if (this.userData.firstname === '' || this.userData.lastname === '' || this.userData.email === '' || this.userData.studyYear == 0 || this.userData.program === '') {
             this.showToast('Please enter all information');
         }
-        else if (!this.isValidEmail(this.userData.email)) {
-            this.showToast('Invalid MyLaurier Email');
-        }
-        else
+        else {
             this.localData.saveData('userdata', this.userData);
-        this.viewCtrl.dismiss(this.userData);
+            this.viewCtrl.dismiss(this.userData);
+        }
     };
     LoginPage.prototype.isValidEmail = function (email) {
         var isValid = (email.length == 21 && email.substring(8) == '@mylaurier.ca' && this.isNumeric(email.substring(4, 8)));

@@ -147,7 +147,7 @@ var _View_LoginPage0 = (function (_super) {
         this._appEl_10.initComponent(this._Content_10_4, [], compView_10);
         this._text_11 = this.renderer.createText(null, '\n    ', null);
         this._el_12 = this.renderer.createElement(null, 'img', null);
-        this.renderer.setElementAttribute(this._el_12, 'src', 'img/lazsoc.png');
+        this.renderer.setElementAttribute(this._el_12, 'src', 'assets/img/lazsoc.png');
         this.renderer.setElementAttribute(this._el_12, 'style', 'width: 40%; margin-left: auto; margin-right: auto; display: block;');
         this._text_13 = this.renderer.createText(null, '\n    ', null);
         this._el_14 = this.renderer.createElement(null, 'ion-list', null);

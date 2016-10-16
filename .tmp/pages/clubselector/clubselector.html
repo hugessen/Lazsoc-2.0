@@ -1,18 +1,23 @@
 <ion-header>
-  <ion-navbar color="laz-purple">
+  <ion-navbar color="laz-purple" style="border-bottom:2px solid #F2A900">
     <ion-title>Set Preferences</ion-title>
     <ion-buttons end>
         <button ion-button (click)="savePrefs()" side="right">Save</button>
     </ion-buttons>
   </ion-navbar>
-  <ion-segment color="light" [(ngModel)]="view" color="laz-gold" class="newsfeed-segment">
+  <ion-toolbar color="laz-purple">
+    <ion-segment style="background-color:rgba(66,44,137,1)" [(ngModel)]="view" color="laz-gold">
         <ion-segment-button value="clubs">
-           Clubs
+            Clubs
         </ion-segment-button>
         <ion-segment-button value="interests">
             Interests
         </ion-segment-button>
-    </ion-segment>
+        <ion-segment-button value="personalinfo">
+            Personal Info
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
 </ion-header>
 
 <!-- See newsfeed.html comments for insight on how ngSwitch works -->
@@ -36,6 +41,9 @@
                     </ion-item>
                 </ion-list>
             </ion-card>
+        </div>
+        <div *ngSwitchCase="'personalinfo'">
+            <personal-info></personal-info>
         </div>
     </div>
 </ion-content>
