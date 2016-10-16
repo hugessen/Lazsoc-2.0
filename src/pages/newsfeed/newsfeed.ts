@@ -6,6 +6,7 @@ import { EventPage } from '../eventpage/event-page';
 import { Club } from '../../models/club';
 import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
+import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
 
 let disconnectSubscription = Network.onDisconnect().subscribe(() => {
   this.showAlert('Disconnected!','network was disconnected :-(');
@@ -16,22 +17,23 @@ let connectSubscription = Network.onConnect().subscribe(() => {
 });
 
 @Component({
-  templateUrl: 'newsfeed.html',
+  templateUrl: 'newsfeed.html'
 })
 export class Newsfeed {
-    events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
+    events: Object; //Array of ClubEvent objects, defined in models/club-event
     clubs: Club[];
     timeframe:string = "this week";
     feedType:string = "all";
     message:string = "All Events This Week";
   constructor(public navCtrl: NavController, public localData: LocalData, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
     this.localData.getCustomFeed()
-    .then(data => {this.events = data;
-          console.log(this.events);
+    .then(data => {
+        this.events = data;
+        
       });
+
       this.localData.getClubs()
       .then(data => {this.clubs = data;
-        console.log(this.clubs);   
       });
   }
 

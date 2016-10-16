@@ -12,7 +12,8 @@ import { DiscountPage } from '../pages/discount/discount';
 import { PersonalInfo } from '../pages/personalinfo/personal-info';
 import { LocalData } from '../providers/LocalData';
 import { CacheService } from '../providers/CacheService';
-import {Storage} from '@ionic/Storage';
+import { Storage } from '@ionic/Storage';
+import { MapToIterablePipe } from '../pipes/MapToIterablePipe';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {Storage} from '@ionic/Storage';
     LoginPage,
     DiscountPage,
     PersonalInfo,
+    MapToIterablePipe
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -42,7 +44,7 @@ import {Storage} from '@ionic/Storage';
     ClubPage,
     LoginPage,
     DiscountPage,
-    PersonalInfo,
+    PersonalInfo
   ],
   providers: [LocalData,CacheService,Storage]
 })

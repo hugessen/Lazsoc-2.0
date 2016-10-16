@@ -68,8 +68,9 @@ export class LocalData {
         })
     }
     
-    doCustomFeed(events:any[], clubs:Club[], interests:Interest[]):ClubEvent[]{
+    doCustomFeed(events:any[], clubs:Club[], interests:Interest[]):any{
         var result:Array<ClubEvent> = [];
+        var result2:Object = {};
         //Sorting by time
         events.sort(function(a,b){
             return Date.parse(a.startDate) - Date.parse(b.startDate)
@@ -78,37 +79,56 @@ export class LocalData {
         for (let event of events){
             var currentTime = new Date().getTime();
             var eventStart = Date.parse(event.startDate);
-            event.visible = false; //initially
-            event.timeframe = "";
-            event.basedOn = "";
+            if(eventStart > currentTime - 60*60*24*30) { //Ignore events that are more than a month old
+                var eventDateKey:string = (new Date(event.startDate).getDate().toString() + "-" + new Date(event.startDate).getMonth().toString() + "-" + new Date(event.startDate).getFullYear().toString());
+                console.log("Event date key: "+ eventDateKey);
+                event.visible = false; //initially
+                event.timeframe = "";
+                event.basedOn = "";
 
-            //Filtering by prefs
-            if (clubs[event.clubRef].selected)
-                event.visible = true; //Set to true if club selected
-            else{
-                for(let tag of event.tags){
-                    for (let interest of interests){
-                        if (tag == interest.name && interest.selected){
-                            event.visible = true;
-                            event.basedOn = tag;
+                //Filtering by prefs
+                if (clubs[event.clubRef].selected)
+                    event.visible = true; //Set to true if club selected
+                else{
+                    for(let tag of event.tags){
+                        for (let interest of interests){
+                            if (tag == interest.name && interest.selected){
+                                event.visible = true;
+                                event.basedOn = tag; //"Based on your interest in:..."
+                            }
                         }
                     }
                 }
+
+                //Checking timeframe
+                if (eventStart < currentTime) 
+                    event.timeframe = "past";
+                else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7) 
+                    event.timeframe = "this week";
+                else 
+                    event.timeframe = "upcoming";
+
+                if(!result2.hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
+                    var dividerVal = this.getLongDate(new Date(event.startDate));
+                    console.log("Divider value: " + dividerVal);
+                    result2[eventDateKey] = {divider:dividerVal, events:[]} 
+                }
+                result2[eventDateKey].events.push(event);
+                
+                result.push(event); //Add to the list
             }
-
-            //Checking timeframe
-            if (eventStart < currentTime) 
-                event.timeframe = "past";
-            else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7) 
-                event.timeframe = "this week";
-            else 
-                event.timeframe = "upcoming";
-
-            result.push(event); //Add to the list
         }
-        return result;
+        console.log(result2);
+        return result2;
     }
     
+    getLongDate(date:Date):string{
+        var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+        var result:string = days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+        return result;
+    }
+
     getClubs():Promise<any>{
         return new Promise((resolve,reject) => {
             this.cache.getItem('clubs','app_clubs.php') 
@@ -137,6 +157,7 @@ export class LocalData {
         })
     }
     
+
     
     getEventsLocally(){
     return [ 

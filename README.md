@@ -16,6 +16,8 @@ run:
 
 ##To Do:
 
+- [ ] Special Characters
+- [ ] Save Preferences separately from Club and Interest objects
 - [x] Implement Interests in custom feed
 - [ ] ConnectivityMonitor to see if user is online
 - [x] Fix Personal Information page
