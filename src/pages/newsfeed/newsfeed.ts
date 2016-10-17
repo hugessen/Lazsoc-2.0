@@ -69,8 +69,19 @@ export class Newsfeed {
     });
   }
   
+  getLongDate(dateStr:string):string{
+    var date = new Date(dateStr);
+    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    var hour = date.getHours()%12;
+    let minutes = (date.getMinutes() < 10) ? date.getMinutes() + "0" : date.getMinutes();
+    let ampm = (date.getHours()<12) ? "AM":"PM";
+    var result:string = days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " " + hour + ":" + minutes + " " + ampm;
+    return result;
+  }
+
   addToCalendar(event:ClubEvent){
-      Calendar.createEventInteractively(event.title, event.location, event.subheader, new Date(event.startDate), new Date(event.endDate))
+      Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
       .then(
           (msg) => console.log(msg),
           (err) => console.log(err)
@@ -78,7 +89,7 @@ export class Newsfeed {
   }
   
   viewEvent(event:ClubEvent):void{
-      this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.clubRef]});
+      this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id]});
   }
   
   doRefresh(refresher){

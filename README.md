@@ -21,7 +21,7 @@ run:
 - [x] Implement Interests in custom feed
 - [ ] ConnectivityMonitor to see if user is online
 - [x] Fix Personal Information page
-- [ ] List dividers to distinguish days in newsfeed
+- [x] List dividers to distinguish days in newsfeed
 - [ ] RRule for recurring events
 - [ ] Implement new API
 - [ ] Gold leaf logo for header bar

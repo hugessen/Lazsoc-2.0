@@ -36,9 +36,9 @@ export class LocalData {
     
     getEvents():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('events','app_events.php',12*60*60) //Cache for 12 hours
+            this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
             .then(res => {
-                this.events = res;
+                this.events = res["events"].events;
                 resolve(res);
             }).catch(err => reject(err));
         })
@@ -62,43 +62,42 @@ export class LocalData {
                 Observable.fromPromise(this.getInterests())
             ]).subscribe(data => {   
                 //Applies the visible property to events based on Clubs and Interests
-                var val = this.doCustomFeed(data[0],data[1],data[2]);
+                var val = this.doCustomFeed(data[0]["events"],data[1],data[2]);
                 resolve(val);
             })
         })
     }
     
     doCustomFeed(events:any[], clubs:Club[], interests:Interest[]):any{
-        var result:Array<ClubEvent> = [];
-        var result2:Object = {};
+        var result:Object = {};
+        console.log(events);
         //Sorting by time
         events.sort(function(a,b){
-            return Date.parse(a.startDate) - Date.parse(b.startDate)
+            return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)
         })
         //Applying visible property based on prefs
         for (let event of events){
             var currentTime = new Date().getTime();
-            var eventStart = Date.parse(event.startDate);
+            var eventStart = Date.parse(event.start_date_time);
             if(eventStart > currentTime - 60*60*24*30) { //Ignore events that are more than a month old
-                var eventDateKey:string = (new Date(event.startDate).getDate().toString() + "-" + new Date(event.startDate).getMonth().toString() + "-" + new Date(event.startDate).getFullYear().toString());
-                console.log("Event date key: "+ eventDateKey);
+                var eventDateKey:string = (new Date(event.start_date_time).getDate().toString() + "-" + new Date(event.start_date_time).getMonth().toString() + "-" + new Date(event.start_date_time).getFullYear().toString());
                 event.visible = false; //initially
                 event.timeframe = "";
                 event.basedOn = "";
 
                 //Filtering by prefs
-                if (clubs[event.clubRef].selected)
+                if (clubs[event.club_id].selected)
                     event.visible = true; //Set to true if club selected
-                else{
-                    for(let tag of event.tags){
-                        for (let interest of interests){
-                            if (tag == interest.name && interest.selected){
-                                event.visible = true;
-                                event.basedOn = tag; //"Based on your interest in:..."
-                            }
-                        }
-                    }
-                }
+                // else{
+                //     for(let tag of event.tags){
+                //         for (let interest of interests){
+                //             if (tag == interest.name && interest.selected){
+                //                 event.visible = true;
+                //                 event.basedOn = tag; //"Based on your interest in:..."
+                //             }    
+                //         }
+                //     }
+                // }
 
                 //Checking timeframe
                 if (eventStart < currentTime) 
@@ -108,30 +107,26 @@ export class LocalData {
                 else 
                     event.timeframe = "upcoming";
 
-                if(!result2.hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
-                    var dividerVal = this.getLongDate(new Date(event.startDate));
-                    console.log("Divider value: " + dividerVal);
-                    result2[eventDateKey] = {divider:dividerVal, events:[]} 
+                if(!result.hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
+                    var dividerVal = this.getLongDate(new Date(event.start_date_time));
+                    result[eventDateKey] = {divider:dividerVal, events:[]} 
                 }
-                result2[eventDateKey].events.push(event);
-                
-                result.push(event); //Add to the list
+                result[eventDateKey].events.push(event);
             }
         }
-        console.log(result2);
-        return result2;
+        return result;
     }
     
     getLongDate(date:Date):string{
         var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
         var result:string = days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
         return result;
     }
 
     getClubs():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('clubs','app_clubs.php') 
+            this.cache.getItem('clubs','clubs.json',60*60*24) 
             .then(res => {
                 this.clubs = res;
                 resolve(this.clubs);
@@ -140,7 +135,7 @@ export class LocalData {
     }
     getInterests():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('interests','app_interests.php')
+            this.cache.getItem('interests','app_interests.php',60*60*24)
             .then(res => {
                 this.interests = res;
                 resolve(this.interests);
@@ -149,45 +144,11 @@ export class LocalData {
     }
     getDiscountSponsors():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('discount-sponsors','app_discount.php')
+            this.cache.getItem('discount-sponsors','discount_partners.json',60*60*24)
             .then(res => {
                 this.discountSponsors = res;
                 resolve(res);
             }).catch(err => reject(err));
         })
     }
-    
-
-    
-    getEventsLocally(){
-    return [ 
-        {
-            id:0,
-            title:"5 Days for the Homeless!",
-            startDate: "3/11/2017 9:00 AM",
-            endDate: "3/11/2017 4:30 PM",
-            location:"Fred Nichols Building",
-            subheader:"Come out and support us as we sleep outside for a week!",
-            club:21,   
-            banner:"assets/img/Event Banners/5DaysBanner.jpg",
-            tags: [
-               "Philanthropy", "Leadership", "Social" 
-            ],
-            desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            
-        },
-        {   id:1,
-            title:"O-Day",
-            startDate:"9/11/2016 9:00 AM",
-            endDate: "9/11/2016 4:30 PM",
-            location: "Bingeman's Conference Centre",
-            subheader:"Come out and learn what it means to be a business student!",
-            club:22,
-            banner:"assets/img/Event Banners/O-Day.jpg",
-            tags: [
-                "Networking","First Year"
-            ],
-            desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-    ];
-  }
 }

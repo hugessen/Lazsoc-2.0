@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 
 const CACHE_TTL = 10000000;
-const API_URL = 'http://app.lazsoc.ca/';
+const API_URL = 'http://moria.lazsoc.ca/api/';
 
 @Injectable()
 export class CacheService {
