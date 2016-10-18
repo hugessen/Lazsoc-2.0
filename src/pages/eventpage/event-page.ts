@@ -17,11 +17,18 @@ export class EventPage {
     this.message = "this works";
   }
   
-    addToCalendar(){
-      Calendar.createEventInteractively(this.event.title, this.event.location, this.event.subheader, new Date(this.event.startDate), new Date(this.event.endDate))
+  addToCalendar(){
+      Calendar.createEventInteractively(this.event.title, this.event.location, this.event.sub_heading, new Date(this.event.start_date_time), new Date(this.event.end_date_time))
       .then(
           (msg) => console.log(msg),
           (err) => console.log(err)
       );
+  }
+  getTime(date:string):string{
+    var hour = new Date(date).getHours();
+    var min = new Date(date).getMinutes();
+    var minStr = (min < 10) ? min+"0":min;
+    var ampm = (hour < 12) ? "AM" : "PM";
+    return (hour%12 + ":" + minStr + " " + ampm);
   }
 }

@@ -54,7 +54,7 @@ export class LocalData {
         })
     }
     
-    getCustomFeed():Promise<any>{
+    getCustomFeed(club?:Club):Promise<any>{
         return new Promise((resolve,reject) => {
             Observable.forkJoin([ //Used to concurrently resolve multiple promises
                 Observable.fromPromise(this.getEvents()),
@@ -62,15 +62,17 @@ export class LocalData {
                 Observable.fromPromise(this.getInterests())
             ]).subscribe(data => {   
                 //Applies the visible property to events based on Clubs and Interests
-                var val = this.doCustomFeed(data[0]["events"],data[1],data[2]);
+                if(club)
+                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2],club)
+                else
+                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2]);
                 resolve(val);
             })
         })
     }
     
-    doCustomFeed(events:any[], clubs:Club[], interests:Interest[]):any{
+    doCustomFeed(events:any[], clubs:Club[], interests:Interest[], club?:Club):any{
         var result:Object = {};
-        console.log(events);
         //Sorting by time
         events.sort(function(a,b){
             return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)
@@ -79,8 +81,8 @@ export class LocalData {
         for (let event of events){
             var currentTime = new Date().getTime();
             var eventStart = Date.parse(event.start_date_time);
-            if(eventStart > currentTime - 60*60*24*30) { //Ignore events that are more than a month old
-                var eventDateKey:string = (new Date(event.start_date_time).getDate().toString() + "-" + new Date(event.start_date_time).getMonth().toString() + "-" + new Date(event.start_date_time).getFullYear().toString());
+            if(eventStart > currentTime - 60*60*24*30 && (!club || clubs[event.club_id].name == club.name)) { //Ignore events that are more than a month old
+                var eventDateKey:string = this.generateDateKey(event.start_date_time);
                 event.visible = false; //initially
                 event.timeframe = "";
                 event.basedOn = "";
@@ -117,6 +119,10 @@ export class LocalData {
         return result;
     }
     
+    generateDateKey(date:string):string{
+        return (new Date(date).getDate().toString() + "-" + new Date(date).getMonth().toString() + "-" + new Date(date).getFullYear().toString()).toString();
+    }
+
     getLongDate(date:Date):string{
         var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];

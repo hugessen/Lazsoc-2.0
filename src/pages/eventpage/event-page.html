@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content>
-    <img src="{{club.banner}}">
+    <img src="{{club.app_banner}}">
     <ion-card>
         <ion-list>
             <ion-item>
                 <ion-icon name="md-time"></ion-icon>
-                {{event.startDate}} - {{event.endDate}}
+                {{event.start_date_time | getLongDate}} - {{getTime(event.end_date_time)}}
             </ion-item>
             <ion-item>
                 <ion-icon name="md-pin"></ion-icon>
@@ -20,7 +20,7 @@
     </ion-card>
     <ion-card>
         <ion-card-header><b>{{event.title}}</b></ion-card-header>
-        <ion-card-content>{{event.desc}}</ion-card-content>
+        <ion-card-content>{{event.event_description}}</ion-card-content>
     </ion-card>
     <ion-fab bottom right>
         <button ion-fab color="secondary" (click)="addToCalendar()"><ion-icon name="md-calendar"></ion-icon></button>

@@ -7,6 +7,7 @@ import { Club } from '../../models/club';
 import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
 import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
+import { GetLongDate } from '../../pipes/GetLongDate';
 
 let disconnectSubscription = Network.onDisconnect().subscribe(() => {
   this.showAlert('Disconnected!','network was disconnected :-(');
@@ -68,16 +69,9 @@ export class Newsfeed {
       }
     });
   }
-  
-  getLongDate(dateStr:string):string{
-    var date = new Date(dateStr);
-    var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-    var hour = date.getHours()%12;
-    let minutes = (date.getMinutes() < 10) ? date.getMinutes() + "0" : date.getMinutes();
-    let ampm = (date.getHours()<12) ? "AM":"PM";
-    var result:string = days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " " + hour + ":" + minutes + " " + ampm;
-    return result;
+
+  isValidURL():boolean{
+    return true;
   }
 
   addToCalendar(event:ClubEvent){

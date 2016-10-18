@@ -14,6 +14,7 @@ import { LocalData } from '../providers/LocalData';
 import { CacheService } from '../providers/CacheService';
 import { Storage } from '@ionic/Storage';
 import { MapToIterablePipe } from '../pipes/MapToIterablePipe';
+import { GetLongDate } from '../pipes/GetLongDate';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MapToIterablePipe } from '../pipes/MapToIterablePipe';
     LoginPage,
     DiscountPage,
     PersonalInfo,
-    MapToIterablePipe
+    MapToIterablePipe,
+    GetLongDate
   ],
   imports: [
     IonicModule.forRoot(MyApp)
