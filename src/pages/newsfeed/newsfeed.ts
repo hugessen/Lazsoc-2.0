@@ -30,7 +30,6 @@ export class Newsfeed {
     this.localData.getCustomFeed()
     .then(data => {
         this.events = data;
-        
       });
 
       this.localData.getClubs()

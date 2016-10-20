@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { CacheService } from '../providers/CacheService';
+import { LocalStorage } from '../providers/LocalStorage';
 import { Observable } from 'rxjs/Rx';
 
 //Custom classes
 import { ClubEvent } from '../models/club-event';
 import { Club } from '../models/club'; //Club object. All objects stored in the 'models' folder
 import { Interest } from '../models/interest';
+import { UserData } from '../models/userdata';
 
 @Injectable()
 export class LocalData {
     public events: any;
-    public clubs: any;
-    public interests: any;
     public discountSponsors: any;
+    private userData:UserData;
     public cache: CacheService;
     
-    constructor(public cacheService: CacheService){
-        this.cache = cacheService;
+    constructor(public cacheService: CacheService, private localStorage:LocalStorage){
+        this.cache = cacheService; 
     }
     
     saveData(name:string, data:any, ttl?:number):Promise<{}>{
@@ -59,19 +60,35 @@ export class LocalData {
             Observable.forkJoin([ //Used to concurrently resolve multiple promises
                 Observable.fromPromise(this.getEvents()),
                 Observable.fromPromise(this.getClubs()),
-                Observable.fromPromise(this.getInterests())
-            ]).subscribe(data => {   
+                Observable.fromPromise(this.getInterests()),
+                Observable.fromPromise(this.localStorage.get('userdata'))
+            ]).subscribe(data => {
                 //Applies the visible property to events based on Clubs and Interests
+                if(data[3] != null)
+                    this.userData = data[3];
+                else{
+                    this.userData = {
+                        personalInfo:{firstname:"", lastname:"", email:"", studyYear:0, program:""},
+                        clubPrefs:[],
+                        interestPrefs:[]
+                    };
+                    for(let club of data[1]){
+                        this.userData.clubPrefs.push({club_id:club.id, selected:false});
+                    }
+                    for (let interest of data[2]){
+                        this.userData.interestPrefs.push({interest_id:interest.id, selected:false})
+                    }
+                }
                 if(club)
-                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2],club)
+                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2],this.userData,club)
                 else
-                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2]);
+                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2],this.userData);
                 resolve(val);
             })
         })
     }
     
-    doCustomFeed(events:any[], clubs:Club[], interests:Interest[], club?:Club):any{
+    doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -88,7 +105,7 @@ export class LocalData {
                 event.basedOn = "";
 
                 //Filtering by prefs
-                if (clubs[event.club_id].selected)
+                if (userData.clubPrefs[clubs[event.club_id-2].id].selected == true)
                     event.visible = true; //Set to true if club selected
                 // else{
                 //     for(let tag of event.tags){
@@ -134,8 +151,7 @@ export class LocalData {
         return new Promise((resolve,reject) => {
             this.cache.getItem('clubs','clubs.json',60*60*24) 
             .then(res => {
-                this.clubs = res;
-                resolve(this.clubs);
+                resolve(res);
             }).catch(err => reject(err));
         })
     }
@@ -143,8 +159,7 @@ export class LocalData {
         return new Promise((resolve,reject) => {
             this.cache.getItem('interests','app_interests.php',60*60*24)
             .then(res => {
-                this.interests = res;
-                resolve(this.interests);
+                resolve(res);
             }).catch(err => reject(err));
         })
     }

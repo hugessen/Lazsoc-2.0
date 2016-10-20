@@ -11,6 +11,7 @@ import { LoginPage } from '../pages/login/login';
 import { DiscountPage } from '../pages/discount/discount';
 import { PersonalInfo } from '../pages/personalinfo/personal-info';
 import { LocalData } from '../providers/LocalData';
+import { LocalStorage } from '../providers/LocalStorage';
 import { CacheService } from '../providers/CacheService';
 import { Storage } from '@ionic/Storage';
 import { MapToIterablePipe } from '../pipes/MapToIterablePipe';
@@ -48,6 +49,6 @@ import { GetLongDate } from '../pipes/GetLongDate';
     DiscountPage,
     PersonalInfo
   ],
-  providers: [LocalData,CacheService,Storage]
+  providers: [LocalData,CacheService,LocalStorage,Storage]
 })
 export class AppModule {}

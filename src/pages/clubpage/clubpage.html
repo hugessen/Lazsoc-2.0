@@ -12,7 +12,7 @@
         <ion-card-header><b>{{club.name}}</b></ion-card-header>
         <ion-card-content>{{club.description}}</ion-card-content>
     </ion-card>
-    <ion-list-header style="font-color:black">Upcoming events:</ion-list-header>
+    <ion-list-header>Upcoming events:</ion-list-header>
     <div *ngFor="let object of events | mapToIterable">
         <ion-list-header>
             {{object.val.divider}}

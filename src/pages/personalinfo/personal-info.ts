@@ -13,7 +13,7 @@ export class PersonalInfo {
     userData: UserData;
     hasInfo: boolean = false;
   constructor(private navCtrl: NavController, private navParams: NavParams, private modalCtrl: ModalController, private localData: LocalData) {
-      this.userData = {firstname:"",lastname:"",email:"",studyYear:0, program:""};
+      this.userData.personalInfo = {firstname:"",lastname:"",email:"",studyYear:0, program:""};
       this.navCtrl = navCtrl;
       this.init();
   }
@@ -32,7 +32,7 @@ export class PersonalInfo {
   openLogin(){
     let modal = this.modalCtrl.create(LoginPage);// everything in the {} are my params to be passed to the Modal
     modal.onDidDismiss(data => { //Retrieving the params passed down from the Modal's dismiss() method
-        this.userData = {
+        this.userData.personalInfo = {
             firstname:data.firstname,
             lastname:data.lastname,
             email:data.email,

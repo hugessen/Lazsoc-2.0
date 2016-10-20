@@ -5,8 +5,8 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
 
 
-const CACHE_TTL = 10000000;
-const API_URL = 'http://moria.lazsoc.ca/api/';
+const CACHE_TTL = 60*60*24;
+const API_URL = 'https://moria.lazsoc.ca/v2/api/';
 
 @Injectable()
 export class CacheService {
@@ -14,7 +14,6 @@ export class CacheService {
   
 
   constructor(public events: Events, public http: Http, public storage: Storage) {
-
     events.subscribe('cache:invalidate', () => {
       this.cacheInvalidate();
     });

@@ -15,7 +15,8 @@ run:
 * Modals and modal navigation for launch protocol?
 
 ##To Do:
-
+- [ ] Implement API for interests
+- [ ] Social links in clubpage
 - [ ] Special Characters
 - [ ] Save Preferences separately from Club and Interest objects
 - [x] Implement Interests in custom feed
@@ -23,14 +24,12 @@ run:
 - [x] Fix Personal Information page
 - [x] List dividers to distinguish days in newsfeed
 - [ ] RRule for recurring events
-- [ ] Implement new API
+- [x] Implement new API
 - [ ] Gold leaf logo for header bar
-- [ ] Permanent caching
 - [ ] Notify when exported event has changed
 - [x] This Week, Next Week, Upcoming filters
 - [x] Popover to edit filters
 - [ ] Override CSS to optimize look-and-feel
-- [ ] Launch Protocol
 
 ###Cloud
 - [ ] Deploy
