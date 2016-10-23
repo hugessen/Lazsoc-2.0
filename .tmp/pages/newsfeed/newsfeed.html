@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar color="laz-purple"> 
-    
+    <img src="assets/img/gold_leaf.png" class="titleicon"/>
   </ion-navbar>
   <ion-toolbar class="newsfeed-toolbar" color="laz-purple">
       <b style="font-size:17px; color:#FFF">{{message}}</b>
@@ -16,38 +16,43 @@
 <ion-content> 
     <!--Pull to refresh implementation-->
     <ion-refresher (ionRefresh)="doRefresh($event)"><ion-refresher-content
-      pullingIcon="arrow-dropdown"
+      pullingIcon="arrow-dropdown" 
       pullingText="Pull to refresh"
       refreshingText="Refreshing...">
     </ion-refresher-content></ion-refresher>
-    
-    <div *ngFor="let event of events">
-        <!--Styling the newsfeed items -->
-        <ion-card style="border-style:solid black"  *ngIf="timeframe == event.timeframe && (feedType=='all' || (feedType=='custom' && event.visible))">
-            <img [src]="clubs[event.clubRef].banner" (click)="viewEvent(event)"/>
-            <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
-                <ion-card-title style="font-size:18px">
-                    <b>{{event.title}}</b>
-                </ion-card-title>   
-                <p>{{event.startDate}} | {{event.location}}</p>
-                <p>{{event.subheader}}</p>
-                <p *ngIf="event.basedOn !='' && feedType == 'custom'">Based on your interest in <b>{{event.basedOn}}</b></p>
-            </ion-card-content>
-            
-            <ion-row>
-                <ion-col>
-                    <button ion-button primary clear small (click)="addToCalendar(event)">
-                        <ion-icon name="md-calendar"></ion-icon>
-                        <div>Add to Calendar</div>
-                    </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button primary clear small>
-                        <ion-icon name="logo-facebook"></ion-icon>
-                        <div>Facebook page</div>
-                    </button>
-                </ion-col>
-            </ion-row>
-        </ion-card>
+    <div *ngFor="let object of events | mapToIterable">
+        <ion-list-header *ngIf="timeframe == object.val.events[0].timeframe && (feedType=='all' || (feedType=='custom' && object.val.visible))">
+            {{object.val.divider}}
+        </ion-list-header>
+        <div *ngFor="let event of object.val.events">
+            <!--Styling the newsfeed items -->
+            <ion-card style="border-style:solid black"  *ngIf="timeframe == event.timeframe && (feedType=='all' || (feedType=='custom' && event.visible))">
+                <img [src]="event.banner" *ngIf="event.banner != null && isValidURL(event.banner)">
+                <img [src]="clubs[event.club_id.toString()].app_banner" (click)="viewEvent(event)" *ngIf="event.banner == null || !isValidURL(event.banner)"/>
+                <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
+                    <ion-card-title style="font-size:18px">
+                        <b>{{event.title}}</b>
+                    </ion-card-title>
+                    <p>{{event.start_date_time | getLongDate}} | {{event.location}}</p>
+                    <p>{{event.sub_heading}}</p>
+                    <p *ngIf="event.basedOn !='' && feedType == 'custom'">Based on your interest in <b>{{event.basedOn}}</b></p>
+                </ion-card-content>
+                
+                <ion-row>
+                    <ion-col>
+                        <button ion-button primary clear small (click)="addToCalendar(event)">
+                            <ion-icon name="md-calendar"></ion-icon>
+                            <div>Add to Calendar</div>
+                        </button>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button primary clear small>
+                            <ion-icon name="logo-facebook"></ion-icon>
+                            <div>Facebook page</div>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </div>
     </div>
 </ion-content>

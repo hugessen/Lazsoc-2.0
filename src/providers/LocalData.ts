@@ -35,60 +35,45 @@ export class LocalData {
         })
     }
     
-    getEvents():Promise<any>{
-        return new Promise((resolve,reject) => {
-            this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
-            .then(res => {
-                this.events = res["events"].events;
-                resolve(res);
-            }).catch(err => reject(err));
-        })
-    }
-    
-    getUserInfo():Promise<any>{
-        return new Promise((resolve,reject) => {
-            this.cache.getItem('userdata','')
-            .then(res => {
-                this.events = res;
-                resolve(res);
-            }).catch(err => reject(err));
-        })
-    }
-    
+    //Remember to fix this to pull from API after
     getCustomFeed(club?:Club):Promise<any>{
         return new Promise((resolve,reject) => {
             Observable.forkJoin([ //Used to concurrently resolve multiple promises
                 Observable.fromPromise(this.getEvents()),
                 Observable.fromPromise(this.getClubs()),
                 Observable.fromPromise(this.getInterests()),
-                Observable.fromPromise(this.localStorage.get('userdata'))
+                Observable.fromPromise(this.getUserInfo())
             ]).subscribe(data => {
+                var events = data[0]; //Remember to delete these
+                var clubs = data[1];
+                var interests = data[2];
                 //Applies the visible property to events based on Clubs and Interests
-                if(data[3] != null)
+                if(data[3] != null) 
                     this.userData = data[3];
                 else{
                     this.userData = {
                         personalInfo:{firstname:"", lastname:"", email:"", studyYear:0, program:""},
-                        clubPrefs:[],
-                        interestPrefs:[]
+                        clubPrefs:{},
+                        interestPrefs:{}
                     };
-                    for(let club of data[1]){
-                        this.userData.clubPrefs.push({club_id:club.id, selected:false});
-                    }
-                    for (let interest of data[2]){
-                        this.userData.interestPrefs.push({interest_id:interest.id, selected:false})
+                    for(let club of clubs){
+                        this.userData.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
+                    }   
+                    for (let interest of interests){
+                        this.userData.clubPrefs[interest.id.toString()] = {interest_id:interest.id, selected:false}
                     }
                 }
                 if(club)
-                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2],this.userData,club)
+                    var val = this.doCustomFeed(events,clubs,interests,this.userData,club)
                 else
-                    var val = this.doCustomFeed(data[0]["events"],data[1],data[2],this.userData);
+                    var val = this.doCustomFeed(events,clubs,interests,this.userData)
                 resolve(val);
             })
         })
     }
     
     doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
+        console.log("userdata for doCustomFeed:",userData);
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -98,14 +83,14 @@ export class LocalData {
         for (let event of events){
             var currentTime = new Date().getTime();
             var eventStart = Date.parse(event.start_date_time);
-            if(eventStart > currentTime - 60*60*24*30 && (!club || clubs[event.club_id].name == club.name)) { //Ignore events that are more than a month old
+            if(eventStart > currentTime - 60*60*24*30 && (!club || clubs[event.club_id.toString()].name == club.name)) { //Ignore events that are more than a month old
                 var eventDateKey:string = this.generateDateKey(event.start_date_time);
                 event.visible = false; //initially
                 event.timeframe = "";
                 event.basedOn = "";
 
                 //Filtering by prefs
-                if (userData.clubPrefs[clubs[event.club_id-2].id].selected == true)
+                if (userData.clubPrefs[event.club_id.toString()].selected == true)
                     event.visible = true; //Set to true if club selected
                 // else{
                 //     for(let tag of event.tags){
@@ -119,17 +104,19 @@ export class LocalData {
                 // }
 
                 //Checking timeframe
-                if (eventStart < currentTime) 
+                if (eventStart < currentTime)   
                     event.timeframe = "past";
-                else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7) 
+                else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7*1000)
                     event.timeframe = "this week";
                 else 
                     event.timeframe = "upcoming";
 
                 if(!result.hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
                     var dividerVal = this.getLongDate(new Date(event.start_date_time));
-                    result[eventDateKey] = {divider:dividerVal, events:[]} 
+                    result[eventDateKey] = {divider:dividerVal, events:[], visible:false} 
                 }
+                if (event.visible)
+                    result[eventDateKey].visible = true; //So we know whether to show the divider
                 result[eventDateKey].events.push(event);
             }
         }
@@ -147,29 +134,95 @@ export class LocalData {
         return result;
     }
 
-    getClubs():Promise<any>{
+    transformClubs(clubs:any[]):Object{
+        var result:Object = {};
+        for (let club of clubs){
+            club.club_social_links = this.formatSocialLinks(club.club_social_links);
+            result[club.id.toString()] = club;
+        }
+        return result;
+    }
+
+    formatSocialLinks(socialLinks:any[]):Object{
+        var result:Object = {};
+        for (let link of socialLinks){
+            result[link.link_type] = link.url;
+        }
+        return result;
+    }
+    getEvents():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('clubs','clubs.json',60*60*24) 
+            this.localStorage.get('app-events')
             .then(res => {
-                resolve(res);
+                console.log("getting events works");
+                resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('events','app_events.php',60*20) //Cache for 20 mins
+        //     .then(res => {
+        //         console.log("getting events works");
+        //         this.events = res["events"].events;
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
+    }
+    
+    getUserInfo():Promise<any>{
+        return new Promise((resolve,reject) => {
+            this.localStorage.get('userdata')
+            .then(res => {
+                resolve(JSON.parse(res));
+            }).catch(err => reject(err));
+        })
+    }
+
+    getClubs():Promise<any>{
+        return new Promise((resolve,reject) => {
+            this.localStorage.get('app-clubs') 
+            .then(res => {
+                console.log("Getting clubs works");
+                var result = JSON.parse(res);
+                resolve(this.transformClubs(result));
+            }).catch(err => reject(err));
+        })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('clubs','app_clubs.php',60*60*24) 
+        //     .then(res => {
+        //         console.log("Getting clubs works");
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
     }
     getInterests():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('interests','app_interests.php',60*60*24)
+            this.localStorage.get('app-interests') 
             .then(res => {
-                resolve(res);
+                console.log("Getting interests works");
+                resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('interests','app_interests.php',60*60*24)
+        //     .then(res => {
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
     }
     getDiscountSponsors():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('discount-sponsors','discount_partners.json',60*60*24)
+            this.localStorage.get('app-discount') 
             .then(res => {
-                this.discountSponsors = res;
-                resolve(res);
+                console.log("Getting interests works");
+                resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('discount-sponsors','discount_partners.json',60*60*24)
+        //     .then(res => {
+        //         this.discountSponsors = res;
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
     }
 }

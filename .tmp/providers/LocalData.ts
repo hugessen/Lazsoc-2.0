@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { CacheService } from '../providers/CacheService';
+import { LocalStorage } from '../providers/LocalStorage';
 import { Observable } from 'rxjs/Rx';
 
 //Custom classes
 import { ClubEvent } from '../models/club-event';
 import { Club } from '../models/club'; //Club object. All objects stored in the 'models' folder
 import { Interest } from '../models/interest';
+import { UserData } from '../models/userdata';
 
 @Injectable()
 export class LocalData {
     public events: any;
-    public clubs: any;
-    public interests: any;
     public discountSponsors: any;
+    private userData:UserData;
     public cache: CacheService;
     
-    constructor(public cacheService: CacheService){
-        this.cache = cacheService;
+    constructor(public cacheService: CacheService, private localStorage:LocalStorage){
+        this.cache = cacheService; 
     }
     
     saveData(name:string, data:any, ttl?:number):Promise<{}>{
@@ -34,139 +35,194 @@ export class LocalData {
         })
     }
     
-    getEvents():Promise<any>{
-        return new Promise((resolve,reject) => {
-            this.cache.getItem('events','app_events.php',12*60*60) //Cache for 12 hours
-            .then(res => {
-                this.events = res;
-                resolve(res);
-            }).catch(err => reject(err));
-        })
-    }
-    
-    getUserInfo():Promise<any>{
-        return new Promise((resolve,reject) => {
-            this.cache.getItem('userdata','')
-            .then(res => {
-                this.events = res;
-                resolve(res);
-            }).catch(err => reject(err));
-        })
-    }
-    
-    getCustomFeed():Promise<any>{
+    //Remember to fix this to pull from API after
+    getCustomFeed(club?:Club):Promise<any>{
         return new Promise((resolve,reject) => {
             Observable.forkJoin([ //Used to concurrently resolve multiple promises
                 Observable.fromPromise(this.getEvents()),
                 Observable.fromPromise(this.getClubs()),
-                Observable.fromPromise(this.getInterests())
-            ]).subscribe(data => {   
+                Observable.fromPromise(this.getInterests()),
+                Observable.fromPromise(this.getUserInfo())
+            ]).subscribe(data => {
+                var events = data[0]; //Remember to delete these
+                var clubs = data[1];
+                var interests = data[2];
                 //Applies the visible property to events based on Clubs and Interests
-                var val = this.doCustomFeed(data[0],data[1],data[2]);
+                if(data[3] != null) 
+                    this.userData = data[3];
+                else{
+                    this.userData = {
+                        personalInfo:{firstname:"", lastname:"", email:"", studyYear:0, program:""},
+                        clubPrefs:{},
+                        interestPrefs:{}
+                    };
+                    for(let club of clubs){
+                        this.userData.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
+                    }   
+                    for (let interest of interests){
+                        this.userData.clubPrefs[interest.id.toString()] = {interest_id:interest.id, selected:false}
+                    }
+                }
+                if(club)
+                    var val = this.doCustomFeed(events,clubs,interests,this.userData,club)
+                else
+                    var val = this.doCustomFeed(events,clubs,interests,this.userData)
                 resolve(val);
             })
         })
     }
     
-    doCustomFeed(events:any[], clubs:Club[], interests:Interest[]):ClubEvent[]{
-        var result:Array<ClubEvent> = [];
+    doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
+        console.log("userdata for doCustomFeed:",userData);
+        var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
-            return Date.parse(a.startDate) - Date.parse(b.startDate)
+            return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)
         })
         //Applying visible property based on prefs
         for (let event of events){
             var currentTime = new Date().getTime();
-            var eventStart = Date.parse(event.startDate);
-            event.visible = false; //initially
-            event.timeframe = "";
-            event.basedOn = "";
+            var eventStart = Date.parse(event.start_date_time);
+            if(eventStart > currentTime - 60*60*24*30 && (!club || clubs[event.club_id.toString()].name == club.name)) { //Ignore events that are more than a month old
+                var eventDateKey:string = this.generateDateKey(event.start_date_time);
+                event.visible = false; //initially
+                event.timeframe = "";
+                event.basedOn = "";
 
-            //Filtering by prefs
-            if (clubs[event.clubRef].selected)
-                event.visible = true; //Set to true if club selected
-            else{
-                for(let tag of event.tags){
-                    for (let interest of interests){
-                        if (tag == interest.name && interest.selected){
-                            event.visible = true;
-                            event.basedOn = tag;
-                        }
-                    }
+                //Filtering by prefs
+                if (userData.clubPrefs[event.club_id.toString()].selected == true)
+                    event.visible = true; //Set to true if club selected
+                // else{
+                //     for(let tag of event.tags){
+                //         for (let interest of interests){
+                //             if (tag == interest.name && interest.selected){
+                //                 event.visible = true;
+                //                 event.basedOn = tag; //"Based on your interest in:..."
+                //             }    
+                //         }
+                //     }
+                // }
+
+                //Checking timeframe
+                if (eventStart < currentTime)   
+                    event.timeframe = "past";
+                else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7*1000)
+                    event.timeframe = "this week";
+                else 
+                    event.timeframe = "upcoming";
+
+                if(!result.hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
+                    var dividerVal = this.getLongDate(new Date(event.start_date_time));
+                    result[eventDateKey] = {divider:dividerVal, events:[], visible:false} 
                 }
+                if (event.visible)
+                    result[eventDateKey].visible = true; //So we know whether to show the divider
+                result[eventDateKey].events.push(event);
             }
-
-            //Checking timeframe
-            if (eventStart < currentTime) 
-                event.timeframe = "past";
-            else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7) 
-                event.timeframe = "this week";
-            else 
-                event.timeframe = "upcoming";
-
-            result.push(event); //Add to the list
         }
         return result;
     }
     
-    getClubs():Promise<any>{
+    generateDateKey(date:string):string{
+        return (new Date(date).getDate().toString() + "-" + new Date(date).getMonth().toString() + "-" + new Date(date).getFullYear().toString()).toString();
+    }
+
+    getLongDate(date:Date):string{
+        var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        var result:string = days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
+        return result;
+    }
+
+    transformClubs(clubs:any[]):Object{
+        var result:Object = {};
+        for (let club of clubs){
+            club.club_social_links = this.formatSocialLinks(club.club_social_links);
+            result[club.id.toString()] = club;
+        }
+        return result;
+    }
+
+    formatSocialLinks(socialLinks:any[]):Object{
+        var result:Object = {};
+        for (let link of socialLinks){
+            result[link.link_type] = link.url;
+        }
+        return result;
+    }
+    getEvents():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('clubs','app_clubs.php') 
+            this.localStorage.get('app-events')
             .then(res => {
-                this.clubs = res;
-                resolve(this.clubs);
+                console.log("getting events works");
+                resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('events','app_events.php',60*20) //Cache for 20 mins
+        //     .then(res => {
+        //         console.log("getting events works");
+        //         this.events = res["events"].events;
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
+    }
+    
+    getUserInfo():Promise<any>{
+        return new Promise((resolve,reject) => {
+            this.localStorage.get('userdata')
+            .then(res => {
+                resolve(JSON.parse(res));
+            }).catch(err => reject(err));
+        })
+    }
+
+    getClubs():Promise<any>{
+        return new Promise((resolve,reject) => {
+            this.localStorage.get('app-clubs') 
+            .then(res => {
+                console.log("Getting clubs works");
+                var result = JSON.parse(res);
+                resolve(this.transformClubs(result));
+            }).catch(err => reject(err));
+        })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('clubs','app_clubs.php',60*60*24) 
+        //     .then(res => {
+        //         console.log("Getting clubs works");
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
     }
     getInterests():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('interests','app_interests.php')
+            this.localStorage.get('app-interests') 
             .then(res => {
-                this.interests = res;
-                resolve(this.interests);
+                console.log("Getting interests works");
+                resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('interests','app_interests.php',60*60*24)
+        //     .then(res => {
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
     }
     getDiscountSponsors():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('discount-sponsors','app_discount.php')
+            this.localStorage.get('app-discount') 
             .then(res => {
-                this.discountSponsors = res;
-                resolve(res);
+                console.log("Getting interests works");
+                resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
+        // return new Promise((resolve,reject) => {
+        //     this.cache.getItem('discount-sponsors','discount_partners.json',60*60*24)
+        //     .then(res => {
+        //         this.discountSponsors = res;
+        //         resolve(res);
+        //     }).catch(err => reject(err));
+        // })
     }
-    
-    
-    getEventsLocally(){
-    return [ 
-        {
-            id:0,
-            title:"5 Days for the Homeless!",
-            startDate: "3/11/2017 9:00 AM",
-            endDate: "3/11/2017 4:30 PM",
-            location:"Fred Nichols Building",
-            subheader:"Come out and support us as we sleep outside for a week!",
-            club:21,   
-            banner:"assets/img/Event Banners/5DaysBanner.jpg",
-            tags: [
-               "Philanthropy", "Leadership", "Social" 
-            ],
-            desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            
-        },
-        {   id:1,
-            title:"O-Day",
-            startDate:"9/11/2016 9:00 AM",
-            endDate: "9/11/2016 4:30 PM",
-            location: "Bingeman's Conference Centre",
-            subheader:"Come out and learn what it means to be a business student!",
-            club:22,
-            banner:"assets/img/Event Banners/O-Day.jpg",
-            tags: [
-                "Networking","First Year"
-            ],
-            desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."}
-    ];
-  }
 }

@@ -5,7 +5,8 @@
 </ion-header>
 
 <ion-content>
-    <img src="{{club.app_banner}}">
+    <img src="{{club.app_banner}}" *ngIf="!event.banner">
+    <img src="{{event.banner}}" *ngIf="event.banner">
     <ion-card>
         <ion-list>
             <ion-item>

@@ -6,8 +6,10 @@ import { EventPage } from '../eventpage/event-page';
 import { Club } from '../../models/club';
 import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
+import { LocalStorage } from '../../providers/LocalStorage'; //Remember to remove after
 import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
 import { GetLongDate } from '../../pipes/GetLongDate';
+import { Observable } from 'rxjs/Rx';
 
 let disconnectSubscription = Network.onDisconnect().subscribe(() => {
   this.showAlert('Disconnected!','network was disconnected :-(');
@@ -22,19 +24,22 @@ let connectSubscription = Network.onConnect().subscribe(() => {
 })
 export class Newsfeed {
     events: Object; //Array of ClubEvent objects, defined in models/club-event
-    clubs: Club[];
+    clubs: Object;
     timeframe:string = "this week";
     feedType:string = "all";
     message:string = "All Events This Week";
-  constructor(public navCtrl: NavController, public localData: LocalData, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
-    this.localData.getCustomFeed()
-    .then(data => {
-        this.events = data;
-      });
-
-      this.localData.getClubs()
-      .then(data => {this.clubs = data;
-      });
+  constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
+    
+     Observable.forkJoin([
+        Observable.fromPromise(this.localData.getClubs()),
+        Observable.fromPromise(this.localData.getCustomFeed())
+      ])
+      .subscribe(data => {
+        this.events = data[1];
+        this.clubs = data[0];
+        console.log('events:',this.events);
+        console.log('clubs:',this.clubs);
+      })
   }
 
   showAlert(title:string,message:string) {
@@ -82,7 +87,7 @@ export class Newsfeed {
   }
   
   viewEvent(event:ClubEvent):void{
-      this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id]});
+      this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id.toString()]});
   }
   
   doRefresh(refresher){

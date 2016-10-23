@@ -30,7 +30,7 @@ export class ClubSelector {
       Observable.forkJoin([
         Observable.fromPromise(this.localData.getClubs()),
         Observable.fromPromise(this.localData.getInterests()),
-        Observable.fromPromise(this.localStorage.get('userdata'))
+        Observable.fromPromise(this.localData.getUserInfo())
       ])
       .subscribe(data => {
           this.clubs = data[0];
@@ -65,20 +65,21 @@ export class ClubSelector {
   
   //Toggle the selected property of a club
   toggle(clubID:number):void{
-      this.userData.clubPrefs[clubID-2].selected = !this.userData.clubPrefs[clubID-2].selected;
+      this.userData.clubPrefs[clubID.toString()].selected = !this.userData.clubPrefs[clubID.toString()].selected;
   }
   
   //Pushes a club page on the stack
   viewClub(club:Club):void{
-      this.navCtrl.push(ClubPage, {club:club});
+      this.navCtrl.push(ClubPage, {club:club, userData:this.userData});
   }
   
   //Cache your prefs
   savePrefs(){
       //Another way to concurrently resolve promises
       Promise.all([
-          this.localStorage.set('clubs', this.clubs),
-          this.localStorage.set('interests', this.interests)
+          this.localStorage.set('app-clubs', this.clubs),
+          this.localStorage.set('app-interests', this.interests),
+          this.localStorage.set('userdata',this.userData)
       ]).then(value => console.log("Preferences saved"));
       
       this.showToast('Preferences saved!');

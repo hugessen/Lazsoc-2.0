@@ -5,49 +5,55 @@
 </ion-header>
 
 <ion-content>
-    <img src="{{club.banner}}">
-    <button ion-button block color="primary" *ngIf="!this.club.selected" (click)="toggle()">Click to Subscribe!</button>
-    <button ion-button block color="secondary" *ngIf="this.club.selected" (click)="toggle()">Subscribed!</button>
+    <img src="{{club.app_banner}}">
+    <button ion-button block color="primary" *ngIf="!userData.clubPrefs[club.id.toString()].selected" (click)="toggle()">Click to Subscribe!</button>
+    <button ion-button block color="secondary" *ngIf="userData.clubPrefs[club.id.toString()].selected" (click)="toggle()">Subscribed!</button>
     <ion-card>
         <ion-card-header><b>{{club.name}}</b></ion-card-header>
-        <ion-card-content>{{club.desc}}</ion-card-content>
+        <ion-card-content>{{club.description}}</ion-card-content>
     </ion-card>
     <ion-list-header>Upcoming events:</ion-list-header>
-    <div *ngFor="let event of events">
-        <!--Styling the newsfeed items -->
-        <ion-card style="border-style:solid black"  *ngIf="event.club == club.id"  (click)="viewEvent(event)">
-            <img src="{{event.banner}}" ng-show="event.banner"/>
-            <ion-card-content style="padding:1.5%">
-                <ion-card-title>
-                    {{event.title}}
-                </ion-card-title>   
-                <p>{{event.tagline}}</p>
-            </ion-card-content>
-            
-            <ion-row>
-                <ion-col>
-                    <button ion-button primary clear small (click)="addToCalendar(event)">
-                        <ion-icon name="md-calendar"></ion-icon>
-                        <div>Add to Calendar</div>
-                    </button>
-                </ion-col>
-                <ion-col>
-                    <button ion-button primary clear small>
-                        <ion-icon name="logo-facebook"></ion-icon>
-                        <div>Facebook page</div>
-                    </button>
-                </ion-col>
-            </ion-row>
-        </ion-card>
+    <div *ngFor="let object of events | mapToIterable">
+        <ion-list-header>
+            {{object.val.divider}}
+        </ion-list-header>
+        <div *ngFor="let event of object.val.events">
+            <ion-card style="border-style:solid black">
+                <img [src]="event.banner" *ngIf="event.banner != null">
+                <img [src]="club.app_banner" (click)="viewEvent(event)" *ngIf="event.banner == null"/>
+                <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
+                    <ion-card-title style="font-size:18px">
+                        <b>{{event.title}}</b>
+                    </ion-card-title>   
+                    <p>{{event.start_date_time | getLongDate}} | {{event.location}}</p>
+                    <p>{{event.sub_heading}}</p>
+                </ion-card-content>
+                
+                <ion-row>
+                    <ion-col>
+                        <button ion-button primary clear small (click)="addToCalendar(event)">
+                            <ion-icon name="md-calendar"></ion-icon>
+                            <div>Add to Calendar</div>
+                        </button>
+                    </ion-col>
+                    <ion-col>
+                        <button ion-button primary clear small>
+                            <ion-icon name="logo-facebook"></ion-icon>
+                            <div>Facebook page</div>
+                        </button>
+                    </ion-col>
+                </ion-row>
+            </ion-card>
+        </div>
     </div>
     <ion-fab top right>
         <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
         <ion-fab-list side="bottom">
-            <button ion-fab color="facebook" *ngIf="club.social.facebook" (click)="club.social.facebook"><ion-icon name="logo-facebook"></ion-icon></button>
-            <button ion-fab color="twitter" *ngIf="club.social.twitter" (click)="club.social.twitter"><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab color="instagram" *ngIf="club.social.instagram" (click)="club.social.instagram"><ion-icon name="logo-instagram"></ion-icon></button>
-            <button ion-fab color="snapchat" *ngIf="club.social.snapchat" (click)="club.social.snapchat"><ion-icon name="logo-snapchat"></ion-icon></button>
-            <button ion-fab color="youtube" *ngIf="club.social.youtube" (click)="club.social.youtube"><ion-icon name="logo-youtube"></ion-icon></button>
+            <button ion-fab color="facebook" *ngIf="club.club_social_links['facebook']" (click)="club.club_social_links['facebook']"><ion-icon name="logo-facebook"></ion-icon></button>
+            <button ion-fab color="twitter" *ngIf="club.club_social_links['twitter']" (click)="club.club_social_links['twitter']"><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab color="instagram" *ngIf="club.club_social_links['instagram']" (click)="club.club_social_links['instagram']"><ion-icon name="logo-instagram"></ion-icon></button>
+            <button ion-fab color="snapchat" *ngIf="club.club_social_links['snapchat']" (click)="club.club_social_links['snapchat']"><ion-icon name="logo-snapchat"></ion-icon></button>
+            <button ion-fab color="youtube" *ngIf="club.club_social_links['youtube']" (click)="club.club_social_links['youtube']"><ion-icon name="logo-youtube"></ion-icon></button>
         </ion-fab-list>
     </ion-fab>
 </ion-content>

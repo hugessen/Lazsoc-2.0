@@ -6,8 +6,8 @@
 
 <ion-content>
     <img src="{{club.app_banner}}">
-    <button ion-button block color="primary" *ngIf="!this.club.selected" (click)="toggle()">Click to Subscribe!</button>
-    <button ion-button block color="secondary" *ngIf="this.club.selected" (click)="toggle()">Subscribed!</button>
+    <button ion-button block color="primary" *ngIf="!userData.clubPrefs[club.id.toString()].selected" (click)="toggle()">Click to Subscribe!</button>
+    <button ion-button block color="secondary" *ngIf="userData.clubPrefs[club.id.toString()].selected" (click)="toggle()">Subscribed!</button>
     <ion-card>
         <ion-card-header><b>{{club.name}}</b></ion-card-header>
         <ion-card-content>{{club.description}}</ion-card-content>
@@ -46,15 +46,14 @@
             </ion-card>
         </div>
     </div>
-    <!--
     <ion-fab top right>
         <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
         <ion-fab-list side="bottom">
-            <button ion-fab color="facebook" *ngIf="club.social.facebook" (click)="club.social.facebook"><ion-icon name="logo-facebook"></ion-icon></button>
-            <button ion-fab color="twitter" *ngIf="club.social.twitter" (click)="club.social.twitter"><ion-icon name="logo-twitter"></ion-icon></button>
-            <button ion-fab color="instagram" *ngIf="club.social.instagram" (click)="club.social.instagram"><ion-icon name="logo-instagram"></ion-icon></button>
-            <button ion-fab color="snapchat" *ngIf="club.social.snapchat" (click)="club.social.snapchat"><ion-icon name="logo-snapchat"></ion-icon></button>
-            <button ion-fab color="youtube" *ngIf="club.social.youtube" (click)="club.social.youtube"><ion-icon name="logo-youtube"></ion-icon></button>
+            <button ion-fab color="facebook" *ngIf="club.club_social_links['facebook']" (click)="club.club_social_links['facebook']"><ion-icon name="logo-facebook"></ion-icon></button>
+            <button ion-fab color="twitter" *ngIf="club.club_social_links['twitter']" (click)="club.club_social_links['twitter']"><ion-icon name="logo-twitter"></ion-icon></button>
+            <button ion-fab color="instagram" *ngIf="club.club_social_links['instagram']" (click)="club.club_social_links['instagram']"><ion-icon name="logo-instagram"></ion-icon></button>
+            <button ion-fab color="snapchat" *ngIf="club.club_social_links['snapchat']" (click)="club.club_social_links['snapchat']"><ion-icon name="logo-snapchat"></ion-icon></button>
+            <button ion-fab color="youtube" *ngIf="club.club_social_links['youtube']" (click)="club.club_social_links['youtube']"><ion-icon name="logo-youtube"></ion-icon></button>
         </ion-fab-list>
-    </ion-fab>-->
+    </ion-fab>
 </ion-content>

@@ -1,11 +1,11 @@
 <ion-header>
   <ion-navbar color="laz-purple" style="border-bottom:2px solid #F2A900">
-    <ion-title>Set Preferences</ion-title>
+    <img src="assets/img/gold_leaf.png" class="titleicon"/>
     <ion-buttons end>
         <button ion-button (click)="savePrefs()" side="right">Save</button>
     </ion-buttons>
   </ion-navbar>
-  <ion-toolbar color="laz-purple">
+  <ion-toolbar color="laz-purple" style="padding:none">
     <ion-segment style="background-color:rgba(66,44,137,1)" [(ngModel)]="view" color="laz-gold">
         <ion-segment-button value="clubs">
             Clubs
@@ -23,11 +23,14 @@
 <!-- See newsfeed.html comments for insight on how ngSwitch works -->
 <ion-content>
     <div [ngSwitch]="view"> 
-        <div class="flexbox" ion-list *ngSwitchCase="'clubs'">
-            <div class="selectionbox" *ngFor="let club of clubs">
-                <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>
-                <div>
-                    <img src="{{club.logo}}" class="unchecked-clubs-page" (click)="toggle(club)" [ngClass]="{'checked-clubs-page':club.selected, 'unchecked-clubs-page':!club.selected}">
+        <div *ngSwitchCase="'clubs'">
+            <ion-list-header>Subscribe to clubs here</ion-list-header>
+            <div class="flexbox" ion-list>
+                <div class="selectionbox" *ngFor="let club of clubs | mapToIterable">
+                    <div class="infobox" (click)="viewClub(club.val)"><img src="assets/img/info-icon.png"></div>
+                    <div>
+                        <img src="{{club.val.app_logo}}" class="unchecked-clubs-page" (click)="toggle(club.val.id)" [ngClass]="{'checked-clubs-page':userData.clubPrefs[club.val.id.toString()].selected, 'unchecked-clubs-page':!userData.clubPrefs[club.val.id.toString()].selected}">
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,7 +40,7 @@
                 <ion-list>
                     <ion-item *ngFor="let interest of interests">
                         <ion-label>{{interest.name}}</ion-label>
-                        <ion-toggle laz-purple [(ngModel)]="interest.selected"></ion-toggle>
+                        <ion-toggle laz-purple [(ngModel)]="userData.interestPrefs[interest.id].selected"></ion-toggle>
                     </ion-item>
                 </ion-list>
             </ion-card>

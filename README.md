@@ -15,17 +15,18 @@ run:
 * Modals and modal navigation for launch protocol?
 
 ##To Do:
+- [ ] Add to Calendar doesn't execute on my phone; fix
 - [ ] Implement API for interests
 - [ ] Social links in clubpage
 - [ ] Special Characters
-- [ ] Save Preferences separately from Club and Interest objects
+- [x] Save Preferences separately from Club and Interest objects
 - [x] Implement Interests in custom feed
 - [ ] ConnectivityMonitor to see if user is online
 - [x] Fix Personal Information page
 - [x] List dividers to distinguish days in newsfeed
 - [ ] RRule for recurring events
 - [x] Implement new API
-- [ ] Gold leaf logo for header bar
+- [x] Gold leaf logo for header bar
 - [ ] Notify when exported event has changed
 - [x] This Week, Next Week, Upcoming filters
 - [x] Popover to edit filters

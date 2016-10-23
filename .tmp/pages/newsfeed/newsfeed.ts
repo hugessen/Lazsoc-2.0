@@ -6,6 +6,10 @@ import { EventPage } from '../eventpage/event-page';
 import { Club } from '../../models/club';
 import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
+import { LocalStorage } from '../../providers/LocalStorage'; //Remember to remove after
+import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
+import { GetLongDate } from '../../pipes/GetLongDate';
+import { Observable } from 'rxjs/Rx';
 
 let disconnectSubscription = Network.onDisconnect().subscribe(() => {
   this.showAlert('Disconnected!','network was disconnected :-(');
@@ -16,23 +20,26 @@ let connectSubscription = Network.onConnect().subscribe(() => {
 });
 
 @Component({
-  templateUrl: 'newsfeed.html',
+  templateUrl: 'newsfeed.html'
 })
 export class Newsfeed {
-    events: ClubEvent[]; //Array of ClubEvent objects, defined in models/club-event
-    clubs: Club[];
+    events: Object; //Array of ClubEvent objects, defined in models/club-event
+    clubs: Object;
     timeframe:string = "this week";
     feedType:string = "all";
     message:string = "All Events This Week";
-  constructor(public navCtrl: NavController, public localData: LocalData, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
-    this.localData.getCustomFeed()
-    .then(data => {this.events = data;
-          console.log(this.events);
-      });
-      this.localData.getClubs()
-      .then(data => {this.clubs = data;
-        console.log(this.clubs);   
-      });
+  constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
+    
+     Observable.forkJoin([
+        Observable.fromPromise(this.localData.getClubs()),
+        Observable.fromPromise(this.localData.getCustomFeed())
+      ])
+      .subscribe(data => {
+        this.events = data[1];
+        this.clubs = data[0];
+        console.log('events:',this.events);
+        console.log('clubs:',this.clubs);
+      })
   }
 
   showAlert(title:string,message:string) {
@@ -66,9 +73,13 @@ export class Newsfeed {
       }
     });
   }
-  
+
+  isValidURL():boolean{
+    return true;
+  }
+
   addToCalendar(event:ClubEvent){
-      Calendar.createEventInteractively(event.title, event.location, event.subheader, new Date(event.startDate), new Date(event.endDate))
+      Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
       .then(
           (msg) => console.log(msg),
           (err) => console.log(err)
@@ -76,7 +87,7 @@ export class Newsfeed {
   }
   
   viewEvent(event:ClubEvent):void{
-      this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.clubRef]});
+      this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id.toString()]});
   }
   
   doRefresh(refresher){

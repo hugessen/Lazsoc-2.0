@@ -1,7 +1,11 @@
 export class UserData{
-    firstname:string;
-    lastname:string;
-    email:string;
-    studyYear:number;
-    program:string;
+    personalInfo:{
+        firstname:string;
+        lastname:string;
+        email:string;
+        studyYear:number;
+        program:string;
+    };
+    clubPrefs:{};
+    interestPrefs:{};
 }

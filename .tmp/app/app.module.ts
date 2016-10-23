@@ -11,8 +11,11 @@ import { LoginPage } from '../pages/login/login';
 import { DiscountPage } from '../pages/discount/discount';
 import { PersonalInfo } from '../pages/personalinfo/personal-info';
 import { LocalData } from '../providers/LocalData';
+import { LocalStorage } from '../providers/LocalStorage';
 import { CacheService } from '../providers/CacheService';
-import {Storage} from '@ionic/Storage';
+import { Storage } from '@ionic/Storage';
+import { MapToIterablePipe } from '../pipes/MapToIterablePipe';
+import { GetLongDate } from '../pipes/GetLongDate';
 
 
 @NgModule({
@@ -27,6 +30,8 @@ import {Storage} from '@ionic/Storage';
     LoginPage,
     DiscountPage,
     PersonalInfo,
+    MapToIterablePipe,
+    GetLongDate
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -42,8 +47,8 @@ import {Storage} from '@ionic/Storage';
     ClubPage,
     LoginPage,
     DiscountPage,
-    PersonalInfo,
+    PersonalInfo
   ],
-  providers: [LocalData,CacheService,Storage]
+  providers: [LocalData,CacheService,LocalStorage,Storage]
 })
 export class AppModule {}

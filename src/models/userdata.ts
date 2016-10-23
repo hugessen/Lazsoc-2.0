@@ -6,12 +6,6 @@ export class UserData{
         studyYear:number;
         program:string;
     };
-    clubPrefs:{
-        club_id:number;
-        selected:boolean;
-    }[];
-    interestPrefs:{
-        interest_id:number;
-        selected:boolean;
-    }[];
+    clubPrefs:{};
+    interestPrefs:{};
 }

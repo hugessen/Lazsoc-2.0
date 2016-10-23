@@ -14,7 +14,6 @@ export class EventPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.event = this.navParams.get('event'); //Event object being passed via NavParams
     this.club = this.navParams.get('club');
-    this.message = "this works";
   }
   
   addToCalendar(){
