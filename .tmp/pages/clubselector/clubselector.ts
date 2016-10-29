@@ -7,7 +7,6 @@ import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
 import { UserData } from '../../models/userdata';
 import { Interest } from '../../models/interest';
-import { PersonalInfo } from '../personalinfo/personalinfo';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
@@ -43,12 +42,12 @@ export class ClubSelector {
                     clubPrefs:[],
                     interestPrefs:[]
                 };
-              for(let club of this.clubs){
-                  this.userData.clubPrefs.push({club_id:club.id, selected:false});
-              }
-              for (let interest of this.interests){
-                  this.userData.interestPrefs.push({interest_id:interest.id, selected:false})
-              }
+            for(let club of this.clubs){
+                this.userData.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
+            }   
+            for (let interest of this.interests){
+                this.userData.clubPrefs[interest.id.toString()] = {interest_id:interest.id, selected:false}
+            }
           }
       })
   }

@@ -250,7 +250,7 @@ class _View_ClubSelector0 extends import1.AppView<import3.ClubSelector> {
     this._appEl_13.initComponent(this._Toolbar_13_4,[],compView_13);
     this._text_14 = this.renderer.createText((null as any),'\n    ',(null as any));
     this._el_15 = this.renderer.createElement((null as any),'ion-segment',(null as any));
-    this.renderer.setElementAttribute(this._el_15,'color','laz-gold');
+    this.renderer.setElementAttribute(this._el_15,'color','pure-white');
     this.renderer.setElementAttribute(this._el_15,'style','background-color:rgba(66,44,137,1)');
     this._NgModel_15_3 = new import19.NgModel((null as any),(null as any),(null as any),(null as any));
     this._NgControl_15_4 = this._NgModel_15_3;
@@ -475,7 +475,7 @@ class _View_ClubSelector0 extends import1.AppView<import3.ClubSelector> {
       this._expr_7 = currVal_7;
     }
     if ((changes !== (null as any))) { this._NgModel_15_3.ngOnChanges(changes); }
-    const currVal_14:any = 'laz-gold';
+    const currVal_14:any = 'pure-white';
     if (import4.checkBinding(throwOnChange,this._expr_14,currVal_14)) {
       this._Segment_15_6.color = currVal_14;
       this._expr_14 = currVal_14;

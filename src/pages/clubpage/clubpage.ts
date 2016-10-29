@@ -5,7 +5,6 @@ import { Club } from '../../models/club';
 import { UserData } from '../../models/UserData';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
-import { Observable } from 'rxjs/Rx';
 import { MapToIterable } from '../../pipes/MapToIterable';
 import { GetLongDate } from '../../pipes/GetLongDate';
 

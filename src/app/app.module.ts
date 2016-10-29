@@ -1,6 +1,10 @@
+//Ionic Components
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
+import { Storage } from '@ionic/Storage';
+
+//Pages
 import { TabsPage } from '../pages/tabs/tabs';
 import { Newsfeed } from '../pages/newsfeed/newsfeed';
 import { PopoverPage } from '../pages/popover/popover';
@@ -10,10 +14,14 @@ import { ClubPage } from '../pages/clubpage/clubpage';
 import { LoginPage } from '../pages/login/login';
 import { DiscountPage } from '../pages/discount/discount';
 import { PersonalInfo } from '../pages/personalinfo/personal-info';
+
+//Providers
 import { LocalData } from '../providers/LocalData';
 import { LocalStorage } from '../providers/LocalStorage';
 import { CacheService } from '../providers/CacheService';
-import { Storage } from '@ionic/Storage';
+//import { NetworkService } from '../providers/NetworkService';
+
+//Pipes
 import { MapToIterablePipe } from '../pipes/MapToIterablePipe';
 import { GetLongDate } from '../pipes/GetLongDate';
 

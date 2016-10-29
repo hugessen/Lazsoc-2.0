@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { CacheService } from '../providers/CacheService';
 import { LocalStorage } from '../providers/LocalStorage';
 import { Observable } from 'rxjs/Rx';
+import { RRule } from 'rrule/lib/rrule';
+import * as nlpjs from 'rrule/lib/nlp';
+
 
 //Custom classes
 import { ClubEvent } from '../models/club-event';
@@ -15,7 +18,7 @@ export class LocalData {
     public discountSponsors: any;
     private userData:UserData;
     public cache: CacheService;
-    
+
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
     }
@@ -34,7 +37,6 @@ export class LocalData {
             }
         })
     }
-    
     //Remember to fix this to pull from API after
     getCustomFeed(club?:Club):Promise<any>{
         return new Promise((resolve,reject) => {
@@ -73,7 +75,6 @@ export class LocalData {
     }
     
     doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
-        console.log("userdata for doCustomFeed:",userData);
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -152,20 +153,12 @@ export class LocalData {
     }
     getEvents():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.localStorage.get('app-events')
+            this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
             .then(res => {
                 console.log("getting events works");
-                resolve(JSON.parse(res));
+                resolve(res.cacheVal["events"]);
             }).catch(err => reject(err));
         })
-        // return new Promise((resolve,reject) => {
-        //     this.cache.getItem('events','app_events.php',60*20) //Cache for 20 mins
-        //     .then(res => {
-        //         console.log("getting events works");
-        //         this.events = res["events"].events;
-        //         resolve(res);
-        //     }).catch(err => reject(err));
-        // })
     }
     
     getUserInfo():Promise<any>{
@@ -179,20 +172,13 @@ export class LocalData {
 
     getClubs():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.localStorage.get('app-clubs') 
+            this.cache.getItem('clubs','clubs.json',60*60*24)
+
             .then(res => {
                 console.log("Getting clubs works");
-                var result = JSON.parse(res);
-                resolve(this.transformClubs(result));
+                resolve(this.transformClubs(res.cacheVal));
             }).catch(err => reject(err));
         })
-        // return new Promise((resolve,reject) => {
-        //     this.cache.getItem('clubs','app_clubs.php',60*60*24) 
-        //     .then(res => {
-        //         console.log("Getting clubs works");
-        //         resolve(res);
-        //     }).catch(err => reject(err));
-        // })
     }
     getInterests():Promise<any>{
         return new Promise((resolve,reject) => {
@@ -211,18 +197,11 @@ export class LocalData {
     }
     getDiscountSponsors():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.localStorage.get('app-discount') 
+            this.cache.getItem('discount-sponsors','discount_partners.json',60*60*24)
             .then(res => {
-                console.log("Getting interests works");
-                resolve(JSON.parse(res));
+                this.discountSponsors = res;
+                resolve(res);
             }).catch(err => reject(err));
         })
-        // return new Promise((resolve,reject) => {
-        //     this.cache.getItem('discount-sponsors','discount_partners.json',60*60*24)
-        //     .then(res => {
-        //         this.discountSponsors = res;
-        //         resolve(res);
-        //     }).catch(err => reject(err));
-        // })
     }
 }

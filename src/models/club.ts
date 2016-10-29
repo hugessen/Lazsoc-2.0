@@ -5,9 +5,10 @@ export class Club{
     slug:string;
     desc: string;
     logo: string;
-    banner: string;
+    app_banner: string;
+    description:string
     //email: string;
     //website: string;
     tags: string[];
-    social: any;
+    club_social_links: any;
 }

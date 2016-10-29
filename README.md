@@ -12,12 +12,14 @@ run:
 
 ##Notes
 * Clubs need to only supply a banner if it is unique
+* App sometimes crashes on newsfeed, because event returns before its club, causing it to return a 404 on the banner
 * Modals and modal navigation for launch protocol?
 
 ##To Do:
+- [ ] Images for discount program
 - [ ] Add to Calendar doesn't execute on my phone; fix
 - [ ] Implement API for interests
-- [ ] Social links in clubpage
+- [ ] Social links in clubpage (confirm they work)
 - [ ] Special Characters
 - [x] Save Preferences separately from Club and Interest objects
 - [x] Implement Interests in custom feed

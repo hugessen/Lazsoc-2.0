@@ -1,0 +1,10 @@
+{
+    "dependencies": {},
+    "devDependencies": {},
+    "globalDevDependencies": {
+        "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654"
+    },
+    "globalDependencies": {
+        "rrule": "registry:dt/rrule#2.1.0+20161011181729"
+    }
+}

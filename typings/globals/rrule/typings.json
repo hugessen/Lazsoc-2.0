@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/6e297d4222d9072be91ec1fcb6c30df8aa9fd874/rrule/rrule.d.ts",
+    "raw": "registry:dt/rrule#2.1.0+20161011181729",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/6e297d4222d9072be91ec1fcb6c30df8aa9fd874/rrule/rrule.d.ts"
+  }
+}

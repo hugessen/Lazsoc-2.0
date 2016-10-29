@@ -977,7 +977,7 @@ class _View_Newsfeed4 extends import1.AppView<any> {
       this._NgIf_2_6.ngIf = currVal_0;
       this._expr_0 = currVal_0;
     }
-    const currVal_1:any = ((this.parent.context.$implicit.banner == (null as any)) || !this.parent.parent.parent.context.isValidURL(this.parent.context.$implicit.banner));
+    const currVal_1:any = (this.parent.context.$implicit.banner == (null as any));
     if (import4.checkBinding(throwOnChange,this._expr_1,currVal_1)) {
       this._NgIf_4_6.ngIf = currVal_1;
       this._expr_1 = currVal_1;

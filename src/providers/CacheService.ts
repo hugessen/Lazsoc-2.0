@@ -3,10 +3,11 @@ import {Storage} from '@ionic/Storage';
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/map';
+//import { NetworkService } from '../providers/NetworkService';
 
 
 const CACHE_TTL = 60*60*24;
-const API_URL = 'http://app.lazsoc.ca/';
+const API_URL = 'http://moria.lazsoc.ca/v2/api/';
 
 @Injectable()
 export class CacheService {
@@ -36,7 +37,7 @@ export class CacheService {
    * @param {number=} ttl - TTL in seconds (-1 to invalidate immediately)
    * @returns {Promise<{}>}
    */
-  public getItem(name: string, location: string, ttl?: number): Promise<{fetchType:string, cacheVal:{}}> {
+  public getItem(name: string, location: string, ttl?: number): Promise<{fetchType:string, cacheVal:any[]}> {
 
     // if ttl is < 0, delete cached item and retrieve a fresh one
     if (ttl < 0) {
@@ -54,10 +55,10 @@ export class CacheService {
           if (this.itemExpired(data)) {
             // cache IS expired
             console.log('expired cache');
-            this.load(location)
-              .then(res => this.setItem(name, res, ttl).then(() => resolve({fetchType:'api',cacheVal:res})))
-              .catch(err => reject(err));
-          } else {
+              this.load(location)
+                .then(res => this.setItem(name, res, ttl).then(() => resolve({fetchType:'api',cacheVal:res})))
+                .catch(err => reject(err));
+            } else {
             // cache is NOT expired
             console.log('data resolved');
             resolve({fetchType:'cache',cacheVal:data.data});
@@ -66,11 +67,10 @@ export class CacheService {
         } else {
           // not in the cache (key doesn't exist)
           console.log('pulling from api');
-          this.load(location)
-            .then(res => this.setItem(name, res, ttl).then(() => resolve({fetchType:'api',cacheVal:res})))
-            .catch(err => reject(err));
-        }
-
+            this.load(location)
+              .then(res => this.setItem(name, res, ttl).then(() => resolve({fetchType:'api',cacheVal:res})))
+              .catch(err => reject(err));
+          }
       }).catch(err => reject(err));
 
     });

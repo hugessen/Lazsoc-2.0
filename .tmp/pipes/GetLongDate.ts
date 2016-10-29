@@ -4,7 +4,7 @@ import {Pipe} from '@angular/core';
   name: 'getLongDate'
 })
 export class GetLongDate {
-  transform(dateStr:string, args) {
+  transform(dateStr:string) {
     var date = new Date(dateStr);
     var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];

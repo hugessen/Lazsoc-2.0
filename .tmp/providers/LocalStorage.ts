@@ -30,7 +30,7 @@ export class LocalStorage {
     // this.set('userdata', this.userData);
   }
  
-  get(key:string):Promise<{}> {
+  get(key:string):Promise<string> {
     return new Promise((resolve,reject) => {
       this.storage.get(key).then(result => {
         if(typeof result !== 'undefined'){

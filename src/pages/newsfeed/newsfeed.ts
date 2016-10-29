@@ -3,21 +3,12 @@ import {NavController, AlertController, PopoverController,ViewController} from '
 import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
-import { Club } from '../../models/club';
 import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
 import { LocalStorage } from '../../providers/LocalStorage'; //Remember to remove after
 import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
 import { GetLongDate } from '../../pipes/GetLongDate';
 import { Observable } from 'rxjs/Rx';
-
-let disconnectSubscription = Network.onDisconnect().subscribe(() => {
-  this.showAlert('Disconnected!','network was disconnected :-(');
-});
-
-let connectSubscription = Network.onConnect().subscribe(() => {
-  this.showAlert('network connected!','');
-});
 
 @Component({
   templateUrl: 'newsfeed.html'
@@ -29,7 +20,6 @@ export class Newsfeed {
     feedType:string = "all";
     message:string = "All Events This Week";
   constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
-    
      Observable.forkJoin([
         Observable.fromPromise(this.localData.getClubs()),
         Observable.fromPromise(this.localData.getCustomFeed())
@@ -86,7 +76,7 @@ export class Newsfeed {
       );
   }
   
-  viewEvent(event:ClubEvent):void{
+  viewEvent(event:any):void{
       this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id.toString()]});
   }
   
