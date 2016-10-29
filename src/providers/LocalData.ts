@@ -49,6 +49,7 @@ export class LocalData {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
                 var interests = data[2];
+                console.log(clubs);
                 //Applies the visible property to events based on Clubs and Interests
                 if(data[3] != null) 
                     this.userData = data[3];
@@ -62,7 +63,7 @@ export class LocalData {
                         this.userData.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
                     }   
                     for (let interest of interests){
-                        this.userData.clubPrefs[interest.id.toString()] = {interest_id:interest.id, selected:false}
+                        this.userData.interestPrefs[interest.name] = {interest_id:interest.id, selected:false}
                     }
                 }
                 if(club)
@@ -75,6 +76,7 @@ export class LocalData {
     }
     
     doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
+        console.log(userData);
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -96,7 +98,7 @@ export class LocalData {
                 // else{
                 //     for(let tag of event.tags){
                 //         for (let interest of interests){
-                //             if (tag == interest.name && interest.selected){
+                //             if (tag == interest.name && interest[tag]){
                 //                 event.visible = true;
                 //                 event.basedOn = tag; //"Based on your interest in:..."
                 //             }    
@@ -170,13 +172,16 @@ export class LocalData {
         })
     }
 
-    getClubs():Promise<any>{
+    getClubs(doTransform?:boolean):Promise<any>{
         return new Promise((resolve,reject) => {
             this.cache.getItem('clubs','clubs.json',60*60*24)
 
             .then(res => {
                 console.log("Getting clubs works");
-                resolve(this.transformClubs(res.cacheVal));
+                if(doTransform)
+                    resolve(this.transformClubs(res.cacheVal));
+                else
+                    resolve(res.cacheVal);
             }).catch(err => reject(err));
         })
     }

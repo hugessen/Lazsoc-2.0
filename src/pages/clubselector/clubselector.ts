@@ -27,7 +27,7 @@ export class ClubSelector {
   //Concurrently pulls Clubs and Interests and assigns them
   init(){
       Observable.forkJoin([
-        Observable.fromPromise(this.localData.getClubs()),
+        Observable.fromPromise(this.localData.getClubs(true)),
         Observable.fromPromise(this.localData.getInterests()),
         Observable.fromPromise(this.localData.getUserInfo())
       ])
