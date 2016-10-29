@@ -81,7 +81,6 @@ export class Newsfeed {
   }
   
   doRefresh(refresher){
-      this.showAlert('Network Connection',Network.connection.toString());
       if (Network.connection.toString() != 'none'){
         this.localData.getCustomFeed()
         .then(data => {
