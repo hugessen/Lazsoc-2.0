@@ -1,0 +1,19 @@
+<img src="assets/img/LazSoc.png" style="width: 40%; margin-left: auto; margin-right: auto; display: block;">
+<div *ngIf="!hasInfo">
+    <ion-item-divider>Looks like we don't have your info yet. Press below to fix that :)</ion-item-divider>
+</div>
+<div *ngIf="hasInfo">
+    <ion-list>
+        <ion-item>
+            <ion-icon item-left name="contact"></ion-icon>{{userData.personalInfo.firstname}} {{userData.personalInfo.lastname}}
+        </ion-item>
+        <ion-item>
+            <ion-icon item-left name="ios-mail"></ion-icon> {{userData.personalInfo.email}}
+        </ion-item>
+        <ion-item>
+            <ion-icon item-left name="md-school"></ion-icon>{{userData.personalInfo.program}}, year {{userData.personalInfo.studyYear}}
+        </ion-item>
+    </ion-list>
+</div>
+<button ion-button block (click)="openLogin()">Edit Personal Information</button>
+

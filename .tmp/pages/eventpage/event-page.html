@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar color="laz-purple">
+    <ion-title>{{event.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <img src="{{club.app_banner}}" *ngIf="!event.banner">
+    <img src="{{event.banner}}" *ngIf="event.banner">
+    <ion-card>
+        <ion-list>
+            <ion-item>
+                <ion-icon name="md-time"></ion-icon>
+                {{event.start_date_time | getLongDate}} - {{getTime(event.end_date_time)}}
+            </ion-item>
+            <ion-item>
+                <ion-icon name="md-pin"></ion-icon>
+                {{event.location}}
+            </ion-item>
+        </ion-list>
+    </ion-card>
+    <ion-card>
+        <ion-card-header><b>{{event.title}}</b></ion-card-header>
+        <ion-card-content>{{event.event_description}}</ion-card-content>
+    </ion-card>
+    <ion-fab bottom right>
+        <button ion-fab color="secondary" (click)="addToCalendar()"><ion-icon name="md-calendar"></ion-icon></button>
+    </ion-fab>
+</ion-content>
