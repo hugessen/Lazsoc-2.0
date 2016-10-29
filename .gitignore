@@ -1,8 +1,6 @@
 # Specifies files to intentionally ignore when using Git
 # http://git-scm.com/docs/gitignore
 
-.tmp
-bower_components/
 node_modules/
 www/build/
 platforms/
