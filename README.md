@@ -16,7 +16,8 @@ run:
 * Modals and modal navigation for launch protocol?
 
 ##To Do:
-- [ ] Images for discount program
+- [ ] Remove WLUHRN from clubs
+- [x] Images for discount program
 - [ ] Add to Calendar doesn't execute on my phone; fix
 - [ ] Implement API for interests
 - [ ] Social links in clubpage (confirm they work)

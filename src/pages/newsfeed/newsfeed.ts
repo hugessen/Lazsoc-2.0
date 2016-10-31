@@ -86,7 +86,9 @@ export class Newsfeed {
         .then(data => {
             this.events = data;
             refresher.complete();
-        });
+        }).catch(err => {
+          this.showAlert("Promise didn't return",err);
+        })
      }
     else {
         this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")

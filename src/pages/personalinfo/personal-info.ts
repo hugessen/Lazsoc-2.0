@@ -24,6 +24,7 @@ export class PersonalInfo {
   
   openLogin(){
     let modal = this.modalCtrl.create(LoginPage,{userData:this.userData});// everything in the {} are my params to be passed to the Modal
+    console.log("Modal Dismissed");
     modal.onDidDismiss(data => { //Retrieving the params passed down from the Modal's dismiss() method
         this.userData.personalInfo = {
             firstname:data.firstname,
@@ -32,6 +33,7 @@ export class PersonalInfo {
             studyYear:data.studyYear,
             program:data.program
         };
+        console.log(this.userData);
         this.localStorage.set('userdata',this.userData);
         this.hasInfo = true; //So I know whether we have the user's info
     })

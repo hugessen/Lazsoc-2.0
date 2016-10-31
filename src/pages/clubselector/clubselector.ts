@@ -27,7 +27,7 @@ export class ClubSelector {
   //Concurrently pulls Clubs and Interests and assigns them
   init(){
       Observable.forkJoin([
-        Observable.fromPromise(this.localData.getClubs(true)),
+        Observable.fromPromise(this.localData.getClubs()),
         Observable.fromPromise(this.localData.getInterests()),
         Observable.fromPromise(this.localData.getUserInfo())
       ])
@@ -36,19 +36,6 @@ export class ClubSelector {
           this.interests = data[1];
           if(data[2] != null)
             this.userData = data[2];
-          else {
-            this.userData = {
-                    personalInfo: {firstname:"",lastname:"",email:"",studyYear:0, program:""},
-                    clubPrefs:[],
-                    interestPrefs:[]
-                };
-            for(let club of this.clubs){
-                this.userData.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
-            }   
-            for (let interest of this.interests){
-                this.userData.clubPrefs[interest.id.toString()] = {interest_id:interest.id, selected:false}
-            }
-          }
       })
   }
   
@@ -76,8 +63,6 @@ export class ClubSelector {
   savePrefs(){
       //Another way to concurrently resolve promises
       Promise.all([
-          this.localStorage.set('app-clubs', this.clubs),
-          this.localStorage.set('app-interests', this.interests),
           this.localStorage.set('userdata',this.userData)
       ]).then(value => console.log("Preferences saved"));
       

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Storage} from '@ionic/Storage';
 import { UserData } from '../models/UserData';
+
 import 'rxjs/add/operator/map';
  
 @Injectable()
@@ -11,10 +12,10 @@ export class LocalStorage {
   constructor(private storage:Storage) {  
     this.init();
     this.userData = null;
-    // this.set('app-interests',this.interests);
+    // this.storage.clear();
+    this.set('app-interests',this.interests);
     // this.set('app-discount',this.discount_partners);
-    //this.set('userdata', this.userData);
-    this.storage.remove('userdata');
+    // this.storage.remove('userdata');
   }
  
   get(key:string):Promise<string> {
