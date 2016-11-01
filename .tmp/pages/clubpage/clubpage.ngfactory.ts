@@ -203,7 +203,6 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
   /*private*/ _expr_16:any;
   /*private*/ _expr_17:any;
   /*private*/ _expr_18:any;
-  /*private*/ _expr_19:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
     super(_View_ClubPage0,renderType_ClubPage,import6.ViewType.COMPONENT,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
   }
@@ -325,7 +324,7 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
     this._text_36 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._el_37 = this.renderer.createElement((null as any),'ion-fab-list',(null as any));
     this.renderer.setElementAttribute(this._el_37,'side','bottom');
-    this._FabList_37_3 = new import23.FabList();
+    this._FabList_37_3 = new import23.FabList(new import28.ElementRef(this._el_37),this.renderer);
     this._query_FabButton_37_0 = new import21.QueryList<any>();
     this._text_38 = this.renderer.createText(this._el_37,'\n            ',(null as any));
     this._anchor_39 = this.renderer.createTemplateAnchor(this._el_37,(null as any));
@@ -354,6 +353,8 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
     this._NgIf_47_6 = new import17.NgIf(this._appEl_47.vcRef,this._TemplateRef_47_5);
     this._text_48 = this.renderer.createText(this._el_37,'\n        ',(null as any));
     this._text_49 = this.renderer.createText((null as any),'\n    ',(null as any));
+    this._query_FabButton_32_0.reset([this._FabButton_34_4]);
+    this._FabContainer_32_4._mainButton = this._query_FabButton_32_0.first;
       compView_32.create(this._FabContainer_32_4,[[].concat([
         this._text_33,
         this._el_34,
@@ -407,7 +408,6 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
     this._expr_16 = import7.UNINITIALIZED;
     this._expr_17 = import7.UNINITIALIZED;
     this._expr_18 = import7.UNINITIALIZED;
-    this._expr_19 = import7.UNINITIALIZED;
     this.init([],[
       this._el_0,
       this._text_1,
@@ -540,30 +540,30 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
       this._Icon_35_3.name = currVal_12;
       this._expr_12 = currVal_12;
     }
-    const currVal_15:any = this.context.club.club_social_links['facebook'];
+    const currVal_14:any = this.context.club.club_social_links['facebook'];
+    if (import4.checkBinding(throwOnChange,this._expr_14,currVal_14)) {
+      this._NgIf_39_6.ngIf = currVal_14;
+      this._expr_14 = currVal_14;
+    }
+    const currVal_15:any = this.context.club.club_social_links['twitter'];
     if (import4.checkBinding(throwOnChange,this._expr_15,currVal_15)) {
-      this._NgIf_39_6.ngIf = currVal_15;
+      this._NgIf_41_6.ngIf = currVal_15;
       this._expr_15 = currVal_15;
     }
-    const currVal_16:any = this.context.club.club_social_links['twitter'];
+    const currVal_16:any = this.context.club.club_social_links['instagram'];
     if (import4.checkBinding(throwOnChange,this._expr_16,currVal_16)) {
-      this._NgIf_41_6.ngIf = currVal_16;
+      this._NgIf_43_6.ngIf = currVal_16;
       this._expr_16 = currVal_16;
     }
-    const currVal_17:any = this.context.club.club_social_links['instagram'];
+    const currVal_17:any = this.context.club.club_social_links['snapchat'];
     if (import4.checkBinding(throwOnChange,this._expr_17,currVal_17)) {
-      this._NgIf_43_6.ngIf = currVal_17;
+      this._NgIf_45_6.ngIf = currVal_17;
       this._expr_17 = currVal_17;
     }
-    const currVal_18:any = this.context.club.club_social_links['snapchat'];
+    const currVal_18:any = this.context.club.club_social_links['youtube'];
     if (import4.checkBinding(throwOnChange,this._expr_18,currVal_18)) {
-      this._NgIf_45_6.ngIf = currVal_18;
+      this._NgIf_47_6.ngIf = currVal_18;
       this._expr_18 = currVal_18;
-    }
-    const currVal_19:any = this.context.club.club_social_links['youtube'];
-    if (import4.checkBinding(throwOnChange,this._expr_19,currVal_19)) {
-      this._NgIf_47_6.ngIf = currVal_19;
-      this._expr_19 = currVal_19;
     }
     this.detectContentChildrenChanges(throwOnChange);
     if (!throwOnChange) {
@@ -598,28 +598,6 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
         );
         this._FabList_37_3._setbuttons = this._query_FabButton_37_0;
         this._query_FabButton_37_0.notifyOnChanges();
-      }
-      if (this._query_FabButton_32_0.dirty) {
-        this._query_FabButton_32_0.reset([
-          this._FabButton_34_4,
-          this._appEl_39.mapNestedViews(_View_ClubPage7,(nestedView:_View_ClubPage7):any => {
-            return [nestedView._FabButton_0_4];
-          }),
-          this._appEl_41.mapNestedViews(_View_ClubPage8,(nestedView:_View_ClubPage8):any => {
-            return [nestedView._FabButton_0_4];
-          }),
-          this._appEl_43.mapNestedViews(_View_ClubPage9,(nestedView:_View_ClubPage9):any => {
-            return [nestedView._FabButton_0_4];
-          }),
-          this._appEl_45.mapNestedViews(_View_ClubPage10,(nestedView:_View_ClubPage10):any => {
-            return [nestedView._FabButton_0_4];
-          }),
-          this._appEl_47.mapNestedViews(_View_ClubPage11,(nestedView:_View_ClubPage11):any => {
-            return [nestedView._FabButton_0_4];
-          })
-        ]
-        );
-        this._FabContainer_32_4._mainButton = this._query_FabButton_32_0.first;
       }
       if (this._query_FabList_32_1.dirty) {
         this._query_FabList_32_1.reset([this._FabList_37_3]);
@@ -669,11 +647,6 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
       this.renderer.setElementClass(this._el_35,'hide',currVal_13);
       this._expr_13 = currVal_13;
     }
-    const currVal_14:any = this._FabList_37_3._visible;
-    if (import4.checkBinding(throwOnChange,this._expr_14,currVal_14)) {
-      this.renderer.setElementClass(this._el_37,'fab-list-active',currVal_14);
-      this._expr_14 = currVal_14;
-    }
     this.detectViewChildrenChanges(throwOnChange);
     if (!throwOnChange) { if ((this.numberOfChecks === 0)) { this._Navbar_2_4.ngAfterViewInit(); } }
   }
@@ -684,7 +657,7 @@ class _View_ClubPage0 extends import1.AppView<import3.ClubPage> {
   }
 }
 export function viewFactory_ClubPage0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.ClubPage> {
-  if ((renderType_ClubPage === (null as any))) { (renderType_ClubPage = viewUtils.createRenderComponentType('',0,import11.ViewEncapsulation.None,styles_ClubPage,{})); }
+  if ((renderType_ClubPage === (null as any))) { (renderType_ClubPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/clubpage/clubpage.html',0,import11.ViewEncapsulation.None,styles_ClubPage,{})); }
   return new _View_ClubPage0(viewUtils,parentInjector,declarationEl);
 }
 class _View_ClubPage1 extends import1.AppView<any> {
@@ -1428,7 +1401,6 @@ class _View_ClubPage7 extends import1.AppView<any> {
   }
   dirtyParentQueriesInternal():void {
     (<_View_ClubPage0>this.parent)._query_FabButton_37_0.setDirty();
-    (<_View_ClubPage0>this.parent)._query_FabButton_32_0.setDirty();
   }
   destroyInternal():void {
     this._Icon_1_3.ngOnDestroy();
@@ -1508,7 +1480,6 @@ class _View_ClubPage8 extends import1.AppView<any> {
   }
   dirtyParentQueriesInternal():void {
     (<_View_ClubPage0>this.parent)._query_FabButton_37_0.setDirty();
-    (<_View_ClubPage0>this.parent)._query_FabButton_32_0.setDirty();
   }
   destroyInternal():void {
     this._Icon_1_3.ngOnDestroy();
@@ -1588,7 +1559,6 @@ class _View_ClubPage9 extends import1.AppView<any> {
   }
   dirtyParentQueriesInternal():void {
     (<_View_ClubPage0>this.parent)._query_FabButton_37_0.setDirty();
-    (<_View_ClubPage0>this.parent)._query_FabButton_32_0.setDirty();
   }
   destroyInternal():void {
     this._Icon_1_3.ngOnDestroy();
@@ -1668,7 +1638,6 @@ class _View_ClubPage10 extends import1.AppView<any> {
   }
   dirtyParentQueriesInternal():void {
     (<_View_ClubPage0>this.parent)._query_FabButton_37_0.setDirty();
-    (<_View_ClubPage0>this.parent)._query_FabButton_32_0.setDirty();
   }
   destroyInternal():void {
     this._Icon_1_3.ngOnDestroy();
@@ -1748,7 +1717,6 @@ class _View_ClubPage11 extends import1.AppView<any> {
   }
   dirtyParentQueriesInternal():void {
     (<_View_ClubPage0>this.parent)._query_FabButton_37_0.setDirty();
-    (<_View_ClubPage0>this.parent)._query_FabButton_32_0.setDirty();
   }
   destroyInternal():void {
     this._Icon_1_3.ngOnDestroy();

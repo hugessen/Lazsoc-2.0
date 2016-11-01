@@ -11,9 +11,9 @@ export var DiscountPage = (function () {
     }
     DiscountPage.prototype.getSponsors = function () {
         var _this = this;
-        this.localStorage.get('app-discount')
+        this.localData.getDiscountSponsors()
             .then(function (data) {
-            _this.allSponsors = JSON.parse(data);
+            _this.allSponsors = data.cacheVal;
             _this.sponsorsRows = _this.sponsorsToRows(_this.allSponsors, 2);
         });
     };

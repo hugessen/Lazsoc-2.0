@@ -480,7 +480,7 @@ class _View_Newsfeed0 extends import1.AppView<import3.Newsfeed> {
   }
 }
 export function viewFactory_Newsfeed0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.Newsfeed> {
-  if ((renderType_Newsfeed === (null as any))) { (renderType_Newsfeed = viewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.None,styles_Newsfeed,{})); }
+  if ((renderType_Newsfeed === (null as any))) { (renderType_Newsfeed = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/newsfeed/newsfeed.html',0,import13.ViewEncapsulation.None,styles_Newsfeed,{})); }
   return new _View_Newsfeed0(viewUtils,parentInjector,declarationEl);
 }
 class _View_Newsfeed1 extends import1.AppView<any> {

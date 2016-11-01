@@ -117,7 +117,7 @@ var _View_MyApp0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_MyApp0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_MyApp === null)) {
-        (renderType_MyApp = viewUtils.createRenderComponentType('', 0, import9.ViewEncapsulation.None, styles_MyApp, {}));
+        (renderType_MyApp = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/app/app.html', 0, import9.ViewEncapsulation.None, styles_MyApp, {}));
     }
     return new _View_MyApp0(viewUtils, parentInjector, declarationEl);
 }

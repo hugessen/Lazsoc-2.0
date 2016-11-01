@@ -651,7 +651,7 @@ var _View_PopoverPage0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_PopoverPage0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_PopoverPage === null)) {
-        (renderType_PopoverPage = viewUtils.createRenderComponentType('', 0, import10.ViewEncapsulation.None, styles_PopoverPage, {}));
+        (renderType_PopoverPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/popover/popover.html', 0, import10.ViewEncapsulation.None, styles_PopoverPage, {}));
     }
     return new _View_PopoverPage0(viewUtils, parentInjector, declarationEl);
 }

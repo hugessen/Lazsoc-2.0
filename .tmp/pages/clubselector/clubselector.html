@@ -40,7 +40,7 @@
                 <ion-list>
                     <ion-item *ngFor="let interest of interests">
                         <ion-label>{{interest.name}}</ion-label>
-                        <ion-toggle laz-purple [(ngModel)]="userData.interestPrefs[interest.id].selected"></ion-toggle>
+                        <ion-toggle laz-purple [(ngModel)]="userData.interestPrefs[interest.name].selected"></ion-toggle>
                     </ion-item>
                 </ion-list>
             </ion-card>

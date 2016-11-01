@@ -280,8 +280,11 @@ class _View_TabsPage0 extends import1.AppView<import3.TabsPage> {
     this.detectViewChildrenChanges(throwOnChange);
     if (!throwOnChange) { if ((this.numberOfChecks === 0)) { this._Tabs_0_4.ngAfterViewInit(); } }
   }
+  destroyInternal():void {
+    this._Tabs_0_4.ngOnDestroy();
+  }
 }
 export function viewFactory_TabsPage0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.TabsPage> {
-  if ((renderType_TabsPage === (null as any))) { (renderType_TabsPage = viewUtils.createRenderComponentType('',0,import8.ViewEncapsulation.None,styles_TabsPage,{})); }
+  if ((renderType_TabsPage === (null as any))) { (renderType_TabsPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/tabs/tabs.html',0,import8.ViewEncapsulation.None,styles_TabsPage,{})); }
   return new _View_TabsPage0(viewUtils,parentInjector,declarationEl);
 }

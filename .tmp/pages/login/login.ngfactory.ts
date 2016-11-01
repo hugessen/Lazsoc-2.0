@@ -15,7 +15,7 @@ import * as import7 from '@angular/core/src/change_detection/change_detection';
 import * as import8 from 'ionic-angular/navigation/nav-params';
 import * as import9 from 'ionic-angular/navigation/view-controller';
 import * as import10 from 'ionic-angular/components/toast/toast';
-import * as import11 from '../../providers/LocalData';
+import * as import11 from '../../providers/LocalStorage';
 import * as import12 from '@angular/core/src/metadata/view';
 import * as import13 from '@angular/core/src/linker/component_factory';
 import * as import14 from 'ionic-angular/components/toolbar/toolbar';
@@ -52,10 +52,11 @@ import * as import44 from '../../node_modules/ionic-angular/components/select/se
 import * as import45 from '@angular/core/src/linker/template_ref';
 import * as import46 from '@angular/core/src/change_detection/differs/iterable_differs';
 import * as import47 from '../../node_modules/ionic-angular/components/toggle/toggle.ngfactory';
-import * as import48 from '../../node_modules/ionic-angular/components/button/button.ngfactory';
-import * as import49 from '@angular/forms/src/directives/ng_control';
-import * as import50 from '@angular/forms/src/directives/control_value_accessor';
-import * as import51 from 'ionic-angular/components/option/option';
+import * as import48 from 'ionic-angular/util/haptic';
+import * as import49 from '../../node_modules/ionic-angular/components/button/button.ngfactory';
+import * as import50 from '@angular/forms/src/directives/ng_control';
+import * as import51 from '@angular/forms/src/directives/control_value_accessor';
+import * as import52 from 'ionic-angular/components/option/option';
 var renderType_LoginPage_Host:import0.RenderComponentType = (null as any);
 class _View_LoginPage_Host0 extends import1.AppView<any> {
   _el_0:any;
@@ -68,7 +69,7 @@ class _View_LoginPage_Host0 extends import1.AppView<any> {
     this._el_0 = this.selectOrCreateHostElement('ng-component',rootSelector,(null as any));
     this._appEl_0 = new import2.AppElement(0,(null as any),this,this._el_0);
     var compView_0:any = viewFactory_LoginPage0(this.viewUtils,this.injector(0),this._appEl_0);
-    this._LoginPage_0_4 = new import3.LoginPage(this.parentInjector.get(import8.NavParams),this.parentInjector.get(import9.ViewController),this.parentInjector.get(import10.ToastController),this.parentInjector.get(import11.LocalData));
+    this._LoginPage_0_4 = new import3.LoginPage(this.parentInjector.get(import8.NavParams),this.parentInjector.get(import9.ViewController),this.parentInjector.get(import10.ToastController),this.parentInjector.get(import11.LocalStorage));
     this._appEl_0.initComponent(this._LoginPage_0_4,[],compView_0);
     compView_0.create(this._LoginPage_0_4,this.projectableNodes,(null as any));
     this.init([].concat([this._el_0]),[this._el_0],[],[]);
@@ -605,7 +606,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     this.renderer.setElementAttribute(this._el_67,'color','laz-purple');
     this._appEl_67 = new import2.AppElement(67,62,this,this._el_67);
     var compView_67:any = import47.viewFactory_Toggle0(this.viewUtils,this.injector(67),this._appEl_67);
-    this._Toggle_67_4 = new import27.Toggle(this.parentInjector.get(import41.Form),this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_67),this.renderer,this._Item_62_4);
+    this._Toggle_67_4 = new import27.Toggle(this.parentInjector.get(import41.Form),this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_67),this.renderer,this.parentInjector.get(import48.Haptic),this._Item_62_4);
     this._appEl_67.initComponent(this._Toggle_67_4,[],compView_67);
     compView_67.create(this._Toggle_67_4,[],(null as any));
     this._text_68 = this.renderer.createText((null as any),'\n        ',(null as any));
@@ -629,7 +630,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     this.renderer.setElementAttribute(this._el_70,'block','');
     this.renderer.setElementAttribute(this._el_70,'ion-button','');
     this._appEl_70 = new import2.AppElement(70,14,this,this._el_70);
-    var compView_70:any = import48.viewFactory_Button0(this.viewUtils,this.injector(70),this._appEl_70);
+    var compView_70:any = import49.viewFactory_Button0(this.viewUtils,this.injector(70),this._appEl_70);
     this._Button_70_4 = new import28.Button((null as any),'',this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_70),this.renderer);
     this._appEl_70.initComponent(this._Button_70_4,[],compView_70);
     this._text_71 = this.renderer.createText((null as any),'Submit!',(null as any));
@@ -828,21 +829,21 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     if (((token === import14.Header) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 7)))) { return this._Header_0_3; }
     if (((token === import21.Label) && ((18 <= requestNodeIndex) && (requestNodeIndex <= 19)))) { return this._Label_18_3; }
     if (((token === import22.NgModel) && (21 === requestNodeIndex))) { return this._NgModel_21_4; }
-    if (((token === import49.NgControl) && (21 === requestNodeIndex))) { return this._NgControl_21_5; }
+    if (((token === import50.NgControl) && (21 === requestNodeIndex))) { return this._NgControl_21_5; }
     if (((token === import23.NgControlStatus) && (21 === requestNodeIndex))) { return this._NgControlStatus_21_6; }
     if (((token === import24.TextInput) && (21 === requestNodeIndex))) { return this._TextInput_21_7; }
     if (((token === import19.Item) && ((16 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return this._Item_16_4; }
     if (((token === import19.ItemContent) && ((16 <= requestNodeIndex) && (requestNodeIndex <= 22)))) { return this._ItemContent_16_5; }
     if (((token === import21.Label) && ((26 <= requestNodeIndex) && (requestNodeIndex <= 27)))) { return this._Label_26_3; }
     if (((token === import22.NgModel) && (29 === requestNodeIndex))) { return this._NgModel_29_4; }
-    if (((token === import49.NgControl) && (29 === requestNodeIndex))) { return this._NgControl_29_5; }
+    if (((token === import50.NgControl) && (29 === requestNodeIndex))) { return this._NgControl_29_5; }
     if (((token === import23.NgControlStatus) && (29 === requestNodeIndex))) { return this._NgControlStatus_29_6; }
     if (((token === import24.TextInput) && (29 === requestNodeIndex))) { return this._TextInput_29_7; }
     if (((token === import19.Item) && ((24 <= requestNodeIndex) && (requestNodeIndex <= 30)))) { return this._Item_24_4; }
     if (((token === import19.ItemContent) && ((24 <= requestNodeIndex) && (requestNodeIndex <= 30)))) { return this._ItemContent_24_5; }
     if (((token === import21.Label) && ((34 <= requestNodeIndex) && (requestNodeIndex <= 35)))) { return this._Label_34_3; }
     if (((token === import22.NgModel) && (37 === requestNodeIndex))) { return this._NgModel_37_4; }
-    if (((token === import49.NgControl) && (37 === requestNodeIndex))) { return this._NgControl_37_5; }
+    if (((token === import50.NgControl) && (37 === requestNodeIndex))) { return this._NgControl_37_5; }
     if (((token === import23.NgControlStatus) && (37 === requestNodeIndex))) { return this._NgControlStatus_37_6; }
     if (((token === import24.TextInput) && (37 === requestNodeIndex))) { return this._TextInput_37_7; }
     if (((token === import19.Item) && ((32 <= requestNodeIndex) && (requestNodeIndex <= 38)))) { return this._Item_32_4; }
@@ -851,9 +852,9 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     if (((token === import45.TemplateRef) && (47 === requestNodeIndex))) { return this._TemplateRef_47_5; }
     if (((token === import26.NgFor) && (47 === requestNodeIndex))) { return this._NgFor_47_6; }
     if (((token === import25.Select) && ((45 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._Select_45_4; }
-    if (((token === import50.NG_VALUE_ACCESSOR) && ((45 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._NG_VALUE_ACCESSOR_45_5; }
+    if (((token === import51.NG_VALUE_ACCESSOR) && ((45 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._NG_VALUE_ACCESSOR_45_5; }
     if (((token === import22.NgModel) && ((45 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._NgModel_45_6; }
-    if (((token === import49.NgControl) && ((45 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._NgControl_45_7; }
+    if (((token === import50.NgControl) && ((45 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._NgControl_45_7; }
     if (((token === import23.NgControlStatus) && ((45 <= requestNodeIndex) && (requestNodeIndex <= 48)))) { return this._NgControlStatus_45_8; }
     if (((token === import19.Item) && ((40 <= requestNodeIndex) && (requestNodeIndex <= 49)))) { return this._Item_40_4; }
     if (((token === import19.ItemContent) && ((40 <= requestNodeIndex) && (requestNodeIndex <= 49)))) { return this._ItemContent_40_5; }
@@ -861,15 +862,15 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     if (((token === import45.TemplateRef) && (58 === requestNodeIndex))) { return this._TemplateRef_58_5; }
     if (((token === import26.NgFor) && (58 === requestNodeIndex))) { return this._NgFor_58_6; }
     if (((token === import25.Select) && ((56 <= requestNodeIndex) && (requestNodeIndex <= 59)))) { return this._Select_56_4; }
-    if (((token === import50.NG_VALUE_ACCESSOR) && ((56 <= requestNodeIndex) && (requestNodeIndex <= 59)))) { return this._NG_VALUE_ACCESSOR_56_5; }
+    if (((token === import51.NG_VALUE_ACCESSOR) && ((56 <= requestNodeIndex) && (requestNodeIndex <= 59)))) { return this._NG_VALUE_ACCESSOR_56_5; }
     if (((token === import22.NgModel) && ((56 <= requestNodeIndex) && (requestNodeIndex <= 59)))) { return this._NgModel_56_6; }
-    if (((token === import49.NgControl) && ((56 <= requestNodeIndex) && (requestNodeIndex <= 59)))) { return this._NgControl_56_7; }
+    if (((token === import50.NgControl) && ((56 <= requestNodeIndex) && (requestNodeIndex <= 59)))) { return this._NgControl_56_7; }
     if (((token === import23.NgControlStatus) && ((56 <= requestNodeIndex) && (requestNodeIndex <= 59)))) { return this._NgControlStatus_56_8; }
     if (((token === import19.Item) && ((51 <= requestNodeIndex) && (requestNodeIndex <= 60)))) { return this._Item_51_4; }
     if (((token === import19.ItemContent) && ((51 <= requestNodeIndex) && (requestNodeIndex <= 60)))) { return this._ItemContent_51_5; }
     if (((token === import21.Label) && ((64 <= requestNodeIndex) && (requestNodeIndex <= 65)))) { return this._Label_64_3; }
     if (((token === import27.Toggle) && (67 === requestNodeIndex))) { return this._Toggle_67_4; }
-    if (((token === import50.NG_VALUE_ACCESSOR) && (67 === requestNodeIndex))) { return this._NG_VALUE_ACCESSOR_67_5; }
+    if (((token === import51.NG_VALUE_ACCESSOR) && (67 === requestNodeIndex))) { return this._NG_VALUE_ACCESSOR_67_5; }
     if (((token === import19.Item) && ((62 <= requestNodeIndex) && (requestNodeIndex <= 68)))) { return this._Item_62_4; }
     if (((token === import19.ItemContent) && ((62 <= requestNodeIndex) && (requestNodeIndex <= 68)))) { return this._ItemContent_62_5; }
     if (((token === import28.Button) && ((70 <= requestNodeIndex) && (requestNodeIndex <= 71)))) { return this._Button_70_4; }
@@ -1326,12 +1327,12 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
   }
 }
 export function viewFactory_LoginPage0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.LoginPage> {
-  if ((renderType_LoginPage === (null as any))) { (renderType_LoginPage = viewUtils.createRenderComponentType('',0,import12.ViewEncapsulation.None,styles_LoginPage,{})); }
+  if ((renderType_LoginPage === (null as any))) { (renderType_LoginPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/login/login.html',0,import12.ViewEncapsulation.None,styles_LoginPage,{})); }
   return new _View_LoginPage0(viewUtils,parentInjector,declarationEl);
 }
 class _View_LoginPage1 extends import1.AppView<any> {
   _el_0:any;
-  _Option_0_3:import51.Option;
+  _Option_0_3:import52.Option;
   _text_1:any;
   /*private*/ _expr_0:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
@@ -1339,7 +1340,7 @@ class _View_LoginPage1 extends import1.AppView<any> {
   }
   createInternal(rootSelector:string):import2.AppElement {
     this._el_0 = this.renderer.createElement((null as any),'ion-option',(null as any));
-    this._Option_0_3 = new import51.Option(new import30.ElementRef(this._el_0));
+    this._Option_0_3 = new import52.Option(new import30.ElementRef(this._el_0));
     this._text_1 = this.renderer.createText(this._el_0,'',(null as any));
     this._expr_0 = import7.UNINITIALIZED;
     this.init([].concat([this._el_0]),[
@@ -1350,7 +1351,7 @@ class _View_LoginPage1 extends import1.AppView<any> {
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import51.Option) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return this._Option_0_3; }
+    if (((token === import52.Option) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return this._Option_0_3; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {
@@ -1371,7 +1372,7 @@ function viewFactory_LoginPage1(viewUtils:import4.ViewUtils,parentInjector:impor
 }
 class _View_LoginPage2 extends import1.AppView<any> {
   _el_0:any;
-  _Option_0_3:import51.Option;
+  _Option_0_3:import52.Option;
   _text_1:any;
   /*private*/ _expr_0:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
@@ -1379,7 +1380,7 @@ class _View_LoginPage2 extends import1.AppView<any> {
   }
   createInternal(rootSelector:string):import2.AppElement {
     this._el_0 = this.renderer.createElement((null as any),'ion-option',(null as any));
-    this._Option_0_3 = new import51.Option(new import30.ElementRef(this._el_0));
+    this._Option_0_3 = new import52.Option(new import30.ElementRef(this._el_0));
     this._text_1 = this.renderer.createText(this._el_0,'',(null as any));
     this._expr_0 = import7.UNINITIALIZED;
     this.init([].concat([this._el_0]),[
@@ -1390,7 +1391,7 @@ class _View_LoginPage2 extends import1.AppView<any> {
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import51.Option) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return this._Option_0_3; }
+    if (((token === import52.Option) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 1)))) { return this._Option_0_3; }
     return notFoundResult;
   }
   detectChangesInternal(throwOnChange:boolean):void {

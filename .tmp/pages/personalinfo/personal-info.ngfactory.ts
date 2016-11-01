@@ -169,7 +169,7 @@ class _View_PersonalInfo0 extends import1.AppView<import3.PersonalInfo> {
   }
 }
 export function viewFactory_PersonalInfo0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.PersonalInfo> {
-  if ((renderType_PersonalInfo === (null as any))) { (renderType_PersonalInfo = viewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.None,styles_PersonalInfo,{})); }
+  if ((renderType_PersonalInfo === (null as any))) { (renderType_PersonalInfo = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/personalinfo/personal-info.html',0,import13.ViewEncapsulation.None,styles_PersonalInfo,{})); }
   return new _View_PersonalInfo0(viewUtils,parentInjector,declarationEl);
 }
 class _View_PersonalInfo1 extends import1.AppView<any> {

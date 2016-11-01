@@ -317,7 +317,7 @@ var _View_DiscountPage0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_DiscountPage0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_DiscountPage === null)) {
-        (renderType_DiscountPage = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, styles_DiscountPage, {}));
+        (renderType_DiscountPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/discount/discount.html', 0, import11.ViewEncapsulation.None, styles_DiscountPage, {}));
     }
     return new _View_DiscountPage0(viewUtils, parentInjector, declarationEl);
 }

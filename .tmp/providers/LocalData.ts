@@ -23,20 +23,6 @@ export class LocalData {
         this.cache = cacheService; 
     }
     
-    saveData(name:string, data:any, ttl?:number):Promise<{}>{
-        return new Promise((resolve,reject) => {
-            if(ttl){
-                this.cache.setItem(name,data,ttl)
-                .then(res => resolve(res))
-                .catch(err => reject(err));
-            }
-            else{
-                this.cache.setItem(name,data)
-                .then(res => resolve(res))
-                .catch(err => reject(err));
-            }
-        })
-    }
     //Remember to fix this to pull from API after
     getCustomFeed(club?:Club):Promise<any>{
         return new Promise((resolve,reject) => {
@@ -48,7 +34,8 @@ export class LocalData {
             ]).subscribe(data => {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
-                var interests = data[2];
+                var interests = this.getInterestsLocally();
+                console.log(interests);
                 //Applies the visible property to events based on Clubs and Interests
                 if(data[3] != null) 
                     this.userData = data[3];
@@ -62,9 +49,10 @@ export class LocalData {
                         this.userData.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
                     }   
                     for (let interest of interests){
-                        this.userData.clubPrefs[interest.id.toString()] = {interest_id:interest.id, selected:false}
+                        this.userData.interestPrefs[interest.name] = {interest_id:interest.id, selected:false}
                     }
                 }
+                this.localStorage.set('userdata',this.userData);
                 if(club)
                     var val = this.doCustomFeed(events,clubs,interests,this.userData,club)
                 else
@@ -75,6 +63,8 @@ export class LocalData {
     }
     
     doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
+        console.log(userData);
+        console.log(events);
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -93,16 +83,14 @@ export class LocalData {
                 //Filtering by prefs
                 if (userData.clubPrefs[event.club_id.toString()].selected == true)
                     event.visible = true; //Set to true if club selected
-                // else{
-                //     for(let tag of event.tags){
-                //         for (let interest of interests){
-                //             if (tag == interest.name && interest.selected){
-                //                 event.visible = true;
-                //                 event.basedOn = tag; //"Based on your interest in:..."
-                //             }    
-                //         }
-                //     }
-                // }
+                else{
+                    for(let tag of event.event_tags){
+                        if(userData.interestPrefs[tag.tag].selected){
+                            event.visible = true;
+                            event.basedOn = tag.tag;
+                        }  
+                    }
+                }
 
                 //Checking timeframe
                 if (eventStart < currentTime)   
@@ -170,13 +158,16 @@ export class LocalData {
         })
     }
 
-    getClubs():Promise<any>{
+    getClubs(doTransform?:boolean):Promise<any>{
         return new Promise((resolve,reject) => {
             this.cache.getItem('clubs','clubs.json',60*60*24)
 
             .then(res => {
                 console.log("Getting clubs works");
-                resolve(this.transformClubs(res.cacheVal));
+                if(doTransform)
+                    resolve(this.transformClubs(res.cacheVal));
+                else
+                    resolve(res.cacheVal);
             }).catch(err => reject(err));
         })
     }
@@ -203,5 +194,94 @@ export class LocalData {
                 resolve(res);
             }).catch(err => reject(err));
         })
+    }
+
+    getInterestsLocally(){
+        return JSON.parse(`[
+    {
+        "id": 0,
+        "name": "Accounting"
+    },
+    {
+        "id": 1,
+        "name": "Finance"
+    },
+    {
+        "id": 2,
+        "name": "Competitions"
+    },
+    {
+        "id": 3,
+        "name": "Exam Review"
+    },
+    {
+        "id": 4,
+        "name": "Debate"
+    },
+    {
+        "id": 5,
+        "name": "Networking"
+    },
+    {
+        "id": 6,
+        "name": "Academic Help"
+    },
+    {
+        "id": 7,
+        "name": "E-Business"
+    },
+    {
+        "id": 8,
+        "name": "Economics"
+    },
+    {
+        "id": 9,
+        "name": "Entrepreneurship"
+    },
+    {
+        "id": 10,
+        "name": "First Year"
+    },
+    {
+        "id": 11,
+        "name": "International"
+    },
+    {
+        "id": 12,
+        "name": "Journalism and Media"
+    },
+    {
+        "id": 13,
+        "name": "Leadership"
+    },
+    {
+        "id": 14,
+        "name": "Marketing"
+    },
+    {
+        "id": 15,
+        "name": "Public Speaking"
+    },
+    {
+        "id": 16,
+        "name": "Sales"
+    },
+    {
+        "id": 17,
+        "name": "Philanthropy"
+    },
+    {
+        "id": 18,
+        "name": "Sports Management"
+    },
+    {
+        "id": 19,
+        "name": "Consulting"
+    },
+    {
+        "id": 20,
+        "name": "Social"
+    }
+    ]`);
     }
 }

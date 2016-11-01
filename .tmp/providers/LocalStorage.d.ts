@@ -4,8 +4,6 @@ import { UserData } from '../models/UserData';
 import 'rxjs/add/operator/map';
 export declare class LocalStorage {
     private storage;
-    events: any[];
-    clubs: any[];
     interests: any;
     discount_partners: any[];
     userData: UserData;

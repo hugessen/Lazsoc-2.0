@@ -12,7 +12,6 @@ export declare class LocalData {
     private userData;
     cache: CacheService;
     constructor(cacheService: CacheService, localStorage: LocalStorage);
-    saveData(name: string, data: any, ttl?: number): Promise<{}>;
     getCustomFeed(club?: Club): Promise<any>;
     doCustomFeed(events: any[], clubs: Club[], interests: Interest[], userData: UserData, club?: Club): any;
     generateDateKey(date: string): string;
@@ -21,7 +20,8 @@ export declare class LocalData {
     formatSocialLinks(socialLinks: any[]): Object;
     getEvents(): Promise<any>;
     getUserInfo(): Promise<any>;
-    getClubs(): Promise<any>;
+    getClubs(doTransform?: boolean): Promise<any>;
     getInterests(): Promise<any>;
     getDiscountSponsors(): Promise<any>;
+    getInterestsLocally(): any;
 }

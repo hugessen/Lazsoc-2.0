@@ -681,6 +681,6 @@ class _View_PopoverPage0 extends import1.AppView<import3.PopoverPage> {
   }
 }
 export function viewFactory_PopoverPage0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.PopoverPage> {
-  if ((renderType_PopoverPage === (null as any))) { (renderType_PopoverPage = viewUtils.createRenderComponentType('',0,import10.ViewEncapsulation.None,styles_PopoverPage,{})); }
+  if ((renderType_PopoverPage === (null as any))) { (renderType_PopoverPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/popover/popover.html',0,import10.ViewEncapsulation.None,styles_PopoverPage,{})); }
   return new _View_PopoverPage0(viewUtils,parentInjector,declarationEl);
 }

@@ -172,7 +172,7 @@ var _View_PersonalInfo0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_PersonalInfo0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_PersonalInfo === null)) {
-        (renderType_PersonalInfo = viewUtils.createRenderComponentType('', 0, import13.ViewEncapsulation.None, styles_PersonalInfo, {}));
+        (renderType_PersonalInfo = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/personalinfo/personal-info.html', 0, import13.ViewEncapsulation.None, styles_PersonalInfo, {}));
     }
     return new _View_PersonalInfo0(viewUtils, parentInjector, declarationEl);
 }

@@ -21,8 +21,12 @@ export class ClubPage {
     this.currentTime = new Date().getTime();
     this.club = this.navParams.get('club');
     this.userData = this.navParams.get('userData');
+    this.localData.formatSocialLinks(this.club.club_social_links);
+    console.log(this.club.club_social_links);
     this.localData.getCustomFeed(this.club)
-    .then(res => this.events = res)
+    .then(res => {
+      this.events = res;
+    })
   }
   viewEvent(event:ClubEvent):void{
     this.navCtrl.push(EventPage, {event:event, club:this.club});

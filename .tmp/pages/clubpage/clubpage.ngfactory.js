@@ -205,7 +205,7 @@ var _View_ClubPage0 = (function (_super) {
         this._text_36 = this.renderer.createText(null, '\n        ', null);
         this._el_37 = this.renderer.createElement(null, 'ion-fab-list', null);
         this.renderer.setElementAttribute(this._el_37, 'side', 'bottom');
-        this._FabList_37_3 = new import23.FabList();
+        this._FabList_37_3 = new import23.FabList(new import28.ElementRef(this._el_37), this.renderer);
         this._query_FabButton_37_0 = new import21.QueryList();
         this._text_38 = this.renderer.createText(this._el_37, '\n            ', null);
         this._anchor_39 = this.renderer.createTemplateAnchor(this._el_37, null);
@@ -234,6 +234,8 @@ var _View_ClubPage0 = (function (_super) {
         this._NgIf_47_6 = new import17.NgIf(this._appEl_47.vcRef, this._TemplateRef_47_5);
         this._text_48 = this.renderer.createText(this._el_37, '\n        ', null);
         this._text_49 = this.renderer.createText(null, '\n    ', null);
+        this._query_FabButton_32_0.reset([this._FabButton_34_4]);
+        this._FabContainer_32_4._mainButton = this._query_FabButton_32_0.first;
         compView_32.create(this._FabContainer_32_4, [[].concat([
                 this._text_33,
                 this._el_34,
@@ -284,7 +286,6 @@ var _View_ClubPage0 = (function (_super) {
         this._expr_16 = import7.UNINITIALIZED;
         this._expr_17 = import7.UNINITIALIZED;
         this._expr_18 = import7.UNINITIALIZED;
-        this._expr_19 = import7.UNINITIALIZED;
         this.init([], [
             this._el_0,
             this._text_1,
@@ -484,30 +485,30 @@ var _View_ClubPage0 = (function (_super) {
             this._Icon_35_3.name = currVal_12;
             this._expr_12 = currVal_12;
         }
-        var currVal_15 = this.context.club.club_social_links['facebook'];
+        var currVal_14 = this.context.club.club_social_links['facebook'];
+        if (import4.checkBinding(throwOnChange, this._expr_14, currVal_14)) {
+            this._NgIf_39_6.ngIf = currVal_14;
+            this._expr_14 = currVal_14;
+        }
+        var currVal_15 = this.context.club.club_social_links['twitter'];
         if (import4.checkBinding(throwOnChange, this._expr_15, currVal_15)) {
-            this._NgIf_39_6.ngIf = currVal_15;
+            this._NgIf_41_6.ngIf = currVal_15;
             this._expr_15 = currVal_15;
         }
-        var currVal_16 = this.context.club.club_social_links['twitter'];
+        var currVal_16 = this.context.club.club_social_links['instagram'];
         if (import4.checkBinding(throwOnChange, this._expr_16, currVal_16)) {
-            this._NgIf_41_6.ngIf = currVal_16;
+            this._NgIf_43_6.ngIf = currVal_16;
             this._expr_16 = currVal_16;
         }
-        var currVal_17 = this.context.club.club_social_links['instagram'];
+        var currVal_17 = this.context.club.club_social_links['snapchat'];
         if (import4.checkBinding(throwOnChange, this._expr_17, currVal_17)) {
-            this._NgIf_43_6.ngIf = currVal_17;
+            this._NgIf_45_6.ngIf = currVal_17;
             this._expr_17 = currVal_17;
         }
-        var currVal_18 = this.context.club.club_social_links['snapchat'];
+        var currVal_18 = this.context.club.club_social_links['youtube'];
         if (import4.checkBinding(throwOnChange, this._expr_18, currVal_18)) {
-            this._NgIf_45_6.ngIf = currVal_18;
+            this._NgIf_47_6.ngIf = currVal_18;
             this._expr_18 = currVal_18;
-        }
-        var currVal_19 = this.context.club.club_social_links['youtube'];
-        if (import4.checkBinding(throwOnChange, this._expr_19, currVal_19)) {
-            this._NgIf_47_6.ngIf = currVal_19;
-            this._expr_19 = currVal_19;
         }
         this.detectContentChildrenChanges(throwOnChange);
         if (!throwOnChange) {
@@ -541,27 +542,6 @@ var _View_ClubPage0 = (function (_super) {
                 ]);
                 this._FabList_37_3._setbuttons = this._query_FabButton_37_0;
                 this._query_FabButton_37_0.notifyOnChanges();
-            }
-            if (this._query_FabButton_32_0.dirty) {
-                this._query_FabButton_32_0.reset([
-                    this._FabButton_34_4,
-                    this._appEl_39.mapNestedViews(_View_ClubPage7, function (nestedView) {
-                        return [nestedView._FabButton_0_4];
-                    }),
-                    this._appEl_41.mapNestedViews(_View_ClubPage8, function (nestedView) {
-                        return [nestedView._FabButton_0_4];
-                    }),
-                    this._appEl_43.mapNestedViews(_View_ClubPage9, function (nestedView) {
-                        return [nestedView._FabButton_0_4];
-                    }),
-                    this._appEl_45.mapNestedViews(_View_ClubPage10, function (nestedView) {
-                        return [nestedView._FabButton_0_4];
-                    }),
-                    this._appEl_47.mapNestedViews(_View_ClubPage11, function (nestedView) {
-                        return [nestedView._FabButton_0_4];
-                    })
-                ]);
-                this._FabContainer_32_4._mainButton = this._query_FabButton_32_0.first;
             }
             if (this._query_FabList_32_1.dirty) {
                 this._query_FabList_32_1.reset([this._FabList_37_3]);
@@ -615,11 +595,6 @@ var _View_ClubPage0 = (function (_super) {
             this.renderer.setElementClass(this._el_35, 'hide', currVal_13);
             this._expr_13 = currVal_13;
         }
-        var currVal_14 = this._FabList_37_3._visible;
-        if (import4.checkBinding(throwOnChange, this._expr_14, currVal_14)) {
-            this.renderer.setElementClass(this._el_37, 'fab-list-active', currVal_14);
-            this._expr_14 = currVal_14;
-        }
         this.detectViewChildrenChanges(throwOnChange);
         if (!throwOnChange) {
             if ((this.numberOfChecks === 0)) {
@@ -636,7 +611,7 @@ var _View_ClubPage0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_ClubPage0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ClubPage === null)) {
-        (renderType_ClubPage = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, styles_ClubPage, {}));
+        (renderType_ClubPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/clubpage/clubpage.html', 0, import11.ViewEncapsulation.None, styles_ClubPage, {}));
     }
     return new _View_ClubPage0(viewUtils, parentInjector, declarationEl);
 }
@@ -1336,7 +1311,6 @@ var _View_ClubPage7 = (function (_super) {
     };
     _View_ClubPage7.prototype.dirtyParentQueriesInternal = function () {
         this.parent._query_FabButton_37_0.setDirty();
-        this.parent._query_FabButton_32_0.setDirty();
     };
     _View_ClubPage7.prototype.destroyInternal = function () {
         this._Icon_1_3.ngOnDestroy();
@@ -1415,7 +1389,6 @@ var _View_ClubPage8 = (function (_super) {
     };
     _View_ClubPage8.prototype.dirtyParentQueriesInternal = function () {
         this.parent._query_FabButton_37_0.setDirty();
-        this.parent._query_FabButton_32_0.setDirty();
     };
     _View_ClubPage8.prototype.destroyInternal = function () {
         this._Icon_1_3.ngOnDestroy();
@@ -1494,7 +1467,6 @@ var _View_ClubPage9 = (function (_super) {
     };
     _View_ClubPage9.prototype.dirtyParentQueriesInternal = function () {
         this.parent._query_FabButton_37_0.setDirty();
-        this.parent._query_FabButton_32_0.setDirty();
     };
     _View_ClubPage9.prototype.destroyInternal = function () {
         this._Icon_1_3.ngOnDestroy();
@@ -1573,7 +1545,6 @@ var _View_ClubPage10 = (function (_super) {
     };
     _View_ClubPage10.prototype.dirtyParentQueriesInternal = function () {
         this.parent._query_FabButton_37_0.setDirty();
-        this.parent._query_FabButton_32_0.setDirty();
     };
     _View_ClubPage10.prototype.destroyInternal = function () {
         this._Icon_1_3.ngOnDestroy();
@@ -1652,7 +1623,6 @@ var _View_ClubPage11 = (function (_super) {
     };
     _View_ClubPage11.prototype.dirtyParentQueriesInternal = function () {
         this.parent._query_FabButton_37_0.setDirty();
-        this.parent._query_FabButton_32_0.setDirty();
     };
     _View_ClubPage11.prototype.destroyInternal = function () {
         this._Icon_1_3.ngOnDestroy();

@@ -8,21 +8,6 @@ export var LocalData = (function () {
         this.localStorage = localStorage;
         this.cache = cacheService;
     }
-    LocalData.prototype.saveData = function (name, data, ttl) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            if (ttl) {
-                _this.cache.setItem(name, data, ttl)
-                    .then(function (res) { return resolve(res); })
-                    .catch(function (err) { return reject(err); });
-            }
-            else {
-                _this.cache.setItem(name, data)
-                    .then(function (res) { return resolve(res); })
-                    .catch(function (err) { return reject(err); });
-            }
-        });
-    };
     //Remember to fix this to pull from API after
     LocalData.prototype.getCustomFeed = function (club) {
         var _this = this;
@@ -35,7 +20,8 @@ export var LocalData = (function () {
             ]).subscribe(function (data) {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
-                var interests = data[2];
+                var interests = _this.getInterestsLocally();
+                console.log(interests);
                 //Applies the visible property to events based on Clubs and Interests
                 if (data[3] != null)
                     _this.userData = data[3];
@@ -51,9 +37,10 @@ export var LocalData = (function () {
                     }
                     for (var _a = 0, interests_1 = interests; _a < interests_1.length; _a++) {
                         var interest = interests_1[_a];
-                        _this.userData.clubPrefs[interest.id.toString()] = { interest_id: interest.id, selected: false };
+                        _this.userData.interestPrefs[interest.name] = { interest_id: interest.id, selected: false };
                     }
                 }
+                _this.localStorage.set('userdata', _this.userData);
                 if (club)
                     var val = _this.doCustomFeed(events, clubs, interests, _this.userData, club);
                 else
@@ -63,6 +50,8 @@ export var LocalData = (function () {
         });
     };
     LocalData.prototype.doCustomFeed = function (events, clubs, interests, userData, club) {
+        console.log(userData);
+        console.log(events);
         var result = {};
         //Sorting by time
         events.sort(function (a, b) {
@@ -81,16 +70,15 @@ export var LocalData = (function () {
                 //Filtering by prefs
                 if (userData.clubPrefs[event_1.club_id.toString()].selected == true)
                     event_1.visible = true; //Set to true if club selected
-                // else{
-                //     for(let tag of event.tags){
-                //         for (let interest of interests){
-                //             if (tag == interest.name && interest.selected){
-                //                 event.visible = true;
-                //                 event.basedOn = tag; //"Based on your interest in:..."
-                //             }    
-                //         }
-                //     }
-                // }
+                else {
+                    for (var _a = 0, _b = event_1.event_tags; _a < _b.length; _a++) {
+                        var tag = _b[_a];
+                        if (userData.interestPrefs[tag.tag].selected) {
+                            event_1.visible = true;
+                            event_1.basedOn = tag.tag;
+                        }
+                    }
+                }
                 //Checking timeframe
                 if (eventStart < currentTime)
                     event_1.timeframe = "past";
@@ -154,13 +142,16 @@ export var LocalData = (function () {
             }).catch(function (err) { return reject(err); });
         });
     };
-    LocalData.prototype.getClubs = function () {
+    LocalData.prototype.getClubs = function (doTransform) {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.cache.getItem('clubs', 'clubs.json', 60 * 60 * 24)
                 .then(function (res) {
                 console.log("Getting clubs works");
-                resolve(_this.transformClubs(res.cacheVal));
+                if (doTransform)
+                    resolve(_this.transformClubs(res.cacheVal));
+                else
+                    resolve(res.cacheVal);
             }).catch(function (err) { return reject(err); });
         });
     };
@@ -189,6 +180,9 @@ export var LocalData = (function () {
                 resolve(res);
             }).catch(function (err) { return reject(err); });
         });
+    };
+    LocalData.prototype.getInterestsLocally = function () {
+        return JSON.parse("[\n    {\n        \"id\": 0,\n        \"name\": \"Accounting\"\n    },\n    {\n        \"id\": 1,\n        \"name\": \"Finance\"\n    },\n    {\n        \"id\": 2,\n        \"name\": \"Competitions\"\n    },\n    {\n        \"id\": 3,\n        \"name\": \"Exam Review\"\n    },\n    {\n        \"id\": 4,\n        \"name\": \"Debate\"\n    },\n    {\n        \"id\": 5,\n        \"name\": \"Networking\"\n    },\n    {\n        \"id\": 6,\n        \"name\": \"Academic Help\"\n    },\n    {\n        \"id\": 7,\n        \"name\": \"E-Business\"\n    },\n    {\n        \"id\": 8,\n        \"name\": \"Economics\"\n    },\n    {\n        \"id\": 9,\n        \"name\": \"Entrepreneurship\"\n    },\n    {\n        \"id\": 10,\n        \"name\": \"First Year\"\n    },\n    {\n        \"id\": 11,\n        \"name\": \"International\"\n    },\n    {\n        \"id\": 12,\n        \"name\": \"Journalism and Media\"\n    },\n    {\n        \"id\": 13,\n        \"name\": \"Leadership\"\n    },\n    {\n        \"id\": 14,\n        \"name\": \"Marketing\"\n    },\n    {\n        \"id\": 15,\n        \"name\": \"Public Speaking\"\n    },\n    {\n        \"id\": 16,\n        \"name\": \"Sales\"\n    },\n    {\n        \"id\": 17,\n        \"name\": \"Philanthropy\"\n    },\n    {\n        \"id\": 18,\n        \"name\": \"Sports Management\"\n    },\n    {\n        \"id\": 19,\n        \"name\": \"Consulting\"\n    },\n    {\n        \"id\": 20,\n        \"name\": \"Social\"\n    }\n    ]");
     };
     LocalData.decorators = [
         { type: Injectable },

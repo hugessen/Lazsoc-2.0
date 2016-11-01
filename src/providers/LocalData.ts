@@ -34,8 +34,7 @@ export class LocalData {
             ]).subscribe(data => {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
-                var interests = data[2];
-                console.log(interests);
+                var interests = this.getInterestsLocally();
                 //Applies the visible property to events based on Clubs and Interests
                 if(data[3] != null) 
                     this.userData = data[3];
@@ -63,8 +62,6 @@ export class LocalData {
     }
     
     doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
-        console.log(userData);
-        console.log(events);
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -194,5 +191,93 @@ export class LocalData {
                 resolve(res);
             }).catch(err => reject(err));
         })
+    }
+    getInterestsLocally(){
+        return JSON.parse(`[
+    {
+        "id": 0,
+        "name": "Accounting"
+    },
+    {
+        "id": 1,
+        "name": "Finance"
+    },
+    {
+        "id": 2,
+        "name": "Competitions"
+    },
+    {
+        "id": 3,
+        "name": "Exam Review"
+    },
+    {
+        "id": 4,
+        "name": "Debate"
+    },
+    {
+        "id": 5,
+        "name": "Networking"
+    },
+    {
+        "id": 6,
+        "name": "Academic Help"
+    },
+    {
+        "id": 7,
+        "name": "E-Business"
+    },
+    {
+        "id": 8,
+        "name": "Economics"
+    },
+    {
+        "id": 9,
+        "name": "Entrepreneurship"
+    },
+    {
+        "id": 10,
+        "name": "First Year"
+    },
+    {
+        "id": 11,
+        "name": "International"
+    },
+    {
+        "id": 12,
+        "name": "Journalism and Media"
+    },
+    {
+        "id": 13,
+        "name": "Leadership"
+    },
+    {
+        "id": 14,
+        "name": "Marketing"
+    },
+    {
+        "id": 15,
+        "name": "Public Speaking"
+    },
+    {
+        "id": 16,
+        "name": "Sales"
+    },
+    {
+        "id": 17,
+        "name": "Philanthropy"
+    },
+    {
+        "id": 18,
+        "name": "Sports Management"
+    },
+    {
+        "id": 19,
+        "name": "Consulting"
+    },
+    {
+        "id": 20,
+        "name": "Social"
+    }
+    ]`);
     }
 }

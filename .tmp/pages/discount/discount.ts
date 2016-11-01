@@ -15,9 +15,9 @@ export class DiscountPage {
   }
   
   getSponsors(){
-    this.localStorage.get('app-discount')
+    this.localData.getDiscountSponsors()
     .then(data => {
-        this.allSponsors = JSON.parse(data);
+        this.allSponsors = data.cacheVal;
         this.sponsorsRows = this.sponsorsToRows(this.allSponsors,2);
     });
   }

@@ -452,7 +452,7 @@ var _View_Newsfeed0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_Newsfeed0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_Newsfeed === null)) {
-        (renderType_Newsfeed = viewUtils.createRenderComponentType('', 0, import13.ViewEncapsulation.None, styles_Newsfeed, {}));
+        (renderType_Newsfeed = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/newsfeed/newsfeed.html', 0, import13.ViewEncapsulation.None, styles_Newsfeed, {}));
     }
     return new _View_Newsfeed0(viewUtils, parentInjector, declarationEl);
 }

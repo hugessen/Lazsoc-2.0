@@ -58,11 +58,12 @@ import * as import50 from 'ionic-angular/gestures/gesture-controller';
 import * as import51 from 'ionic-angular/components/label/label';
 import * as import52 from 'ionic-angular/components/toggle/toggle';
 import * as import53 from '../../node_modules/ionic-angular/components/toggle/toggle.ngfactory';
-import * as import54 from '@angular/forms/src/directives/control_value_accessor';
-import * as import55 from '../personalinfo/personal-info';
-import * as import56 from '../personalinfo/personal-info.ngfactory';
-import * as import57 from 'ionic-angular/navigation/nav-params';
-import * as import58 from 'ionic-angular/components/modal/modal';
+import * as import54 from 'ionic-angular/util/haptic';
+import * as import55 from '@angular/forms/src/directives/control_value_accessor';
+import * as import56 from '../personalinfo/personal-info';
+import * as import57 from '../personalinfo/personal-info.ngfactory';
+import * as import58 from 'ionic-angular/navigation/nav-params';
+import * as import59 from 'ionic-angular/components/modal/modal';
 var renderType_ClubSelector_Host:import0.RenderComponentType = (null as any);
 class _View_ClubSelector_Host0 extends import1.AppView<any> {
   _el_0:any;
@@ -625,7 +626,7 @@ class _View_ClubSelector0 extends import1.AppView<import3.ClubSelector> {
   }
 }
 export function viewFactory_ClubSelector0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.ClubSelector> {
-  if ((renderType_ClubSelector === (null as any))) { (renderType_ClubSelector = viewUtils.createRenderComponentType('',0,import12.ViewEncapsulation.None,styles_ClubSelector,{})); }
+  if ((renderType_ClubSelector === (null as any))) { (renderType_ClubSelector = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/clubselector/clubselector.html',0,import12.ViewEncapsulation.None,styles_ClubSelector,{})); }
   return new _View_ClubSelector0(viewUtils,parentInjector,declarationEl);
 }
 class _View_ClubSelector1 extends import1.AppView<any> {
@@ -1030,7 +1031,7 @@ class _View_ClubSelector4 extends import1.AppView<any> {
     this.renderer.setElementAttribute(this._el_5,'laz-purple','');
     this._appEl_5 = new import2.AppElement(5,0,this,this._el_5);
     var compView_5:any = import53.viewFactory_Toggle0(this.viewUtils,this.injector(5),this._appEl_5);
-    this._Toggle_5_4 = new import52.Toggle(this.parent.parent.parentInjector.get(import43.Form),this.parent.parent.parentInjector.get(import25.Config),new import26.ElementRef(this._el_5),this.renderer,this._Item_0_4);
+    this._Toggle_5_4 = new import52.Toggle(this.parent.parent.parentInjector.get(import43.Form),this.parent.parent.parentInjector.get(import25.Config),new import26.ElementRef(this._el_5),this.renderer,this.parent.parent.parentInjector.get(import54.Haptic),this._Item_0_4);
     this._NG_VALUE_ACCESSOR_5_5 = [this._Toggle_5_4];
     this._NgModel_5_6 = new import19.NgModel((null as any),(null as any),(null as any),this._NG_VALUE_ACCESSOR_5_5);
     this._NgControl_5_7 = this._NgModel_5_6;
@@ -1079,7 +1080,7 @@ class _View_ClubSelector4 extends import1.AppView<any> {
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
     if (((token === import51.Label) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 3)))) { return this._Label_2_3; }
     if (((token === import52.Toggle) && (5 === requestNodeIndex))) { return this._Toggle_5_4; }
-    if (((token === import54.NG_VALUE_ACCESSOR) && (5 === requestNodeIndex))) { return this._NG_VALUE_ACCESSOR_5_5; }
+    if (((token === import55.NG_VALUE_ACCESSOR) && (5 === requestNodeIndex))) { return this._NG_VALUE_ACCESSOR_5_5; }
     if (((token === import19.NgModel) && (5 === requestNodeIndex))) { return this._NgModel_5_6; }
     if (((token === import38.NgControl) && (5 === requestNodeIndex))) { return this._NgControl_5_7; }
     if (((token === import20.NgControlStatus) && (5 === requestNodeIndex))) { return this._NgControlStatus_5_8; }
@@ -1090,7 +1091,7 @@ class _View_ClubSelector4 extends import1.AppView<any> {
   detectChangesInternal(throwOnChange:boolean):void {
     var changes:{[key: string]:import7.SimpleChange} = (null as any);
     changes = (null as any);
-    const currVal_3:any = this.parent.parent.context.userData.interestPrefs[this.context.$implicit.id].selected;
+    const currVal_3:any = this.parent.parent.context.userData.interestPrefs[this.context.$implicit.name].selected;
     if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
       this._NgModel_5_6.model = currVal_3;
       if ((changes === (null as any))) { (changes = {}); }
@@ -1161,7 +1162,7 @@ class _View_ClubSelector4 extends import1.AppView<any> {
   }
   private _handle_ngModelChange_5_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>(this.parent.parent.context.userData.interestPrefs[this.context.$implicit.id].selected = $event)) !== false);
+    const pd_0:any = ((<any>(this.parent.parent.context.userData.interestPrefs[this.context.$implicit.name].selected = $event)) !== false);
     return (true && pd_0);
   }
 }
@@ -1173,7 +1174,7 @@ class _View_ClubSelector5 extends import1.AppView<any> {
   _text_1:any;
   _el_2:any;
   /*private*/ _appEl_2:import2.AppElement;
-  _PersonalInfo_2_4:import55.PersonalInfo;
+  _PersonalInfo_2_4:import56.PersonalInfo;
   _text_3:any;
   constructor(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement) {
     super(_View_ClubSelector5,renderType_ClubSelector,import6.ViewType.EMBEDDED,viewUtils,parentInjector,declarationEl,import7.ChangeDetectorStatus.CheckAlways);
@@ -1183,8 +1184,8 @@ class _View_ClubSelector5 extends import1.AppView<any> {
     this._text_1 = this.renderer.createText(this._el_0,'\n            ',(null as any));
     this._el_2 = this.renderer.createElement(this._el_0,'personal-info',(null as any));
     this._appEl_2 = new import2.AppElement(2,0,this,this._el_2);
-    var compView_2:any = import56.viewFactory_PersonalInfo0(this.viewUtils,this.injector(2),this._appEl_2);
-    this._PersonalInfo_2_4 = new import55.PersonalInfo(this.parent.parentInjector.get(import8.NavController),this.parent.parentInjector.get(import57.NavParams),this.parent.parentInjector.get(import58.ModalController),this.parent.parentInjector.get(import9.LocalData),this.parent.parentInjector.get(import11.LocalStorage));
+    var compView_2:any = import57.viewFactory_PersonalInfo0(this.viewUtils,this.injector(2),this._appEl_2);
+    this._PersonalInfo_2_4 = new import56.PersonalInfo(this.parent.parentInjector.get(import8.NavController),this.parent.parentInjector.get(import58.NavParams),this.parent.parentInjector.get(import59.ModalController),this.parent.parentInjector.get(import9.LocalData),this.parent.parentInjector.get(import11.LocalStorage));
     this._appEl_2.initComponent(this._PersonalInfo_2_4,[],compView_2);
     compView_2.create(this._PersonalInfo_2_4,[],(null as any));
     this._text_3 = this.renderer.createText(this._el_0,'\n        ',(null as any));
@@ -1198,7 +1199,7 @@ class _View_ClubSelector5 extends import1.AppView<any> {
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
-    if (((token === import55.PersonalInfo) && (2 === requestNodeIndex))) { return this._PersonalInfo_2_4; }
+    if (((token === import56.PersonalInfo) && (2 === requestNodeIndex))) { return this._PersonalInfo_2_4; }
     return notFoundResult;
   }
 }

@@ -564,7 +564,7 @@ var _View_EventPage0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_EventPage0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_EventPage === null)) {
-        (renderType_EventPage = viewUtils.createRenderComponentType('', 0, import10.ViewEncapsulation.None, styles_EventPage, {}));
+        (renderType_EventPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/eventpage/event-page.html', 0, import10.ViewEncapsulation.None, styles_EventPage, {}));
     }
     return new _View_EventPage0(viewUtils, parentInjector, declarationEl);
 }

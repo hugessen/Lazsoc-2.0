@@ -614,7 +614,7 @@ class _View_EventPage0 extends import1.AppView<import3.EventPage> {
   }
 }
 export function viewFactory_EventPage0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.EventPage> {
-  if ((renderType_EventPage === (null as any))) { (renderType_EventPage = viewUtils.createRenderComponentType('',0,import10.ViewEncapsulation.None,styles_EventPage,{})); }
+  if ((renderType_EventPage === (null as any))) { (renderType_EventPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/eventpage/event-page.html',0,import10.ViewEncapsulation.None,styles_EventPage,{})); }
   return new _View_EventPage0(viewUtils,parentInjector,declarationEl);
 }
 class _View_EventPage1 extends import1.AppView<any> {

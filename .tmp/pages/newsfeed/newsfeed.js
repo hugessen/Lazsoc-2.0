@@ -18,7 +18,7 @@ export var Newsfeed = (function () {
         this.feedType = "all";
         this.message = "All Events This Week";
         Observable.forkJoin([
-            Observable.fromPromise(this.localData.getClubs()),
+            Observable.fromPromise(this.localData.getClubs(true)),
             Observable.fromPromise(this.localData.getCustomFeed())
         ])
             .subscribe(function (data) {
@@ -80,6 +80,8 @@ export var Newsfeed = (function () {
                 .then(function (data) {
                 _this.events = data;
                 refresher.complete();
+            }).catch(function (err) {
+                _this.showAlert("Promise didn't return", err);
             });
         }
         else {

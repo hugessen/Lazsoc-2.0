@@ -268,11 +268,14 @@ var _View_TabsPage0 = (function (_super) {
             }
         }
     };
+    _View_TabsPage0.prototype.destroyInternal = function () {
+        this._Tabs_0_4.ngOnDestroy();
+    };
     return _View_TabsPage0;
 }(import1.AppView));
 export function viewFactory_TabsPage0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_TabsPage === null)) {
-        (renderType_TabsPage = viewUtils.createRenderComponentType('', 0, import8.ViewEncapsulation.None, styles_TabsPage, {}));
+        (renderType_TabsPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/tabs/tabs.html', 0, import8.ViewEncapsulation.None, styles_TabsPage, {}));
     }
     return new _View_TabsPage0(viewUtils, parentInjector, declarationEl);
 }

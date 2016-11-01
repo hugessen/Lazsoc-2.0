@@ -1,5 +1,5 @@
  import {Component} from '@angular/core';
-import {NavController, AlertController, PopoverController,ViewController} from 'ionic-angular';
+import {NavController, AlertController, PopoverController} from 'ionic-angular';
 import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
@@ -21,7 +21,7 @@ export class Newsfeed {
     message:string = "All Events This Week";
   constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
      Observable.forkJoin([
-        Observable.fromPromise(this.localData.getClubs()),
+        Observable.fromPromise(this.localData.getClubs(true)),
         Observable.fromPromise(this.localData.getCustomFeed())
       ])
       .subscribe(data => {
@@ -86,7 +86,9 @@ export class Newsfeed {
         .then(data => {
             this.events = data;
             refresher.complete();
-        });
+        }).catch(err => {
+          this.showAlert("Promise didn't return",err);
+        })
      }
     else {
         this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")

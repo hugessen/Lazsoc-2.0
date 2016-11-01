@@ -334,7 +334,7 @@ class _View_DiscountPage0 extends import1.AppView<import3.DiscountPage> {
   }
 }
 export function viewFactory_DiscountPage0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.DiscountPage> {
-  if ((renderType_DiscountPage === (null as any))) { (renderType_DiscountPage = viewUtils.createRenderComponentType('',0,import11.ViewEncapsulation.None,styles_DiscountPage,{})); }
+  if ((renderType_DiscountPage === (null as any))) { (renderType_DiscountPage = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/pages/discount/discount.html',0,import11.ViewEncapsulation.None,styles_DiscountPage,{})); }
   return new _View_DiscountPage0(viewUtils,parentInjector,declarationEl);
 }
 class _View_DiscountPage1 extends import1.AppView<any> {

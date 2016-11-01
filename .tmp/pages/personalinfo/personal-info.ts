@@ -32,6 +32,7 @@ export class PersonalInfo {
             studyYear:data.studyYear,
             program:data.program
         };
+        console.log(this.userData);
         this.localStorage.set('userdata',this.userData);
         this.hasInfo = true; //So I know whether we have the user's info
     })

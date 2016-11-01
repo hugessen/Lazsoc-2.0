@@ -111,6 +111,6 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
   }
 }
 export function viewFactory_MyApp0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.MyApp> {
-  if ((renderType_MyApp === (null as any))) { (renderType_MyApp = viewUtils.createRenderComponentType('',0,import9.ViewEncapsulation.None,styles_MyApp,{})); }
+  if ((renderType_MyApp === (null as any))) { (renderType_MyApp = viewUtils.createRenderComponentType('C:/Users/Richard Hugessen/Documents/GitHub/Lazsoc-2.0/.tmp/app/app.html',0,import9.ViewEncapsulation.None,styles_MyApp,{})); }
   return new _View_MyApp0(viewUtils,parentInjector,declarationEl);
 }

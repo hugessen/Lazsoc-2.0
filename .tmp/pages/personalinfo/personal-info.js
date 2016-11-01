@@ -30,6 +30,7 @@ export var PersonalInfo = (function () {
                 studyYear: data.studyYear,
                 program: data.program
             };
+            console.log(_this.userData);
             _this.localStorage.set('userdata', _this.userData);
             _this.hasInfo = true; //So I know whether we have the user's info
         });

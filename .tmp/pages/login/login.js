@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController, ToastController } from 'ionic-angular';
-import { LocalData } from '../../providers/LocalData';
+import { LocalStorage } from '../../providers/LocalStorage';
 export var LoginPage = (function () {
-    function LoginPage(navParams, viewCtrl, toastCtrl, localData) {
+    function LoginPage(navParams, viewCtrl, toastCtrl, localStorage) {
         this.navParams = navParams;
         this.viewCtrl = viewCtrl;
         this.toastCtrl = toastCtrl;
-        this.localData = localData;
+        this.localStorage = localStorage;
         this.programOptions = ['BBA', 'BBA/Financial Math', 'BBA/Computer Science (UW)', 'BBA/Computer Science (WLU)', 'BBA/Math (UW)', 'Communications'];
         this.userData = navParams.get('userData');
     }
@@ -15,7 +15,8 @@ export var LoginPage = (function () {
         //     this.showToast('Please enter all information');
         // }
         // else{ //Input validated. Now we pass the data back down to userData via NavParams
-        this.localData.saveData('userdata', this.userData);
+        console.log(this.userData);
+        this.localStorage.set('userdata', this.userData);
         this.viewCtrl.dismiss(this.userData);
         // }
     };
@@ -45,7 +46,7 @@ export var LoginPage = (function () {
         { type: NavParams, },
         { type: ViewController, },
         { type: ToastController, },
-        { type: LocalData, },
+        { type: LocalStorage, },
     ];
     return LoginPage;
 }());
