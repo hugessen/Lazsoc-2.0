@@ -7,13 +7,15 @@ import { LocalData } from '../../providers/LocalData';
 import { LocalStorage } from '../../providers/LocalStorage';
 import { Observable } from 'rxjs/Rx';
 export var Newsfeed = (function () {
-    function Newsfeed(navCtrl, localData, localStorage, alertCtrl, popoverCtrl) {
+    function Newsfeed(navCtrl, localData, localStorage, alertCtrl, popoverCtrl, network, calendarCtrl) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.localData = localData;
         this.localStorage = localStorage;
         this.alertCtrl = alertCtrl;
         this.popoverCtrl = popoverCtrl;
+        this.network = network;
+        this.calendarCtrl = calendarCtrl;
         this.timeframe = "this week";
         this.feedType = "all";
         this.message = "All Events This Week";
@@ -68,7 +70,9 @@ export var Newsfeed = (function () {
     };
     Newsfeed.prototype.addToCalendar = function (event) {
         Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
-            .then(function (msg) { return console.log(msg); }, function (err) { return console.log(err); });
+            .then(function (msg) {
+            console.log(msg);
+        }, function (err) { return console.log(err); });
     };
     Newsfeed.prototype.viewEvent = function (event) {
         this.navCtrl.push(EventPage, { event: event, club: this.clubs[event.club_id.toString()] });
@@ -79,6 +83,8 @@ export var Newsfeed = (function () {
             this.localData.getCustomFeed()
                 .then(function (data) {
                 _this.events = data;
+                _this.showAlert("Network:", Network.connection);
+                console.log(Network.connection);
                 refresher.complete();
             }).catch(function (err) {
                 _this.showAlert("Promise didn't return", err);
@@ -100,6 +106,8 @@ export var Newsfeed = (function () {
         { type: LocalStorage, },
         { type: AlertController, },
         { type: PopoverController, },
+        { type: Network, },
+        { type: Calendar, },
     ];
     return Newsfeed;
 }());

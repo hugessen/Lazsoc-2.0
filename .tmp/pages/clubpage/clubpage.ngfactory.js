@@ -1317,7 +1317,7 @@ var _View_ClubPage7 = (function (_super) {
     };
     _View_ClubPage7.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.parent.context.club.club_social_links['facebook'] !== false);
+        var pd_0 = (this.parent.context.openLink(this.parent.context.club.club_social_links['facebook']) !== false);
         return (true && pd_0);
     };
     return _View_ClubPage7;
@@ -1395,7 +1395,7 @@ var _View_ClubPage8 = (function (_super) {
     };
     _View_ClubPage8.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.parent.context.club.club_social_links['twitter'] !== false);
+        var pd_0 = (this.parent.context.openLink(this.parent.context.club.club_social_links['twitter']) !== false);
         return (true && pd_0);
     };
     return _View_ClubPage8;
@@ -1473,7 +1473,7 @@ var _View_ClubPage9 = (function (_super) {
     };
     _View_ClubPage9.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.parent.context.club.club_social_links['instagram'] !== false);
+        var pd_0 = (this.parent.context.openLink(this.parent.context.club.club_social_links['instagram']) !== false);
         return (true && pd_0);
     };
     return _View_ClubPage9;
@@ -1551,7 +1551,7 @@ var _View_ClubPage10 = (function (_super) {
     };
     _View_ClubPage10.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.parent.context.club.club_social_links['snapchat'] !== false);
+        var pd_0 = (this.parent.context.openLink(this.parent.context.club.club_social_links['snapchat']) !== false);
         return (true && pd_0);
     };
     return _View_ClubPage10;
@@ -1629,7 +1629,7 @@ var _View_ClubPage11 = (function (_super) {
     };
     _View_ClubPage11.prototype._handle_click_0_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this.parent.context.club.club_social_links['youtube'] !== false);
+        var pd_0 = (this.parent.context.openLink(this.parent.context.club.club_social_links['youtube']) !== false);
         return (true && pd_0);
     };
     return _View_ClubPage11;

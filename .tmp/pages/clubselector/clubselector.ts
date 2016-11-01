@@ -33,7 +33,7 @@ export class ClubSelector {
       ])
       .subscribe(data => {
           this.clubs = data[0];
-          this.interests = data[1];
+          this.interests = this.localData.getInterestsLocally();
           if(data[2] != null)
             this.userData = data[2];
       })

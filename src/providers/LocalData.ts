@@ -21,6 +21,7 @@ export class LocalData {
 
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
+        // var rule = new RRule();
     }
     
     //Remember to fix this to pull from API after

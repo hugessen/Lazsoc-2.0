@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Storage } from '@ionic/Storage';
+import { Calendar, Network } from 'ionic-native';
 import { TabsPage } from '../pages/tabs/tabs';
 import { Newsfeed } from '../pages/newsfeed/newsfeed';
 import { PopoverPage } from '../pages/popover/popover';
@@ -51,7 +52,7 @@ export var AppModule = (function () {
                         DiscountPage,
                         PersonalInfo
                     ],
-                    providers: [LocalData, CacheService, LocalStorage, Storage]
+                    providers: [LocalData, CacheService, LocalStorage, Storage, Calendar, Network]
                 },] },
     ];
     /** @nocollapse */

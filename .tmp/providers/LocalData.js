@@ -7,6 +7,7 @@ export var LocalData = (function () {
         this.cacheService = cacheService;
         this.localStorage = localStorage;
         this.cache = cacheService;
+        // var rule = new RRule();
     }
     //Remember to fix this to pull from API after
     LocalData.prototype.getCustomFeed = function (club) {
@@ -21,7 +22,6 @@ export var LocalData = (function () {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
                 var interests = _this.getInterestsLocally();
-                console.log(interests);
                 //Applies the visible property to events based on Clubs and Interests
                 if (data[3] != null)
                     _this.userData = data[3];
@@ -50,8 +50,6 @@ export var LocalData = (function () {
         });
     };
     LocalData.prototype.doCustomFeed = function (events, clubs, interests, userData, club) {
-        console.log(userData);
-        console.log(events);
         var result = {};
         //Sorting by time
         events.sort(function (a, b) {

@@ -21,7 +21,7 @@ export class ClubPage {
     this.currentTime = new Date().getTime();
     this.club = this.navParams.get('club');
     this.userData = this.navParams.get('userData');
-    this.localData.formatSocialLinks(this.club.club_social_links);
+    this.club.club_social_links = this.localData.formatSocialLinks(this.club.club_social_links);
     console.log(this.club.club_social_links);
     this.localData.getCustomFeed(this.club)
     .then(res => {
@@ -33,5 +33,9 @@ export class ClubPage {
   }
   toggle(){
     this.userData.clubPrefs[this.club.id.toString()].selected = !this.userData.clubPrefs[this.club.id.toString()].selected;
+  }
+
+  openLink(url:string){
+    window.open(url, "_system");
   }
 }

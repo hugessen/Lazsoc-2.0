@@ -19,7 +19,7 @@ export class Newsfeed {
     timeframe:string = "this week";
     feedType:string = "all";
     message:string = "All Events This Week";
-  constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController) {
+  constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController, public network:Network, public calendarCtrl:Calendar) {
      Observable.forkJoin([
         Observable.fromPromise(this.localData.getClubs(true)),
         Observable.fromPromise(this.localData.getCustomFeed())
@@ -71,7 +71,10 @@ export class Newsfeed {
   addToCalendar(event:ClubEvent){
       Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
       .then(
-          (msg) => console.log(msg),
+          (msg) => {
+            console.log(msg);
+            
+          },
           (err) => console.log(err)
       );
   }
@@ -85,6 +88,8 @@ export class Newsfeed {
         this.localData.getCustomFeed()
         .then(data => {
             this.events = data;
+            this.showAlert("Network:",Network.connection);
+            console.log(Network.connection);
             refresher.complete();
         }).catch(err => {
           this.showAlert("Promise didn't return",err);

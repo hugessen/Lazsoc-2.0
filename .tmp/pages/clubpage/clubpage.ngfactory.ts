@@ -1407,7 +1407,7 @@ class _View_ClubPage7 extends import1.AppView<any> {
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.context.club.club_social_links['facebook']) !== false);
+    const pd_0:any = ((<any>this.parent.context.openLink(this.parent.context.club.club_social_links['facebook'])) !== false);
     return (true && pd_0);
   }
 }
@@ -1486,7 +1486,7 @@ class _View_ClubPage8 extends import1.AppView<any> {
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.context.club.club_social_links['twitter']) !== false);
+    const pd_0:any = ((<any>this.parent.context.openLink(this.parent.context.club.club_social_links['twitter'])) !== false);
     return (true && pd_0);
   }
 }
@@ -1565,7 +1565,7 @@ class _View_ClubPage9 extends import1.AppView<any> {
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.context.club.club_social_links['instagram']) !== false);
+    const pd_0:any = ((<any>this.parent.context.openLink(this.parent.context.club.club_social_links['instagram'])) !== false);
     return (true && pd_0);
   }
 }
@@ -1644,7 +1644,7 @@ class _View_ClubPage10 extends import1.AppView<any> {
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.context.club.club_social_links['snapchat']) !== false);
+    const pd_0:any = ((<any>this.parent.context.openLink(this.parent.context.club.club_social_links['snapchat'])) !== false);
     return (true && pd_0);
   }
 }
@@ -1723,7 +1723,7 @@ class _View_ClubPage11 extends import1.AppView<any> {
   }
   private _handle_click_0_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this.parent.context.club.club_social_links['youtube']) !== false);
+    const pd_0:any = ((<any>this.parent.context.openLink(this.parent.context.club.club_social_links['youtube'])) !== false);
     return (true && pd_0);
   }
 }

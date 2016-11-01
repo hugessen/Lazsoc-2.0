@@ -24,7 +24,7 @@ export var ClubSelector = (function () {
         ])
             .subscribe(function (data) {
             _this.clubs = data[0];
-            _this.interests = data[1];
+            _this.interests = _this.localData.getInterestsLocally();
             if (data[2] != null)
                 _this.userData = data[2];
         });

@@ -15,4 +15,5 @@ export declare class ClubPage {
     constructor(navCtrl: NavController, navParams: NavParams, localData: LocalData);
     viewEvent(event: ClubEvent): void;
     toggle(): void;
+    openLink(url: string): void;
 }

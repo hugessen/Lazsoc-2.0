@@ -21,6 +21,7 @@ export class LocalData {
 
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
+        // var rule = new RRule();
     }
     
     //Remember to fix this to pull from API after
@@ -35,7 +36,6 @@ export class LocalData {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
-                console.log(interests);
                 //Applies the visible property to events based on Clubs and Interests
                 if(data[3] != null) 
                     this.userData = data[3];
@@ -63,8 +63,6 @@ export class LocalData {
     }
     
     doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
-        console.log(userData);
-        console.log(events);
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -195,7 +193,6 @@ export class LocalData {
             }).catch(err => reject(err));
         })
     }
-
     getInterestsLocally(){
         return JSON.parse(`[
     {
