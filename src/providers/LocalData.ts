@@ -10,17 +10,18 @@ import * as nlpjs from 'rrule/lib/nlp';
 import { ClubEvent } from '../models/club-event';
 import { Club } from '../models/club'; //Club object. All objects stored in the 'models' folder
 import { Interest } from '../models/interest';
-import { UserData } from '../models/userdata';
+import { Prefs } from '../models/prefs';
 
 @Injectable()
 export class LocalData {
     public events: any;
     public discountSponsors: any;
-    private userData:UserData;
+    private prefs:Prefs;
     public cache: CacheService;
 
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
+        this.prefs = {clubPrefs:{},interestPrefs:{}};
         // var rule = new RRule();
     }
     
@@ -31,38 +32,34 @@ export class LocalData {
                 Observable.fromPromise(this.getEvents()),
                 Observable.fromPromise(this.getClubs()),
                 Observable.fromPromise(this.getInterests()),
-                Observable.fromPromise(this.getUserInfo())
+                Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
                 //Applies the visible property to events based on Clubs and Interests
                 if(data[3] != null) 
-                    this.userData = data[3];
+                    this.prefs = data[3];
                 else{
-                    this.userData = {
-                        personalInfo:{firstname:"", lastname:"", email:"", studyYear:0, program:""},
-                        clubPrefs:{},
-                        interestPrefs:{}
-                    };
                     for(let club of clubs){
-                        this.userData.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
+                        this.prefs.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
                     }   
                     for (let interest of interests){
-                        this.userData.interestPrefs[interest.name] = {interest_id:interest.id, selected:false}
+                        this.prefs.interestPrefs[interest.name] = {interest_id:interest.id, selected:false}
                     }
                 }
-                this.localStorage.set('userdata',this.userData);
+                clubs = this.transformClubs(clubs);
+                this.localStorage.set('prefs',this.prefs);
                 if(club)
-                    var val = this.doCustomFeed(events,clubs,interests,this.userData,club)
+                    var val = this.doCustomFeed(events,clubs,interests,this.prefs,club)
                 else
-                    var val = this.doCustomFeed(events,clubs,interests,this.userData)
+                    var val = this.doCustomFeed(events,clubs,interests,this.prefs)
                 resolve(val);
             })
         })
     }
     
-    doCustomFeed(events:any[], clubs:Club[], interests:Interest[], userData:UserData, club?:Club):any{
+    doCustomFeed(events:any[], clubs:any, interests:Interest[], prefs:Prefs, club?:Club):any{
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -79,11 +76,11 @@ export class LocalData {
                 event.basedOn = "";
 
                 //Filtering by prefs
-                if (userData.clubPrefs[event.club_id.toString()].selected == true)
+                if (prefs.clubPrefs[event.club_id.toString()].selected == true)
                     event.visible = true; //Set to true if club selected
                 else{
                     for(let tag of event.event_tags){
-                        if(userData.interestPrefs[tag.tag].selected){
+                        if(prefs.interestPrefs[tag.tag].selected){
                             event.visible = true;
                             event.basedOn = tag.tag;
                         }  
@@ -125,6 +122,7 @@ export class LocalData {
         var result:Object = {};
         for (let club of clubs){
             club.club_social_links = this.formatSocialLinks(club.club_social_links);
+            club.app_banner = "assets/img/"+club.app_banner;
             result[club.id.toString()] = club;
         }
         return result;
@@ -147,9 +145,9 @@ export class LocalData {
         })
     }
     
-    getUserInfo():Promise<any>{
+    getPrefs():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.localStorage.get('userdata')
+            this.localStorage.get('prefs')
             .then(res => {
                 resolve(JSON.parse(res));
             }).catch(err => reject(err));

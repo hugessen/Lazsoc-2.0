@@ -29,7 +29,7 @@
                 <div class="selectionbox" *ngFor="let club of clubs">
                     <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>
                     <div>
-                        <img src="{{club.app_logo}}" class="unchecked-clubs-page" (click)="toggle(club.id)" [ngClass]="{'checked-clubs-page':userData.clubPrefs[club.id.toString()].selected, 'unchecked-clubs-page':!userData.clubPrefs[club.id.toString()].selected}">
+                        <img src="assets/img/{{club.app_logo}}" class="unchecked-clubs-page" (click)="toggle(club.id)" [ngClass]="{'checked-clubs-page':prefs.clubPrefs[club.id.toString()].selected, 'unchecked-clubs-page':!prefs.clubPrefs[club.id.toString()].selected}">
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <ion-list>
                     <ion-item *ngFor="let interest of interests">
                         <ion-label>{{interest.name}}</ion-label>
-                        <ion-toggle laz-purple [(ngModel)]="userData.interestPrefs[interest.name].selected"></ion-toggle>
+                        <ion-toggle laz-purple [(ngModel)]="prefs.interestPrefs[interest.name].selected"></ion-toggle>
                     </ion-item>
                 </ion-list>
             </ion-card>
