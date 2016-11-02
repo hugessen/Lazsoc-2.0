@@ -41,8 +41,12 @@ export class Newsfeed {
     alert.present();
   }
 
+  openLink(url:string){
+    window.open(url, "_system");
+  }
+
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe},{enableBackdropDismiss:false});
+    let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe},{cssClass:'popoverClass',enableBackdropDismiss:false});
     popover.present({
       ev: myEvent
     });
@@ -72,8 +76,7 @@ export class Newsfeed {
       Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
       .then(
           (msg) => {
-            console.log(msg);
-            
+            console.log(msg);            
           },
           (err) => console.log(err)
       );
@@ -88,11 +91,10 @@ export class Newsfeed {
         this.localData.getCustomFeed()
         .then(data => {
             this.events = data;
-            this.showAlert("Network:",Network.connection);
             console.log(Network.connection);
             refresher.complete();
         }).catch(err => {
-          this.showAlert("Promise didn't return",err);
+          console.log(err);
         })
      }
     else {

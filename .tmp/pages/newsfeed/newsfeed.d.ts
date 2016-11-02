@@ -19,6 +19,7 @@ export declare class Newsfeed {
     message: string;
     constructor(navCtrl: NavController, localData: LocalData, localStorage: LocalStorage, alertCtrl: AlertController, popoverCtrl: PopoverController, network: Network, calendarCtrl: Calendar);
     showAlert(title: string, message: string): void;
+    openLink(url: string): void;
     presentPopover(myEvent: any): void;
     isValidURL(): boolean;
     addToCalendar(event: ClubEvent): void;

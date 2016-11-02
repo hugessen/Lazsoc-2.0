@@ -816,14 +816,14 @@ class _View_ClubSelector2 extends import1.AppView<any> {
       this._NgClass_7_3.klass = currVal_3;
       this._expr_3 = currVal_3;
     }
-    const currVal_4:any = this._map_0(this.parent.parent.context.userData.clubPrefs[this.context.$implicit.id.toString()].selected,!this.parent.parent.context.userData.clubPrefs[this.context.$implicit.id.toString()].selected);
+    const currVal_4:any = this._map_0(this.parent.parent.context.prefs.clubPrefs[this.context.$implicit.id.toString()].selected,!this.parent.parent.context.prefs.clubPrefs[this.context.$implicit.id.toString()].selected);
     if (import4.checkBinding(throwOnChange,this._expr_4,currVal_4)) {
       this._NgClass_7_3.ngClass = currVal_4;
       this._expr_4 = currVal_4;
     }
     if (!throwOnChange) { this._NgClass_7_3.ngDoCheck(); }
     this.detectContentChildrenChanges(throwOnChange);
-    const currVal_2:any = import4.interpolate(1,'',this.context.$implicit.app_logo,'');
+    const currVal_2:any = import4.interpolate(1,'assets/img/',this.context.$implicit.app_logo,'');
     if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
       this.renderer.setElementProperty(this._el_7,'src',this.viewUtils.sanitizer.sanitize(import46.SecurityContext.URL,currVal_2));
       this._expr_2 = currVal_2;
@@ -1084,7 +1084,7 @@ class _View_ClubSelector4 extends import1.AppView<any> {
   detectChangesInternal(throwOnChange:boolean):void {
     var changes:{[key: string]:import7.SimpleChange} = (null as any);
     changes = (null as any);
-    const currVal_3:any = this.parent.parent.context.userData.interestPrefs[this.context.$implicit.name].selected;
+    const currVal_3:any = this.parent.parent.context.prefs.interestPrefs[this.context.$implicit.name].selected;
     if (import4.checkBinding(throwOnChange,this._expr_3,currVal_3)) {
       this._NgModel_5_6.model = currVal_3;
       if ((changes === (null as any))) { (changes = {}); }
@@ -1155,7 +1155,7 @@ class _View_ClubSelector4 extends import1.AppView<any> {
   }
   private _handle_ngModelChange_5_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>(this.parent.parent.context.userData.interestPrefs[this.context.$implicit.name].selected = $event)) !== false);
+    const pd_0:any = ((<any>(this.parent.parent.context.prefs.interestPrefs[this.context.$implicit.name].selected = $event)) !== false);
     return (true && pd_0);
   }
 }

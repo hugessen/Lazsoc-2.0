@@ -5,7 +5,7 @@ import { LocalData } from '../../providers/LocalData';
 import { LocalStorage } from '../../providers/LocalStorage';
 import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
-import { UserData } from '../../models/userdata';
+import { Prefs } from '../../models/prefs';
 import { Interest } from '../../models/interest';
 import { Observable } from 'rxjs/Rx';
 
@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Rx';
 export class ClubSelector {
   clubs:Club[];
   interests: Interest[];
-  userData:UserData;
+  prefs:Prefs;
   view:string;
   
   constructor(public navCtrl: NavController, public localData:LocalData, public toastCtrl:ToastController, private localStorage:LocalStorage) {
@@ -29,13 +29,15 @@ export class ClubSelector {
       Observable.forkJoin([
         Observable.fromPromise(this.localData.getClubs()),
         Observable.fromPromise(this.localData.getInterests()),
-        Observable.fromPromise(this.localData.getUserInfo())
+        Observable.fromPromise(this.localData.getPrefs())
       ])
       .subscribe(data => {
           this.clubs = data[0];
           this.interests = this.localData.getInterestsLocally();
           if(data[2] != null)
-            this.userData = data[2];
+            this.prefs = data[2];
+          else
+            this.prefs = {clubPrefs:{},interestPrefs:{}};
       })
   }
   
@@ -51,19 +53,19 @@ export class ClubSelector {
   
   //Toggle the selected property of a club
   toggle(clubID:number):void{
-      this.userData.clubPrefs[clubID.toString()].selected = !this.userData.clubPrefs[clubID.toString()].selected;
+      this.prefs.clubPrefs[clubID.toString()].selected = !this.prefs.clubPrefs[clubID.toString()].selected;
   }
   
   //Pushes a club page on the stack
   viewClub(club:Club):void{
-      this.navCtrl.push(ClubPage, {club:club, userData:this.userData});
+      this.navCtrl.push(ClubPage, {club:club, prefs:this.prefs});
   }
   
   //Cache your prefs
   savePrefs(){
       //Another way to concurrently resolve promises
       Promise.all([
-          this.localStorage.set('userdata',this.userData)
+          this.localStorage.set('prefs',this.prefs)
       ]).then(value => console.log("Preferences saved"));
       
       this.showToast('Preferences saved!');

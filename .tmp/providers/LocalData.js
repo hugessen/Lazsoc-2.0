@@ -7,6 +7,7 @@ export var LocalData = (function () {
         this.cacheService = cacheService;
         this.localStorage = localStorage;
         this.cache = cacheService;
+        this.prefs = { clubPrefs: {}, interestPrefs: {} };
         // var rule = new RRule();
     }
     //Remember to fix this to pull from API after
@@ -17,39 +18,35 @@ export var LocalData = (function () {
                 Observable.fromPromise(_this.getEvents()),
                 Observable.fromPromise(_this.getClubs()),
                 Observable.fromPromise(_this.getInterests()),
-                Observable.fromPromise(_this.getUserInfo())
+                Observable.fromPromise(_this.getPrefs())
             ]).subscribe(function (data) {
                 var events = data[0]; //Remember to delete these
                 var clubs = data[1];
                 var interests = _this.getInterestsLocally();
                 //Applies the visible property to events based on Clubs and Interests
                 if (data[3] != null)
-                    _this.userData = data[3];
+                    _this.prefs = data[3];
                 else {
-                    _this.userData = {
-                        personalInfo: { firstname: "", lastname: "", email: "", studyYear: 0, program: "" },
-                        clubPrefs: {},
-                        interestPrefs: {}
-                    };
                     for (var _i = 0, clubs_1 = clubs; _i < clubs_1.length; _i++) {
                         var club_1 = clubs_1[_i];
-                        _this.userData.clubPrefs[club_1.id.toString()] = { club_id: club_1.id, selected: false };
+                        _this.prefs.clubPrefs[club_1.id.toString()] = { club_id: club_1.id, selected: false };
                     }
                     for (var _a = 0, interests_1 = interests; _a < interests_1.length; _a++) {
                         var interest = interests_1[_a];
-                        _this.userData.interestPrefs[interest.name] = { interest_id: interest.id, selected: false };
+                        _this.prefs.interestPrefs[interest.name] = { interest_id: interest.id, selected: false };
                     }
                 }
-                _this.localStorage.set('userdata', _this.userData);
+                clubs = _this.transformClubs(clubs);
+                _this.localStorage.set('prefs', _this.prefs);
                 if (club)
-                    var val = _this.doCustomFeed(events, clubs, interests, _this.userData, club);
+                    var val = _this.doCustomFeed(events, clubs, interests, _this.prefs, club);
                 else
-                    var val = _this.doCustomFeed(events, clubs, interests, _this.userData);
+                    var val = _this.doCustomFeed(events, clubs, interests, _this.prefs);
                 resolve(val);
             });
         });
     };
-    LocalData.prototype.doCustomFeed = function (events, clubs, interests, userData, club) {
+    LocalData.prototype.doCustomFeed = function (events, clubs, interests, prefs, club) {
         var result = {};
         //Sorting by time
         events.sort(function (a, b) {
@@ -66,12 +63,12 @@ export var LocalData = (function () {
                 event_1.timeframe = "";
                 event_1.basedOn = "";
                 //Filtering by prefs
-                if (userData.clubPrefs[event_1.club_id.toString()].selected == true)
+                if (prefs.clubPrefs[event_1.club_id.toString()].selected == true)
                     event_1.visible = true; //Set to true if club selected
                 else {
                     for (var _a = 0, _b = event_1.event_tags; _a < _b.length; _a++) {
                         var tag = _b[_a];
-                        if (userData.interestPrefs[tag.tag].selected) {
+                        if (prefs.interestPrefs[tag.tag].selected) {
                             event_1.visible = true;
                             event_1.basedOn = tag.tag;
                         }
@@ -109,6 +106,7 @@ export var LocalData = (function () {
         for (var _i = 0, clubs_2 = clubs; _i < clubs_2.length; _i++) {
             var club = clubs_2[_i];
             club.club_social_links = this.formatSocialLinks(club.club_social_links);
+            club.app_banner = "assets/img/" + club.app_banner;
             result[club.id.toString()] = club;
         }
         return result;
@@ -131,10 +129,10 @@ export var LocalData = (function () {
             }).catch(function (err) { return reject(err); });
         });
     };
-    LocalData.prototype.getUserInfo = function () {
+    LocalData.prototype.getPrefs = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.localStorage.get('userdata')
+            _this.localStorage.get('prefs')
                 .then(function (res) {
                 resolve(JSON.parse(res));
             }).catch(function (err) { return reject(err); });

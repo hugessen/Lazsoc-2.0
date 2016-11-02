@@ -732,34 +732,13 @@ var _View_Newsfeed4 = (function (_super) {
         this._el_36 = this.renderer.createElement(this._el_23, 'ion-col', null);
         this._Col_36_3 = new import51.Col();
         this._text_37 = this.renderer.createText(this._el_36, '\n                        ', null);
-        this._el_38 = this.renderer.createElement(this._el_36, 'button', null);
-        this.renderer.setElementAttribute(this._el_38, 'clear', '');
-        this.renderer.setElementAttribute(this._el_38, 'ion-button', '');
-        this.renderer.setElementAttribute(this._el_38, 'primary', '');
-        this.renderer.setElementAttribute(this._el_38, 'small', '');
-        this._appEl_38 = new import2.AppElement(38, 36, this, this._el_38);
-        var compView_38 = import35.viewFactory_Button0(this.viewUtils, this.injector(38), this._appEl_38);
-        this._Button_38_4 = new import21.Button(null, '', this.parent.parent.parent.parentInjector.get(import29.Config), new import30.ElementRef(this._el_38), this.renderer);
-        this._appEl_38.initComponent(this._Button_38_4, [], compView_38);
-        this._text_39 = this.renderer.createText(null, '\n                            ', null);
-        this._el_40 = this.renderer.createElement(null, 'ion-icon', null);
-        this.renderer.setElementAttribute(this._el_40, 'name', 'logo-facebook');
-        this.renderer.setElementAttribute(this._el_40, 'role', 'img');
-        this._Icon_40_3 = new import22.Icon(this.parent.parent.parent.parentInjector.get(import29.Config), new import30.ElementRef(this._el_40), this.renderer);
-        this._text_41 = this.renderer.createText(null, '\n                            ', null);
-        this._el_42 = this.renderer.createElement(null, 'div', null);
-        this._text_43 = this.renderer.createText(this._el_42, 'Facebook page', null);
-        this._text_44 = this.renderer.createText(null, '\n                        ', null);
-        compView_38.create(this._Button_38_4, [[].concat([
-                this._text_39,
-                this._el_40,
-                this._text_41,
-                this._el_42,
-                this._text_44
-            ])], null);
-        this._text_45 = this.renderer.createText(this._el_36, '\n                    ', null);
-        this._text_46 = this.renderer.createText(this._el_23, '\n                ', null);
-        this._text_47 = this.renderer.createText(this._el_0, '\n            ', null);
+        this._anchor_38 = this.renderer.createTemplateAnchor(this._el_36, null);
+        this._appEl_38 = new import2.AppElement(38, 36, this, this._anchor_38);
+        this._TemplateRef_38_5 = new import42.TemplateRef_(this._appEl_38, viewFactory_Newsfeed8);
+        this._NgIf_38_6 = new import45.NgIf(this._appEl_38.vcRef, this._TemplateRef_38_5);
+        this._text_39 = this.renderer.createText(this._el_36, '\n                    ', null);
+        this._text_40 = this.renderer.createText(this._el_23, '\n                ', null);
+        this._text_41 = this.renderer.createText(this._el_0, '\n            ', null);
         this._expr_0 = import7.UNINITIALIZED;
         this._expr_1 = import7.UNINITIALIZED;
         var disposable_0 = this.renderer.listen(this._el_6, 'click', this.eventHandler(this._handle_click_6_0.bind(this)));
@@ -774,9 +753,6 @@ var _View_Newsfeed4 = (function (_super) {
         this._expr_10 = import7.UNINITIALIZED;
         this._expr_11 = import7.UNINITIALIZED;
         this._expr_12 = import7.UNINITIALIZED;
-        this._expr_13 = import7.UNINITIALIZED;
-        this._expr_14 = import7.UNINITIALIZED;
-        this._expr_15 = import7.UNINITIALIZED;
         this.init([].concat([this._el_0]), [
             this._el_0,
             this._text_1,
@@ -816,16 +792,10 @@ var _View_Newsfeed4 = (function (_super) {
             this._text_35,
             this._el_36,
             this._text_37,
-            this._el_38,
+            this._anchor_38,
             this._text_39,
-            this._el_40,
-            this._text_41,
-            this._el_42,
-            this._text_43,
-            this._text_44,
-            this._text_45,
-            this._text_46,
-            this._text_47
+            this._text_40,
+            this._text_41
         ], [
             disposable_0,
             disposable_1
@@ -866,19 +836,19 @@ var _View_Newsfeed4 = (function (_super) {
         if (((token === import51.Col) && ((25 <= requestNodeIndex) && (requestNodeIndex <= 34)))) {
             return this._Col_25_3;
         }
-        if (((token === import22.Icon) && (40 === requestNodeIndex))) {
-            return this._Icon_40_3;
+        if (((token === import42.TemplateRef) && (38 === requestNodeIndex))) {
+            return this._TemplateRef_38_5;
         }
-        if (((token === import21.Button) && ((38 <= requestNodeIndex) && (requestNodeIndex <= 44)))) {
-            return this._Button_38_4;
+        if (((token === import45.NgIf) && (38 === requestNodeIndex))) {
+            return this._NgIf_38_6;
         }
-        if (((token === import51.Col) && ((36 <= requestNodeIndex) && (requestNodeIndex <= 45)))) {
+        if (((token === import51.Col) && ((36 <= requestNodeIndex) && (requestNodeIndex <= 39)))) {
             return this._Col_36_3;
         }
-        if (((token === import51.Row) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 46)))) {
+        if (((token === import51.Row) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 40)))) {
             return this._Row_23_3;
         }
-        if (((token === import50.Card) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 47)))) {
+        if (((token === import50.Card) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 41)))) {
             return this._Card_0_3;
         }
         return notFoundResult;
@@ -922,34 +892,15 @@ var _View_Newsfeed4 = (function (_super) {
             this._Icon_29_3.name = currVal_10;
             this._expr_10 = currVal_10;
         }
-        changed = false;
-        var currVal_12 = '';
+        var currVal_12 = (this.parent.context.$implicit.facebook_event_link != '');
         if (import4.checkBinding(throwOnChange, this._expr_12, currVal_12)) {
-            this._Button_38_4.small = currVal_12;
-            changed = true;
+            this._NgIf_38_6.ngIf = currVal_12;
             this._expr_12 = currVal_12;
-        }
-        var currVal_13 = '';
-        if (import4.checkBinding(throwOnChange, this._expr_13, currVal_13)) {
-            this._Button_38_4.clear = currVal_13;
-            changed = true;
-            this._expr_13 = currVal_13;
-        }
-        if (changed) {
-            this._appEl_38.componentView.markAsCheckOnce();
-        }
-        var currVal_14 = 'logo-facebook';
-        if (import4.checkBinding(throwOnChange, this._expr_14, currVal_14)) {
-            this._Icon_40_3.name = currVal_14;
-            this._expr_14 = currVal_14;
         }
         this.detectContentChildrenChanges(throwOnChange);
         if (!throwOnChange) {
             if ((this.numberOfChecks === 0)) {
                 this._Button_27_4.ngAfterContentInit();
-            }
-            if ((this.numberOfChecks === 0)) {
-                this._Button_38_4.ngAfterContentInit();
             }
         }
         var currVal_3 = import4.interpolate(1, '', this.parent.context.$implicit.title, '');
@@ -973,16 +924,10 @@ var _View_Newsfeed4 = (function (_super) {
             this.renderer.setElementClass(this._el_29, 'hide', currVal_11);
             this._expr_11 = currVal_11;
         }
-        var currVal_15 = this._Icon_40_3._hidden;
-        if (import4.checkBinding(throwOnChange, this._expr_15, currVal_15)) {
-            this.renderer.setElementClass(this._el_40, 'hide', currVal_15);
-            this._expr_15 = currVal_15;
-        }
         this.detectViewChildrenChanges(throwOnChange);
     };
     _View_Newsfeed4.prototype.destroyInternal = function () {
         this._Icon_29_3.ngOnDestroy();
-        this._Icon_40_3.ngOnDestroy();
     };
     _View_Newsfeed4.prototype._handle_click_6_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
@@ -1038,7 +983,7 @@ var _View_Newsfeed6 = (function (_super) {
     };
     _View_Newsfeed6.prototype.detectChangesInternal = function (throwOnChange) {
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_1 = this.parent.parent.parent.parent.context.clubs[this.parent.parent.context.$implicit.club_id.toString()].app_banner;
+        var currVal_1 = import4.interpolate(1, 'assets/img/', this.parent.parent.parent.parent.context.clubs[this.parent.parent.context.$implicit.club_id.toString()].app_banner, '');
         if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
             this.renderer.setElementProperty(this._el_0, 'src', this.viewUtils.sanitizer.sanitize(import44.SecurityContext.URL, currVal_1));
             this._expr_1 = currVal_1;
@@ -1087,4 +1032,109 @@ var _View_Newsfeed7 = (function (_super) {
 }(import1.AppView));
 function viewFactory_Newsfeed7(viewUtils, parentInjector, declarationEl) {
     return new _View_Newsfeed7(viewUtils, parentInjector, declarationEl);
+}
+var _View_Newsfeed8 = (function (_super) {
+    __extends(_View_Newsfeed8, _super);
+    function _View_Newsfeed8(viewUtils, parentInjector, declarationEl) {
+        _super.call(this, _View_Newsfeed8, renderType_Newsfeed, import6.ViewType.EMBEDDED, viewUtils, parentInjector, declarationEl, import7.ChangeDetectorStatus.CheckAlways);
+    }
+    _View_Newsfeed8.prototype.createInternal = function (rootSelector) {
+        this._el_0 = this.renderer.createElement(null, 'button', null);
+        this.renderer.setElementAttribute(this._el_0, 'clear', '');
+        this.renderer.setElementAttribute(this._el_0, 'ion-button', '');
+        this.renderer.setElementAttribute(this._el_0, 'primary', '');
+        this.renderer.setElementAttribute(this._el_0, 'small', '');
+        this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
+        var compView_0 = import35.viewFactory_Button0(this.viewUtils, this.injector(0), this._appEl_0);
+        this._Button_0_4 = new import21.Button(null, '', this.parent.parent.parent.parent.parentInjector.get(import29.Config), new import30.ElementRef(this._el_0), this.renderer);
+        this._appEl_0.initComponent(this._Button_0_4, [], compView_0);
+        this._text_1 = this.renderer.createText(null, '\n                            ', null);
+        this._el_2 = this.renderer.createElement(null, 'ion-icon', null);
+        this.renderer.setElementAttribute(this._el_2, 'name', 'logo-facebook');
+        this.renderer.setElementAttribute(this._el_2, 'role', 'img');
+        this._Icon_2_3 = new import22.Icon(this.parent.parent.parent.parent.parentInjector.get(import29.Config), new import30.ElementRef(this._el_2), this.renderer);
+        this._text_3 = this.renderer.createText(null, '\n                            ', null);
+        this._el_4 = this.renderer.createElement(null, 'div', null);
+        this._text_5 = this.renderer.createText(this._el_4, 'Facebook page', null);
+        this._text_6 = this.renderer.createText(null, '\n                        ', null);
+        compView_0.create(this._Button_0_4, [[].concat([
+                this._text_1,
+                this._el_2,
+                this._text_3,
+                this._el_4,
+                this._text_6
+            ])], null);
+        var disposable_0 = this.renderer.listen(this._el_0, 'click', this.eventHandler(this._handle_click_0_0.bind(this)));
+        this._expr_1 = import7.UNINITIALIZED;
+        this._expr_2 = import7.UNINITIALIZED;
+        this._expr_3 = import7.UNINITIALIZED;
+        this._expr_4 = import7.UNINITIALIZED;
+        this.init([].concat([this._el_0]), [
+            this._el_0,
+            this._text_1,
+            this._el_2,
+            this._text_3,
+            this._el_4,
+            this._text_5,
+            this._text_6
+        ], [disposable_0], []);
+        return null;
+    };
+    _View_Newsfeed8.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
+        if (((token === import22.Icon) && (2 === requestNodeIndex))) {
+            return this._Icon_2_3;
+        }
+        if (((token === import21.Button) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 6)))) {
+            return this._Button_0_4;
+        }
+        return notFoundResult;
+    };
+    _View_Newsfeed8.prototype.detectChangesInternal = function (throwOnChange) {
+        var changed = true;
+        changed = false;
+        var currVal_1 = '';
+        if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
+            this._Button_0_4.small = currVal_1;
+            changed = true;
+            this._expr_1 = currVal_1;
+        }
+        var currVal_2 = '';
+        if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
+            this._Button_0_4.clear = currVal_2;
+            changed = true;
+            this._expr_2 = currVal_2;
+        }
+        if (changed) {
+            this._appEl_0.componentView.markAsCheckOnce();
+        }
+        var currVal_3 = 'logo-facebook';
+        if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
+            this._Icon_2_3.name = currVal_3;
+            this._expr_3 = currVal_3;
+        }
+        this.detectContentChildrenChanges(throwOnChange);
+        if (!throwOnChange) {
+            if ((this.numberOfChecks === 0)) {
+                this._Button_0_4.ngAfterContentInit();
+            }
+        }
+        var currVal_4 = this._Icon_2_3._hidden;
+        if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
+            this.renderer.setElementClass(this._el_2, 'hide', currVal_4);
+            this._expr_4 = currVal_4;
+        }
+        this.detectViewChildrenChanges(throwOnChange);
+    };
+    _View_Newsfeed8.prototype.destroyInternal = function () {
+        this._Icon_2_3.ngOnDestroy();
+    };
+    _View_Newsfeed8.prototype._handle_click_0_0 = function ($event) {
+        this.markPathToRootAsCheckOnce();
+        var pd_0 = (this.parent.parent.parent.parent.context.openLink(this.parent.parent.context.$implicit.facebook_event_link) !== false);
+        return (true && pd_0);
+    };
+    return _View_Newsfeed8;
+}(import1.AppView));
+function viewFactory_Newsfeed8(viewUtils, parentInjector, declarationEl) {
+    return new _View_Newsfeed8(viewUtils, parentInjector, declarationEl);
 }

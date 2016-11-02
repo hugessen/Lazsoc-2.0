@@ -13,6 +13,7 @@ export class LoginPage {
     
   constructor(public navParams:NavParams, public viewCtrl: ViewController, public toastCtrl:ToastController, public localStorage:LocalStorage) {
     this.userData = navParams.get('userData');
+    console.log(this.userData);
   }
   
   

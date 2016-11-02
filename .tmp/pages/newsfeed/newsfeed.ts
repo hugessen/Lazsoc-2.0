@@ -41,6 +41,10 @@ export class Newsfeed {
     alert.present();
   }
 
+  openLink(url:string){
+    window.open(url, "_system");
+  }
+
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe},{enableBackdropDismiss:false});
     popover.present({
@@ -84,11 +88,11 @@ export class Newsfeed {
   }
   
   doRefresh(refresher){
+    this.showAlert("network",Network.connection);
       if (Network.connection.toString() != 'none'){
         this.localData.getCustomFeed()
         .then(data => {
             this.events = data;
-            this.showAlert("Network:",Network.connection);
             console.log(Network.connection);
             refresher.complete();
         }).catch(err => {

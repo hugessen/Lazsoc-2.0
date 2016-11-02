@@ -5,13 +5,13 @@
 <div *ngIf="hasInfo">
     <ion-list>
         <ion-item>
-            <ion-icon item-left name="contact"></ion-icon>{{userData.personalInfo.firstname}} {{userData.personalInfo.lastname}}
+            <ion-icon item-left name="contact"></ion-icon>{{userData.firstname}} {{userData.lastname}}
         </ion-item>
         <ion-item>
-            <ion-icon item-left name="ios-mail"></ion-icon> {{userData.personalInfo.email}}
+            <ion-icon item-left name="ios-mail"></ion-icon> {{userData.email}}
         </ion-item>
         <ion-item>
-            <ion-icon item-left name="md-school"></ion-icon>{{userData.personalInfo.program}}, year {{userData.personalInfo.studyYear}}
+            <ion-icon item-left name="md-school"></ion-icon>{{userData.program}}, Year {{userData.studyYear}}
         </ion-item>
     </ion-list>
 </div>

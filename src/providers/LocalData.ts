@@ -18,11 +18,12 @@ export class LocalData {
     public discountSponsors: any;
     private prefs:Prefs;
     public cache: CacheService;
+    // public exportedEvents;
 
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
         this.prefs = {clubPrefs:{},interestPrefs:{}};
-        // var rule = new RRule();
+        var rule = new RRule();
     }
     
     //Remember to fix this to pull from API after

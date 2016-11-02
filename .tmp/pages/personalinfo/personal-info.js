@@ -15,7 +15,13 @@ export var PersonalInfo = (function () {
         this.navCtrl = navCtrl;
         this.localStorage.get('userdata')
             .then(function (data) {
-            _this.userData = JSON.parse(data);
+            if (data != null) {
+                _this.userData = JSON.parse(data);
+            }
+            else {
+                _this.userData = { firstname: "", lastname: "", email: "", studyYear: 0, program: "" };
+                _this.openLogin();
+            }
             _this.hasInfo = true;
         });
     }
@@ -23,7 +29,7 @@ export var PersonalInfo = (function () {
         var _this = this;
         var modal = this.modalCtrl.create(LoginPage, { userData: this.userData }); // everything in the {} are my params to be passed to the Modal
         modal.onDidDismiss(function (data) {
-            _this.userData.personalInfo = {
+            _this.userData = {
                 firstname: data.firstname,
                 lastname: data.lastname,
                 email: data.email,

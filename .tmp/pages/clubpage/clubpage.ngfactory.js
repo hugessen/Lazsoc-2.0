@@ -443,12 +443,12 @@ var _View_ClubPage0 = (function (_super) {
         if (((this.numberOfChecks === 0) && !throwOnChange)) {
             this._Content_9_4.ngOnInit();
         }
-        var currVal_6 = !this.context.userData.clubPrefs[this.context.club.id.toString()].selected;
+        var currVal_6 = !this.context.prefs.clubPrefs[this.context.club.id.toString()].selected;
         if (import4.checkBinding(throwOnChange, this._expr_6, currVal_6)) {
             this._NgIf_13_6.ngIf = currVal_6;
             this._expr_6 = currVal_6;
         }
-        var currVal_7 = this.context.userData.clubPrefs[this.context.club.id.toString()].selected;
+        var currVal_7 = this.context.prefs.clubPrefs[this.context.club.id.toString()].selected;
         if (import4.checkBinding(throwOnChange, this._expr_7, currVal_7)) {
             this._NgIf_15_6.ngIf = currVal_7;
             this._expr_7 = currVal_7;
@@ -575,7 +575,7 @@ var _View_ClubPage0 = (function (_super) {
             this.renderer.setElementClass(this._el_9, 'statusbar-padding', currVal_4);
             this._expr_4 = currVal_4;
         }
-        var currVal_5 = import4.interpolate(1, '', this.context.club.app_banner, '');
+        var currVal_5 = import4.interpolate(1, 'assets/img/', this.context.club.app_banner, '');
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
             this.renderer.setElementProperty(this._el_11, 'src', this.viewUtils.sanitizer.sanitize(import42.SecurityContext.URL, currVal_5));
             this._expr_5 = currVal_5;
@@ -1230,7 +1230,7 @@ var _View_ClubPage6 = (function (_super) {
     };
     _View_ClubPage6.prototype.detectChangesInternal = function (throwOnChange) {
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_1 = this.parent.parent.parent.context.club.app_banner;
+        var currVal_1 = import4.interpolate(1, 'assets/img/', this.parent.parent.parent.context.club.app_banner, '');
         if (import4.checkBinding(throwOnChange, this._expr_1, currVal_1)) {
             this.renderer.setElementProperty(this._el_0, 'src', this.viewUtils.sanitizer.sanitize(import42.SecurityContext.URL, currVal_1));
             this._expr_1 = currVal_1;

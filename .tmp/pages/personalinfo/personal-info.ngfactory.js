@@ -474,7 +474,7 @@ var _View_PersonalInfo2 = (function (_super) {
             this.renderer.setElementClass(this._el_6, 'hide', currVal_1);
             this._expr_1 = currVal_1;
         }
-        var currVal_2 = import4.interpolate(2, '', this.parent.context.userData.personalInfo.firstname, ' ', this.parent.context.userData.personalInfo.lastname, '\n        ');
+        var currVal_2 = import4.interpolate(2, '', this.parent.context.userData.firstname, ' ', this.parent.context.userData.lastname, '\n        ');
         if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
             this.renderer.setText(this._text_7, currVal_2);
             this._expr_2 = currVal_2;
@@ -484,7 +484,7 @@ var _View_PersonalInfo2 = (function (_super) {
             this.renderer.setElementClass(this._el_11, 'hide', currVal_4);
             this._expr_4 = currVal_4;
         }
-        var currVal_5 = import4.interpolate(1, ' ', this.parent.context.userData.personalInfo.email, '\n        ');
+        var currVal_5 = import4.interpolate(1, ' ', this.parent.context.userData.email, '\n        ');
         if (import4.checkBinding(throwOnChange, this._expr_5, currVal_5)) {
             this.renderer.setText(this._text_12, currVal_5);
             this._expr_5 = currVal_5;
@@ -494,7 +494,7 @@ var _View_PersonalInfo2 = (function (_super) {
             this.renderer.setElementClass(this._el_16, 'hide', currVal_7);
             this._expr_7 = currVal_7;
         }
-        var currVal_8 = import4.interpolate(2, '', this.parent.context.userData.personalInfo.program, ', year ', this.parent.context.userData.personalInfo.studyYear, '\n        ');
+        var currVal_8 = import4.interpolate(2, '', this.parent.context.userData.program, ', Year ', this.parent.context.userData.studyYear, '\n        ');
         if (import4.checkBinding(throwOnChange, this._expr_8, currVal_8)) {
             this.renderer.setText(this._text_17, currVal_8);
             this._expr_8 = currVal_8;

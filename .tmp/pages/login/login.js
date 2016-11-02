@@ -9,6 +9,7 @@ export var LoginPage = (function () {
         this.localStorage = localStorage;
         this.programOptions = ['BBA', 'BBA/Financial Math', 'BBA/Computer Science (UW)', 'BBA/Computer Science (WLU)', 'BBA/Math (UW)', 'Communications'];
         this.userData = navParams.get('userData');
+        console.log(this.userData);
     }
     LoginPage.prototype.submit = function () {
         // if (this.userData.personalInfo.firstname ==='' || this.userData.personalInfo.lastname ==='' || this.userData.personalInfo.email ==='' || this.userData.personalInfo.studyYear == 0 || this.userData.personalInfo.program === '') { //Check if any fields are empty

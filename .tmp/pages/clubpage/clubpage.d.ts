@@ -2,7 +2,7 @@
 import { NavController, NavParams } from 'ionic-angular';
 import { LocalData } from '../../providers/LocalData';
 import { Club } from '../../models/club';
-import { UserData } from '../../models/UserData';
+import { Prefs } from '../../models/prefs';
 import { ClubEvent } from '../../models/club-event';
 export declare class ClubPage {
     private navCtrl;
@@ -10,7 +10,7 @@ export declare class ClubPage {
     private localData;
     club: Club;
     events: Object[];
-    userData: UserData;
+    prefs: Prefs;
     currentTime: number;
     constructor(navCtrl: NavController, navParams: NavParams, localData: LocalData);
     viewEvent(event: ClubEvent): void;

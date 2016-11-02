@@ -11,9 +11,8 @@ export var ClubPage = (function () {
         this.localData = localData;
         this.currentTime = new Date().getTime();
         this.club = this.navParams.get('club');
-        this.userData = this.navParams.get('userData');
+        this.prefs = this.navParams.get('prefs');
         this.club.club_social_links = this.localData.formatSocialLinks(this.club.club_social_links);
-        console.log(this.club.club_social_links);
         this.localData.getCustomFeed(this.club)
             .then(function (res) {
             _this.events = res;
@@ -23,7 +22,7 @@ export var ClubPage = (function () {
         this.navCtrl.push(EventPage, { event: event, club: this.club });
     };
     ClubPage.prototype.toggle = function () {
-        this.userData.clubPrefs[this.club.id.toString()].selected = !this.userData.clubPrefs[this.club.id.toString()].selected;
+        this.prefs.clubPrefs[this.club.id.toString()].selected = !this.prefs.clubPrefs[this.club.id.toString()].selected;
     };
     ClubPage.prototype.openLink = function (url) {
         window.open(url, "_system");

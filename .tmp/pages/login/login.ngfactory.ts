@@ -888,7 +888,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     }
     if (((this.numberOfChecks === 0) && !throwOnChange)) { this._Content_10_4.ngOnInit(); }
     changes = (null as any);
-    const currVal_5:any = this.context.userData.personalInfo.firstname;
+    const currVal_5:any = this.context.userData.firstname;
     if (import4.checkBinding(throwOnChange,this._expr_5,currVal_5)) {
       this._NgModel_21_4.model = currVal_5;
       if ((changes === (null as any))) { (changes = {}); }
@@ -903,7 +903,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     }
     if (((this.numberOfChecks === 0) && !throwOnChange)) { this._TextInput_21_7.ngOnInit(); }
     changes = (null as any);
-    const currVal_14:any = this.context.userData.personalInfo.lastname;
+    const currVal_14:any = this.context.userData.lastname;
     if (import4.checkBinding(throwOnChange,this._expr_14,currVal_14)) {
       this._NgModel_29_4.model = currVal_14;
       if ((changes === (null as any))) { (changes = {}); }
@@ -918,7 +918,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     }
     if (((this.numberOfChecks === 0) && !throwOnChange)) { this._TextInput_29_7.ngOnInit(); }
     changes = (null as any);
-    const currVal_23:any = this.context.userData.personalInfo.email;
+    const currVal_23:any = this.context.userData.email;
     if (import4.checkBinding(throwOnChange,this._expr_23,currVal_23)) {
       this._NgModel_37_4.model = currVal_23;
       if ((changes === (null as any))) { (changes = {}); }
@@ -933,7 +933,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     }
     if (((this.numberOfChecks === 0) && !throwOnChange)) { this._TextInput_37_7.ngOnInit(); }
     changes = (null as any);
-    const currVal_35:any = this.context.userData.personalInfo.studyYear;
+    const currVal_35:any = this.context.userData.studyYear;
     if (import4.checkBinding(throwOnChange,this._expr_35,currVal_35)) {
       this._NgModel_45_6.model = currVal_35;
       if ((changes === (null as any))) { (changes = {}); }
@@ -952,7 +952,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
     if ((changes !== (null as any))) { this._NgFor_47_6.ngOnChanges(changes); }
     if (!throwOnChange) { this._NgFor_47_6.ngDoCheck(); }
     changes = (null as any);
-    const currVal_47:any = this.context.userData.personalInfo.program;
+    const currVal_47:any = this.context.userData.program;
     if (import4.checkBinding(throwOnChange,this._expr_47,currVal_47)) {
       this._NgModel_56_6.model = currVal_47;
       if ((changes === (null as any))) { (changes = {}); }
@@ -1277,22 +1277,22 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
   }
   private _handle_ngModelChange_21_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>(this.context.userData.personalInfo.firstname = $event)) !== false);
+    const pd_0:any = ((<any>(this.context.userData.firstname = $event)) !== false);
     return (true && pd_0);
   }
   private _handle_ngModelChange_29_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>(this.context.userData.personalInfo.lastname = $event)) !== false);
+    const pd_0:any = ((<any>(this.context.userData.lastname = $event)) !== false);
     return (true && pd_0);
   }
   private _handle_ngModelChange_37_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>(this.context.userData.personalInfo.email = $event)) !== false);
+    const pd_0:any = ((<any>(this.context.userData.email = $event)) !== false);
     return (true && pd_0);
   }
   private _handle_ngModelChange_45_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>(this.context.userData.personalInfo.studyYear = $event)) !== false);
+    const pd_0:any = ((<any>(this.context.userData.studyYear = $event)) !== false);
     return (true && pd_0);
   }
   private _handle_click_45_1($event:any):boolean {
@@ -1307,7 +1307,7 @@ class _View_LoginPage0 extends import1.AppView<import3.LoginPage> {
   }
   private _handle_ngModelChange_56_0($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>(this.context.userData.personalInfo.program = $event)) !== false);
+    const pd_0:any = ((<any>(this.context.userData.program = $event)) !== false);
     return (true && pd_0);
   }
   private _handle_click_56_1($event:any):boolean {

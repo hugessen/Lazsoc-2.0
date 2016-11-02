@@ -20,13 +20,15 @@ export var ClubSelector = (function () {
         Observable.forkJoin([
             Observable.fromPromise(this.localData.getClubs()),
             Observable.fromPromise(this.localData.getInterests()),
-            Observable.fromPromise(this.localData.getUserInfo())
+            Observable.fromPromise(this.localData.getPrefs())
         ])
             .subscribe(function (data) {
             _this.clubs = data[0];
             _this.interests = _this.localData.getInterestsLocally();
             if (data[2] != null)
-                _this.userData = data[2];
+                _this.prefs = data[2];
+            else
+                _this.prefs = { clubPrefs: {}, interestPrefs: {} };
         });
     };
     //Toast is just an inobtrusive message box at the bottom of the screen
@@ -40,17 +42,17 @@ export var ClubSelector = (function () {
     };
     //Toggle the selected property of a club
     ClubSelector.prototype.toggle = function (clubID) {
-        this.userData.clubPrefs[clubID.toString()].selected = !this.userData.clubPrefs[clubID.toString()].selected;
+        this.prefs.clubPrefs[clubID.toString()].selected = !this.prefs.clubPrefs[clubID.toString()].selected;
     };
     //Pushes a club page on the stack
     ClubSelector.prototype.viewClub = function (club) {
-        this.navCtrl.push(ClubPage, { club: club, userData: this.userData });
+        this.navCtrl.push(ClubPage, { club: club, prefs: this.prefs });
     };
     //Cache your prefs
     ClubSelector.prototype.savePrefs = function () {
         //Another way to concurrently resolve promises
         Promise.all([
-            this.localStorage.set('userdata', this.userData)
+            this.localStorage.set('prefs', this.prefs)
         ]).then(function (value) { return console.log("Preferences saved"); });
         this.showToast('Preferences saved!');
     };

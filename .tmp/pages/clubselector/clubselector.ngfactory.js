@@ -763,7 +763,7 @@ var _View_ClubSelector2 = (function (_super) {
             this._NgClass_7_3.klass = currVal_3;
             this._expr_3 = currVal_3;
         }
-        var currVal_4 = this._map_0(this.parent.parent.context.userData.clubPrefs[this.context.$implicit.id.toString()].selected, !this.parent.parent.context.userData.clubPrefs[this.context.$implicit.id.toString()].selected);
+        var currVal_4 = this._map_0(this.parent.parent.context.prefs.clubPrefs[this.context.$implicit.id.toString()].selected, !this.parent.parent.context.prefs.clubPrefs[this.context.$implicit.id.toString()].selected);
         if (import4.checkBinding(throwOnChange, this._expr_4, currVal_4)) {
             this._NgClass_7_3.ngClass = currVal_4;
             this._expr_4 = currVal_4;
@@ -772,7 +772,7 @@ var _View_ClubSelector2 = (function (_super) {
             this._NgClass_7_3.ngDoCheck();
         }
         this.detectContentChildrenChanges(throwOnChange);
-        var currVal_2 = import4.interpolate(1, '', this.context.$implicit.app_logo, '');
+        var currVal_2 = import4.interpolate(1, 'assets/img/', this.context.$implicit.app_logo, '');
         if (import4.checkBinding(throwOnChange, this._expr_2, currVal_2)) {
             this.renderer.setElementProperty(this._el_7, 'src', this.viewUtils.sanitizer.sanitize(import46.SecurityContext.URL, currVal_2));
             this._expr_2 = currVal_2;
@@ -1014,7 +1014,7 @@ var _View_ClubSelector4 = (function (_super) {
     _View_ClubSelector4.prototype.detectChangesInternal = function (throwOnChange) {
         var changes = null;
         changes = null;
-        var currVal_3 = this.parent.parent.context.userData.interestPrefs[this.context.$implicit.name].selected;
+        var currVal_3 = this.parent.parent.context.prefs.interestPrefs[this.context.$implicit.name].selected;
         if (import4.checkBinding(throwOnChange, this._expr_3, currVal_3)) {
             this._NgModel_5_6.model = currVal_3;
             if ((changes === null)) {
@@ -1093,7 +1093,7 @@ var _View_ClubSelector4 = (function (_super) {
     };
     _View_ClubSelector4.prototype._handle_ngModelChange_5_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = ((this.parent.parent.context.userData.interestPrefs[this.context.$implicit.name].selected = $event) !== false);
+        var pd_0 = ((this.parent.parent.context.prefs.interestPrefs[this.context.$implicit.name].selected = $event) !== false);
         return (true && pd_0);
     };
     return _View_ClubSelector4;

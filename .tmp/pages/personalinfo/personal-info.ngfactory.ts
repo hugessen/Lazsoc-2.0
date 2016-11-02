@@ -507,7 +507,7 @@ class _View_PersonalInfo2 extends import1.AppView<any> {
       this.renderer.setElementClass(this._el_6,'hide',currVal_1);
       this._expr_1 = currVal_1;
     }
-    const currVal_2:any = import4.interpolate(2,'',this.parent.context.userData.personalInfo.firstname,' ',this.parent.context.userData.personalInfo.lastname,'\n        ');
+    const currVal_2:any = import4.interpolate(2,'',this.parent.context.userData.firstname,' ',this.parent.context.userData.lastname,'\n        ');
     if (import4.checkBinding(throwOnChange,this._expr_2,currVal_2)) {
       this.renderer.setText(this._text_7,currVal_2);
       this._expr_2 = currVal_2;
@@ -517,7 +517,7 @@ class _View_PersonalInfo2 extends import1.AppView<any> {
       this.renderer.setElementClass(this._el_11,'hide',currVal_4);
       this._expr_4 = currVal_4;
     }
-    const currVal_5:any = import4.interpolate(1,' ',this.parent.context.userData.personalInfo.email,'\n        ');
+    const currVal_5:any = import4.interpolate(1,' ',this.parent.context.userData.email,'\n        ');
     if (import4.checkBinding(throwOnChange,this._expr_5,currVal_5)) {
       this.renderer.setText(this._text_12,currVal_5);
       this._expr_5 = currVal_5;
@@ -527,7 +527,7 @@ class _View_PersonalInfo2 extends import1.AppView<any> {
       this.renderer.setElementClass(this._el_16,'hide',currVal_7);
       this._expr_7 = currVal_7;
     }
-    const currVal_8:any = import4.interpolate(2,'',this.parent.context.userData.personalInfo.program,', year ',this.parent.context.userData.personalInfo.studyYear,'\n        ');
+    const currVal_8:any = import4.interpolate(2,'',this.parent.context.userData.program,', Year ',this.parent.context.userData.studyYear,'\n        ');
     if (import4.checkBinding(throwOnChange,this._expr_8,currVal_8)) {
       this.renderer.setText(this._text_17,currVal_8);
       this._expr_8 = currVal_8;

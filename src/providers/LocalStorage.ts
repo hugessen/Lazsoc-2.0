@@ -12,7 +12,7 @@ export class LocalStorage {
   constructor(private storage:Storage) {  
     this.init();
     this.userData = null;
-    // this.storage.clear();
+    this.storage.clear();
     //this.set('app-interests',this.interests);
     // this.set('app-discount',this.discount_partners);
     // this.storage.remove('userdata');

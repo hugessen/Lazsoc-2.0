@@ -38,6 +38,9 @@ export var Newsfeed = (function () {
         });
         alert.present();
     };
+    Newsfeed.prototype.openLink = function (url) {
+        window.open(url, "_system");
+    };
     Newsfeed.prototype.presentPopover = function (myEvent) {
         var _this = this;
         var popover = this.popoverCtrl.create(PopoverPage, { feedType: this.feedType, timeframe: this.timeframe }, { enableBackdropDismiss: false });
@@ -79,11 +82,11 @@ export var Newsfeed = (function () {
     };
     Newsfeed.prototype.doRefresh = function (refresher) {
         var _this = this;
+        this.showAlert("network", Network.connection);
         if (Network.connection.toString() != 'none') {
             this.localData.getCustomFeed()
                 .then(function (data) {
                 _this.events = data;
-                _this.showAlert("Network:", Network.connection);
                 console.log(Network.connection);
                 refresher.complete();
             }).catch(function (err) {
