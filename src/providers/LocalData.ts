@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { CacheService } from '../providers/CacheService';
 import { LocalStorage } from '../providers/LocalStorage';
 import { Observable } from 'rxjs/Rx';
-import { RRule } from 'rrule/lib/rrule';
-import * as nlpjs from 'rrule/lib/nlp';
 
+declare var RRule: any; 
 
 //Custom classes
 import { ClubEvent } from '../models/club-event';
@@ -23,7 +22,9 @@ export class LocalData {
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
         this.prefs = {clubPrefs:{},interestPrefs:{}};
-        var rule = new RRule();
+        var rule = RRule.fromString('FREQ=MONTHLY;BYDAY=FR;BYMONTHDAY=13');
+        console.log(rule.toText());
+        console.log(rule.all());
     }
     
     //Remember to fix this to pull from API after
