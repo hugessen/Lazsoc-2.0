@@ -122,7 +122,7 @@ export class LocalData {
         ahead.setDate(ahead.getDate() + AHEAD_TIME);
         for (let event of recurring_events){
             console.log(event);
-            var duration = (Date.parse(event.start_date_time) - Date.parse(event.end_date_time));
+            var duration = (Date.parse(event.end_date_time) - Date.parse(event.start_date_time));
             if(event.hasOwnProperty('is_recurring') && event.is_recurring){
                 var rule = new RRule({
                     freq:RRule.WEEKLY,
@@ -133,14 +133,9 @@ export class LocalData {
                 });
             }
             //Get all the occurrences between specified dates
-            var occurrences = rule.between(past,ahead);
-            for (let instance of occurrences){
-                var currDate = new Date(instance);
-                if (currDate >= now){
-                    event_list.push(this.createEventInstance(event,currDate,duration));
-                    break;
-                }
-            }
+            var occurrences = rule.between(now,ahead);
+            if(occurrences.length > 0)
+                event_list.push(this.createEventInstance(event,new Date(occurrences[0]),duration));
         }
         return event_list;
     }
