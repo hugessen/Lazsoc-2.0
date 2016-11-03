@@ -39,9 +39,8 @@ export class LocalData {
             ]).subscribe(data => {
                 var events = data[0].events;
                 var recurring = this.parseRecurringEvents(data[0].recurring_events);
-                events.push(recurring);
-                console.log(recurring);
-                // console.log(this.parseRecurringEvents(data[0].recurring_events));
+                for (let r_event of recurring)
+                    events.push(r_event);
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
                 //Applies the visible property to events based on Clubs and Interests
@@ -135,14 +134,12 @@ export class LocalData {
             }
             //Get all the occurrences between specified dates
             var occurrences = rule.between(past,ahead);
-            console.log("ocurrences:",occurrences);
-            for (var i = 0; i < occurrences.length; i++){
-                // var curr = new Date(occurrences[i]);
-                // if(curr >= now) {
-                //     // First occurance that's now or in the future, so return it
-                //     return curr;
-                // }
-                event_list.push(this.createEventInstance(event,new Date(occurrences[i]),duration));
+            for (let instance of occurrences){
+                var currDate = new Date(instance);
+                if (currDate >= now){
+                    event_list.push(this.createEventInstance(event,currDate,duration));
+                    break;
+                }
             }
         }
         return event_list;
@@ -151,9 +148,12 @@ export class LocalData {
     //Returns an instance of a recurring event given one of its dates
     createEventInstance(event,date,duration:number):any{
         var new_event = event;
-        console.log(date.toString());
-        new_event.start_date_time = date.toString();
-        new_event.end_date_time = new Date(Date.parse(date) + duration).toString();
+        var startTime = date.toString();
+        var endTime = new Date(Date.parse(date) + duration).toString();
+        console.log("start time: ",startTime);
+        console.log("end time: ", endTime);
+        new_event.start_date_time = startTime;
+        new_event.end_date_time = endTime;
         console.log(new_event);
         return event;
     }
