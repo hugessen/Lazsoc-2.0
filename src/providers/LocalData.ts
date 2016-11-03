@@ -11,20 +11,21 @@ import { Club } from '../models/club'; //Club object. All objects stored in the 
 import { Interest } from '../models/interest';
 import { Prefs } from '../models/prefs';
 
+const STALE_TIME = 14;
+const AHEAD_TIME = 14;
+
 @Injectable()
 export class LocalData {
     public events: any;
     public discountSponsors: any;
     private prefs:Prefs;
     public cache: CacheService;
+    
     // public exportedEvents;
 
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
         this.prefs = {clubPrefs:{},interestPrefs:{}};
-        var rule = RRule.fromString('FREQ=MONTHLY;BYDAY=FR;BYMONTHDAY=13');
-        console.log(rule.toText());
-        console.log(rule.all());
     }
     
     //Remember to fix this to pull from API after
@@ -36,7 +37,11 @@ export class LocalData {
                 Observable.fromPromise(this.getInterests()),
                 Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
-                var events = data[0]; //Remember to delete these
+                var events = data[0].events;
+                var recurring = this.parseRecurringEvents(data[0].recurring_events);
+                events.push(recurring);
+                console.log(recurring);
+                // console.log(this.parseRecurringEvents(data[0].recurring_events));
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
                 //Applies the visible property to events based on Clubs and Interests
@@ -71,7 +76,7 @@ export class LocalData {
         for (let event of events){
             var currentTime = new Date().getTime();
             var eventStart = Date.parse(event.start_date_time);
-            if(eventStart > currentTime - 60*60*24*30 && (!club || clubs[event.club_id.toString()].name == club.name)) { //Ignore events that are more than a month old
+            if(eventStart > currentTime - 60*60*24*STALE_TIME && (!club || clubs[event.club_id.toString()].name == club.name)) { //Ignore events that are older than the stale time
                 var eventDateKey:string = this.generateDateKey(event.start_date_time);
                 event.visible = false; //initially
                 event.timeframe = "";
@@ -109,6 +114,76 @@ export class LocalData {
         return result;
     }
     
+    parseRecurringEvents(recurring_events:any[]):any[]{
+        var event_list = [];
+        var now = new Date();
+        var past = new Date();
+        past.setDate(past.getDate() - STALE_TIME);
+        var ahead = new Date();
+        ahead.setDate(ahead.getDate() + AHEAD_TIME);
+        for (let event of recurring_events){
+            console.log(event);
+            var duration = (Date.parse(event.start_date_time) - Date.parse(event.end_date_time));
+            if(event.hasOwnProperty('is_recurring') && event.is_recurring){
+                var rule = new RRule({
+                    freq:RRule.WEEKLY,
+                    interval: event.recurring_event.repeat_every,
+                    byweekday: this.getByWeekday(event),
+                    dtstart: new Date(event.start_date_time),
+                    until: new Date(event.recurring_event.ends_on)
+                });
+            }
+            //Get all the occurrences between specified dates
+            var occurrences = rule.between(past,ahead);
+            console.log("ocurrences:",occurrences);
+            for (var i = 0; i < occurrences.length; i++){
+                // var curr = new Date(occurrences[i]);
+                // if(curr >= now) {
+                //     // First occurance that's now or in the future, so return it
+                //     return curr;
+                // }
+                event_list.push(this.createEventInstance(event,new Date(occurrences[i]),duration));
+            }
+        }
+        return event_list;
+    }
+
+    //Returns an instance of a recurring event given one of its dates
+    createEventInstance(event,date,duration:number):any{
+        var new_event = event;
+        console.log(date.toString());
+        new_event.start_date_time = date.toString();
+        new_event.end_date_time = new Date(Date.parse(date) + duration).toString();
+        console.log(new_event);
+        return event;
+    }
+
+    getByWeekday(event){
+        var by_week_day = []
+        if (event.recurring_event.monday) {
+            by_week_day.push(RRule.MO);
+        }
+        if (event.recurring_event.tuesday) {
+            by_week_day.push(RRule.TU);
+        }
+        if (event.recurring_event.wednesday) {
+            by_week_day.push(RRule.WE);
+        }
+        if (event.recurring_event.thursday) {
+            by_week_day.push(RRule.TH);
+        }
+        if (event.recurring_event.friday) {
+            by_week_day.push(RRule.FR);
+        }
+        if (event.recurring_event.saturday) {
+            by_week_day.push(RRule.SA);
+        }
+        if (event.recurring_event.sunday) {
+            by_week_day.push(RRule.SU);
+        }
+        return by_week_day;
+    }
+
     generateDateKey(date:string):string{
         return (new Date(date).getDate().toString() + "-" + new Date(date).getMonth().toString() + "-" + new Date(date).getFullYear().toString()).toString();
     }
@@ -142,7 +217,7 @@ export class LocalData {
             this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
             .then(res => {
                 console.log("getting events works");
-                resolve(res.cacheVal["events"]);
+                resolve(res.cacheVal);
             }).catch(err => reject(err));
         })
     }
