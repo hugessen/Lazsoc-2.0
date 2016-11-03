@@ -16,24 +16,24 @@ run:
 * Modals and modal navigation for launch protocol?
 
 ##To Do:
-- [ ] Remove WLUHRN from clubs
+- [x] Remove WLUHRN from clubs
 - [x] Images for discount program
-- [ ] Add to Calendar doesn't execute on my phone; fix
-- [ ] Implement API for interests
-- [ ] Social links in clubpage (confirm they work)
+- [x] Add to Calendar doesn't execute on my phone; fix
+- [x] Implement API for interests
+- [x] Social links in clubpage (confirm they work)
 - [ ] Special Characters
 - [x] Save Preferences separately from Club and Interest objects
 - [x] Implement Interests in custom feed
 - [ ] ConnectivityMonitor to see if user is online
 - [x] Fix Personal Information page
 - [x] List dividers to distinguish days in newsfeed
-- [ ] RRule for recurring events
+- [x] RRule for recurring events
 - [x] Implement new API
 - [x] Gold leaf logo for header bar
 - [ ] Notify when exported event has changed
 - [x] This Week, Next Week, Upcoming filters
 - [x] Popover to edit filters
-- [ ] Override CSS to optimize look-and-feel
+- [x] Override CSS to optimize look-and-feel
 
 ###Cloud
 - [ ] Deploy
