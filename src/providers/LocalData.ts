@@ -38,11 +38,15 @@ export class LocalData {
                 Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
                 var events = data[0].events;
-                var recurring = this.parseRecurringEvents(data[0].recurring_events);
-                for (let r_event of recurring)
-                    events.push(r_event);
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
+                var exportedEvents:Array<Object>;
+                //Turn recurring events into a list of regular events
+                var recurring = this.parseRecurringEvents(data[0].recurring_events);
+                //Add recurring events to event list
+                for (let r_event of recurring)
+                    events.push(r_event);
+
                 //Applies the visible property to events based on Clubs and Interests
                 if(data[3] != null) 
                     this.prefs = data[3];
@@ -65,7 +69,7 @@ export class LocalData {
         })
     }
     
-    doCustomFeed(events:any[], clubs:any, interests:Interest[], prefs:Prefs, club?:Club):any{
+    doCustomFeed(events:any[], clubs:any, interests:Interest[], prefs:Prefs,club?:Club):any{
         var result:Object = {};
         //Sorting by time
         events.sort(function(a,b){
@@ -75,7 +79,7 @@ export class LocalData {
         for (let event of events){
             var currentTime = new Date().getTime();
             var eventStart = Date.parse(event.start_date_time);
-            if(eventStart > currentTime - 60*60*24*STALE_TIME && (!club || clubs[event.club_id.toString()].name == club.name)) { //Ignore events that are older than the stale time
+            if(eventStart > currentTime - 60*60*24*1000*STALE_TIME && (!club || clubs[event.club_id.toString()].name == club.name)) { //Ignore events that are older than the stale time
                 var eventDateKey:string = this.generateDateKey(event.start_date_time);
                 event.visible = false; //initially
                 event.timeframe = "";
@@ -112,7 +116,7 @@ export class LocalData {
         }
         return result;
     }
-    
+
     parseRecurringEvents(recurring_events:any[]):any[]{
         var event_list = [];
         var now = new Date();
@@ -121,7 +125,6 @@ export class LocalData {
         var ahead = new Date();
         ahead.setDate(ahead.getDate() + AHEAD_TIME);
         for (let event of recurring_events){
-            console.log(event);
             var duration = (Date.parse(event.end_date_time) - Date.parse(event.start_date_time));
             if(event.hasOwnProperty('is_recurring') && event.is_recurring){
                 var rule = new RRule({
@@ -134,6 +137,7 @@ export class LocalData {
             }
             //Get all the occurrences between specified dates
             var occurrences = rule.between(now,ahead);
+            //So, for now I'm just pushing a singular instance of each event type, the soonest upcoming one
             if(occurrences.length > 0)
                 event_list.push(this.createEventInstance(event,new Date(occurrences[0]),duration));
         }
@@ -145,11 +149,8 @@ export class LocalData {
         var new_event = event;
         var startTime = date.toString();
         var endTime = new Date(Date.parse(date) + duration).toString();
-        console.log("start time: ",startTime);
-        console.log("end time: ", endTime);
         new_event.start_date_time = startTime;
         new_event.end_date_time = endTime;
-        console.log(new_event);
         return event;
     }
 
@@ -211,7 +212,6 @@ export class LocalData {
         return new Promise((resolve,reject) => {
             this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
             .then(res => {
-                console.log("getting events works");
                 resolve(res.cacheVal);
             }).catch(err => reject(err));
         })
@@ -231,7 +231,6 @@ export class LocalData {
             this.cache.getItem('clubs','clubs.json',60*60*24)
 
             .then(res => {
-                console.log("Getting clubs works");
                 if(doTransform)
                     resolve(this.transformClubs(res.cacheVal));
                 else
@@ -243,7 +242,6 @@ export class LocalData {
         return new Promise((resolve,reject) => {
             this.localStorage.get('app-interests') 
             .then(res => {
-                console.log("Getting interests works");
                 resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
@@ -260,6 +258,14 @@ export class LocalData {
             .then(res => {
                 this.discountSponsors = res;
                 resolve(res);
+            }).catch(err => reject(err));
+        })
+    }
+    getExportedEvents(){
+        return new Promise((resolve,reject) => {
+            this.localStorage.get('exported-events')
+            .then(res => {
+                resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
     }

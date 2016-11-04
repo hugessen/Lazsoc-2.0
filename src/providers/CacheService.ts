@@ -42,7 +42,7 @@ export class CacheService {
     // if ttl is < 0, delete cached item and retrieve a fresh one
     if (ttl < 0) {
       this.storage.remove(name);
-      console.log('removed ' + name + ' from storage');
+      // console.log('removed ' + name + ' from storage');
     }
 
     return new Promise((resolve, reject) => {
@@ -54,19 +54,19 @@ export class CacheService {
           let data = JSON.parse(cachedResult);
           if (this.itemExpired(data)) {
             // cache IS expired
-            console.log('expired cache');
+            // console.log('expired cache');
               this.load(location)
                 .then(res => this.setItem(name, res, ttl).then(() => resolve({fetchType:'api',cacheVal:res})))
                 .catch(err => reject(err));
             } else {
             // cache is NOT expired
-            console.log('data resolved');
+            // console.log('data resolved');
             resolve({fetchType:'cache',cacheVal:data.data});
           }
 
         } else {
           // not in the cache (key doesn't exist)
-          console.log('pulling from api');
+          // console.log('pulling from api');
             this.load(location)
               .then(res => this.setItem(name, res, ttl).then(() => resolve({fetchType:'api',cacheVal:res})))
               .catch(err => reject(err));
@@ -86,7 +86,7 @@ export class CacheService {
   public setItem(name: string, data: any, ttl?: number): Promise<{}> {
     let expiration = (typeof ttl !== 'undefined' && ttl) ? this.currentTimestamp() + ttl : this.currentTimestamp() + CACHE_TTL;
     let value = JSON.stringify({ data: data, expires: expiration});
-    console.log(name + ' being set in storage');
+    // console.log(name + ' being set in storage');
     return this.storage.set(name, value);
   }
 
