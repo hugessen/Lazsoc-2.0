@@ -32,7 +32,7 @@ export class Newsfeed {
         if(data[2] != null){
           this.exportedEvents = data[2].data;
           console.log('exported events:',this.exportedEvents);
-          this.checkExportConflicts(this.exportedEvents,this.events);
+          // this.checkExportConflicts(this.exportedEvents,this.events);
         }
         else{
           this.exportedEvents = new Array<Object>();
