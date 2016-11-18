@@ -8,7 +8,8 @@ export var MyApp = (function () {
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
-            StatusBar.styleDefault();
+            StatusBar.overlaysWebView(false);
+            StatusBar.backgroundColorByHexString("#422C89");
         });
     }
     MyApp.decorators = [

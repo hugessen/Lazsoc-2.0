@@ -98,6 +98,7 @@ var _View_ClubPage0 = (function (_super) {
         this._el_2 = this.renderer.createElement(this._el_0, 'ion-navbar', null);
         this.renderer.setElementAttribute(this._el_2, 'class', 'toolbar');
         this.renderer.setElementAttribute(this._el_2, 'color', 'laz-purple');
+        this.renderer.setElementAttribute(this._el_2, 'style', 'border-bottom:2px solid #F2A900');
         this._appEl_2 = new import2.AppElement(2, 0, this, this._el_2);
         var compView_2 = import30.viewFactory_Navbar0(this.viewUtils, this.injector(2), this._appEl_2);
         this._Navbar_2_4 = new import14.Navbar(this.parentInjector.get(import31.App), this.parentInjector.get(import29.ViewController, null), this.parentInjector.get(import8.NavController, null), this.parentInjector.get(import27.Config), new import28.ElementRef(this._el_2), this.renderer);

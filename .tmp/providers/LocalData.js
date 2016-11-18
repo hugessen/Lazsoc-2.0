@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { CacheService } from '../providers/CacheService';
 import { LocalStorage } from '../providers/LocalStorage';
 import { Observable } from 'rxjs/Rx';
+var STALE_TIME = 14;
+var AHEAD_TIME = 14;
 export var LocalData = (function () {
+    // public exportedEvents;
     function LocalData(cacheService, localStorage) {
         this.cacheService = cacheService;
         this.localStorage = localStorage;
         this.cache = cacheService;
         this.prefs = { clubPrefs: {}, interestPrefs: {} };
-        // var rule = new RRule();
     }
     //Remember to fix this to pull from API after
     LocalData.prototype.getCustomFeed = function (club) {
@@ -20,19 +22,27 @@ export var LocalData = (function () {
                 Observable.fromPromise(_this.getInterests()),
                 Observable.fromPromise(_this.getPrefs())
             ]).subscribe(function (data) {
-                var events = data[0]; //Remember to delete these
+                var events = data[0].events;
                 var clubs = data[1];
                 var interests = _this.getInterestsLocally();
+                var exportedEvents;
+                //Turn recurring events into a list of regular events
+                var recurring = _this.parseRecurringEvents(data[0].recurring_events);
+                //Add recurring events to event list
+                for (var _i = 0, recurring_1 = recurring; _i < recurring_1.length; _i++) {
+                    var r_event = recurring_1[_i];
+                    events.push(r_event);
+                }
                 //Applies the visible property to events based on Clubs and Interests
                 if (data[3] != null)
                     _this.prefs = data[3];
                 else {
-                    for (var _i = 0, clubs_1 = clubs; _i < clubs_1.length; _i++) {
-                        var club_1 = clubs_1[_i];
+                    for (var _a = 0, clubs_1 = clubs; _a < clubs_1.length; _a++) {
+                        var club_1 = clubs_1[_a];
                         _this.prefs.clubPrefs[club_1.id.toString()] = { club_id: club_1.id, selected: false };
                     }
-                    for (var _a = 0, interests_1 = interests; _a < interests_1.length; _a++) {
-                        var interest = interests_1[_a];
+                    for (var _b = 0, interests_1 = interests; _b < interests_1.length; _b++) {
+                        var interest = interests_1[_b];
                         _this.prefs.interestPrefs[interest.name] = { interest_id: interest.id, selected: false };
                     }
                 }
@@ -57,7 +67,7 @@ export var LocalData = (function () {
             var event_1 = events_1[_i];
             var currentTime = new Date().getTime();
             var eventStart = Date.parse(event_1.start_date_time);
-            if (eventStart > currentTime - 60 * 60 * 24 * 30 && (!club || clubs[event_1.club_id.toString()].name == club.name)) {
+            if (eventStart > currentTime - 60 * 60 * 24 * 1000 * STALE_TIME && (!club || clubs[event_1.club_id.toString()].name == club.name)) {
                 var eventDateKey = this.generateDateKey(event_1.start_date_time);
                 event_1.visible = false; //initially
                 event_1.timeframe = "";
@@ -92,6 +102,67 @@ export var LocalData = (function () {
         }
         return result;
     };
+    LocalData.prototype.parseRecurringEvents = function (recurring_events) {
+        var event_list = [];
+        var now = new Date();
+        var past = new Date();
+        past.setDate(past.getDate() - STALE_TIME);
+        var ahead = new Date();
+        ahead.setDate(ahead.getDate() + AHEAD_TIME);
+        for (var _i = 0, recurring_events_1 = recurring_events; _i < recurring_events_1.length; _i++) {
+            var event_2 = recurring_events_1[_i];
+            var duration = (Date.parse(event_2.end_date_time) - Date.parse(event_2.start_date_time));
+            if (event_2.hasOwnProperty('is_recurring') && event_2.is_recurring) {
+                var rule = new RRule({
+                    freq: RRule.WEEKLY,
+                    interval: event_2.recurring_event.repeat_every,
+                    byweekday: this.getByWeekday(event_2),
+                    dtstart: new Date(event_2.start_date_time),
+                    until: new Date(event_2.recurring_event.ends_on)
+                });
+            }
+            //Get all the occurrences between specified dates
+            var occurrences = rule.between(now, ahead);
+            //So, for now I'm just pushing a singular instance of each event type, the soonest upcoming one
+            if (occurrences.length > 0)
+                event_list.push(this.createEventInstance(event_2, new Date(occurrences[0]), duration));
+        }
+        return event_list;
+    };
+    //Returns an instance of a recurring event given one of its dates
+    LocalData.prototype.createEventInstance = function (event, date, duration) {
+        var new_event = event;
+        var startTime = date.toString();
+        var endTime = new Date(Date.parse(date) + duration).toString();
+        new_event.start_date_time = startTime;
+        new_event.end_date_time = endTime;
+        return event;
+    };
+    LocalData.prototype.getByWeekday = function (event) {
+        var by_week_day = [];
+        if (event.recurring_event.monday) {
+            by_week_day.push(RRule.MO);
+        }
+        if (event.recurring_event.tuesday) {
+            by_week_day.push(RRule.TU);
+        }
+        if (event.recurring_event.wednesday) {
+            by_week_day.push(RRule.WE);
+        }
+        if (event.recurring_event.thursday) {
+            by_week_day.push(RRule.TH);
+        }
+        if (event.recurring_event.friday) {
+            by_week_day.push(RRule.FR);
+        }
+        if (event.recurring_event.saturday) {
+            by_week_day.push(RRule.SA);
+        }
+        if (event.recurring_event.sunday) {
+            by_week_day.push(RRule.SU);
+        }
+        return by_week_day;
+    };
     LocalData.prototype.generateDateKey = function (date) {
         return (new Date(date).getDate().toString() + "-" + new Date(date).getMonth().toString() + "-" + new Date(date).getFullYear().toString()).toString();
     };
@@ -124,8 +195,7 @@ export var LocalData = (function () {
         return new Promise(function (resolve, reject) {
             _this.cache.getItem('events', 'events.json', 60 * 20) //Cache for 20 mins
                 .then(function (res) {
-                console.log("getting events works");
-                resolve(res.cacheVal["events"]);
+                resolve(res.cacheVal);
             }).catch(function (err) { return reject(err); });
         });
     };
@@ -143,7 +213,6 @@ export var LocalData = (function () {
         return new Promise(function (resolve, reject) {
             _this.cache.getItem('clubs', 'clubs.json', 60 * 60 * 24)
                 .then(function (res) {
-                console.log("Getting clubs works");
                 if (doTransform)
                     resolve(_this.transformClubs(res.cacheVal));
                 else
@@ -156,7 +225,6 @@ export var LocalData = (function () {
         return new Promise(function (resolve, reject) {
             _this.localStorage.get('app-interests')
                 .then(function (res) {
-                console.log("Getting interests works");
                 resolve(JSON.parse(res));
             }).catch(function (err) { return reject(err); });
         });
@@ -174,6 +242,15 @@ export var LocalData = (function () {
                 .then(function (res) {
                 _this.discountSponsors = res;
                 resolve(res);
+            }).catch(function (err) { return reject(err); });
+        });
+    };
+    LocalData.prototype.getExportedEvents = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.localStorage.get('exported-events')
+                .then(function (res) {
+                resolve(JSON.parse(res));
             }).catch(function (err) { return reject(err); });
         });
     };

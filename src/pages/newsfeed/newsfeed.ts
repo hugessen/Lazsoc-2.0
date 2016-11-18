@@ -18,7 +18,7 @@ export class Newsfeed {
     clubs: Object;
     exportedEvents:Array<Object>;
     timeframe:string = "this week";
-    feedType:string = "all";
+    feedType:string = "All";
     message:string = "All Events This Week";
   constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController, public network:Network, public calendarCtrl:Calendar) {
      Observable.forkJoin([
@@ -40,6 +40,7 @@ export class Newsfeed {
         console.log('events:',this.events);
         console.log('clubs:',this.clubs);
       })
+      console.log(this.exportedEvents);
   }
 
   checkExportConflicts(exp, events){
@@ -105,12 +106,12 @@ export class Newsfeed {
       this.feedType = data.feedType;
       this.timeframe = data.timeframe;
 
-      if(this.feedType == "all"){
+      if(this.feedType == "All"){
         if(this.timeframe == "past") this.message = "All Past Events";
         else if (this.timeframe == "this week") this.message = "All Events This Week";
         else if (this.timeframe == "upcoming") this.message = "All Upcoming Events";
       }
-      else if (this.feedType == "custom"){
+      else if (this.feedType == "Custom"){
         if(this.timeframe == "past") this.message = "Custom Feed of Past Events";
         else if (this.timeframe == "this week") this.message = "Custom Feed of Events this Week";
         else if (this.timeframe == "upcoming") this.message = "Custom Feed of Upcoming Events"
@@ -138,6 +139,13 @@ export class Newsfeed {
   
   viewEvent(event:any):void{
       this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id.toString()]});
+  }
+
+  toggleFeed(){
+    if (this.feedType == "Custom")
+      this.feedType = "All";
+    else
+      this.feedType = "Custom";
   }
   
   doRefresh(refresher){

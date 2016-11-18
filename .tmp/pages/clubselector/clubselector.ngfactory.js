@@ -111,7 +111,6 @@ var _View_ClubSelector0 = (function (_super) {
         this._el_2 = this.renderer.createElement(this._el_0, 'ion-navbar', null);
         this.renderer.setElementAttribute(this._el_2, 'class', 'toolbar');
         this.renderer.setElementAttribute(this._el_2, 'color', 'laz-purple');
-        this.renderer.setElementAttribute(this._el_2, 'style', 'border-bottom:2px solid #F2A900');
         this._appEl_2 = new import2.AppElement(2, 0, this, this._el_2);
         var compView_2 = import27.viewFactory_Navbar0(this.viewUtils, this.injector(2), this._appEl_2);
         this._Navbar_2_4 = new import15.Navbar(this.parentInjector.get(import28.App), this.parentInjector.get(import26.ViewController, null), this.parentInjector.get(import8.NavController, null), this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_2), this.renderer);
@@ -128,7 +127,6 @@ var _View_ClubSelector0 = (function (_super) {
         this._text_7 = this.renderer.createText(this._el_6, '\n        ', null);
         this._el_8 = this.renderer.createElement(this._el_6, 'button', null);
         this.renderer.setElementAttribute(this._el_8, 'ion-button', '');
-        this.renderer.setElementAttribute(this._el_8, 'side', 'right');
         this._appEl_8 = new import2.AppElement(8, 6, this, this._el_8);
         var compView_8 = import29.viewFactory_Button0(this.viewUtils, this.injector(8), this._appEl_8);
         this._Button_8_4 = new import18.Button(null, '', this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_8), this.renderer);
@@ -150,9 +148,9 @@ var _View_ClubSelector0 = (function (_super) {
         ], null);
         this._text_12 = this.renderer.createText(this._el_0, '\n  ', null);
         this._el_13 = this.renderer.createElement(this._el_0, 'ion-toolbar', null);
-        this.renderer.setElementAttribute(this._el_13, 'class', 'toolbar');
+        this.renderer.setElementAttribute(this._el_13, 'class', 'newsfeed-toolbar toolbar');
         this.renderer.setElementAttribute(this._el_13, 'color', 'laz-purple');
-        this.renderer.setElementAttribute(this._el_13, 'style', 'padding:none');
+        this.renderer.setElementAttribute(this._el_13, 'style', 'height:42px');
         this._appEl_13 = new import2.AppElement(13, 0, this, this._el_13);
         var compView_13 = import30.viewFactory_Toolbar0(this.viewUtils, this.injector(13), this._appEl_13);
         this._Toolbar_13_4 = new import14.Toolbar(this.parentInjector.get(import26.ViewController, null), this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_13), this.renderer);

@@ -35,7 +35,6 @@ export var CacheService = (function () {
         // if ttl is < 0, delete cached item and retrieve a fresh one
         if (ttl < 0) {
             this.storage.remove(name);
-            console.log('removed ' + name + ' from storage');
         }
         return new Promise(function (resolve, reject) {
             _this.storage.get(name).then(function (cachedResult) {
@@ -44,20 +43,20 @@ export var CacheService = (function () {
                     var data = JSON.parse(cachedResult);
                     if (_this.itemExpired(data)) {
                         // cache IS expired
-                        console.log('expired cache');
+                        // console.log('expired cache');
                         _this.load(location)
                             .then(function (res) { return _this.setItem(name, res, ttl).then(function () { return resolve({ fetchType: 'api', cacheVal: res }); }); })
                             .catch(function (err) { return reject(err); });
                     }
                     else {
                         // cache is NOT expired
-                        console.log('data resolved');
+                        // console.log('data resolved');
                         resolve({ fetchType: 'cache', cacheVal: data.data });
                     }
                 }
                 else {
                     // not in the cache (key doesn't exist)
-                    console.log('pulling from api');
+                    // console.log('pulling from api');
                     _this.load(location)
                         .then(function (res) { return _this.setItem(name, res, ttl).then(function () { return resolve({ fetchType: 'api', cacheVal: res }); }); })
                         .catch(function (err) { return reject(err); });
@@ -74,7 +73,7 @@ export var CacheService = (function () {
     CacheService.prototype.setItem = function (name, data, ttl) {
         var expiration = (typeof ttl !== 'undefined' && ttl) ? this.currentTimestamp() + ttl : this.currentTimestamp() + CACHE_TTL;
         var value = JSON.stringify({ data: data, expires: expiration });
-        console.log(name + ' being set in storage');
+        // console.log(name + ' being set in storage');
         return this.storage.set(name, value);
     };
     /**

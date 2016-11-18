@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-navbar color="laz-purple" style="border-bottom:2px solid #F2A900">
+  <ion-navbar color="laz-purple">
     <img src="assets/img/gold_leaf.png" class="titleicon"/>
     <ion-buttons end>
-        <button ion-button (click)="savePrefs()" side="right">Save</button>
+        <button ion-button (click)="savePrefs()">Save</button>
     </ion-buttons>
   </ion-navbar>
-  <ion-toolbar color="laz-purple" style="padding:none">
+  <ion-toolbar color="laz-purple" style="height:42px" class="newsfeed-toolbar">
     <ion-segment style="background-color:rgba(66,44,137,1)" [(ngModel)]="view" color="pure-white">
         <ion-segment-button value="clubs">
             Clubs

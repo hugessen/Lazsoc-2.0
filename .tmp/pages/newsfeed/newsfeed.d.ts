@@ -14,10 +14,13 @@ export declare class Newsfeed {
     calendarCtrl: Calendar;
     events: Object;
     clubs: Object;
+    exportedEvents: Array<Object>;
     timeframe: string;
     feedType: string;
     message: string;
     constructor(navCtrl: NavController, localData: LocalData, localStorage: LocalStorage, alertCtrl: AlertController, popoverCtrl: PopoverController, network: Network, calendarCtrl: Calendar);
+    checkExportConflicts(exp: any, events: any): void;
+    notifyConflicts(conflicts: any): void;
     showAlert(title: string, message: string): void;
     openLink(url: string): void;
     presentPopover(myEvent: any): void;

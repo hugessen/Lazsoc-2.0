@@ -14,6 +14,9 @@ export declare class LocalData {
     constructor(cacheService: CacheService, localStorage: LocalStorage);
     getCustomFeed(club?: Club): Promise<any>;
     doCustomFeed(events: any[], clubs: any, interests: Interest[], prefs: Prefs, club?: Club): any;
+    parseRecurringEvents(recurring_events: any[]): any[];
+    createEventInstance(event: any, date: any, duration: number): any;
+    getByWeekday(event: any): any[];
     generateDateKey(date: string): string;
     getLongDate(date: Date): string;
     transformClubs(clubs: any[]): Object;
@@ -23,5 +26,6 @@ export declare class LocalData {
     getClubs(doTransform?: boolean): Promise<any>;
     getInterests(): Promise<any>;
     getDiscountSponsors(): Promise<any>;
+    getExportedEvents(): Promise<{}>;
     getInterestsLocally(): any;
 }
