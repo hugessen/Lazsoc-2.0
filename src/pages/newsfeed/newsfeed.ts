@@ -97,28 +97,29 @@ export class Newsfeed {
     window.open(url, "_system");
   }
 
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe},{cssClass:'popoverClass',enableBackdropDismiss:false});
-    popover.present({
-      ev: myEvent
-    });
+  // presentPopover(myEvent) {
+  //   let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe},{cssClass:'popoverClass',enableBackdropDismiss:false});
+  //   popover.present({
+  //     ev: myEvent
+  //   });
 
-    popover.onDidDismiss(data => {
-      this.feedType = data.feedType;
-      this.timeframe = data.timeframe;
+  //   popover.onDidDismiss(data => {
+  //     this.feedType = data.feedType;
+  //     this.timeframe = data.timeframe;
 
-      if(this.feedType == "All"){
-        if(this.timeframe == "past") this.message = "All Past Events";
-        else if (this.timeframe == "this week") this.message = "All Events This Week";
-        else if (this.timeframe == "upcoming") this.message = "All Upcoming Events";
-      }
-      else if (this.feedType == "Custom"){
-        if(this.timeframe == "past") this.message = "Custom Feed of Past Events";
-        else if (this.timeframe == "this week") this.message = "Custom Feed of Events this Week";
-        else if (this.timeframe == "upcoming") this.message = "Custom Feed of Upcoming Events"
-      }
-    });
-  }
+  //     //Not currently used
+  //     if(this.feedType == "All"){
+  //       if(this.timeframe == "past") this.message = "All Past Events";
+  //       else if (this.timeframe == "this week") this.message = "All Events This Week";
+  //       else if (this.timeframe == "upcoming") this.message = "All Upcoming Events";
+  //     }
+  //     else if (this.feedType == "Custom"){
+  //       if(this.timeframe == "past") this.message = "Custom Feed of Past Events";
+  //       else if (this.timeframe == "this week") this.message = "Custom Feed of Events this Week";
+  //       else if (this.timeframe == "upcoming") this.message = "Custom Feed of Upcoming Events"
+  //     }
+  //   });
+  // }
 
   isValidURL():boolean{
     return true;
@@ -145,8 +146,14 @@ export class Newsfeed {
   toggleFeed(){
     if (this.feedType == "Custom")
       this.feedType = "All";
-    else
+    else{
       this.feedType = "Custom";
+      if (Network.connection.toString() != 'none'){
+        this.localData.getCustomFeed()
+        .then(data => this.events = data)
+        .catch(err => console.log(err))
+     }
+    }
   }
   
   doRefresh(refresher){
