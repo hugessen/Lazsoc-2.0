@@ -30,7 +30,7 @@ export class PersonalInfo {
   }
   
   openLogin(){
-    let modal = this.modalCtrl.create(LoginPage,{userData:this.userData,isInit:false});// everything in the {} are my params to be passed to the Modal
+    let modal = this.modalCtrl.create(LoginPage,{userData:this.userData,isInit:false,clubs:null,interests:null,prefs:null});// everything in the {} are my params to be passed to the Modal
     modal.onDidDismiss(data => { //Retrieving the params passed down from the Modal's dismiss() method
         this.userData = {
             firstname:data.firstname,

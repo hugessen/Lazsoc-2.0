@@ -23,12 +23,14 @@ export class LoginPage {
     this.clubs = navParams.get('clubs');
     this.interests = navParams.get('interests');
     this.prefs = {clubPrefs:{},interestPrefs:{}};
-    for(let club of this.clubs){
-      this.prefs.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false};
-    }
-    for(let interest of this.interests){
-      this.prefs.interestPrefs[interest.name] = {interest_id:interest.id, selected:false};
-      console.log(interest.name);
+    if(this.isInit){
+      for(let club of this.clubs){
+        this.prefs.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false};
+      }
+      for(let interest of this.interests){
+        this.prefs.interestPrefs[interest.name] = {interest_id:interest.id, selected:false};
+        console.log(interest.name);
+      }
     }
     console.log(this.userData);
   }
