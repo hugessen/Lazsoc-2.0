@@ -21,6 +21,7 @@ export class Newsfeed {
     feedType:string = "All";
     message:string = "All Events This Week";
   constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController, public network:Network, public calendarCtrl:Calendar) {
+     console.log("Opening newsfeed");
      Observable.forkJoin([
         Observable.fromPromise(this.localData.getClubs(true)),
         Observable.fromPromise(this.localData.getCustomFeed()),

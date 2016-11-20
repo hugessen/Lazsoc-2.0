@@ -10,7 +10,8 @@ import { Interest } from '../../models/interest';
 import { Observable } from 'rxjs/Rx';
 
 @Component({
-  templateUrl: 'clubselector.html'
+  templateUrl: 'clubselector.html',
+  selector: 'club-selector'
 })
 export class ClubSelector {
   clubs:Club[];
