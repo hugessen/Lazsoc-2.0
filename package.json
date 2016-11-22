@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "^0.0.36",
+    "@types/core-js": "^0.9.34",
     "typescript": "^2.0.3"
   },
   "description": "lazsoc-2: An Ionic project",
