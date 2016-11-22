@@ -5,17 +5,17 @@
 </ion-header>
 
 <ion-content>
-    <img src="{{club.app_banner}}" *ngIf="!event.banner || event.banner==''">
-    <img src="{{event.banner}}" *ngIf="event.banner">
+    <img src="{{club.app_banner}}" *ngIf="!event.banner || event.banner==''" style="display: block;">
+    <img src="{{event.banner}}" *ngIf="event.banner" style="display: block;">
     <ion-card>
         <ion-list>
             <ion-item>
                 <ion-icon name="md-time"></ion-icon>
-                {{event.start_date_time | getLongDate}} - {{getTime(event.end_date_time)}}
+                <span style="word-wrap: break-word; white-space: initial;">{{event.start_date_time | getLongDate}} - {{getTime(event.end_date_time)}}</span>
             </ion-item>
             <ion-item>
                 <ion-icon name="md-pin"></ion-icon>
-                {{event.location}}
+                <span style="word-wrap: break-word; white-space: initial;">{{event.location}}</span>
             </ion-item>
         </ion-list>
     </ion-card>

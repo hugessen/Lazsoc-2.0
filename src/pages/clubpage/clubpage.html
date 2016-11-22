@@ -5,9 +5,9 @@
 </ion-header>
 
 <ion-content>
-    <img src="{{club.app_banner}}">
-    <button ion-button block color="primary" *ngIf="!prefs.clubPrefs[club.id.toString()].selected" (click)="toggle()">Click to Subscribe!</button>
-    <button ion-button block color="secondary" *ngIf="prefs.clubPrefs[club.id.toString()].selected" (click)="toggle()">Subscribed!</button>
+    <img src="{{club.app_banner}}" style="display: block;">
+    <button ion-button block color="primary" *ngIf="!prefs.clubPrefs[club.id.toString()].selected" (click)="toggle()" style="margin-top: 0px;">Click to Subscribe!</button>
+    <button ion-button block color="secondary" *ngIf="prefs.clubPrefs[club.id.toString()].selected" (click)="toggle()" style="margin-top: 0px;">Subscribed!</button>
     <ion-card>
         <ion-card-header><b>{{club.name}}</b></ion-card-header>
         <ion-card-content>{{club.description}}</ion-card-content>
