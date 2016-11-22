@@ -11,7 +11,7 @@ import { Club } from '../models/club'; //Club object. All objects stored in the 
 import { Interest } from '../models/interest';
 import { Prefs } from '../models/prefs';
 
-const STALE_TIME = 14;
+var STALE_TIME = 14;
 const AHEAD_TIME = 14;
 
 @Injectable()
@@ -66,6 +66,8 @@ export class LocalData {
         events.sort(function(a,b){
             return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)
         })
+        if(club)
+            STALE_TIME = 0;
         //Applying visible property based on prefs
         for (let event of events){
             var currentTime = new Date().getTime();
