@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.lazsoc2494494" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>lazsoc-2</name>
-  <description>An awesome Ionic/Cordova app.</description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
   <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
@@ -84,4 +80,7 @@
   <plugin name="cordova-plugin-statusbar" spec="~2.2.0"/>
   <plugin name="ionic-plugin-keyboard" spec="~2.2.1"/>
   <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
-</widget>
+</widget><widget id="com.lazsoc.app" version="2.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>LazSoc</name>
+    <description>The Lazaridis Students’ Society (LazSoc) app contains all the information you need for all club events, including features such as export to calendar.</description>
+    <author email="techteam@lazsoc.ca" href="http://lazsoc.ca/">LazSoc Technology Development Team</author>
