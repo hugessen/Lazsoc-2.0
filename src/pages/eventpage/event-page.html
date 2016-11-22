@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-navbar color="laz-purple">
+  <ion-navbar color="laz-purple" style="border-bottom:2px solid #F2A900">
     <ion-title>{{event.title}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <img src="{{club.app_banner}}" *ngIf="!event.banner">
+    <img src="{{club.app_banner}}" *ngIf="!event.banner || event.banner==''">
     <img src="{{event.banner}}" *ngIf="event.banner">
     <ion-card>
         <ion-list>
@@ -24,6 +24,7 @@
         <ion-card-content>{{event.event_description}}</ion-card-content>
     </ion-card>
     <ion-fab bottom right>
+        <button ion-fab color="facebook" *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)"><ion-icon name="logo-facebook"></ion-icon></button>
         <button ion-fab color="secondary" (click)="addToCalendar()"><ion-icon name="md-calendar"></ion-icon></button>
     </ion-fab>
 </ion-content>

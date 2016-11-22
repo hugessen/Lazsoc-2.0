@@ -1,6 +1,9 @@
 <ion-header>
-  <ion-navbar color="laz-purple">
+  <ion-navbar color="laz-purple" style="border-bottom:2px solid #F2A900">
     <ion-title>Personal Information</ion-title>
+    <ion-buttons end>
+        <button ion-button (click)="next()"><b>Submit</b></button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -11,13 +14,13 @@
             <ion-list-header>Subscribe to clubs here</ion-list-header>
             <div class="flexbox" ion-list>
                 <div class="selectionbox" *ngFor="let club of clubs">
-                    <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>
+                    <!--<div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>-->
                     <div>
                         <img src="assets/img/{{club.app_logo}}" class="unchecked-clubs-page" (click)="toggle(club.id)" [ngClass]="{'checked-clubs-page':prefs.clubPrefs[club.id.toString()].selected, 'unchecked-clubs-page':!prefs.clubPrefs[club.id.toString()].selected}">
                     </div>
                 </div>
             </div>
-            <button ion-button block (click)="state = 'interests'">Submit!</button>
+            <button ion-button block (click)="next()">Submit!</button>
         </div>
         <div *ngSwitchCase="'interests'">
             <ion-list-header>What are you interested in?</ion-list-header>
@@ -29,7 +32,7 @@
                     </ion-item>
                 </ion-list>
             </ion-card>
-            <button ion-button block (click)="submitInit()">Submit!</button>
+            <button ion-button block (click)="next()">Submit!</button>
         </div>
         <div *ngSwitchCase="'personalinfo'">
             <img src="assets/img/LazSoc.png" style="width: 40%; margin-left: auto; margin-right: auto; display: block;">
@@ -63,7 +66,7 @@
                     <ion-toggle color="laz-purple" checked="false"></ion-toggle>
                 </ion-item>   
                 <button ion-button block *ngIf="!isInit" (click)="submit()">Submit!</button>
-                <button ion-button block *ngIf="isInit" (click)="state = 'clubs'">Submit!</button>
+                <button ion-button block *ngIf="isInit" (click)="next()">Submit!</button>
             </ion-list>
         </div>
     </div>

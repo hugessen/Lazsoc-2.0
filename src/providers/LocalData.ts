@@ -48,16 +48,7 @@ export class LocalData {
                     events.push(r_event);
 
                 //Applies the visible property to events based on Clubs and Interests
-                // if(data[3] != null) 
-                    this.prefs = data[3];
-                // else{
-                //     for(let club of clubs){
-                //         this.prefs.clubPrefs[club.id.toString()] = {club_id:club.id, selected:false}
-                //     }   
-                //     for (let interest of interests){
-                //         this.prefs.interestPrefs[interest.name] = {interest_id:interest.id, selected:false}
-                //     }
-                // }
+                this.prefs = data[3];
                 clubs = this.transformClubs(clubs);
                 this.localStorage.set('prefs',this.prefs);
                 if(club)

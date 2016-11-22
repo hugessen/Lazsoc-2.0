@@ -22,6 +22,7 @@ export class ClubPage {
     this.club = this.navParams.get('club');
     this.prefs = this.navParams.get('prefs');
     this.club.club_social_links = this.localData.formatSocialLinks(this.club.club_social_links);
+    this.club.app_banner = "assets/img/"+this.club.app_banner;
     this.localData.getCustomFeed(this.club)
     .then(res => {
       this.events = res;

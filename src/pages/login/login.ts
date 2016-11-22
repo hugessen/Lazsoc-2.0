@@ -36,14 +36,14 @@ export class LoginPage {
   }
 
   submit(){
-    // if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
-        // this.showToast('Please enter all information');
-    // }
-    // else{ //Input validated. Now we pass the data back down to userData via NavParams
+    if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
+        this.showToast('Please enter all information');
+    }
+    else{ //Input validated. Now we pass the data back down to userData via NavParams
         console.log(this.userData);
         this.localStorage.set('userdata',this.userData);
         this.viewCtrl.dismiss(this.userData);
-    // }
+    }
   }
 
   submitInit(){
@@ -66,7 +66,17 @@ export class LoginPage {
   }
   
   next(){
-    
+    if(this.state == "personalinfo"){
+        if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
+          this.showToast('Please enter all information');
+        }
+        else
+          this.state = "clubs";
+    }
+    else if (this.state == "clubs")
+      this.state = "interests"
+    else if (this.state == "interests")
+      this.submitInit()
   }
 
   //Toast is just an inobtrusive message box at the bottom of the screen

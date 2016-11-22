@@ -30,4 +30,7 @@ export class EventPage {
     var ampm = (hour < 12) ? "AM" : "PM";
     return (hour%12 + ":" + minStr + " " + ampm);
   }
+  openLink(url:string){
+    window.open(url, "_system");
+  }
 }
