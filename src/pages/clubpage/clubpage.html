@@ -33,13 +33,13 @@
                     <ion-col>
                         <button ion-button primary clear small (click)="addToCalendar(event)">
                             <ion-icon name="md-calendar"></ion-icon>
-                            <div>Add to Calendar</div>
+                            <div>. Add to Calendar</div>
                         </button>
                     </ion-col>
                     <ion-col>
-                        <button ion-button primary clear small>
+                        <button ion-button primary clear small *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)">
                             <ion-icon name="logo-facebook"></ion-icon>
-                            <div>Facebook page</div>
+                            <div>. Facebook page</div>
                         </button>
                     </ion-col>
                 </ion-row>

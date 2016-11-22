@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import { LocalData } from '../../providers/LocalData';
+import {Calendar} from 'ionic-native';
 import { Club } from '../../models/club';
 import { Prefs } from '../../models/prefs';
 import { ClubEvent } from '../../models/club-event';
@@ -37,5 +38,14 @@ export class ClubPage {
 
   openLink(url:string){
     window.open(url, "_system");
+  }
+  addToCalendar(event:ClubEvent){
+    Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
+    .then(
+        (msg) => {
+          console.log(msg);
+        },
+        (err) => console.log(err)
+    );
   }
 }
