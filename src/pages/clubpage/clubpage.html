@@ -19,7 +19,7 @@
         </ion-list-header>
         <div *ngFor="let event of object.val.events">
             <ion-card style="border-style:solid black">
-                <img [src]="event.banner" *ngIf="event.banner != null">
+                <img [src]="event.banner" (click)="viewEvent(event)" *ngIf="event.banner != null && event.banner != ''">
                 <img src="{{club.app_banner}}" (click)="viewEvent(event)" *ngIf="event.banner == null || event.banner == ''"/>
                 <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
                     <ion-card-title style="font-size:18px">
@@ -47,7 +47,7 @@
         </div>
     </div>
     <ion-fab top right>
-        <button ion-fab color="danger"><ion-icon name="md-share"></ion-icon></button>
+        <button ion-fab color="danger" *ngIf="club.club_social_links != {}"><ion-icon name="md-share"></ion-icon></button>
         <ion-fab-list side="bottom">
             <button ion-fab color="facebook" *ngIf="club.club_social_links['facebook']" (click)="openLink(club.club_social_links['facebook'])"><ion-icon name="logo-facebook"></ion-icon></button>
             <button ion-fab color="twitter" *ngIf="club.club_social_links['twitter']" (click)="openLink(club.club_social_links['twitter'])"><ion-icon name="logo-twitter"></ion-icon></button>

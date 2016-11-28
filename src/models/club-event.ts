@@ -9,6 +9,7 @@ export class ClubEvent{
     banner:string;
     tags:string[];
     event_description: string;
+    facebook_event_link:string;
     visible: boolean;
     timeframe:string;
     basedOn:string;
