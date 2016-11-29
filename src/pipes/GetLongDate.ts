@@ -11,7 +11,7 @@ export class GetLongDate {
     var hour = (date.getHours() == 12) ? 12:date.getHours()%12;
     let minutes = (date.getMinutes() < 10) ? date.getMinutes() + "0" : date.getMinutes();
     let ampm = (date.getHours()<12) ? "AM":"PM";
-    var result:string = days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear() + " " + hour + ":" + minutes + " " + ampm;
+    var result:string = days[date.getDay()] + ", " + months[date.getMonth()] + " " + date.getDate() + ", " + date.getFullYear();
     return result;
   }
 }

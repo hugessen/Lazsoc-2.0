@@ -11,9 +11,13 @@ export class EventPage {
     event: ClubEvent;
     club: Club;
     message: string;
+    startTime:string;
+    endTime:string;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.event = this.navParams.get('event'); //Event object being passed via NavParams
     this.club = this.navParams.get('club');
+    this.startTime = this.getTime(this.event.start_date_time);
+    this.endTime = this.getTime(this.event.end_date_time);
   }
   
   addToCalendar(){

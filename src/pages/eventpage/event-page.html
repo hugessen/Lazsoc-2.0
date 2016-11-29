@@ -5,26 +5,30 @@
 </ion-header>
 
 <ion-content>
-    <img src="assets/img/{{club.app_banner}}" *ngIf="!event.banner || event.banner==''" style="display: block;">
-    <img src="assets/img/{{event.banner}}" *ngIf="event.banner" style="display: block;">
+    <img src="assets/img/{{club.app_banner}}" *ngIf="!event.banner || event.banner==''" style="display: block">
+    <img src="assets/img/{{event.banner}}" *ngIf="event.banner" style="display: block">
+    <button ion-button block color="facebook" style="margin-top: 2px" *ngIf="event.facebook_event_link != ''">Facebook Page</button>
     <ion-card>
-        <ion-list>
+        <ion-list style="padding:none; margin-top:0px; display:block">
             <ion-item>
-                <ion-icon name="md-time"></ion-icon>
-                <span style="word-wrap: break-word; white-space: initial;">{{event.start_date_time | getLongDate}} - {{getTime(event.end_date_time)}}</span>
+                <ion-icon name="md-calendar" style="width:15px"></ion-icon>
+                <span style="white-space: initial; font-size:15px">{{event.start_date_time | getLongDate}}</span>
             </ion-item>
             <ion-item>
-                <ion-icon name="md-pin"></ion-icon>
-                <span style="word-wrap: break-word; white-space: initial;">{{event.location}}</span>
+                <ion-icon name="md-time" style="width:15px"></ion-icon>
+                <span style="white-space: initial; font-size:15px">{{startTime}} - {{endTime}}</span>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="md-pin" style="width:15px"></ion-icon>
+                <span style="font-size:15px">{{event.location}}</span>
             </ion-item>
         </ion-list>
     </ion-card>
     <ion-card>
-        <ion-card-header><b>{{event.title}}</b></ion-card-header>
+        <ion-card-header><b><span style="word-wrap: break-word; white-space: initial;">{{event.title}}</span></b></ion-card-header>
         <ion-card-content>{{event.event_description}}</ion-card-content>
     </ion-card>
     <ion-fab bottom right>
-        <button ion-fab color="facebook" *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)"><ion-icon name="logo-facebook"></ion-icon></button>
         <button ion-fab color="secondary" (click)="addToCalendar()"><ion-icon name="md-calendar"></ion-icon></button>
     </ion-fab>
 </ion-content>
