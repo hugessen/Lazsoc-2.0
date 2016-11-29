@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-    <img src="{{club.app_banner}}" style="display: block;">
+    <img src="assets/img/{{club.app_banner}}" style="display: block;">
     <button ion-button block color="primary" *ngIf="!prefs.clubPrefs[club.id.toString()].selected" (click)="toggle()" style="margin-top: 0px;">Click to Subscribe!</button>
     <button ion-button block color="secondary" *ngIf="prefs.clubPrefs[club.id.toString()].selected" (click)="toggle()" style="margin-top: 0px;">Subscribed!</button>
     <ion-card>
@@ -20,7 +20,7 @@
         <div *ngFor="let event of object.val.events">
             <ion-card style="border-style:solid black">
                 <img [src]="event.banner" (click)="viewEvent(event)" *ngIf="event.banner != null && event.banner != ''">
-                <img src="{{club.app_banner}}" (click)="viewEvent(event)" *ngIf="event.banner == null || event.banner == ''"/>
+                <img src="assets/img/{{club.app_banner}}" (click)="viewEvent(event)" *ngIf="event.banner == null || event.banner == ''"/>
                 <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
                     <ion-card-title style="font-size:18px">
                         <b>{{event.title}}</b>

@@ -48,7 +48,8 @@ export class LocalData {
                     events.push(r_event);
 
                 //Applies the visible property to events based on Clubs and Interests
-                this.prefs = data[3];
+                if(data[3] != null)
+                    this.prefs = data[3];
                 clubs = this.transformClubs(clubs);
                 this.localStorage.set('prefs',this.prefs);
                 if(club)
@@ -79,11 +80,11 @@ export class LocalData {
                 event.basedOn = "";
 
                 //Filtering by prefs
-                if (prefs.clubPrefs[event.club_id.toString()].selected == true)
+                if (prefs.clubPrefs.hasOwnProperty(event.club_id.toString()) && prefs.clubPrefs[event.club_id.toString()].selected == true)
                     event.visible = true; //Set to true if club selected
                 else{
                     for(let tag of event.event_tags){
-                        if(prefs.interestPrefs[tag.tag].selected){
+                        if(prefs.interestPrefs.hasOwnProperty(tag.tag) && prefs.interestPrefs[tag.tag].selected){
                             event.visible = true;
                             event.basedOn = tag.tag;
                         }  
@@ -188,7 +189,6 @@ export class LocalData {
         var result:Object = {};
         for (let club of clubs){
             club.club_social_links = this.formatSocialLinks(club.club_social_links);
-            club.app_banner = "assets/img/"+club.app_banner;
             result[club.id.toString()] = club;
         }
         return result;

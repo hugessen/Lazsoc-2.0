@@ -21,16 +21,16 @@ run:
 - [x] Add to Calendar doesn't execute on my phone; fix
 - [x] Implement API for interests
 - [x] Social links in clubpage (confirm they work)
-- [ ] Special Characters
+- [x] Special Characters
 - [x] Save Preferences separately from Club and Interest objects
 - [x] Implement Interests in custom feed
-- [ ] ConnectivityMonitor to see if user is online
+- [x] ConnectivityMonitor to see if user is online
 - [x] Fix Personal Information page
 - [x] List dividers to distinguish days in newsfeed
 - [x] RRule for recurring events
 - [x] Implement new API
 - [x] Gold leaf logo for header bar
-- [ ] Notify when exported event has changed
+- [x] Notify when exported event has changed
 - [x] This Week, Next Week, Upcoming filters
 - [x] Popover to edit filters
 - [x] Override CSS to optimize look-and-feel

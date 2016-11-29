@@ -29,7 +29,6 @@ export class LoginPage {
       }
       for(let interest of this.interests){
         this.prefs.interestPrefs[interest.name] = {interest_id:interest.id, selected:false};
-        console.log(interest.name);
       }
     }
     console.log(this.userData);
@@ -40,7 +39,7 @@ export class LoginPage {
         this.showToast('Please enter all information');
     }
     else{ //Input validated. Now we pass the data back down to userData via NavParams
-        console.log(this.userData);
+        console.log("Userdata after input:",this.userData);
         this.localStorage.set('userdata',this.userData);
         this.viewCtrl.dismiss(this.userData);
     }
