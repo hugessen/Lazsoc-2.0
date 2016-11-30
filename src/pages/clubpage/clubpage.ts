@@ -26,6 +26,7 @@ export class ClubPage {
     this.localData.getCustomFeed(this.club)
     .then(res => {
       this.events = res;
+      console.log(this.events);
     })
   }
   viewEvent(event:ClubEvent):void{
