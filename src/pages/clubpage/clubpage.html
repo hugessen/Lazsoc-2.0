@@ -12,38 +12,40 @@
         <ion-card-header><b>{{club.name}}</b></ion-card-header>
         <ion-card-content>{{club.description}}</ion-card-content>
     </ion-card>
-    <ion-list-header style="color:black"><b>Upcoming events:</b></ion-list-header>
-    <div *ngFor="let object of events | mapToIterable">
-        <ion-list-header>
-            {{object.val.divider}}
-        </ion-list-header>
-        <div *ngFor="let event of object.val.events">
-            <ion-card style="border-style:solid black">
-                <img [src]="event.banner" (click)="viewEvent(event)" *ngIf="event.banner != null && event.banner != ''">
-                <img src="assets/img/{{club.app_banner}}" (click)="viewEvent(event)" *ngIf="event.banner == null || event.banner == ''"/>
-                <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
-                    <ion-card-title style="font-size:18px">
-                        <b>{{event.title}}</b>
-                    </ion-card-title>   
-                    <p style="word-wrap:normal">{{event.start_date_time | getLongDate}} | {{event.location}}</p>
-                    <p>{{event.sub_heading}}</p>
-                </ion-card-content>
-                
-                <ion-row>
-                    <ion-col>
-                        <button ion-button primary clear small (click)="addToCalendar(event)">
-                            <ion-icon name="md-calendar"></ion-icon>
-                            <div>. Add to Calendar</div>
-                        </button>
-                    </ion-col>
-                    <ion-col>
-                        <button ion-button primary clear small *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)">
-                            <ion-icon name="logo-facebook"></ion-icon>
-                            <div>. Facebook page</div>
-                        </button>
-                    </ion-col>
-                </ion-row>
-            </ion-card>
+    <div *ngIf="!isEmptyObj(events)">
+        <ion-list-header style="color:black"><b>Upcoming events:</b></ion-list-header>
+        <div *ngFor="let object of events | mapToIterable">
+            <ion-list-header>
+                {{object.val.divider}}
+            </ion-list-header>
+            <div *ngFor="let event of object.val.events">
+                <ion-card style="border-style:solid black">
+                    <img [src]="event.banner" (click)="viewEvent(event)" *ngIf="event.banner != null && event.banner != ''">
+                    <img src="assets/img/{{club.app_banner}}" (click)="viewEvent(event)" *ngIf="event.banner == null || event.banner == ''"/>
+                    <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
+                        <ion-card-title style="font-size:18px">
+                            <b>{{event.title}}</b>
+                        </ion-card-title>   
+                        <p style="word-wrap:normal">{{event.start_date_time | getLongDate}} | {{event.location}}</p>
+                        <p>{{event.sub_heading}}</p>
+                    </ion-card-content>
+                    
+                    <ion-row>
+                        <ion-col>
+                            <button ion-button primary clear small (click)="addToCalendar(event)">
+                                <ion-icon name="md-calendar"></ion-icon>
+                                <div>. Add to Calendar</div>
+                            </button>
+                        </ion-col>
+                        <ion-col>
+                            <button ion-button primary clear small *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)">
+                                <ion-icon name="logo-facebook"></ion-icon>
+                                <div>. Facebook page</div>
+                            </button>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </div>
         </div>
     </div>
     <ion-fab top right>

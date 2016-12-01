@@ -5,7 +5,7 @@ import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
 import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
-import { LocalStorage } from '../../providers/LocalStorage'; //Remember to remove after
+import { LocalStorage } from '../../providers/LocalStorage';
 import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
 import { GetLongDate } from '../../pipes/GetLongDate';
 import { Observable } from 'rxjs/Rx';
@@ -17,9 +17,9 @@ export class Newsfeed {
     events: Object; //Array of ClubEvent objects, defined in models/club-event
     clubs: Object;
     exportedEvents:Array<Object>;
-    timeframe:string = "this week";
+    timeframe:string = "thisweek";
     feedType:string = "All";
-    message:string = "All Events This Week";
+    message:string = "All Events this week";
   constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController, public network:Network, public calendarCtrl:Calendar) {
      console.log("Opening newsfeed");
      Observable.forkJoin([
@@ -39,15 +39,16 @@ export class Newsfeed {
           this.exportedEvents = new Array<Object>();
         }
         console.log('events:',this.events);
+        console.log("Events this week:",this.events[this.timeframe]);
         console.log('clubs:',this.clubs);
       })
       console.log(this.exportedEvents);
   }
 
   checkExportConflicts(exp, events){
-    var conflictTitles:string[] = [];
-    var now = new Date();
-    for(var i = 0; i<exp.length; i++){
+    var conflictTitles:string[] = []; //Titles of all events that have been changed
+    var now = new Date(); //Current time
+    for(var i = 0; i<exp.length; i++){ //Look through all exported events
       console.log(exp[i].title);
       if(new Date(exp[i].time).getTime >= now.getTime) { //If the event is still upcoming
         console.log(exp[i].title,"being evaluated");
@@ -79,6 +80,27 @@ export class Newsfeed {
       this.notifyConflicts(conflictTitles);
   }
 
+  hasEvents():boolean{
+    if(this.events != null){
+      if(this.feedType === "All"){
+        return !this.isEmptyObj(this.events[this.timeframe]); //If not custom mode, just return whether there are events in the timeframe
+      }
+      else{
+        for(let key in this.events[this.timeframe]){ //Iterate through the hashtable of date keys in specified timeframe
+          //Return true if there is a single visible event
+          if(this.events[this.timeframe][key].visible) 
+            return true;
+        }
+      }
+    }
+    //Both custom mode and no visible events, or events are null
+    return false;
+  }
+
+  isEmptyObj(obj:Object):boolean{
+    return JSON.stringify(obj) === JSON.stringify({});
+  }
+
   notifyConflicts(conflicts){
     for(let conflict of conflicts)
       this.showAlert("Event Changed!","Your event "+conflict+" has been moved or cancelled. Remove it from your calendar and check back later")
@@ -93,33 +115,10 @@ export class Newsfeed {
     alert.present();
   }
 
+  //For facebook links
   openLink(url:string){
     window.open(url, "_system");
   }
-
-  // presentPopover(myEvent) {
-  //   let popover = this.popoverCtrl.create(PopoverPage, {feedType:this.feedType, timeframe:this.timeframe},{cssClass:'popoverClass',enableBackdropDismiss:false});
-  //   popover.present({
-  //     ev: myEvent
-  //   });
-
-  //   popover.onDidDismiss(data => {
-  //     this.feedType = data.feedType;
-  //     this.timeframe = data.timeframe;
-
-  //     //Not currently used
-  //     if(this.feedType == "All"){
-  //       if(this.timeframe == "past") this.message = "All Past Events";
-  //       else if (this.timeframe == "this week") this.message = "All Events This Week";
-  //       else if (this.timeframe == "upcoming") this.message = "All Upcoming Events";
-  //     }
-  //     else if (this.feedType == "Custom"){
-  //       if(this.timeframe == "past") this.message = "Custom Feed of Past Events";
-  //       else if (this.timeframe == "this week") this.message = "Custom Feed of Events this Week";
-  //       else if (this.timeframe == "upcoming") this.message = "Custom Feed of Upcoming Events"
-  //     }
-  //   });
-  // }
 
   isValidURL():boolean{
     return true;
@@ -143,6 +142,7 @@ export class Newsfeed {
       this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id.toString()]});
   }
 
+  //Toggle between custom and all view
   toggleFeed(){
     if (this.feedType == "Custom")
       this.feedType = "All";

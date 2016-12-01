@@ -41,6 +41,7 @@ export class LocalData {
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
                 var exportedEvents:Array<Object>;
+
                 //Turn recurring events into a list of regular events
                 var recurring = this.parseRecurringEvents(data[0].recurring_events);
                 //Add recurring events to event list
@@ -62,7 +63,11 @@ export class LocalData {
     }
     
     doCustomFeed(events:any[], clubs:any, interests:Interest[], prefs:Prefs,club?:Club):any{
-        var result:Object = {};
+        var result:Object;
+        if(club)
+            result = {};
+        else
+            result = {past:{},thisweek:{},upcoming:{}}
         //Sorting by time
         events.sort(function(a,b){
             return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)
@@ -95,17 +100,17 @@ export class LocalData {
                 if (eventStart < currentTime)   
                     event.timeframe = "past";
                 else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7*1000)
-                    event.timeframe = "this week";
+                    event.timeframe = "thisweek";
                 else 
                     event.timeframe = "upcoming";
 
                 if(!result.hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
                     var dividerVal = this.getLongDate(new Date(event.start_date_time));
-                    result[eventDateKey] = {divider:dividerVal, events:[], visible:false} 
+                    result[event.timeframe][eventDateKey] = {divider:dividerVal, events:[], visible:false} 
                 }
                 if (event.visible)
-                    result[eventDateKey].visible = true; //So we know whether to show the divider
-                result[eventDateKey].events.push(event);
+                    result[event.timeframe][eventDateKey].visible = true; //So we know whether to show the divider
+                result[event.timeframe][eventDateKey].events.push(event);
             }
         }
         return result;
@@ -174,10 +179,12 @@ export class LocalData {
         return by_week_day;
     }
 
+    //Generates the hashkey for getting events by day. Used for dividers in the newsfeed
     generateDateKey(date:string):string{
         return (new Date(date).getDate().toString() + "-" + new Date(date).getMonth().toString() + "-" + new Date(date).getFullYear().toString()).toString();
     }
 
+    //The divider text for the newsfeed
     getLongDate(date:Date):string{
         var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
         var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -185,6 +192,7 @@ export class LocalData {
         return result;
     }
 
+    //Turns clubs from an array into a hash table, and turns their social links into hash tables similarly.
     transformClubs(clubs:any[]):Object{
         var result:Object = {};
         for (let club of clubs){
@@ -194,6 +202,7 @@ export class LocalData {
         return result;
     }
 
+    //Turns the clubs's social links into a hash table for easy access. Much easier to manipulate than an array.
     formatSocialLinks(socialLinks:any[]):Object{
         var result:Object = {};
         for (let link of socialLinks){
@@ -201,15 +210,18 @@ export class LocalData {
         }
         return result;
     }
+
+    //Only used locally. Returns raw event data from the server
     getEvents():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
+            this.cache.getItem('events','events.json',60*20*1000) //Cache for 20 mins
             .then(res => {
                 resolve(res.cacheVal);
             }).catch(err => reject(err));
         })
     }
     
+    //Returns user's locally stored preferences
     getPrefs():Promise<any>{
         return new Promise((resolve,reject) => {
             this.localStorage.get('prefs')
@@ -219,9 +231,10 @@ export class LocalData {
         })
     }
 
+    //Gets clubs from the server. Cache expires after 24 hours
     getClubs(doTransform?:boolean):Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('clubs','clubs.json',60*60*24)
+            this.cache.getItem('clubs','clubs.json',60*60*24*1000)
 
             .then(res => {
                 if(doTransform)
@@ -231,6 +244,7 @@ export class LocalData {
             }).catch(err => reject(err));
         })
     }
+
     getInterests():Promise<any>{
         return new Promise((resolve,reject) => {
             this.localStorage.get('app-interests') 
