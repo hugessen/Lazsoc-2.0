@@ -7,7 +7,7 @@
 <ion-content>
     <img src="assets/img/{{club.app_banner}}" *ngIf="!event.banner || event.banner==''" style="display: block">
     <img src="assets/img/{{event.banner}}" *ngIf="event.banner" style="display: block">
-    <button ion-button block color="facebook" style="margin-top: 2px" *ngIf="event.facebook_event_link != ''">Facebook Page</button>
+    <button ion-button block color="facebook" style="margin-top: 2px" *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)">Facebook Page</button>
     <ion-card>
         <ion-list style="padding:none; margin-top:0px; display:block">
             <ion-item>
