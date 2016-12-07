@@ -29,7 +29,7 @@
                 <div class="selectionbox" *ngFor="let club of clubs">
                     <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>
                     <div>
-                        <img src="assets/img/{{club.app_logo}}" class="unchecked-clubs-page" (click)="toggle(club.id)" [ngClass]="{'checked-clubs-page':prefs.clubPrefs[club.id.toString()].selected, 'unchecked-clubs-page':!prefs.clubPrefs[club.id.toString()].selected}">
+                        <img src="assets/img/{{club.app_logo}}" (click)="toggle(club.id)" [ngClass]="{'checked-clubs-page':prefs.clubPrefs[club.id.toString()].selected, 'unchecked-clubs-page':!prefs.clubPrefs[club.id.toString()].selected}">
                     </div>
                 </div>
             </div>
