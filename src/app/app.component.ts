@@ -11,7 +11,7 @@ import { Pref } from '../models/pref';
 
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
-import { UserData } from '../models/UserData';
+import { UserData } from '../models/userdata';
 import { Observable } from 'rxjs/Rx';
 
 @Component({

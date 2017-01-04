@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import {Storage} from '@ionic/Storage';
-import { UserData } from '../models/UserData';
+import {Storage} from '@ionic/storage';
+import { UserData } from '../models/userdata';
 
 import 'rxjs/add/operator/map';
  

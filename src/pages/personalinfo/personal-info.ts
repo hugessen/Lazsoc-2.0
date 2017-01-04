@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, ModalController} from 'ionic-angular';
 import {LoginPage} from '../login/login';
-import {UserData} from '../../models/UserData';
+import {UserData} from '../../models/userdata';
 import {LocalData} from '../../providers/LocalData';
 import {LocalStorage} from '../../providers/LocalStorage';
 
