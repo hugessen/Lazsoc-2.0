@@ -41,7 +41,7 @@ export class LocalData {
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
                 var exportedEvents:Array<Object>;
-
+                
                 //Turn recurring events into a list of regular events
                 var recurring = this.parseRecurringEvents(data[0].recurring_events);
                 //Add recurring events to event list
@@ -235,7 +235,6 @@ export class LocalData {
     getClubs(doTransform?:boolean):Promise<any>{
         return new Promise((resolve,reject) => {
             this.cache.getItem('clubs','clubs.json',60*60*24*1000)
-
             .then(res => {
                 if(doTransform)
                     resolve(this.transformClubs(res.cacheVal));
@@ -276,6 +275,19 @@ export class LocalData {
             }).catch(err => reject(err));
         })
     }
+
+    // doSaturdayEvent(clubs,prefs):boolean{
+    //     var result = true;
+    //     var c_ids = ['2','3','4','5','7','9','11','12','13','15','17'];
+    //     var pointer = 0;
+    //     for (let key in clubs){
+    //         if(key == c_ids[pointer]){
+    //             if(prefs['clubPrefs'][clubs[key].slug])
+    //         }
+    //     }
+    //     return result;
+    // }
+
     getInterestsLocally(){
         return JSON.parse(`[
     {

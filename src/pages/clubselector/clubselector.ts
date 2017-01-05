@@ -15,7 +15,7 @@ import { Observable } from 'rxjs/Rx';
 })
 export class ClubSelector {
   clubs:Club[];
-  interests: Interest[];
+  interests: any[];
   prefs:Prefs;
   view:string;
   
@@ -39,6 +39,8 @@ export class ClubSelector {
             this.prefs = data[2];
           else
             this.prefs = {clubPrefs:{},interestPrefs:{}};
+          
+          console.log(this.prefs);
       })
   }
   

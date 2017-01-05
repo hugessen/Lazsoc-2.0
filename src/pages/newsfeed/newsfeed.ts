@@ -1,9 +1,8 @@
  import {Component} from '@angular/core';
-import {NavController, AlertController, PopoverController} from 'ionic-angular';
+import {NavController, AlertController} from 'ionic-angular';
 import {Calendar, Network} from 'ionic-native';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
-import { PopoverPage } from '../popover/popover';
 import { LocalData } from '../../providers/LocalData';
 import { LocalStorage } from '../../providers/LocalStorage';
 import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
@@ -20,7 +19,7 @@ export class Newsfeed {
     timeframe:string = "thisweek";
     feedType:string = "All";
     message:string = "All Events this week";
-  constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public popoverCtrl:PopoverController, public network:Network, public calendarCtrl:Calendar) {
+  constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public network:Network, public calendarCtrl:Calendar) {
      console.log("Opening newsfeed");
      Observable.forkJoin([
         Observable.fromPromise(this.localData.getClubs(true)),
