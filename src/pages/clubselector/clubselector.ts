@@ -29,14 +29,13 @@ export class ClubSelector {
   init(){
       Observable.forkJoin([
         Observable.fromPromise(this.localData.getClubs()),
-        Observable.fromPromise(this.localData.getInterests()),
         Observable.fromPromise(this.localData.getPrefs())
       ])
       .subscribe(data => {
           this.clubs = data[0];
           this.interests = this.localData.getInterestsLocally();
           if(data[2] != null)
-            this.prefs = data[2];
+            this.prefs = data[1];
           else
             this.prefs = {clubPrefs:{},interestPrefs:{}};
           

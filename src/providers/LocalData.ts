@@ -34,7 +34,6 @@ export class LocalData {
             Observable.forkJoin([ //Used to concurrently resolve multiple promises
                 Observable.fromPromise(this.getEvents()),
                 Observable.fromPromise(this.getClubs()),
-                Observable.fromPromise(this.getInterests()),
                 Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
                 var events = data[0].events;
@@ -49,8 +48,8 @@ export class LocalData {
                     events.push(r_event);
 
                 //Applies the visible property to events based on Clubs and Interests
-                if(data[3] != null)
-                    this.prefs = data[3];
+                if(data[2] != null)
+                    this.prefs = data[2];
                 clubs = this.transformClubs(clubs);
                 this.localStorage.set('prefs',this.prefs);
                 if(club)
