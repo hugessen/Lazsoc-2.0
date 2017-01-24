@@ -34,7 +34,7 @@ export class ClubSelector {
       .subscribe(data => {
           this.clubs = data[0];
           this.interests = this.localData.getInterestsLocally();
-          if(data[2] != null)
+          if(data[1] != null)
             this.prefs = data[1];
           else
             this.prefs = {clubPrefs:{},interestPrefs:{}};
@@ -69,7 +69,7 @@ export class ClubSelector {
       Promise.all([
           this.localStorage.set('prefs',this.prefs)
       ]).then(value => console.log("Preferences saved"));
-      
+      console.log("Saturday event: " + this.localData.doSaturdayEvent);
       this.showToast('Preferences saved!');
   }
 }
