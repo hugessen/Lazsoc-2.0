@@ -275,17 +275,22 @@ export class LocalData {
         })
     }
 
-    // doSaturdayEvent(clubs,prefs):boolean{
-    //     var result = true;
-    //     var c_ids = ['2','3','4','5','7','9','11','12','13','15','17'];
-    //     var pointer = 0;
-    //     for (let key in clubs){
-    //         if(key == c_ids[pointer]){
-    //             if(prefs['clubPrefs'][clubs[key].slug])
-    //         }
-    //     }
-    //     return result;
-    // }
+    doSaturdayEvent(clubs,prefs):boolean{
+        var c_ids = ['2','3','4','5','7','9','11','12','13','15','17'];
+        var pointer = 0;
+        for (let key in clubs){
+            if(key == c_ids[pointer]){ //Looking at a club that should be selected
+                if(prefs['clubPrefs'][clubs[key].slug].selected == false)
+                    return false;
+                else pointer++;
+            }
+            else { //Club shouldn't be selected
+                if(prefs['clubPrefs'][clubs[key].slug].selected == true)
+                    return false;
+            }
+        }
+        return true;
+    }
 
     getInterestsLocally(){
         return JSON.parse(`[

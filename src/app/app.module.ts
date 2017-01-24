@@ -15,6 +15,7 @@ import { ClubPage } from '../pages/clubpage/clubpage';
 import { LoginPage } from '../pages/login/login';
 import { DiscountPage } from '../pages/discount/discount';
 import { PersonalInfo } from '../pages/personalinfo/personal-info';
+import { Hiring } from '../pages/hiring/hiring';
 
 //Providers
 import { LocalData } from '../providers/LocalData';
@@ -39,6 +40,7 @@ import { GetLongDate } from '../pipes/GetLongDate';
     LoginPage,
     DiscountPage,
     PersonalInfo,
+    Hiring,
     MapToIterablePipe,
     GetLongDate
   ],
@@ -56,7 +58,8 @@ import { GetLongDate } from '../pipes/GetLongDate';
     ClubPage,
     LoginPage,
     DiscountPage,
-    PersonalInfo
+    PersonalInfo,
+    Hiring
   ],
   providers: [LocalData,CacheService,LocalStorage,Storage, Calendar, Network]
 })
