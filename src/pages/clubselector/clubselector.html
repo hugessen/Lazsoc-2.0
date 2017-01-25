@@ -8,7 +8,7 @@
   <ion-toolbar color="laz-purple" style="height:42px" class="newsfeed-toolbar">
     <ion-segment style="background-color:rgba(66,44,137,1)" [(ngModel)]="view" color="pure-white">
         <ion-segment-button value="clubs">
-            Clubs  {{counter}}
+            Clubs
         </ion-segment-button>
         <ion-segment-button value="interests">
             Interests
@@ -27,10 +27,11 @@
             <ion-list-header>Subscribe to clubs here</ion-list-header>
             <div class="flexbox" ion-list>
                 <div class="selectionbox" *ngFor="let club of clubs">
-                    <!--<div class="infobox" (click)="viewClub(club)" *ngIf="prefs.clubPrefs[club.id.toString()].selected"><img src="assets/img/info-icon.png"></div>-->
+                    <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>
                     <div>
-                        <img src="assets/img/{{club.app_logo}}" (click)="toggle(club.id)" > <!-- class="unchecked-clubs-page" -->
-                        <!--                        <img src="assets/img/{{club.app_logo}}" (click)="toggle(club.id)" [ngClass]="{'checked-clubs-page':prefs.clubPrefs[club.id.toString()].selected, 'unchecked-clubs-page':!prefs.clubPrefs[club.id.toString()].selected}">-->
+                        <img src="assets/img/{{club.app_logo}}" (click)="toggle(club.id)" 
+                        [ngClass]="{'checked-clubs-page': prefs.clubPrefs.hasOwnProperty(club.id.toString()) && prefs.clubPrefs[club.id.toString()].selected, 
+                        'unchecked-clubs-page':prefs.clubPrefs.hasOwnProperty(club.id.toString()) && !prefs.clubPrefs[club.id.toString()].selected}">
                     </div>
                 </div>
             </div>

@@ -63,10 +63,7 @@ export class LocalData {
     
     doCustomFeed(events:any[], clubs:any, interests:Interest[], prefs:Prefs,club?:Club):any{
         var result:Object;
-        if(club)
-            result = {};
-        else
-            result = {past:{},thisweek:{},upcoming:{}}
+        result = {past:{},thisweek:{},upcoming:{}}
         //Sorting by time
         events.sort(function(a,b){
             return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)

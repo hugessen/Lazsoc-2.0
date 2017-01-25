@@ -25,7 +25,8 @@ export class ClubPage {
     this.club.club_social_links = this.localData.formatSocialLinks(this.club.club_social_links);
     this.localData.getCustomFeed(this.club) //Club is an optional param that restricts output to a particular club's events
     .then(res => {
-        this.events = res;
+        this.events = res["thisweek"];
+        console.log(this.events);
     })
   }
 

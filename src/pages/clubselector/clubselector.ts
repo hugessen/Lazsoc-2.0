@@ -18,7 +18,6 @@ export class ClubSelector {
   interests: any[];
   prefs:Prefs;
   view:string;
-  counter=0;
   
   constructor(public navCtrl: NavController, public localData:LocalData, public toastCtrl:ToastController, private localStorage:LocalStorage) {
       this.localData = localData;
@@ -56,7 +55,6 @@ export class ClubSelector {
   
   //Toggle the selected property of a club
   toggle(clubID:number):void{
-      this.counter += 1;
       if(this.prefs.clubPrefs.hasOwnProperty(clubID.toString()))
         this.prefs.clubPrefs[clubID.toString()].selected = !this.prefs.clubPrefs[clubID.toString()].selected;
       else
