@@ -1,4 +1,4 @@
-//Ionic Components
+  //Ionic Components
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -45,7 +45,10 @@ import { GetLongDate } from '../pipes/GetLongDate';
     GetLongDate
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp, {
+      mode: 'md',
+      iconMode:'ios'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
