@@ -7,9 +7,12 @@
 <ion-content>
     <img src="assets/img/{{club.app_banner}}" *ngIf="!event.banner || event.banner==''" style="display: block">
     <img src="{{event.banner}}" *ngIf="event.banner" style="display: block">
-    <ion-list style="margin-bottom:0px">
+    <ion-list class="event-bar">
         <ion-item class="event-title" style="border-top:2px solid #F2A900">
             <span class="titleFont">{{event.title}}</span>
+        </ion-item>
+        <ion-item (click)="addToCalendar()" class="calendar-button" style="border-top:2px solid #F2A900; border-left:2px solid #F2A900">
+            <ion-icon color="pure-white" name="md-calendar"></ion-icon>
         </ion-item>
     </ion-list>
     <button ion-button block color="facebook" style="margin-top: 0px" *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)">Facebook Page</button>
@@ -40,7 +43,4 @@
         </ion-list>
         <ion-card-content>{{event.event_description}}</ion-card-content>
     </ion-card>
-    <ion-fab bottom right>
-        <button ion-fab color="secondary" (click)="addToCalendar()"><ion-icon name="md-calendar"></ion-icon></button>
-    </ion-fab>
 </ion-content>
