@@ -69,6 +69,11 @@
     word-wrap: break-word !important; 
 	white-space: initial !important;
 }
+.event-title{
+	word-wrap: break-word !important;
+	background-color:rgba(66,44,137,1);
+	text-align:center;
+}
 
 .newsfeed-segment{
     background-color:rgba(66,44,137,1);
@@ -126,5 +131,5 @@ img.imgbox2.lazsoc_event_img {
 .titleFont{
 	font-weight:bold;
 	font-size:18px;
-	color:black;
+	color:lightgrey;
 }

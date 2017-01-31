@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/Rx';
 declare var RRule: any; 
 
 //Custom classes
-import { ClubEvent } from '../models/club-event';
 import { Club } from '../models/club'; //Club object. All objects stored in the 'models' folder
 import { Interest } from '../models/interest';
 import { Prefs } from '../models/prefs';
@@ -39,7 +38,6 @@ export class LocalData {
                 var events = data[0].events;
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
-                var exportedEvents:Array<Object>;
                 
                 //Turn recurring events into a list of regular events
                 var recurring = this.parseRecurringEvents(data[0].recurring_events);
