@@ -5,8 +5,6 @@ import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
 import { LocalData } from '../../providers/LocalData';
 import { LocalStorage } from '../../providers/LocalStorage';
-import { MapToIterablePipe } from '../../pipes/MapToIterablePipe';
-import { GetLongDate } from '../../pipes/GetLongDate';
 import { Observable } from 'rxjs/Rx';
 
 @Component({

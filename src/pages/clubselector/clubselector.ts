@@ -6,7 +6,6 @@ import { LocalStorage } from '../../providers/LocalStorage';
 import { Club } from '../../models/club';
 import { ClubPage } from '../clubpage/clubpage';
 import { Prefs } from '../../models/prefs';
-import { Interest } from '../../models/interest';
 import { Observable } from 'rxjs/Rx';
 
 @Component({

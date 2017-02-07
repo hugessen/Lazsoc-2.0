@@ -6,8 +6,6 @@ import { Club } from '../../models/club';
 import { Prefs } from '../../models/prefs';
 import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
-import { MapToIterable } from '../../pipes/MapToIterable';
-import { GetLongDate } from '../../pipes/GetLongDate';
 
 @Component({
   templateUrl: '../clubpage/clubpage.html'
