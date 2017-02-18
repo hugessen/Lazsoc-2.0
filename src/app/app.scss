@@ -70,16 +70,26 @@
 	white-space: initial !important;
 }
 
+.fb-button{
+	margin-top:0px;
+	padding-right:5px;
+	background-color: #3B5998;
+	// word-wrap: break-word !important;
+	text-align:center;
+	flex:1;
+}
+
 .event-bar{
-	margin:0;
+	margin-top:1%;
+	margin-right:2%;
+	margin-left:2%;
 	display:flex;
 }
 .event-title{
-	margin:0;
+	margin-top:0;
 	// word-wrap: break-word !important;
 	background-color:rgba(66,44,137,1);
 	text-align:center;
-	flex:8;
 }
 .calendar-button{
 	margin:0;
@@ -146,5 +156,5 @@ img.imgbox2.lazsoc_event_img {
 .titleFont{
 	font-weight:bold;
 	font-size:16px;
-	color:lightgrey;
+	color:white;
 }

@@ -65,6 +65,7 @@ export class LoginPage {
   }
   
   next(){
+    this.submitInit();
     if(this.state == "personalinfo"){
         if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
           this.showToast('Please enter all information');
@@ -73,9 +74,9 @@ export class LoginPage {
           this.state = "clubs";
     }
     else if (this.state == "clubs")
-      this.state = "interests"
+      this.state = "interests";
     else if (this.state == "interests")
-      this.submitInit()
+      this.submitInit();
   }
 
   //Toast is just an inobtrusive message box at the bottom of the screen

@@ -7,33 +7,31 @@
 <ion-content>
     <img src="assets/img/{{club.app_banner}}" *ngIf="!event.banner || event.banner==''" style="display: block">
     <img src="{{event.banner}}" *ngIf="event.banner" style="display: block">
-    <ion-list class="event-bar">
-        <ion-item class="event-title" style="border-top:2px solid #F2A900">
-            <span class="titleFont">{{event.title}}</span>
-        </ion-item>
-        <ion-item (click)="addToCalendar()" class="calendar-button" style="border-top:2px solid #F2A900; border-left:2px solid #F2A900">
-            <ion-icon color="pure-white" name="md-calendar"></ion-icon>
-        </ion-item>
-    </ion-list>
-    <button ion-button block color="facebook" style="margin-top: 0px" *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)">Facebook Page</button>
+    <ion-item class="event-title" style="border-top:2px solid #F2A900">
+        <span class="titleFont">{{event.title}}</span>
+    </ion-item>
+    <div class="event-bar">
+        <button ion-button class="fb-button" *ngIf="event.facebook_event_link != ''" (click)="openLink(event.facebook_event_link)">Facebook</button>
+        <button ion-button (click)="addToCalendar()" class="calendar-button"><ion-icon color="pure-white" name="md-calendar"></ion-icon>&nbsp;Add to Calendar</button>
+    </div>
     <ion-card>
         <ion-list style="padding:none; margin-top:0px; display:block">
         <div *ngIf="!multiDay">
-            <ion-item>
+            <ion-item style="height:40px">
                 <ion-icon name="md-calendar" style="width:15px"></ion-icon>
                 <span style="white-space: initial; font-size:15px">{{event.start_date_time | getLongDate}}</span>
             </ion-item>
-            <ion-item>
+            <ion-item style="height:40px">
                 <ion-icon name="md-time" style="width:15px"></ion-icon>
                 <span style="white-space: initial; font-size:15px">{{startTime}} - {{endTime}}</span>
             </ion-item>
         </div>
         <div *ngIf="multiDay">
-            <ion-item>
-                <span><b>Start:</b> {{event.start_date_time | getLongDate}} {{startTime}}</span>
+            <ion-item style="height:40px">
+                <span style="font-size:13.5px"><b>Start:</b> {{event.start_date_time | getLongDate}} {{startTime}}</span>
             </ion-item>
-            <ion-item>
-                <span><b>End:</b> {{event.start_date_time | getLongDate}} {{endTime}}</span>
+            <ion-item style="height:40px">
+                <span style="font-size:13.5px"><b>End:</b> {{event.start_date_time | getLongDate}} {{endTime}}</span>
             </ion-item>
         </div>
             <ion-item>
