@@ -65,7 +65,6 @@ export class LoginPage {
   }
   
   next(){
-    this.submitInit();
     if(this.state == "personalinfo"){
         if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
           this.showToast('Please enter all information');
