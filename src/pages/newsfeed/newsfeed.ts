@@ -13,10 +13,11 @@ import { Observable } from 'rxjs/Rx';
 export class Newsfeed {
     events: Object; //Array of ClubEvent objects, defined in models/club-event
     clubs: Object;
-    exportedEvents:Array<Object>;
     timeframe:string = "thisweek";
     feedType:string = "All";
     message:string = "All Events this week";
+
+
   constructor(public navCtrl: NavController, public localData: LocalData, public localStorage:LocalStorage, public alertCtrl: AlertController, public network:Network, public calendarCtrl:Calendar) {
      console.log("Opening newsfeed");
      Observable.forkJoin([
@@ -27,54 +28,10 @@ export class Newsfeed {
       .subscribe(data => {
         this.events = data[1];
         this.clubs = data[0];
-        if(data[2] != null){
-          this.exportedEvents = data[2].data;
-          console.log('exported events:',this.exportedEvents);
-          // this.checkExportConflicts(this.exportedEvents,this.events);
-        }
-        else{
-          this.exportedEvents = new Array<Object>();
-        }
         console.log('events:',this.events);
         console.log("Events this week:",this.events[this.timeframe]);
         console.log('clubs:',this.clubs);
       })
-      console.log(this.exportedEvents);
-  }
-
-  checkExportConflicts(exp, events){
-    var conflictTitles:string[] = []; //Titles of all events that have been changed
-    var now = new Date(); //Current time
-    for(var i = 0; i<exp.length; i++){ //Look through all exported events
-      console.log(exp[i].title);
-      if(new Date(exp[i].time).getTime >= now.getTime) { //If the event is still upcoming
-        console.log(exp[i].title,"being evaluated");
-        if(events.hasOwnProperty(exp[i].key)){ //Are any events happening that day?
-          var found = false;
-          for(let event of events[exp[i].key].events){ //See if exported event is in the events that day
-            if(event.id == exp[i].id && new Date(event.start_date_time).getTime() == new Date(exp[i].time).getTime()){ //Is this our event, and is it at the same time?
-              found = true;
-              break;
-            }
-          }
-          if(!found){ //We couldn't find the event
-            console.log("Not found");
-            conflictTitles.push(exp[i].title);
-          }
-        }
-        else //No events that day; thus our exported event isn't there either
-        {
-          console.log("hasOwnProperty");
-          conflictTitles.push(exp[i].title);
-        }
-      }
-      else{ //The event has passed
-        console.log("removing",exp[i].title,"from array");
-        exp.splice(i,1); //Remove it
-      }
-    }
-    if(conflictTitles.length > 0)
-      this.notifyConflicts(conflictTitles);
   }
 
   hasEvents():boolean{
@@ -122,14 +79,11 @@ export class Newsfeed {
   }
 
   addToCalendar(event:ClubEvent){
-    this.exportedEvents.push({id:event.id,key:this.localData.generateDateKey(event.start_date_time),title:event.title,time:event.start_date_time});
-    this.localStorage.set('exported-events',{data:this.exportedEvents});
-    console.log("Exporting to exportedEvents",this.exportedEvents);
       Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
       .then(
           (msg) => {
             console.log(msg);
-            this.localStorage.set('exported-events',{data:this.exportedEvents});
+            //this.localStorage.set('exported-events',{data:this.exportedEvents});
           },
           (err) => console.log(err)
       );
@@ -154,7 +108,7 @@ export class Newsfeed {
   }
   
   doRefresh(refresher){
-      if (Network.connection.toString() != 'none'){
+      //if (Network.connection.toString()!= 'none'){
         this.localData.getCustomFeed()
         .then(data => {
             this.events = data;
@@ -163,10 +117,10 @@ export class Newsfeed {
         }).catch(err => {
           console.log(err);
         })
-     }
-    else {
-        this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")
-    }
+    // }
+    //else {
+    //    this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")
+    //}
   }
   
 }

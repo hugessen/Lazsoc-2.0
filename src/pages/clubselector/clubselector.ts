@@ -67,10 +67,8 @@ export class ClubSelector {
   
   //Cache your prefs
   savePrefs(){
-      //Another way to concurrently resolve promises
-      Promise.all([
-          this.localStorage.set('prefs',this.prefs)
-      ]).then(value => console.log("Preferences saved"));
+      this.localStorage.set('prefs',this.prefs)
+      .then(value => console.log("Preferences saved"));
       console.log("Saturday event: " + this.localData.doSaturdayEvent);
       this.showToast('Preferences saved!');
   }

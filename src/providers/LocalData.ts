@@ -245,12 +245,6 @@ export class LocalData {
                 resolve(JSON.parse(res));
             }).catch(err => reject(err));
         })
-        // return new Promise((resolve,reject) => {
-        //     this.cache.getItem('interests','app_interests.php',60*60*24)
-        //     .then(res => {
-        //         resolve(res);
-        //     }).catch(err => reject(err));
-        // })
     }
     getDiscountSponsors():Promise<any>{
         return new Promise((resolve,reject) => {
