@@ -20,7 +20,9 @@ export class ClubPage {
     this.currentTime = new Date().getTime();
     this.club = this.navParams.get('club'); //The club whose page it is
     this.prefs = this.navParams.get('prefs'); //For the toggle() method
-    this.club.club_social_links = this.localData.formatSocialLinks(this.club.club_social_links);
+    console.log(this.club);
+    // this.club.club_social_links = this.localData.formatSocialLinks(this.club.club_social_links);
+
     this.localData.getCustomFeed(this.club) //Club is an optional param that restricts output to a particular club's events
     .then(res => {
         this.events = res["thisweek"];
@@ -36,6 +38,10 @@ export class ClubPage {
   //Toggle the club as a preference
   toggle(){
     this.prefs.clubPrefs[this.club.id.toString()].selected = !this.prefs.clubPrefs[this.club.id.toString()].selected;
+  }
+
+  hasSocial(club:string):boolean {
+    return this.club.club_social_links.hasOwnProperty(club);
   }
 
   //Used to check if this club has events coming up. No point in looping through events if there aren't any

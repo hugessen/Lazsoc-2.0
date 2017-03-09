@@ -33,8 +33,8 @@ export class EventPage {
       );
   }
   getTime(date:string):string{
-    var hour = new Date(date).getHours();
-    var min = new Date(date).getMinutes();
+    var hour = new Date(date).getUTCHours();
+    var min = new Date(date).getUTCMinutes();
     var minStr = (min < 10) ? min+"0":min;
     var ampm = (hour < 12) ? "AM" : "PM";
     if(hour > 12) {

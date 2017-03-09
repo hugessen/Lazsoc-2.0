@@ -112,7 +112,7 @@ export class Newsfeed {
         this.localData.getCustomFeed()
         .then(data => {
             this.events = data;
-            console.log(Network.connection);
+            // console.log(Network.connection);
             refresher.complete();
         }).catch(err => {
           console.log(err);

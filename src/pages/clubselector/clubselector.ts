@@ -32,6 +32,7 @@ export class ClubSelector {
       ])
       .subscribe(data => {
           this.clubs = data[0];
+          this.formatClubSocialLinks(); //Set up the social links
           this.interests = this.localData.getInterestsLocally();
           if(data[1] != null)
             this.prefs = data[1];
@@ -60,6 +61,12 @@ export class ClubSelector {
         this.prefs.clubPrefs[clubID.toString()].selected = true;
   }
   
+  formatClubSocialLinks(){
+    for (let club of this.clubs){
+      club.club_social_links = this.localData.formatSocialLinks(club.club_social_links);
+    }
+  }
+
   //Pushes a club page on the stack
   viewClub(club:Club):void{
       this.navCtrl.push(ClubPage, {club:club, prefs:this.prefs});
