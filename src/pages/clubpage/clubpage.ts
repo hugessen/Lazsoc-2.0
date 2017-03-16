@@ -20,8 +20,7 @@ export class ClubPage {
     this.currentTime = new Date().getTime();
     this.club = this.navParams.get('club'); //The club whose page it is
     this.prefs = this.navParams.get('prefs'); //For the toggle() method
-    console.log(this.club);
-    // this.club.club_social_links = this.localData.formatSocialLinks(this.club.club_social_links);
+    console.log(JSON.stringify(this.club));
 
     this.localData.getCustomFeed(this.club) //Club is an optional param that restricts output to a particular club's events
     .then(res => {

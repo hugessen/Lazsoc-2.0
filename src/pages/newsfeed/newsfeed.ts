@@ -29,8 +29,8 @@ export class Newsfeed {
         this.events = data[1];
         this.clubs = data[0];
         console.log('events:',this.events);
-        console.log("Events this week:",this.events[this.timeframe]);
-        console.log('clubs:',this.clubs);
+        // console.log("Events this week:",this.events[this.timeframe]);
+        //console.log('clubs:',JSON.stringify(this.clubs));
       })
   }
 
@@ -99,7 +99,7 @@ export class Newsfeed {
       this.feedType = "All";
     else{
       this.feedType = "Custom";
-      if (Network.connection.toString() != 'none'){
+      if (Network.type != 'none'){
         this.localData.getCustomFeed()
         .then(data => this.events = data)
         .catch(err => console.log(err))
@@ -108,19 +108,19 @@ export class Newsfeed {
   }
   
   doRefresh(refresher){
-      //if (Network.connection.toString()!= 'none'){
+      if (Network.type!= 'none'){
         this.localData.getCustomFeed()
         .then(data => {
             this.events = data;
-            // console.log(Network.connection);
+            console.log(Network.type);
             refresher.complete();
         }).catch(err => {
           console.log(err);
         })
-    // }
-    //else {
-    //    this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")
-    //}
+    }
+    else {
+       this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")
+    }
   }
   
 }

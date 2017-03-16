@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { Calendar, Network } from 'ionic-native';
 
 //Pages
@@ -48,7 +48,8 @@ import { GetLongDate } from '../pipes/GetLongDate';
     IonicModule.forRoot(MyApp, {
       mode: 'md',
       iconMode:'ios'
-    })
+    }),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,6 +65,6 @@ import { GetLongDate } from '../pipes/GetLongDate';
     PersonalInfo,
     Hiring
   ],
-  providers: [LocalData,CacheService,LocalStorage,Storage, Calendar, Network]
+  providers: [LocalData,CacheService,LocalStorage, Calendar, Network]
 })
 export class AppModule {}
