@@ -121,6 +121,13 @@
     right: 30px;
     bottom: 80px;
 }
+
+//This needs to be fixed
+.platform-ios .md ion-nav > .ion-page > .toolbar.statusbar-padding:first-child, .md ion-nav > .ion-page > ion-header > .toolbar.statusbar-padding:first-child, .md ion-tab > .ion-page > ion-header > .toolbar.statusbar-padding:first-child, .md ion-tabs > .ion-page.tab-subpage > ion-header > .toolbar.statusbar-padding:first-child, .md ion-menu > .menu-inner > .toolbar.statusbar-padding:first-child, .md ion-menu > .menu-inner > ion-header > .toolbar.statusbar-padding:first-child {
+	padding-top: 0;
+    min-height: 0;
+}
+
 .titleicon{
 	display:inline-block;
 	position:fixed;
