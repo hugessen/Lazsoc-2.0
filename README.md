@@ -10,6 +10,10 @@ run:
 
     ionic hooks add
 
+After building iOS, you must run
+
+    cordova prepare
+
 ##Notes
 * Clubs need to only supply a banner if it is unique
 * App sometimes crashes on newsfeed, because event returns before its club, causing it to return a 404 on the banner
