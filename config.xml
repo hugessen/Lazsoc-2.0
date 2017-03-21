@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.lazsoc.app" version="1.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.lazsoc.app" version="1.1.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>LazSoc</name>
   <description>The Lazaridis Students’ Society (LazSoc) app contains all the information you need for all club events, including features such as export to calendar.</description>
   <author email="techteam@lazsoc.ca" href="http://lazsoc.ca/">LazSoc Technology Development Team</author>
@@ -35,6 +35,25 @@
   <platform name="ios">
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
+    <config-file target="*-Info.plist" parent="NSCalendarsUsageDescription">
+      <string>Export events to native calendar.</string>
+    </config-file>
+    <config-file target="*-Info.plist" parent="LSApplicationQueriesSchemes">
+      <array>
+        <string>fb</string>
+        <string>twitter</string>
+        <string>gplus</string>
+        <string>pintrest</string>
+        <string>instagram</string>
+        <string>youtube</string>
+        <string>vnd.youtube</string>
+        <string>linkedin</string>
+        <string>snapchat</string>
+        <string>comgooglemaps</string>
+        <string>tel</string>
+        <string>mailto</string>
+      </array>
+    </config-file>
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="resources/ios/icon/icon-40.png" width="40" height="40"/>
