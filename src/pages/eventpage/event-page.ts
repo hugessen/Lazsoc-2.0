@@ -18,7 +18,6 @@ export class EventPage {
     this.event = this.navParams.get('event'); //Event object being passed via NavParams
     this.club = this.navParams.get('club');
 
-    // var hourLength = (new Date(this.event.end_date_time).getTime() - new Date(this.event.start_date_time).getTime())/(3600000);
     this.multiDay = ((new Date(this.event.end_date_time).getDate() - new Date(this.event.start_date_time).getDate())>0) ? true:false;
 
     this.startTime = this.getTime(this.event.start_date_time);
@@ -26,7 +25,11 @@ export class EventPage {
   }
   
   addToCalendar(){
-      Calendar.createEventInteractively(this.event.title, this.event.location, this.event.sub_heading, new Date(this.event.start_date_time), new Date(this.event.end_date_time))
+      var startTime = new Date(this.event.start_date_time);
+      var endTime = new Date(this.event.end_date_time);
+      startTime.setHours(startTime.getUTCHours());
+      endTime.setHours(endTime.getUTCHours());
+      Calendar.createEventInteractively(this.event.title, this.event.location, this.event.sub_heading, startTime, endTime)
       .then(
           (msg) => console.log(msg),
           (err) => console.log(err)

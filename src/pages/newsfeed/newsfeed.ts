@@ -78,13 +78,14 @@ export class Newsfeed {
     return true;
   }
 
-  addToCalendar(event:ClubEvent){
-      Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
+  addToCalendar(event){
+      var startTime = new Date(event.start_date_time);
+      var endTime = new Date(event.end_date_time);
+      startTime.setHours(startTime.getUTCHours());
+      endTime.setHours(endTime.getUTCHours());
+      Calendar.createEventInteractively(event.title, event.location, event.sub_heading, startTime, endTime)
       .then(
-          (msg) => {
-            console.log(msg);
-            //this.localStorage.set('exported-events',{data:this.exportedEvents});
-          },
+          (msg) => console.log(msg),
           (err) => console.log(err)
       );
   }
