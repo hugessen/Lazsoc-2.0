@@ -35,10 +35,10 @@ export class LocalData {
                 Observable.fromPromise(this.getClubs()),
                 Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
+                console.log(data[0].events);
                 var events = data[0].events;
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
-                
                 //Turn recurring events into a list of regular events
                 var recurring = this.parseRecurringEvents(data[0].recurring_events);
                 //Add recurring events to event list
@@ -66,6 +66,7 @@ export class LocalData {
         events.sort(function(a,b){
             return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)
         })
+        console.log("doCustomFeed events:", events);
         if(club)
             STALE_TIME = 0;
         //Applying visible property based on prefs

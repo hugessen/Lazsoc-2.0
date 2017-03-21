@@ -23,21 +23,22 @@
 <!-- See newsfeed.html comments for insight on how ngSwitch works -->
 <ion-content>
     <div [ngSwitch]="view"> 
-        <div *ngSwitchCase="'clubs'">
-            <ion-list-header>Subscribe to clubs here</ion-list-header>
+        <div *ngSwitchCase="'clubs'" style="padding-top:10px">
             <div class="flexbox" ion-list>
                 <div class="selectionbox" *ngFor="let club of clubs">
-                    <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>
-                    <div>
-                        <img src="assets/img/{{club.app_logo}}" (click)="toggle(club.id)" 
-                        [ngClass]="{'checked-clubs-page': prefs.clubPrefs.hasOwnProperty(club.id.toString()) && prefs.clubPrefs[club.id.toString()].selected, 
-                        'unchecked-clubs-page':prefs.clubPrefs.hasOwnProperty(club.id.toString()) && !prefs.clubPrefs[club.id.toString()].selected}">
-                    </div>
+                    <!-- <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div> -->
+                    <div *ngIf="prefs.clubPrefs.hasOwnProperty(club.id.toString()) && prefs.clubPrefs[club.id.toString()].selected">
+                        <div class="infobox" (click)="toggle(club.id)" ><ion-icon name="md-checkmark-circle" color="laz-gold" style="font-size:24px"></ion-icon></div>
+                        <img src="assets/img/{{club.app_logo}}" (click)="viewClub(club)" class="checked-clubs-page">
+                    </div>  
+                    <div *ngIf="prefs.clubPrefs.hasOwnProperty(club.id.toString()) && !prefs.clubPrefs[club.id.toString()].selected">
+                        <div class="infobox" (click)="toggle(club.id)"><ion-icon name="ios-checkmark-circle-outline" color="rgba(0,0,0,0.2)" style="font-size:24px"></ion-icon></div>
+                        <img src="assets/img/{{club.app_logo}}" (click)="viewClub(club)" class="unchecked-clubs-page">
+                    </div>  
                 </div>
             </div>
         </div>
-        <div *ngSwitchCase="'interests'">
-            <ion-list-header>What are you interested in?</ion-list-header>
+        <div *ngSwitchCase="'interests'" style="padding-top:10px">
             <ion-card>
                 <ion-list>
                     <ion-item *ngFor="let interest of interests">
