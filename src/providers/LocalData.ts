@@ -209,7 +209,7 @@ export class LocalData {
     //Only used locally. Returns raw event data from the server
     getEvents():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('events','events.json',60*20*1000) //Cache for 20 mins
+            this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
             .then(res => {
                 resolve(res.cacheVal);
             }).catch(err => reject(err));
@@ -229,7 +229,7 @@ export class LocalData {
     //Gets clubs from the server. Cache expires after 24 hours
     getClubs(doTransform?:boolean):Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('clubs','clubs.json',60*60*24*1000)
+            this.cache.getItem('clubs','clubs.json',60*60*24)
             .then(res => {
                 if(doTransform)
                     resolve(this.transformClubs(res.cacheVal));
@@ -249,7 +249,7 @@ export class LocalData {
     }
     getDiscountSponsors():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.cache.getItem('discount-sponsors','discount_partners.json',60*60*24)
+            this.cache.getItem('discount-sponsors','discount_partners.json',60*60*12)
             .then(res => {
                 this.discountSponsors = res;
                 resolve(res);

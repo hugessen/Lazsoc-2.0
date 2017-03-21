@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 //import { NetworkService } from '../providers/NetworkService';
 
 
-const CACHE_TTL = 60*60*24*1000;
+const CACHE_TTL = 60*60;
 const API_URL = 'https://moria.lazsoc.ca/v2/api/';
 
 @Injectable()

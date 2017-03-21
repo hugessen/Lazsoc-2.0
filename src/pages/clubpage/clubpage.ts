@@ -56,14 +56,16 @@ export class ClubPage {
   }
 
   //For adding events from the mini-newsfeed
-  addToCalendar(event:ClubEvent){
-    Calendar.createEventInteractively(event.title, event.location, event.sub_heading, new Date(event.start_date_time), new Date(event.end_date_time))
-    .then(
-        (msg) => {
-          console.log(msg);
-        },
-        (err) => console.log(err)
-    );
+  addToCalendar(event){
+      var startTime = new Date(event.start_date_time);
+      var endTime = new Date(event.end_date_time);
+      startTime.setHours(startTime.getUTCHours());
+      endTime.setHours(endTime.getUTCHours());
+      Calendar.createEventInteractively(event.title, event.location, event.sub_heading, startTime, endTime)
+      .then(
+          (msg) => console.log(msg),
+          (err) => console.log(err)
+      );
   }
 
   modalDismiss(){

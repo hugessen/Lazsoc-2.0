@@ -2,7 +2,7 @@
   <ion-navbar color="laz-purple" style="border-bottom:2px solid #F2A900">
     <ion-title>Personal Information</ion-title>
     <ion-buttons end>
-        <button ion-button (click)="next()"><b>Submit</b></button>
+        <button ion-button (click)="next()" *ngIf="isInit"><b>Submit</b></button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>

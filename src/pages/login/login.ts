@@ -35,6 +35,17 @@ export class LoginPage {
     console.log(this.userData);
   }
 
+  submit(){
+    if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
+        this.showToast('Please enter all information');
+    }
+    else{ //Input validated. Now we pass the data back down to userData via NavParams
+        console.log("Userdata after input:",this.userData);
+        this.localStorage.set('userdata',this.userData);
+        this.viewCtrl.dismiss(this.userData);
+    }
+  }
+
   submitInit(){
     this.localStorage.set('userdata',this.userData);
     this.localStorage.set('prefs',this.prefs);
