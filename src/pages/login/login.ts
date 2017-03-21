@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {NavParams, ViewController, ToastController} from 'ionic-angular';
+import {NavParams, ViewController, ToastController, ModalController} from 'ionic-angular';
 import { LocalStorage } from '../../providers/LocalStorage';
 import { UserData } from '../../models/userdata';
 import { Prefs } from '../../models/prefs';
+import { ClubPage } from '../clubpage/clubpage';
 
 @Component({
   templateUrl: '../login/login.html'
@@ -17,7 +18,7 @@ export class LoginPage {
     prefs:Prefs;
     programOptions: string[] = ['BBA','BBA/Financial Math', 'BBA/Computer Science (UW)', 'BBA/Computer Science (WLU)', 'BBA/Math (UW)', 'Communications'];
     
-  constructor(public navParams:NavParams, public viewCtrl: ViewController, public toastCtrl:ToastController, public localStorage:LocalStorage) {
+  constructor(public navParams:NavParams, public viewCtrl: ViewController, public toastCtrl:ToastController, public localStorage:LocalStorage, public modalCtrl:ModalController) {
     this.userData = navParams.get('userData');
     this.isInit = navParams.get('isInit');
     this.clubs = navParams.get('clubs');
@@ -32,17 +33,6 @@ export class LoginPage {
       }
     }
     console.log(this.userData);
-  }
-
-  submit(){
-    if (this.userData.firstname ==='' || this.userData.lastname ==='' || this.userData.email ==='' || this.userData.studyYear == 0 || this.userData.program === '') { //Check if any fields are empty
-        this.showToast('Please enter all information');
-    }
-    else{ //Input validated. Now we pass the data back down to userData via NavParams
-        console.log("Userdata after input:",this.userData);
-        this.localStorage.set('userdata',this.userData);
-        this.viewCtrl.dismiss(this.userData);
-    }
   }
 
   submitInit(){
@@ -76,6 +66,11 @@ export class LoginPage {
       this.state = "interests";
     else if (this.state == "interests")
       this.submitInit();
+  }
+
+  viewClub(clubParam){
+    let clubpage = this.modalCtrl.create(ClubPage,{club:clubParam, prefs:this.prefs, isModal:true});// everything in the {} are my params to be passed to the Modal
+    clubpage.present(); // Loading the Modal
   }
 
   //Toast is just an inobtrusive message box at the bottom of the screen

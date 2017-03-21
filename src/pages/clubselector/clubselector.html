@@ -26,7 +26,6 @@
         <div *ngSwitchCase="'clubs'" style="padding-top:10px">
             <div class="flexbox" ion-list>
                 <div class="selectionbox" *ngFor="let club of clubs">
-                    <!-- <div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div> -->
                     <div *ngIf="prefs.clubPrefs.hasOwnProperty(club.id.toString()) && prefs.clubPrefs[club.id.toString()].selected">
                         <div class="infobox" (click)="toggle(club.id)" ><ion-icon name="md-checkmark-circle" color="laz-gold" style="font-size:24px"></ion-icon></div>
                         <img src="assets/img/{{club.app_logo}}" (click)="viewClub(club)" class="checked-clubs-page">

@@ -69,7 +69,7 @@ export class ClubSelector {
 
   //Pushes a club page on the stack
   viewClub(club:Club):void{
-      this.navCtrl.push(ClubPage, {club:club, prefs:this.prefs});
+      this.navCtrl.push(ClubPage, {club:club, prefs:this.prefs,isModal:false});
   }
   
   //Cache your prefs

@@ -14,9 +14,13 @@
             <ion-list-header>Subscribe to clubs here</ion-list-header>
             <div class="flexbox" ion-list>
                 <div class="selectionbox" *ngFor="let club of clubs">
-                    <!--<div class="infobox" (click)="viewClub(club)"><img src="assets/img/info-icon.png"></div>-->
-                    <div>
-                        <img src="assets/img/{{club.app_logo}}" class="unchecked-clubs-page" (click)="toggle(club.id)" [ngClass]="{'checked-clubs-page':prefs.clubPrefs[club.id.toString()].selected, 'unchecked-clubs-page':!prefs.clubPrefs[club.id.toString()].selected}">
+                    <div *ngIf="prefs.clubPrefs.hasOwnProperty(club.id.toString()) && prefs.clubPrefs[club.id.toString()].selected">
+                        <div class="infobox" (click)="toggle(club.id)" ><ion-icon name="md-checkmark-circle" color="laz-gold" style="font-size:24px"></ion-icon></div>
+                        <img src="assets/img/{{club.app_logo}}" (click)="viewClub(club)" class="checked-clubs-page">
+                    </div>  
+                    <div *ngIf="prefs.clubPrefs.hasOwnProperty(club.id.toString()) && !prefs.clubPrefs[club.id.toString()].selected">
+                        <div class="infobox" (click)="toggle(club.id)"><ion-icon name="ios-checkmark-circle-outline" color="rgba(0,0,0,0.2)" style="font-size:24px"></ion-icon></div>
+                        <img src="assets/img/{{club.app_logo}}" (click)="viewClub(club)" class="unchecked-clubs-page">
                     </div>
                 </div>
             </div>

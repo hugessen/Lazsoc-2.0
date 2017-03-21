@@ -1,6 +1,7 @@
 <ion-header>
   <ion-navbar color="laz-purple" style="border-bottom:2px solid #F2A900">
     <img src="assets/img/gold_leaf.png" class="titleicon"/>
+    <span class="titleFont"><ion-icon name="md-arrow-back" (click)="modalDismiss()" *ngIf="isModal">&nbsp; Back</ion-icon></span>
   </ion-navbar>
 </ion-header>
 
@@ -12,7 +13,7 @@
         <ion-card-header><b>{{club.name}}</b></ion-card-header>
         <ion-card-content>{{club.description}}</ion-card-content>
     </ion-card>
-    <div *ngIf="!isEmptyObj(events)">
+    <div *ngIf="!isEmptyObj(events) && !isModal">
         <ion-list-header style="color:black"><b>Upcoming events:</b></ion-list-header>
         <div *ngFor="let object of events | mapToIterable">
             <ion-list-header>
@@ -49,7 +50,7 @@
         </div>
     </div>
     
-    <ion-fab top right>
+    <ion-fab top right *ngIf="!isModal">
         <button ion-fab color="danger" *ngIf="club.club_social_links != {}"><ion-icon name="md-share"></ion-icon></button>
         <ion-fab-list side="bottom">
             <button ion-fab color="facebook" *ngIf="hasSocial('facebook')" (click)="openLink(club.club_social_links['facebook'])"><ion-icon name="logo-facebook"></ion-icon></button>

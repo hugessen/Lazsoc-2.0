@@ -35,7 +35,7 @@ export class LocalData {
                 Observable.fromPromise(this.getClubs()),
                 Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
-                console.log(data[0].events);
+                console.log(data[0]);
                 var events = data[0].events;
                 var clubs = data[1];
                 var interests = this.getInterestsLocally();
@@ -99,7 +99,7 @@ export class LocalData {
                 else 
                     event.timeframe = "upcoming";
 
-                if(!result.hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
+                if(!result[event.timeframe].hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
                     var dividerVal = this.getLongDate(new Date(event.start_date_time));
                     result[event.timeframe][eventDateKey] = {divider:dividerVal, events:[], visible:false} 
                 }

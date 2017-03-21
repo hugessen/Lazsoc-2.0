@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, ViewController} from 'ionic-angular';
 import { LocalData } from '../../providers/LocalData';
 import {Calendar} from 'ionic-native';
 import { Club } from '../../models/club';
@@ -14,12 +14,14 @@ export class ClubPage {
     club: Club;
     events: Object[];
     prefs: Prefs;
+    isModal:boolean;
     currentTime:number;
     //Current club being viewed is passed through NavParams
-  constructor(private navCtrl: NavController, private navParams: NavParams, private localData: LocalData) {
+  constructor(private navCtrl: NavController, private navParams: NavParams, private localData: LocalData, public viewCtrl:ViewController) {
     this.currentTime = new Date().getTime();
     this.club = this.navParams.get('club'); //The club whose page it is
     this.prefs = this.navParams.get('prefs'); //For the toggle() method
+    this.isModal = this.navParams.get('isModal');
     console.log(JSON.stringify(this.club));
 
     this.localData.getCustomFeed(this.club) //Club is an optional param that restricts output to a particular club's events
@@ -62,5 +64,9 @@ export class ClubPage {
         },
         (err) => console.log(err)
     );
+  }
+
+  modalDismiss(){
+    this.viewCtrl.dismiss();
   }
 }
