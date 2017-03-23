@@ -19,27 +19,41 @@ After building iOS, you must run
 * App sometimes crashes on newsfeed, because event returns before its club, causing it to return a 404 on the banner
 * Modals and modal navigation for launch protocol?
 
-##To Do:
-- [x] Remove WLUHRN from clubs
-- [x] Images for discount program
-- [x] Add to Calendar doesn't execute on my phone; fix
-- [x] Implement API for interests
-- [x] Social links in clubpage (confirm they work)
-- [x] Special Characters
-- [x] Save Preferences separately from Club and Interest objects
-- [x] Implement Interests in custom feed
-- [x] ConnectivityMonitor to see if user is online
-- [x] Fix Personal Information page
-- [x] List dividers to distinguish days in newsfeed
-- [x] RRule for recurring events
-- [x] Implement new API
-- [x] Gold leaf logo for header bar
-- [x] Notify when exported event has changed
-- [x] This Week, Next Week, Upcoming filters
-- [x] Popover to edit filters
-- [x] Override CSS to optimize look-and-feel
-
 ###Cloud
 - [ ] Deploy
 - [ ] Push Notifications
 - [ ] Analytics
+
+## Adding a new plugin
+
+To add new plugin:
+
+    cordova plugin add cordova-plugin-calendar
+    cordova prepare
+
+To add new plugin to state:
+
+    ionic state reset
+    cordova plugin add PLUGINNAME
+    cordova prepare
+    ionic state save
+
+## Pushing an android build
+
+Keystore Password: 
+
+    np}&zz'h5a5[HcT-
+
+Release building commands:
+
+    cordova build --release android
+    keytool -genkey -v -keystore lazsoc-release-key.keystore -alias lazsoc -keyalg RSA -keysize 2048 -validity 10000
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore lazsoc-release-key.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk lazsoc
+    /usr/local/opt/android-sdk/build-tools/23.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk LazSoc.apk
+
+## iOS Gotchas
+To allow urls such as 
+- fb://
+- twitter://
+
+Or, open facebook/twitter/snapchat/etc URLs within their respective app on a users phone, we must request permission to do so in our platforms/ios/LazSoc/LazSoc-Info.plist. Rather than manually editing this file, we use cordova-plugin-settings-hook to configure our plist file from our config.xml. To do this we set _LSApplicationQueriesSchemes_. To export to native calendar, we set _NSCalendarsUsageDescription_ as well.
