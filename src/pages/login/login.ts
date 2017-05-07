@@ -16,7 +16,7 @@ export class LoginPage {
     clubs:any[];
     interests:any[];
     prefs:Prefs;
-    programOptions: string[] = ['BBA','BBA/Financial Math', 'BBA/Computer Science (UW)', 'BBA/Computer Science (WLU)', 'BBA/Math (UW)', 'Communications'];
+    programOptions: string[] = ['BBA','BBA/Financial Math', 'BBA/Computer Science (UW)', 'BBA/Computer Science (WLU)', 'BBA/Math (UW)', 'Economics', 'Communications'];
     
   constructor(public navParams:NavParams, public viewCtrl: ViewController, public toastCtrl:ToastController, public localStorage:LocalStorage, public modalCtrl:ModalController) {
     this.userData = navParams.get('userData');

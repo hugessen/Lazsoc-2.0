@@ -8,6 +8,7 @@
         </button>
       </ion-buttons>
   </ion-navbar>
+  <!-- Handles the buttons at the top -->
   <ion-toolbar class="newsfeed-toolbar" color="laz-purple" style="height:42px">
       <ion-segment color="pure-white" [(ngModel)]="timeframe">
           <ion-segment-button value="past">Past</ion-segment-button>
@@ -26,6 +27,8 @@
       refreshingSpinner="circles"
       refreshingText="Refreshing...">
     </ion-refresher-content></ion-refresher>
+
+
     <div *ngIf="hasEvents()">
         <div *ngFor="let time_period of events | mapToIterable">
             <!--A messy workaround. I was hoping I could just access 'let object of events[timeframe] | mapToiterable', but it won't let me -->

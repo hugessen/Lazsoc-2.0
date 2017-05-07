@@ -1,7 +1,6 @@
  import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
 import {Calendar, Network} from 'ionic-native';
-import { ClubEvent } from '../../models/club-event';
 import { EventPage } from '../eventpage/event-page';
 import { LocalData } from '../../providers/LocalData';
 import { LocalStorage } from '../../providers/LocalStorage';
@@ -100,7 +99,7 @@ export class Newsfeed {
       this.feedType = "All";
     else{
       this.feedType = "Custom";
-      if (Network.type != 'none'){
+      if (Network.type != 'none'){ //
         this.localData.getCustomFeed()
         .then(data => this.events = data)
         .catch(err => console.log(err))

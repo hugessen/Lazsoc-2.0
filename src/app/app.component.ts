@@ -7,12 +7,15 @@ import { LocalData } from '../providers/LocalData';
 
 import { Club } from '../models/club';
 import { Interest } from '../models/interest';
-import { Pref } from '../models/pref';
 
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { UserData } from '../models/userdata';
 import { Observable } from 'rxjs/Rx';
+
+/* This class performs the initial setup of the app. 
+ * It calls the initial login
+ */
 
 @Component({
   templateUrl: 'app.html'
@@ -30,14 +33,13 @@ export class MyApp {
         Observable.fromPromise(this.localStorage.get('userdata'))
       ])
       .subscribe(data => {
-        if(data[1] == null){
-          console.log("opening login");
+        if(data[1] == null){ //Data[1] refers to user info. If null, we can assume they have never logged in
           this.clubs = data[0];
           this.interests = this.localData.getInterestsLocally();
-          console.log("Clubs ",this.clubs);
           this.userData = {firstname:"",lastname:"",email:"",studyYear:0,program:""};
           this.openLogin();
-        } else console.log("Not opening login");
+        } 
+        else console.log("Not opening login");
       })
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
