@@ -22,12 +22,10 @@ export class ClubPage {
     this.club = this.navParams.get('club'); //The club whose page it is
     this.prefs = this.navParams.get('prefs'); //For the toggle() method
     this.isModal = this.navParams.get('isModal');
-    console.log(JSON.stringify(this.club));
 
     this.localData.getCustomFeed(this.club) //Club is an optional param that restricts output to a particular club's events
     .then(res => {
         this.events = res["thisweek"];
-        console.log(this.events);
     })
   }
 

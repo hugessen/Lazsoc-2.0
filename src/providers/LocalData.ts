@@ -7,24 +7,21 @@ declare var RRule: any;
 
 //Custom classes
 import { Club } from '../models/club'; //Club object. All objects stored in the 'models' folder
-import { Interest } from '../models/interest';
+import { Event_Tag } from '../models/event_tag';
 import { Prefs } from '../models/prefs';
 
-var STALE_TIME = 14;
+const STALE_TIME = 14;
 const AHEAD_TIME = 14;
 
 @Injectable()
 export class LocalData {
     public events: any;
-    public discountSponsors: any;
-    private prefs:Prefs;
     public cache: CacheService;
     
     // public exportedEvents;
 
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
         this.cache = cacheService; 
-        this.prefs = {clubPrefs:{},interestPrefs:{}};
     }
     
     //Remember to fix this to pull from API after
@@ -35,40 +32,31 @@ export class LocalData {
                 Observable.fromPromise(this.getClubs()),
                 Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
-                console.log(data[0]);
-                var events = data[0].events;
+                // console.log("events", data[0]); //Events and recurring events
+                var events = data[0].events;//data[0].events;
                 var clubs = data[1];
-                var interests = this.getInterestsLocally();
-                //Turn recurring events into a list of regular events
+                var prefs = (data[2] != null) ? data[2] : {clubPrefs:{}, interestPrefs:{}};
+                clubs = this.transformClubs(clubs);
+
+                //Handle Recurring Events
                 var recurring = this.parseRecurringEvents(data[0].recurring_events);
-                //Add recurring events to event list
                 for (let r_event of recurring)
                     events.push(r_event);
-
-                //Applies the visible property to events based on Clubs and Interests
-                if(data[2] != null)
-                    this.prefs = data[2];
-                clubs = this.transformClubs(clubs);
-                this.localStorage.set('prefs',this.prefs);
                 if(club)
-                    var val = this.doCustomFeed(events,clubs,interests,this.prefs,club)
+                    var val = this.generateCustomFeed(events,clubs,prefs,club)
                 else
-                    var val = this.doCustomFeed(events,clubs,interests,this.prefs)
+                    var val = this.generateCustomFeed(events,clubs,prefs)
                 resolve(val);
             })
         })
     }
     
-    doCustomFeed(events:any[], clubs:any, interests:Interest[], prefs:Prefs,club?:Club):any{
-        var result:Object;
-        result = {past:{},thisweek:{},upcoming:{}}
+    generateCustomFeed(events:any[], clubs:any, prefs:Prefs,club?:Club):any{
+        var result = { past:{}, thisweek:{}, upcoming:{} }
         //Sorting by time
         events.sort(function(a,b){
             return Date.parse(a.start_date_time) - Date.parse(b.start_date_time)
         })
-        console.log("doCustomFeed events:", events);
-        if(club)
-            STALE_TIME = 0;
         //Applying visible property based on prefs
         for (let event of events){
             var currentTime = new Date().getTime();
@@ -83,10 +71,10 @@ export class LocalData {
                 if (prefs.clubPrefs.hasOwnProperty(event.club_id.toString()) && prefs.clubPrefs[event.club_id.toString()].selected == true)
                     event.visible = true; //Set to true if club selected
                 else{
-                    for(let tag of event.event_tags){
-                        if(prefs.interestPrefs.hasOwnProperty(tag.tag) && prefs.interestPrefs[tag.tag].selected){
+                    for(let event_tag of event.event_tags){
+                        if(prefs.interestPrefs.hasOwnProperty(event_tag) && prefs.interestPrefs[event_tag].selected){
                             event.visible = true;
-                            event.basedOn = tag.tag;
+                            event.basedOn = event_tag;
                         }  
                     }
                 }
@@ -211,7 +199,8 @@ export class LocalData {
         return new Promise((resolve,reject) => {
             this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
             .then(res => {
-                resolve(res.cacheVal);
+                //resolve(res.cacheVal);
+                resolve(this.getDummyEvents());
             }).catch(err => reject(err));
         })
     }
@@ -239,11 +228,11 @@ export class LocalData {
         })
     }
 
-    getInterests():Promise<any>{
+    getTags():Promise<any>{
         return new Promise((resolve,reject) => {
-            this.localStorage.get('app-interests') 
+            this.cache.getItem('tags','event_tags.json',60*60*24)
             .then(res => {
-                resolve(JSON.parse(res));
+                resolve(res.cacheVal);
             }).catch(err => reject(err));
         })
     }
@@ -251,7 +240,6 @@ export class LocalData {
         return new Promise((resolve,reject) => {
             this.cache.getItem('discount-sponsors','discount_partners.json',60*60*12)
             .then(res => {
-                this.discountSponsors = res;
                 resolve(res);
             }).catch(err => reject(err));
         })
@@ -265,109 +253,82 @@ export class LocalData {
         })
     }
 
-    doSaturdayEvent(clubs,prefs):boolean{
-        var c_ids = ['2','3','4','5','7','9','11','12','13','15','17'];
-        var pointer = 0;
-        for (let key in clubs){
-            if(key == c_ids[pointer]){ //Looking at a club that should be selected
-                if(prefs['clubPrefs'][clubs[key].slug].selected == false)
-                    return false;
-                else pointer++;
+    getDummyEvents(){
+        return JSON.parse(`
+            {
+              "events": [
+                {
+                  "id": 82,
+                  "title": "Orientation Day 2016",
+                  "sub_heading": "The must-attend event for all first-years",
+                  "location": "Bingemans",
+                  "banner": "assets/img/O-Day.jpg",
+                  "club_id": 2,
+                  "facebook_event_link": "",
+                  "event_description": "Welcome Class of 2020 to the Lazaridis Students' Society's Orientation Day 2016! You aren't the only one nervous about what the Lazaridis business experience is going to throw at you. Check out the information below to find out how you can be one step further into ensuring your future success as a student here at Laurier! Orientation Day (O-Day) 2016 is an exclusive orientation event for incoming Business & Economics first year students planned by the Lazaridis Students' Society. This event gives students more information about what Laurier Business and Economics has to offer and the resources available, as well as networking with other first year students and upper year mentors. MORNING SESSIONS Attend sessions that will answer your most important questions about succeeding as a business student. From various specializations, to potential career designations, to even learning about how to survive your first year at Laurier; you will learn from your designated CEO (upper year student group leader) that will meet with you in the morning. LUNCH & KEYNOTE SPEECH Enjoy a three course lunch and a keynote speech from our distinguished guest speaker. This year's keynote speaker is: Michael Hamilton, Senior-Vice President of RBC Insurance. Don't worry, this is the first of many events highlighting food you'll see at Laurier. LAZSOC CLUBS FAIR & MERCHANDISE SALE Attend the LazSoc Clubs Fair and meet representatives from our 22 Clubs & Associations, all of which are looking to hire first year students! Have the chance to chat with student leaders, professors, and corporate sponsors. The earlier you get involved, the better! These club representatives are here to help you get started. Be one of the first people to grab exclusive products from our Class of 2020 merchandise and apparel line at http://shop.lazsoc.ca! FIRST YEAR HANDBOOK Need advice on getting set up at Laurier? Looking for academic resources? Or even wondering about the social life at Laurier? Check out our exclusive First Year Handbook for ALL Laurier students at http://fyh.lazsoc.ca! Online ticket sales end September 5th at http://oday.lazsoc.ca! Tickets can be purchased in-person on Sunday September 4/5th, in the Athletic Complex during move-in.",
+                  "start_date_time": "2017-05-30T08:00:00.000Z",
+                  "end_date_time": "2017-05-30T10:00:00.000Z",
+                  "is_recurring": false,
+                  "created_at": "2017-05-27T20:22:37.000Z",
+                  "updated_at": "2017-05-27T20:53:56.000Z",
+                  "app_thumbnail": "",
+                  "event_tags": []
+                },
+                {
+                  "id": 81,
+                  "title": "Year End Gala 2017 | A Night at the Oscars",
+                  "sub_heading": "Come enjoy a night of celebration and awards to celebrate all the accomplishments of student volunteers",
+                  "location": "Crowne Plaza Kitchener",
+                  "banner": "http://i.imgur.com/OT0Wq5p.png",
+                  "club_id": 2,
+                  "facebook_event_link": "https://www.facebook.com/events/1847071392235374/",
+                  "event_description": "It's a brisk spring evening. Flashes of bright lights fill the atmosphere as stars dressed in glamour and extravagance make their way down the red carpet. Dozens of camera flashes go off as you celebrate the night away with your friends. You are cordially invited to the fourth annual Year End Gala on March 24th! This year's Year End Gala theme is... A Night at the Oscars! At this black tie themed spectacle you will enjoy a three-course meal, two complimentary drink tickets, an awards ceremony, and a dance to end off the night and celebrate the year's successes. Year End Gala focuses on the accomplishments of our Clubs & Associations. Their efforts, dedication, and commitment will be recognized at the award ceremony; and celebrate the achievements of our student volunteers! Tickets: http://yeg.lazsoc.ca/ Sale ends on March 19th at 11:59PM",
+                  "start_date_time": "2017-05-30T08:00:00.000Z",
+                  "end_date_time": "2017-05-30T10:00:00.000Z",
+                  "is_recurring": false,
+                  "created_at": "2017-05-27T20:22:37.000Z",
+                  "updated_at": "2017-05-27T20:53:56.000Z",
+                  "app_thumbnail": "",
+                  "event_tags": []
+                },
+                {
+                  "id": 80,
+                  "title": "EC290 Mock Midterm 1",
+                  "sub_heading": "Need that extra help before writing your midterm? Come write LEC's mock midterm!",
+                  "location": "SBE1250",
+                  "banner": "",
+                  "club_id": 10,
+                  "facebook_event_link": "https://www.facebook.com/events/1847071392235374/",
+                  "event_description": "Need that extra help before writing your midterm? Come write LEC's mock midterm! The mock midterms are written to be an accurate representation of the midterm your professor will test you on. After the test, student tutors who have taken and excelled in the course will work with the class, take up the midterm, and answer any other questions you have!",
+                  "start_date_time": "2017-05-31T15:00:00.000Z",
+                  "end_date_time": "2017-05-31T18:00:00.000Z",
+                  "is_recurring": false,
+                  "created_at": "2017-05-27T20:22:37.000Z",
+                  "updated_at": "2017-05-27T20:53:56.000Z",
+                  "app_thumbnail": "",
+                  "event_tags": ["Exam Review","Economics"]
+                },
+                                {
+                  "id": 79,
+                  "title": "Startup Consulting Case Competition",
+                  "sub_heading": "LCC: Laurier Consulting Club and Startup Laurier are excited to announce our fourth annual Startup Consulting Case Competition!",
+                  "location": "67 Erb Street West",
+                  "banner": "assets/img/Startup Consulting.jpg",
+                  "club_id": 19,
+                  "facebook_event_link": "https://www.facebook.com/events/1847071392235374/",
+                  "event_description": "Have you ever wondered what it’s like working in a startup? Are you eager to prove your entrepreneurial skills as well as consulting capabilities? If you answered yes to any of those questions, then this is the event for you! In teams of four, you will tackle a case and present your innovative new ideas to a panel of judges composed of Canada’s brightest entrepreneurs whose startups need YOUR help! Aim high and you could have a chance to win some great prizes (TBA) as well connecting with up-and-coming startups.",
+                  "start_date_time": "2017-06-08T08:00:00.000Z",
+                  "end_date_time": "2017-06-08T10:00:00.000Z",
+                  "is_recurring": false,
+                  "created_at": "2017-05-27T20:22:37.000Z",
+                  "updated_at": "2017-05-27T20:53:56.000Z",
+                  "app_thumbnail": "",
+                  "event_tags": []
+                }
+              ],
+              "recurring_events": []
             }
-            else { //Club shouldn't be selected
-                if(prefs['clubPrefs'][clubs[key].slug].selected == true)
-                    return false;
-            }
-        }
-        return true;
-    }
-
-    getInterestsLocally(){
-        return JSON.parse(`[
-    {
-        "id": 0,
-        "name": "Accounting"
-    },
-    {
-        "id": 1,
-        "name": "Finance"
-    },
-    {
-        "id": 2,
-        "name": "Competitions"
-    },
-    {
-        "id": 3,
-        "name": "Exam Review"
-    },
-    {
-        "id": 4,
-        "name": "Debate"
-    },
-    {
-        "id": 5,
-        "name": "Networking"
-    },
-    {
-        "id": 6,
-        "name": "Academic Help"
-    },
-    {
-        "id": 7,
-        "name": "E-Business"
-    },
-    {
-        "id": 8,
-        "name": "Economics"
-    },
-    {
-        "id": 9,
-        "name": "Entrepreneurship"
-    },
-    {
-        "id": 10,
-        "name": "First Year"
-    },
-    {
-        "id": 11,
-        "name": "International"
-    },
-    {
-        "id": 12,
-        "name": "Journalism and Media"
-    },
-    {
-        "id": 13,
-        "name": "Leadership"
-    },
-    {
-        "id": 14,
-        "name": "Marketing"
-    },
-    {
-        "id": 15,
-        "name": "Public Speaking"
-    },
-    {
-        "id": 16,
-        "name": "Sales"
-    },
-    {
-        "id": 17,
-        "name": "Philanthropy"
-    },
-    {
-        "id": 18,
-        "name": "Sports Management"
-    },
-    {
-        "id": 19,
-        "name": "Consulting"
-    },
-    {
-        "id": 20,
-        "name": "Social"
-    }
-    ]`);
+        `)
     }
 }
+

@@ -24,7 +24,7 @@
 <ion-content>
     <div [ngSwitch]="view"> 
         <div *ngSwitchCase="'clubs'" style="padding-top:10px">
-            <div class="flexbox" ion-list>
+            <div class="flexbox"  ion-list>
                 <div class="selectionbox" *ngFor="let club of clubs">
                     <div *ngIf="prefs.clubPrefs.hasOwnProperty(club.id.toString()) && prefs.clubPrefs[club.id.toString()].selected">
                         <div class="infobox" (click)="toggle(club.id)" ><ion-icon name="md-checkmark-circle" color="laz-gold" style="font-size:24px"></ion-icon></div>
@@ -38,14 +38,14 @@
             </div>
         </div>
         <div *ngSwitchCase="'interests'" style="padding-top:10px">
-            <ion-card>
-                <ion-list>
-                    <ion-item *ngFor="let interest of interests">
-                        <ion-label>{{interest.name}}</ion-label>
-                        <ion-toggle laz-purple [(ngModel)]="prefs.interestPrefs[interest.name].selected"></ion-toggle>
-                    </ion-item>
-                </ion-list>
-            </ion-card>
+                <ion-card>
+                    <ion-list>
+                        <ion-item *ngFor="let interest of interests">
+                            <ion-label>{{interest.name}}</ion-label>
+                            <ion-toggle color="laz-gold" [(ngModel)]="prefs.interestPrefs[interest.name].selected"></ion-toggle>
+                        </ion-item>
+                    </ion-list>
+                </ion-card>
         </div>
         <div *ngSwitchCase="'personalinfo'">
             <personal-info></personal-info>

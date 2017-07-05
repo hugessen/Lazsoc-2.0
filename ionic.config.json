@@ -1,6 +1,6 @@
 {
   "name": "lazsoc-2",
-  "app-id":"",
-  "v2": true,
-  "typescript": true
+  "app-id": "",
+  "app_id": "",
+  "type": "ionic-angular"
 }

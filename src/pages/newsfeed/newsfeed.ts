@@ -56,7 +56,7 @@ export class Newsfeed {
 
   notifyConflicts(conflicts){
     for(let conflict of conflicts)
-      this.showAlert("Event Changed!","Your event "+conflict+" has been moved or cancelled. Remove it from your calendar and check back later")
+      this.showAlert("Event Changed!","Your event " + conflict+" has been moved or cancelled. Remove it from your calendar and check back later")
   }
 
   showAlert(title:string,message:string) {

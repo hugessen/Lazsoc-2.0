@@ -35,21 +35,21 @@
             <!--Instead, I have to loop through all 3 timeframes in events and only view the one where the key matches timeframe-->
             <div *ngIf="time_period.key === timeframe"> 
                 <div *ngFor="let object of time_period.val | mapToIterable">
-                    <ion-list-header style="z-index:100" *ngIf="(feedType=='All' || (feedType=='Custom' && object.val.visible))">
+                    <ion-list-header class="divider" *ngIf="(feedType=='All' || (feedType=='Custom' && object.val.visible))">
                         {{object.val.divider}}
                     </ion-list-header>
                     <div *ngFor="let event of object.val.events" style="margin-top: 0px;">
                         <!--Styling the newsfeed items -->
-                        <ion-card style="border-style:solid black; z-index:100"  *ngIf="feedType=='All' || (feedType=='Custom' && event.visible)">
+                        <ion-card class="newsfeed-item" *ngIf="feedType=='All' || (feedType=='Custom' && event.visible)">
                             <img [src]="event.banner" *ngIf="!(event.banner == null || event.banner === '') && isValidURL(event.banner)" (click)="viewEvent(event)">
                             <img src="assets/img/{{clubs[event.club_id.toString()].app_banner}}" (click)="viewEvent(event)" *ngIf="event.banner == null || event.banner == ''"/>
                             <ion-card-content style="padding:1.5%"  (click)="viewEvent(event)">
-                                <ion-card-title style="font-size:18px">
+                                <ion-card-title style="font-size:18px; padding-bottom:0px">
                                     <b>{{event.title}}</b>
                                 </ion-card-title>
-                                <p>{{event.start_date_time | getLongDate}} | {{event.location}}</p>
+                                <p style="font-size:12px">{{event.start_date_time | getLongDate}} | {{event.location}}</p>
                                 <p>{{event.sub_heading}}</p>
-                                <p *ngIf="event.basedOn !='' && feedType == 'Custom'">Based on your interest in <b>{{event.basedOn}}</b></p>
+                                <p *ngIf="event.basedOn !='' && feedType == 'Custom'" style="font-size: 12px">Based on your interest in <b>{{event.basedOn}}</b></p>
                             </ion-card-content>
                             
                             <ion-row>
