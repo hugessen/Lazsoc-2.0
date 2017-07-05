@@ -1,6 +1,7 @@
  import {Component} from '@angular/core';
 import {NavController, AlertController} from 'ionic-angular';
-import {Calendar, Network} from 'ionic-native';
+import { Calendar } from '@ionic-native/Calendar';
+import { Network } from '@ionic-native/Network';
 import { EventPage } from '../eventpage/event-page';
 import { LocalData } from '../../providers/LocalData';
 import { LocalStorage } from '../../providers/LocalStorage';
@@ -41,7 +42,7 @@ export class Newsfeed {
       else{
         for(let key in this.events[this.timeframe]){ //Iterate through the hashtable of date keys in specified timeframe
           //Return true if there is a single visible event
-          if(this.events[this.timeframe][key].visible) 
+          if(this.events[this.timeframe][key].visible)
             return true;
         }
       }
@@ -82,13 +83,13 @@ export class Newsfeed {
       var endTime = new Date(event.end_date_time);
       startTime.setHours(startTime.getUTCHours());
       endTime.setHours(endTime.getUTCHours());
-      Calendar.createEventInteractively(event.title, event.location, event.sub_heading, startTime, endTime)
+      this.calendarCtrl.createEventInteractively(event.title, event.location, event.sub_heading, startTime, endTime)
       .then(
           (msg) => console.log(msg),
           (err) => console.log(err)
       );
   }
-  
+
   viewEvent(event:any):void{
       this.navCtrl.push(EventPage, {event:event, club:this.clubs[event.club_id.toString()]});
   }
@@ -99,20 +100,20 @@ export class Newsfeed {
       this.feedType = "All";
     else{
       this.feedType = "Custom";
-      if (Network.type != 'none'){ //
+      if (this.network.type != 'none'){ //
         this.localData.getCustomFeed()
         .then(data => this.events = data)
         .catch(err => console.log(err))
      }
     }
   }
-  
+
   doRefresh(refresher){
-      if (Network.type!= 'none'){
+      if (this.network.type!= 'none'){
         this.localData.getCustomFeed()
         .then(data => {
             this.events = data;
-            console.log(Network.type);
+            console.log(this.network.type);
             refresher.complete();
         }).catch(err => {
           console.log(err);
@@ -122,5 +123,5 @@ export class Newsfeed {
        this.showAlert('Oh snap!', "Looks like you're disconnected. Try again later!")
     }
   }
-  
+
 }

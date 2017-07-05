@@ -5,6 +5,7 @@ hooks/
 .tmp/
 node_modules/
 www/build/
+www
 platforms/
 plugins/
 *.swp

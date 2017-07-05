@@ -3,18 +3,18 @@ import {Storage} from '@ionic/storage';
 import { UserData } from '../models/userdata';
 
 import 'rxjs/add/operator/map';
- 
+
 @Injectable()
 export class LocalStorage {
   interests: any;
   discount_partners: any[];
   userData:UserData;
 
-  constructor(private storage:Storage) {  
+  constructor(private storage:Storage) {
     this.userData = null;
-    this.storage.clear();
+    //this.storage.clear();
   }
- 
+
   get(key:string):Promise<string> {
     return new Promise((resolve,reject) => {
       this.storage.get(key).then(result => {
