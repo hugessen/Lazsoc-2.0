@@ -3,7 +3,7 @@ import { CacheService } from '../providers/CacheService';
 import { LocalStorage } from '../providers/LocalStorage';
 import { Observable } from 'rxjs/Rx';
 
-declare var RRule: any; 
+declare var RRule: any;
 
 //Custom classes
 import { Club } from '../models/club'; //Club object. All objects stored in the 'models' folder
@@ -17,13 +17,13 @@ const AHEAD_TIME = 14;
 export class LocalData {
     public events: any;
     public cache: CacheService;
-    
+
     // public exportedEvents;
 
     constructor(public cacheService: CacheService, private localStorage:LocalStorage){
-        this.cache = cacheService; 
+        this.cache = cacheService;
     }
-    
+
     //Remember to fix this to pull from API after
     getCustomFeed(club?:Club):Promise<any>{
         return new Promise((resolve,reject) => {
@@ -50,7 +50,7 @@ export class LocalData {
             })
         })
     }
-    
+
     generateCustomFeed(events:any[], clubs:any, prefs:Prefs,club?:Club):any{
         var result = { past:{}, thisweek:{}, upcoming:{} }
         //Sorting by time
@@ -75,21 +75,21 @@ export class LocalData {
                         if(prefs.interestPrefs.hasOwnProperty(event_tag) && prefs.interestPrefs[event_tag].selected){
                             event.visible = true;
                             event.basedOn = event_tag;
-                        }  
+                        }
                     }
                 }
 
                 //Checking timeframe
-                if (eventStart < currentTime)   
+                if (eventStart < currentTime)
                     event.timeframe = "past";
                 else if (eventStart >= currentTime && eventStart <= currentTime + 60*60*24*7*1000)
                     event.timeframe = "thisweek";
-                else 
+                else
                     event.timeframe = "upcoming";
 
                 if(!result[event.timeframe].hasOwnProperty(eventDateKey)){ //Does an entry exist for this key?
                     var dividerVal = this.getLongDate(new Date(event.start_date_time));
-                    result[event.timeframe][eventDateKey] = {divider:dividerVal, events:[], visible:false} 
+                    result[event.timeframe][eventDateKey] = {divider:dividerVal, events:[], visible:false}
                 }
                 if (event.visible)
                     result[event.timeframe][eventDateKey].visible = true; //So we know whether to show the divider
@@ -199,12 +199,11 @@ export class LocalData {
         return new Promise((resolve,reject) => {
             this.cache.getItem('events','events.json',60*20) //Cache for 20 mins
             .then(res => {
-                //resolve(res.cacheVal);
-                resolve(this.getDummyEvents());
+                resolve(res.cacheVal);
             }).catch(err => reject(err));
         })
     }
-    
+
     //Returns user's locally stored preferences
     getPrefs():Promise<any>{
         return new Promise((resolve,reject) => {
@@ -331,4 +330,3 @@ export class LocalData {
         `)
     }
 }
-
