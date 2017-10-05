@@ -19,6 +19,7 @@ export class DiscountPage {
     .then(data => {
         this.allSponsors = data.cacheVal;
         this.sponsorsRows = this.sponsorsToRows(this.allSponsors,2);
+        console.log(this.allSponsors);
     });
   }
   

@@ -3,7 +3,5 @@
   "app-id": "",
   "app_id": "71d59aee",
   "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
+  "integrations": {}
 }
