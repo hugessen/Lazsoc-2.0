@@ -126,7 +126,12 @@ export class CacheService {
    */
   public load(path: string): Promise<{}> {
       console.log(API_URL + path);
-    return this.http.get(API_URL + path).map(res => res.json()).toPromise();
+      var loc;
+      if (path === "get_articles")
+        loc = "https://moria.lazsoc.ca/api/get_articles";
+      else
+        loc = API_URL + path;
+    return this.http.get(loc).map(res => res.json()).toPromise();
   }
 
 }

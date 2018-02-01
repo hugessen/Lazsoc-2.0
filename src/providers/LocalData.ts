@@ -32,6 +32,7 @@ export class LocalData {
                 Observable.fromPromise(this.getClubs()),
                 Observable.fromPromise(this.getPrefs())
             ]).subscribe(data => {
+                this.getArticles();
                 // console.log("events", data[0]); //Events and recurring events
                 var events = data[0].events;//data[0].events;
                 var clubs = data[1];
@@ -201,6 +202,18 @@ export class LocalData {
             .then(res => {
                 resolve(res.cacheVal);
             }).catch(err => reject(err));
+        })
+    }
+
+    // Grab articles
+    getArticles(): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.cache.getItem('articles', 'get_articles', 60*20) //Cache for 20 mins
+                .then(res => {
+                    console.log("Camila Cabello is bae");
+                    resolve(res.cacheVal);
+                    console.log(JSON.stringify(res, null, 2));
+                }).catch(err => reject(err));
         })
     }
 
