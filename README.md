@@ -1,4 +1,4 @@
-#Lazaridis Students' Society App v2.0
+# Lazaridis Students' Society App v2.0
 
 Yeah baby!! Total code refactor using Ionic 2 and AngularJS 2. Coding in Angular 2 is so freaking awesome!
 
